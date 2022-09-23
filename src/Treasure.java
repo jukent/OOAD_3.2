@@ -28,7 +28,7 @@ abstract public class Treasure {
 
         Room new_room = starting_rooms.get(random_index);
 
-        // Start there
+        // Hide treasure there
         this.Location = new_room;
     }
 
