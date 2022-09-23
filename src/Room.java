@@ -9,6 +9,8 @@ public class Room {
     private ArrayList<Characters> characters_in_room;
     private ArrayList<Creatures> creatures_in_room;
 
+    private ArrayList<Treasure> treasure_in_room;
+
 
     /**
      * @param Level: Integer
@@ -133,6 +135,22 @@ public class Room {
     }
 
 
+    /**
+     * 
+     */
+    public ArrayList<Treasure> getTreasureInRoom() {
+        return this.treasure_in_room;
+    }
+
+
+    /**
+     * 
+     */
+    public void setTreasureInRoom(ArrayList<Treasure> treasure) {
+        this.treasure_in_room = treasure;
+    }    
+    
+    
     /**
      * @return ArrayList<String> (neighboring room name)
      * 

@@ -1,7 +1,12 @@
 public class Potion extends Treasure {
     
-    public Potion(int ID){
+    
+    /**
+     * @param ID
+     * @param dungeon
+     */
+    public Potion(int ID, Dungeon dungeon) {
         this.HPBoost = 1;
+        setLocation(dungeon);
     }
-
 }

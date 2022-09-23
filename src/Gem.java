@@ -1,7 +1,11 @@
 public class Gem extends Treasure {
 
-    public Gem(int ID){
+
+    /**
+     * @param ID
+     */
+    public Gem(int ID, Dungeon dungeon) {
         this.AdversaryFightBonus = 1;
+        setLocation(dungeon);
     }
-    
 }

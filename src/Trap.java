@@ -1,4 +1,11 @@
 public class Trap extends Treasure {
-    public Trap(int ID){}
 
+
+    /**
+     * @param ID
+     * @param dungeon
+     */
+    public Trap(int ID, Dungeon dungeon) {
+        setLocation(dungeon);
+    }
 }
