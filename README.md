@@ -4,7 +4,7 @@ by David Chaparro and Julia Kent
 
 Java version: 17.0.1
 
-Expanding the Raiders of the Lost Arctangent Game to use specific treasures and design patterns.
+Expanding the Raiders of the Lost Arctangent Game to use specific treasures and design patterns. Previous iteration can be found at: https://github.com/jukent/OOAD5448_P2.2
 
 --------------------------------
 
