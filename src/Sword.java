@@ -1,8 +1,12 @@
 public class Sword extends Treasure {
     
-    public Sword(int ID){
+    
+    /**
+     * @param ID
+     * @param dungeon
+     */
+    public Sword(int ID, Dungeon dungeon) {
         this.OwnerFightBonus = 1;
-
-
+        setLocation(dungeon);
     }
 }

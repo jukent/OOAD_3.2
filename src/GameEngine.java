@@ -84,27 +84,30 @@ public class GameEngine {
 
         // Creatures
         // Also an example of polymorphism
-        for(int i = 0; i <4; i++){
-        CreatureList.add(new Seekers(ID, dungeon));
-        ID++;
-        CreatureList.add(new Orbiters(ID, dungeon));
-        ID++;
-        CreatureList.add(new Blinkers(ID, dungeon));
-        ID++;}
+        for(int i = 0; i <4; i++) {
+            CreatureList.add(new Seekers(ID, dungeon));
+            ID++;
+            CreatureList.add(new Orbiters(ID, dungeon));
+            ID++;
+            CreatureList.add(new Blinkers(ID, dungeon));
+            ID++;
+        }
 
-        for(int i = 0; i<4; i++){
-        TreasureList.add(new Sword(ID));
-        ID++;
-        TreasureList.add(new Gem(ID));
-        ID++;
-        TreasureList.add(new Armor(ID));
-        ID++;
-        TreasureList.add(new Portal(ID));
-        ID++;
-        TreasureList.add(new Trap(ID));
-        ID++;
-        TreasureList.add(new Potion(ID));
-        ID++;}
+        for(int i = 0; i<4; i++) {
+            TreasureList.add(new Sword(ID, dungeon));
+            ID++;
+            TreasureList.add(new Gem(ID, dungeon));
+            ID++;
+            TreasureList.add(new Armor(ID, dungeon));
+            ID++;
+            TreasureList.add(new Portal(ID, dungeon));
+            ID++;
+            TreasureList.add(new Trap(ID, dungeon));
+            ID++;
+            TreasureList.add(new Potion(ID, dungeon));
+            ID++;
+        }
+        
         // Tell Rooms that there are occupants.
         setOccupancy();
     }
@@ -278,13 +281,31 @@ public class GameEngine {
     }
 
 
+        /**
+     * @param room: Room
+     * 
+     * Method to get Treasure from a particular room.
+     */
+    private void setTreasureInRoom(Room room) {
+        ArrayList<Treasure> treasure_in_room = new ArrayList<>();
+        for (Treasure t: TreasureList) {
+            Room treasure_location = t.getLocation();
+            if (treasure_location == room) {
+                treasure_in_room.add(t);
+            } 
+        }
+        room.setTreasureInRoom(treasure_in_room);  
+    }
+
+
     /**
-     * Method to get Characters and Creatures in each Room of the Dungeon.
+     * Method to get Characters, Creatures, and Treasures in each Room of the Dungeon.
      */
     private void setOccupancy() {
         for (Room r: this.dungeon.getMap().values()) {
             setCharactersInRoom(r);
             setCreaturesInRoom(r); 
+            setTreasureInRoom(r);
         }
     }
 

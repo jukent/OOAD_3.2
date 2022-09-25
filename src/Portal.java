@@ -1,7 +1,10 @@
 public class Portal extends Treasure {
 
-    public Portal(int ID){
-        
+    /**
+     * @param ID
+     * @param dungeon
+     */
+    public Portal(int ID, Dungeon dungeon) {
+        setLocation(dungeon);  
     }
-    
 }
