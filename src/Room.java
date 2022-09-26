@@ -8,7 +8,6 @@ public class Room {
     
     private ArrayList<Characters> characters_in_room;
     private ArrayList<Creatures> creatures_in_room;
-
     private ArrayList<Treasure> treasure_in_room;
 
 
@@ -126,7 +125,7 @@ public class Room {
 
 
     /**
-     * @param creaturs_in_room: ArrayList<Creatures>
+     * @param creatures_in_room: ArrayList<Creatures>
      * 
      * This method stores Room occupancy as an ArrayList of Creatures in the Room.
      */

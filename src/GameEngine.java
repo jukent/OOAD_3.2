@@ -126,6 +126,11 @@ public class GameEngine {
         int CharacterRoll = A.fight();
         int CreatureRoll = B.fight();
 
+        for(Treasure I: A.Inventory){
+            CharacterRoll += I.getFB();
+            CreatureRoll += I.getAFB();
+        }
+
         if(CharacterRoll > 0) {
             if(CharacterRoll > CreatureRoll) {
                 B.loseHealth(1);
@@ -163,15 +168,35 @@ public class GameEngine {
      */
     private void simulateTreasure(Characters A) {
         int NeededScore = A.HuntBehavior.NeededScore;
-        
         int Score = A.searchTreasure();
+
+        ArrayList<Treasure> treasure_in_room = A.Location.getTreasureInRoom();
+
         if(Score >= NeededScore) {
-            A.gainTreasure();
             //A.CurrentTreasure;
-            if (Output != "ShowNone") {
+            if (Output != "ShowNone" && !treasure_in_room.isEmpty()) {
                 System.out.print("Treasure Hunt: ");
                 System.out.print(Score);
-                System.out.println(" Success!");
+                System.out.println(" Success! ");
+                System.out.println("Treasure: "+ treasure_in_room.get(0).getClass());
+                
+
+                Treasure CurrentItem = treasure_in_room.get(0);
+                CurrentItem.setFound(true);
+                if(A.InventoryTypes.contains(CurrentItem.getType())){
+                    A.gainTreasure();
+                    A.loseHealth(CurrentItem.getTakeDamage());
+                    if(CurrentItem.getType() == "Trap"){
+                        treasure_in_room.remove(0);
+                    }
+                }
+                else{
+                    treasure_in_room.remove(0);
+                    A.Inventory.add(CurrentItem);
+                    A.InventoryTypes.add(CurrentItem.getType());
+                    A.loseHealth(CurrentItem.getTakeDamage());
+                    A.addHealth(CurrentItem.getHPBoost()); }
+                A.getLocation().setTreasureInRoom(treasure_in_room);
             }
         } 
         if(Score == -1) {
@@ -326,6 +351,7 @@ public class GameEngine {
             // Move to new Room
             A.move();
             Room new_room = A.getLocation();
+            ArrayList<Treasure> treasure_in_room = A.Location.getTreasureInRoom();
             setOccupancy();
 
             // Look for creatures
@@ -336,7 +362,8 @@ public class GameEngine {
                     simulateFight(A, c);
                 }
                 continue;
-            } else if (A.getLocation().getName() != "(0-1-1)") {
+            } 
+            else if (!treasure_in_room.isEmpty() && !treasure_in_room.get(0).Found) {
                 // If there are no Creatures (and not in the starting room), look for treasure
                 simulateTreasure(A);
                 break;
@@ -385,6 +412,7 @@ public class GameEngine {
      */
     private void checkWinCondition() {
         int TC = 0;
+        boolean all_treasures_found = true;
 
         ArrayList<Characters> TempCharacterList = new ArrayList<Characters>();
         ArrayList<Creatures> TempCreatureList = new ArrayList<Creatures>();
@@ -415,8 +443,14 @@ public class GameEngine {
         CreatureCount = CreatureList.size();
         CharacterCount = CharacterList.size();
 
+        for(Treasure I: TreasureList){
+            if(!I.Found){
+                all_treasures_found = false;
+            }
+        }
+
         // Change End Condition depending on the outcome
-        if (TreasureCount >= 10) { 
+        if (all_treasures_found) { 
             // 10 Treasures Found
             EndCondition = false;
             System.out.println("Game Over");

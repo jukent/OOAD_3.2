@@ -8,7 +8,9 @@ abstract public class Treasure {
     protected int OwnerFightBonus = 0;
     protected int AdversaryFightBonus = 0;
     protected int HPBoost = 0;
+    protected int TakeDamage = 0;
     protected String TreasureType;
+    protected boolean Found = false;
 
 
     /**
@@ -41,4 +43,33 @@ abstract public class Treasure {
     public Room getLocation() {
         return this.Location;
     }
+
+    public int getFB(){
+        return this.OwnerFightBonus;
+    }
+
+    public int getAFB(){
+        return this.AdversaryFightBonus;
+    }
+
+    public int getHPBoost(){
+        return this.HPBoost;
+    }
+
+    public int getTakeDamage(){
+        return this.TakeDamage;
+    }
+    public String getType(){
+        return this.TreasureType;
+    }
+
+    public boolean isFound(){
+        return this.Found;
+    }
+
+    public void setFound(boolean Found){
+        this.Found = Found;
+    }
+
+
 }

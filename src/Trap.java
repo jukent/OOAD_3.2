@@ -7,5 +7,7 @@ public class Trap extends Treasure {
      */
     public Trap(int ID, Dungeon dungeon) {
         setLocation(dungeon);
+        this.TakeDamage = 1;
+        this.TreasureType = "Trap";
     }
 }
