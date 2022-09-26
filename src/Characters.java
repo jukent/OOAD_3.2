@@ -15,8 +15,8 @@ public abstract class Characters {
     protected Room Location;
 
     String name = new String("Character");
-    public TreasureHunt HuntBehavior = new TreasureHunt("Character");
-    public Fight FightBehavior = new Fight("Character");
+    public TreasureHunt HuntBehavior;
+    public Fight FightBehavior;
     public ArrayList<Treasure> Inventory = new ArrayList<Treasure>();
     public ArrayList<String> InventoryTypes = new ArrayList<String>();
 
