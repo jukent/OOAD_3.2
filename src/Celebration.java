@@ -1,6 +1,7 @@
 public abstract class Celebration extends Fight{
 
-    protected Fight FightBehavior;
+    protected Celebration celebrationRef;
+    protected Fight fightRef;
 
     public abstract int fight();
     public abstract void celebrate();

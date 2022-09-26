@@ -123,7 +123,8 @@ public class GameEngine {
      * If a character rolls a -1, fight is skipped.
      */
     private void simulateFight(Characters A, Creatures B) {
-        Celebration c1 = new Spin(A.FightBehavior);
+        Fight f1 = A.FightBehavior;
+        Celebration c1 = new Spin(f1);
         c1 = new Dance(c1);
         c1 = new Jump(c1);
         c1 = new Shout(c1);

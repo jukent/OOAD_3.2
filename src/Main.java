@@ -16,7 +16,7 @@ public class Main{
      * This method runs one game, verbose.
      */
     public static void run1Game() {
-        GameEngine Game1 = new GameEngine("ShowAll");
+        GameEngine Game1 = new GameEngine("OneScreen");
         Game1.runGame();
     }
 
