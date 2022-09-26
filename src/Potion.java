@@ -7,6 +7,7 @@ public class Potion extends Treasure {
      */
     public Potion(int ID, Dungeon dungeon) {
         this.HPBoost = 1;
+        this.TreasureType = "Potion";
         setLocation(dungeon);
     }
 }

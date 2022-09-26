@@ -17,7 +17,8 @@ public abstract class Characters {
     String name = new String("Character");
     public TreasureHunt HuntBehavior = new TreasureHunt("Character");
     public Fight FightBehavior = new Fight("Character");
-    public Treasure CurrentTreasure;
+    public ArrayList<Treasure> Inventory = new ArrayList<Treasure>();
+    public ArrayList<String> InventoryTypes = new ArrayList<String>();
 
     protected int HP = 3;
     protected int TreasureCount = 0;
@@ -108,7 +109,7 @@ public abstract class Characters {
      * This method decreases a Character's health by the integer 'n'.
      */
     public void loseHealth(int n) {
-        this.HP = this.HP - n;
+        this.HP -= n;
     }
 
 
@@ -128,7 +129,7 @@ public abstract class Characters {
      * This method returns how much treasure a Character has found.
      */
     public int getTreasure() {
-        return this.TreasureCount;
+        return this.TreasureCount+Inventory.size();
     }
 
 
@@ -147,5 +148,9 @@ public abstract class Characters {
      */
     public String getName() {
         return this.name;
+    }
+
+    public void addHealth(int HP){
+        this.HP += HP;
     }
 }

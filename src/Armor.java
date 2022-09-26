@@ -6,6 +6,7 @@ public class Armor extends Treasure {
      */
     public Armor(int ID, Dungeon dungeon){
         this.AdversaryFightBonus = -1;
+        this.TreasureType = "Armor";
         setLocation(dungeon);
     }
 }

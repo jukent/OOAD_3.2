@@ -7,6 +7,7 @@ public class Sword extends Treasure {
      */
     public Sword(int ID, Dungeon dungeon) {
         this.OwnerFightBonus = 1;
+        this.TreasureType = "Sword";
         setLocation(dungeon);
     }
 }
