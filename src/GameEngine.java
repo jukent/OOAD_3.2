@@ -123,7 +123,12 @@ public class GameEngine {
      * If a character rolls a -1, fight is skipped.
      */
     private void simulateFight(Characters A, Creatures B) {
-        int CharacterRoll = A.fight();
+        Celebration c1 = new Spin(A.FightBehavior);
+        c1 = new Dance(c1);
+        c1 = new Jump(c1);
+        c1 = new Shout(c1);
+
+        int CharacterRoll = c1.fight();
         int CreatureRoll = B.fight();
 
         for(Treasure I: A.Inventory){
@@ -141,6 +146,9 @@ public class GameEngine {
                     System.out.print(" " + B.getClass().getSimpleName() + ": ");
                     System.out.print(CreatureRoll);
                     System.out.println(" " + A.getClass().getSimpleName() + " Wins :D ");
+                    System.out.print(A.getName() + " celebrates!: ");
+                    c1.celebrate();
+                    System.out.println();
                 }
             } else if (CharacterRoll < CreatureRoll) {
                 A.loseHealth(1);
