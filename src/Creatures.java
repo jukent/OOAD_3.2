@@ -7,7 +7,7 @@ public abstract class Creatures {
     protected Room Location;
 
     String name = new String("Creature");
-    Fight FightBehavior = new Fight("Creature");
+    Fight FightBehavior = new Creature();
 
     protected int HP = 1;
     protected int MoveCount = 1;

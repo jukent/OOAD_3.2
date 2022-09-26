@@ -13,8 +13,8 @@ public class Runners extends Characters {
         this.Location = dungeon.getRoom("(0-1-1)");
         super.ID = A;
         super.MoveCount = 2;
-        this.FightBehavior = new Fight("Untrained");
-        this.HuntBehavior = new TreasureHunt("Quick");
+        this.FightBehavior = new Untrained();
+        this.HuntBehavior = new Quick();
         name = "Runner";
     }
 }
