@@ -9,7 +9,7 @@ public class Dance extends Celebration{
     }
 
     public void celebrate(){
-        this.celebrationRef.celebrate();
+        this.fightRef.celebrate();
         for(int i = 0; i < DiceRolls.rollDice(3)-1;i++){
             System.out.print("Dance! ");
         }
