@@ -1,4 +1,4 @@
-public class Move {
+public class MovementBehavior {
  
     protected String MovementType;
 
@@ -7,7 +7,7 @@ public class Move {
      * 
      * Move Constructor
      */
-    public Move(String Type){
+    public MovementBehavior(String Type){
         MovementType = Type;
     }
 

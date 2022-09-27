@@ -1,5 +1,5 @@
-public class Untrained extends Fight{
-    public Untrained(){
+public class UntrainedFighter extends FightBehavior{
+    public UntrainedFighter(){
         this.FightType = "Untrained";}
     
     public int fight(){

@@ -11,8 +11,8 @@ public class Thieves extends Characters {
     Thieves(int A, Dungeon map) {
         this.dungeon = map;
         this.Location = dungeon.getRoom("(0-1-1)");
-        this.HuntBehavior = new Careful();
-        this.FightBehavior = new Trained();
+        this.HuntBehavior = new CarefulHunt();
+        this.FightBehavior = new TrainedFighter();
         super.ID = A;
         name = "Thief";
     }

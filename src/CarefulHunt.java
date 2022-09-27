@@ -1,6 +1,6 @@
-public class Careful extends TreasureHunt{
+public class CarefulHunt extends TreasureHunt{
     
-    public Careful(){
+    public CarefulHunt(){
         this.SearchType = "Careful";
         this.NeededScore = 7;
     }
