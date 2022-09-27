@@ -133,11 +133,11 @@ public class Tracker {
         return creatureList;
     }
 
-    public void removeCreature(Creatures creature){
+    public void removeCreature(Creatures creature) {
         this.creatureList.remove(creature);
     }
 
-    public void removeCharacter(Characters character){
+    public void removeCharacter(Characters character) {
         this.characterList.remove(character);
     }
 }

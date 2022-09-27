@@ -142,7 +142,6 @@ public class GameEngine {
             if(CharacterRoll > CreatureRoll) {
                 // Character Wins
                 B.loseHealth(1);
-                //tracker.setCreatureStats(creatureList); // Remove dead creature
                 tracker.removeCreature(B);
 
                 if (Output != "ShowNone") {
@@ -159,10 +158,11 @@ public class GameEngine {
             } else if (CharacterRoll < CreatureRoll) {
                 // Creature Wins
                 A.loseHealth(1);
-                if (A.getHealth() > 0) {
-                    tracker.setCharacterStats(characterList); // Update hp 
-                } else {
+                //tracker.setCharacterStats(characterList); // Update hp 
+                System.out.println("Hurt");
+                if (A.getHealth() <= 0) {
                     tracker.removeCharacter(A); // Remove dead character
+                    System.out.println("Dead");
                 }
 
                 if (Output != "ShowNone") {
@@ -212,8 +212,11 @@ public class GameEngine {
                     if (currentItem.getType() == "Trap") {
                         // Can encounter multiple traps
                         A.setInventory(currentItem);
-                        A.loseHealth(currentItem.getTakeDamage()); 
-                        tracker.setCharacterStats(characterList);
+                        A.loseHealth(currentItem.getTakeDamage());
+                        //tracker.setCharacterStats(characterList);
+                        if (A.getHealth() <= 0) {
+                            tracker.removeCharacter(A); // Remove dead character                            System.out.println("Dead");
+                        } 
                         tracker.removeTreasure(currentItem);
                         tracker.increaseTreasureCount(1);
                     }
@@ -222,7 +225,7 @@ public class GameEngine {
                     A.InventoryTypes.add(currentItem.getType());
                     A.loseHealth(currentItem.getTakeDamage());
                     A.addHealth(currentItem.getHPBoost()); 
-                    tracker.setCharacterStats(characterList);
+                    //tracker.setCharacterStats(characterList);
                     tracker.removeTreasure(currentItem);
                     tracker.increaseTreasureCount(1);
                 }
@@ -315,7 +318,7 @@ public class GameEngine {
             // Move to new Room
             A.move();
             Room new_room = A.getLocation();
-            tracker.setCharacterStats(characterList);
+            //tracker.setCharacterStats(characterList);
 
             // Look for creatures
             ArrayList<Creatures> creatures_in_room = tracker.getCreaturesInRoom(new_room);
@@ -354,7 +357,7 @@ public class GameEngine {
             // If no character, move
             A.move();
             Room new_room = A.getLocation();
-            tracker.setCreatureStats(creatureList);
+            //tracker.setCreatureStats(creatureList);
             
             // If characters in new room, fight
             ArrayList<Characters> characters_in_new_room = new_room.getCharactersInRoom();
