@@ -3,15 +3,9 @@ import java.util.Scanner;
 
 public class GameEngine {
 
-    // ArrayList that contains all characters and Creatures
-    protected ArrayList<Characters> CharacterList = new ArrayList<Characters>();
-    protected ArrayList<Creatures> CreatureList = new ArrayList<Creatures>();
-    protected ArrayList<Treasure> TreasureList = new ArrayList<Treasure>();
-    protected ArrayList<Subscriber> SubscriberList = new ArrayList<Subscriber>();
     private String Output = "ShowAll"; // OneScreen,ShowEnding,ShowAll
-    protected Dungeon dungeon = new Dungeon(); // Example of identity
-    protected Printer printer = new Printer(dungeon, Output);
 
+    protected Dungeon dungeon = new Dungeon(); // Example of identity
     // Dungeon is an example of identity. While we could create an instance
     // of dungeon in each character, by having the same instance of dungeon
     // passed to the characters, we can assure that each character
@@ -20,9 +14,20 @@ public class GameEngine {
     // and creatures. Otherwise, we would have an many dungeons of the same 
     // type, but not the same identity
 
+    // ArrayList that contains all characters and Creatures
+    protected ArrayList<Characters> characterList = new ArrayList<Characters>();
+    protected ArrayList<Creatures> creatureList = new ArrayList<Creatures>();
+    protected ArrayList<Treasure> treasureList = new ArrayList<Treasure>();
+    
+    Tracker tracker = new Tracker(dungeon, characterList, creatureList, treasureList);
+
+    protected Printer printer = new Printer(dungeon, tracker, Output);
+
+
+
     // Game variables that track win condition
-    private int TreasureCount = 0;
-    private int DeadTreasureCount = 0;
+    private int treasureCount = 0;
+    private int deadTreasureCount = 0;
     private int CreatureCount = 1;
     private int CharacterCount = 0;
     private int RoundCounter = 0;
@@ -39,7 +44,7 @@ public class GameEngine {
      */
     public GameEngine(String OutputType) {
         Output = OutputType;
-        printer = new Printer(dungeon, Output);
+        printer = new Printer(dungeon, tracker, Output);
         populateEntities();
         if (Output != "ShowNone") {
             System.out.println("Starting Game!");
@@ -56,6 +61,7 @@ public class GameEngine {
     public void runGame() {
         while (EndCondition) {
             RoundCounter++;
+            tracker.setRoundCounter(RoundCounter);
             processTurn();
         }        
         A.close();
@@ -73,43 +79,43 @@ public class GameEngine {
         // of their abstract class.
 
         // Characters
-        CharacterList.add(new Runners(ID, dungeon));
+        characterList.add(new Runners(ID, dungeon));
         ID++;
-        CharacterList.add(new Sneakers(ID, dungeon));
+        characterList.add(new Sneakers(ID, dungeon));
         ID++;
-        CharacterList.add(new Thieves(ID, dungeon));
+        characterList.add(new Thieves(ID, dungeon));
         ID++;
-        CharacterList.add(new Brawlers(ID, dungeon));
+        characterList.add(new Brawlers(ID, dungeon));
         ID++;
+        tracker.setCharacterStats(characterList);
 
         // Creatures
         // Also an example of polymorphism
         for(int i = 0; i <4; i++) {
-            CreatureList.add(new Seekers(ID, dungeon));
+            creatureList.add(new Seekers(ID, dungeon));
             ID++;
-            CreatureList.add(new Orbiters(ID, dungeon));
+            creatureList.add(new Orbiters(ID, dungeon));
             ID++;
-            CreatureList.add(new Blinkers(ID, dungeon));
+            creatureList.add(new Blinkers(ID, dungeon));
             ID++;
         }
+        tracker.setCreatureStats(creatureList);
 
         for(int i = 0; i<4; i++) {
-            TreasureList.add(new Sword(ID, dungeon));
+            treasureList.add(new Sword(ID, dungeon));
             ID++;
-            TreasureList.add(new Gem(ID, dungeon));
+            treasureList.add(new Gem(ID, dungeon));
             ID++;
-            TreasureList.add(new Armor(ID, dungeon));
+            treasureList.add(new Armor(ID, dungeon));
             ID++;
-            TreasureList.add(new Portal(ID, dungeon));
+            treasureList.add(new Portal(ID, dungeon));
             ID++;
-            TreasureList.add(new Trap(ID, dungeon));
+            treasureList.add(new Trap(ID, dungeon));
             ID++;
-            TreasureList.add(new Potion(ID, dungeon));
+            treasureList.add(new Potion(ID, dungeon));
             ID++;
         }
-        
-        // Tell Rooms that there are occupants.
-        setOccupancy();
+        tracker.setTreasureStats(treasureList);
     }
     
 
@@ -140,6 +146,8 @@ public class GameEngine {
         if(CharacterRoll > 0) {
             if(CharacterRoll > CreatureRoll) {
                 B.loseHealth(1);
+                tracker.setCreatureStats(creatureList); // Remove dead creature
+
                 if (Output != "ShowNone") {
                     System.out.print("Fight: ");
                     System.out.print(A.getClass().getSimpleName() + ": ");
@@ -153,16 +161,19 @@ public class GameEngine {
                 }
             } else if (CharacterRoll < CreatureRoll) {
                 A.loseHealth(1);
-                if(Output != "ShowNone"){
-                System.out.print("Fight: ");
-                System.out.print(A.getClass().getSimpleName() + ": ");
-                System.out.print(CharacterRoll);
-                System.out.print(" " + B.getClass().getSimpleName() + ": ");
-                System.out.print(CreatureRoll);
-                System.out.println(" Creature Wins :( ");}
+                tracker.setCharacterStats(characterList); // Update hp or remove dead adventurer
+
+                if (Output != "ShowNone") {
+                    System.out.print("Fight: ");
+                    System.out.print(A.getClass().getSimpleName() + ": ");
+                    System.out.print(CharacterRoll);
+                    System.out.print(" " + B.getClass().getSimpleName() + ": ");
+                    System.out.print(CreatureRoll);
+                    System.out.println(" Creature Wins :( ");
+                }
             }
         } else {
-            if(Output != "ShowNone") {
+            if (Output != "ShowNone") {
                 System.out.println("Fight Skipped");
             }
         }
@@ -179,34 +190,36 @@ public class GameEngine {
         int NeededScore = A.HuntBehavior.NeededScore;
         int Score = A.searchTreasure();
 
-        ArrayList<Treasure> treasure_in_room = A.Location.getTreasureInRoom();
+        ArrayList<Treasure> treasure_in_room = tracker.getTreasureInRoom(A.Location);
 
-        if(Score >= NeededScore) {
-            //A.CurrentTreasure;
+        if (Score >= NeededScore) {
+            Treasure currentItem = treasure_in_room.get(0);
+            currentItem.setFound(true);
+
             if (Output != "ShowNone" && !treasure_in_room.isEmpty()) {
                 System.out.print("Treasure Hunt: ");
                 System.out.print(Score);
                 System.out.println(" Success! ");
                 System.out.println("Treasure: " + treasure_in_room.get(0).getClass());
-
-                Treasure CurrentItem = treasure_in_room.get(0);
-                CurrentItem.setFound(true);
-                if (A.InventoryTypes.contains(CurrentItem.getType())) {
-                    A.setInventory(CurrentItem);
-                    A.loseHealth(CurrentItem.getTakeDamage());
-                    if (CurrentItem.getType() == "Trap") {
-                        treasure_in_room.remove(0);
-                    }
-                } else {
-                    treasure_in_room.remove(0);
-                    A.Inventory.add(CurrentItem);
-                    A.InventoryTypes.add(CurrentItem.getType());
-                    A.loseHealth(CurrentItem.getTakeDamage());
-                    A.addHealth(CurrentItem.getHPBoost()); 
-                }
-                A.getLocation().setTreasureInRoom(treasure_in_room);
             }
-        } 
+            if (A.InventoryTypes.contains(currentItem.getType())) {
+                // If we've already encountered this type of treasure
+                if (currentItem.getType() == "Trap") {
+                    // Can encounter multiple traps
+                    A.setInventory(currentItem);
+                    A.loseHealth(currentItem.getTakeDamage()); 
+                    tracker.setCharacterStats(characterList);
+                    tracker.removeTreasure(currentItem);
+                }
+            } else {
+                // This is a new type of treasure
+                A.InventoryTypes.add(currentItem.getType());
+                A.loseHealth(currentItem.getTakeDamage());
+                A.addHealth(currentItem.getHPBoost()); 
+                tracker.setCharacterStats(characterList);
+                tracker.removeTreasure(currentItem);
+            }
+        }
         if (Score == -1) {
             if (Output != "ShowNone") {
                 System.out.print("Treasure Hunt: ");
@@ -227,46 +240,34 @@ public class GameEngine {
      */
     private void processTurn() {
         // Process Characters
-        for(Characters I: CharacterList) {
+        for(Characters I: characterList) {
             if (EndCondition) {
                 //Stops processing Characters if end condition is met
-                if (Output == "OneScreen") {
-                    System.out.print("\033[H\033[2J");
-                    System.out.flush();
-                }
-                if (Output == "OneScreen" || Output == "ShowAll") {
-                    showGameStatus();
-                    printer.printDungeon();
-                    printCharacterStats();
-                    printCreatureStats();
-                    System.out.println();
-                }
-
-                setOccupancy(); // Update room occupancy
                 process1Character(I); // Process character
                 checkWinCondition(); // Updates win conditions}
-                printer.pause();
             } else {
                 break;
             }
         }
 
+        // Print Logger at end of each all-character turn -- move this to Logger
+        if (Output == "OneScreen") {
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+        }
+        if (Output == "OneScreen" || Output == "ShowAll") {
+            //showGameStatus();
+            printer.printDungeon();
+            //printCharacterStats();
+            //printCreatureStats();
+            System.out.println();
+            printer.pause();
+        }
+
         // Process Creatures
-        for (Creatures I: CreatureList) {
+        for (Creatures I: creatureList) {
             if (EndCondition) {
                 // Stops processing Creatures if end condition is met
-                if (Output == "OneScreen") {
-                    System.out.print("\033[H\033[2J");
-                    System.out.flush();}
-                if (Output == "OneScreen" || Output == "ShowAll") {
-                    showGameStatus();
-                    printer.printDungeon();
-                    printCharacterStats();
-                    printCreatureStats();
-                    System.out.println();
-                }
-
-                setOccupancy();
                 process1Creature(I);
                 checkWinCondition();
                 printer.pause();
@@ -274,68 +275,19 @@ public class GameEngine {
                 break;
             }
         }
-    }
-    
 
-    /**
-     * @param room: Room
-     * 
-     * Method to get Characters from a particular room.
-     */
-    private void setCharactersInRoom(Room room) {
-        ArrayList<Characters> characters_in_room = new ArrayList<>();
-        for (Characters c: CharacterList) {
-            Room character_location = c.getLocation();
-            if (character_location == room) {
-                characters_in_room.add(c);
-            } 
+        // Print Logger at end of each all-character turn -- move this to Logger
+        if (Output == "OneScreen") {
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
         }
-        room.setCharactersInRoom(characters_in_room);  
-    }
-
-
-    /**
-     * @param room: Room
-     * 
-     * Method to get Creatures from a particular room.
-     */
-    private void setCreaturesInRoom(Room room) {
-        ArrayList<Creatures> creatures_in_room = new ArrayList<>();
-        for (Creatures c: CreatureList) {
-            Room creature_location = c.getLocation();
-            if (creature_location == room) {
-                creatures_in_room.add(c);
-            } 
-        }
-        room.setCreaturesInRoom(creatures_in_room);  
-    }
-
-
-        /**
-     * @param room: Room
-     * 
-     * Method to get Treasure from a particular room.
-     */
-    private void setTreasureInRoom(Room room) {
-        ArrayList<Treasure> treasure_in_room = new ArrayList<>();
-        for (Treasure t: TreasureList) {
-            Room treasure_location = t.getLocation();
-            if (treasure_location == room) {
-                treasure_in_room.add(t);
-            } 
-        }
-        room.setTreasureInRoom(treasure_in_room);  
-    }
-
-
-    /**
-     * Method to get Characters, Creatures, and Treasures in each Room of the Dungeon.
-     */
-    private void setOccupancy() {
-        for (Room r: this.dungeon.getMap().values()) {
-            setCharactersInRoom(r);
-            setCreaturesInRoom(r); 
-            setTreasureInRoom(r);
+        if (Output == "OneScreen" || Output == "ShowAll") {
+            //showGameStatus();
+            printer.printDungeon();
+            //printCharacterStats();
+            //printCreatureStats();
+            System.out.println();
+            printer.pause();
         }
     }
 
@@ -356,24 +308,20 @@ public class GameEngine {
             // Move to new Room
             A.move();
             Room new_room = A.getLocation();
-            ArrayList<Treasure> treasure_in_room = A.Location.getTreasureInRoom();
-            setOccupancy();
+            tracker.setCharacterStats(characterList);
 
             // Look for creatures
-            ArrayList<Creatures> creatures_in_room = new_room.getCreaturesInRoom();
+            ArrayList<Creatures> creatures_in_room = tracker.getCreaturesInRoom(new_room);
             if (creatures_in_room.size() > 0) {
                 // If there are Creatures in the room, fight
                 for (Creatures c:creatures_in_room) {
                     simulateFight(A, c);
                 }
                 continue;
-            } 
-            else if (!treasure_in_room.isEmpty() && !treasure_in_room.get(0).Found) {
-                // If there are no Creatures (and not in the starting room), look for treasure
-                simulateTreasure(A);
-                break;
             } else {
-                break;
+                // If there are no Creatures in the room, look for treasure
+                // Unintelligent (no knowledge of if there IS treasure)
+                simulateTreasure(A);
             }
         }
     }
@@ -387,10 +335,9 @@ public class GameEngine {
      * - If no other Character is in the Room, move.
      */
     private void process1Creature(Creatures A){
-        // Get Room information and Rharacters in the Room
+        // Get Room information and Characters in the Room
         Room current_room = A.getLocation();
-        setOccupancy();
-        ArrayList<Characters> characters_in_room = current_room.getCharactersInRoom();
+        ArrayList<Characters> characters_in_room = tracker.getCharactersInRoom(current_room);
         
         if (characters_in_room.size() > 0) {
             // If there is a character, don't move, fight!
@@ -401,7 +348,7 @@ public class GameEngine {
             // If no character, move
             A.move();
             Room new_room = A.getLocation();
-            setOccupancy();
+            tracker.setCreatureStats(creatureList);
             
             // If characters in new room, fight
             ArrayList<Characters> characters_in_new_room = new_room.getCharactersInRoom();
@@ -416,39 +363,38 @@ public class GameEngine {
      * Checks various end game conditions and modifies EndCondition accordingly
      */
     private void checkWinCondition() {
-        int TC = 0;
         boolean all_treasures_found = true;
 
-        ArrayList<Characters> TempCharacterList = new ArrayList<Characters>();
-        ArrayList<Creatures> TempCreatureList = new ArrayList<Creatures>();
+        ArrayList<Characters> tempCharacterList = new ArrayList<Characters>();
+        ArrayList<Creatures> tempCreatureList = new ArrayList<Creatures>();
 
         // Removes Creatures from board if it runs out of health
-        for (Creatures I: CreatureList) {
+        for (Creatures I: creatureList) {
             if (I.getHealth() > 0) {
-                TempCreatureList.add(I);
+                tempCreatureList.add(I);
             }
         }
-        CreatureList = TempCreatureList;
+        creatureList = tempCreatureList;
 
         // Removes Character from board if it runs out of health
         // Only counts treasures if player is alive
-        for (Characters I: CharacterList) {
+        // I thought this wasn't so?
+        for (Characters I: characterList) {
             if (I.getHealth() > 0) {
-                TempCharacterList.add(I);
-                TC += I.getTreasureCount();
+                tempCharacterList.add(I);
+                treasureCount += I.getTreasureCount();
             } else if (I.getHealth() <= 0) {
-                DeadTreasureCount += I.getTreasureCount();
+                deadTreasureCount += I.getTreasureCount();
             }
         }
-        CharacterList = TempCharacterList;
-        setOccupancy(); // Remove dead creatures and characters
+        characterList = tempCharacterList;
 
         // Update game tracking variables
-        TreasureCount = TC + DeadTreasureCount;
-        CreatureCount = CreatureList.size();
-        CharacterCount = CharacterList.size();
+        treasureCount = treasureCount + deadTreasureCount;
+        CreatureCount = creatureList.size();
+        CharacterCount = characterList.size();
 
-        for(Treasure I: TreasureList){
+        for(Treasure I: treasureList){
             if(!I.Found){
                 all_treasures_found = false;
             }
@@ -456,7 +402,7 @@ public class GameEngine {
 
         // Change End Condition depending on the outcome
         if (all_treasures_found) { 
-            // 10 Treasures Found
+            // 24 Treasures Found
             EndCondition = false;
             System.out.println("Game Over");
             System.out.println("all treasure found");
@@ -479,55 +425,15 @@ public class GameEngine {
     /**
      * Shows an overview of game information such as win conditions and entitys
      */
-    private void showGameStatus() {
-        System.out.print("Game Status: ");
-        System.out.print(" Round: ");
-        System.out.print(RoundCounter);
-        System.out.print(" Characters: ");
-        System.out.print(CharacterCount);
-        System.out.print(" Creatures: ");
-        System.out.print(CreatureCount);
-        System.out.print(" Treasures Collected: ");
-        System.out.println(TreasureCount);
-    }
-
-
-    /**
-     * This method prints Character stats: name, treausres, hp.
-     */
-    private void printCharacterStats(){
-        String tbl_header = new String("Adventurers\tRoom\tDamage\tTreasure");
-        System.out.println(tbl_header);
-        for (Characters c: CharacterList) {
-            String name = c.getName();
-            String room = c.getLocation().getName();
-            Integer hp = 3-c.getHealth();
-            String treasure = c.getInventoryString();
-
-            String char_stats = new String(name + "\t\t" + room + "\t" + hp + "\t" + treasure);
-            System.out.println(char_stats);
-        }
-    }
-
-
-    /**
-     * This method prints Creature stats: name and number remaining.
-     */
-    private void printCreatureStats() {
-        System.out.println("\n");
-        int total_creat = CreatureList.size();
-        System.out.println("Total Active Creatures: " + total_creat);
-
-
-        System.out.println("\n");
-        String tbl_header = new String("Creatures\tRoom");
-        System.out.println(tbl_header);
-  
-        for (Creatures c: CreatureList) {
-            String name = c.getName();
-            String room = c.getLocation().getName();
-            String creat_stats = new String(name + "\t\t" + room);
-            System.out.println(creat_stats);
-        }
-    }
+    //private void showGameStatus() {
+    //    System.out.print("Game Status: ");
+    //    System.out.print(" Round: ");
+    //    System.out.print(RoundCounter);
+    //    System.out.print(" Characters: ");
+    //    System.out.print(CharacterCount);
+    //    System.out.print(" Creatures: ");
+    //    System.out.print(CreatureCount);
+    //    System.out.print(" Treasures Collected: ");
+    //    System.out.println(TreasureCount);
+    //}
 }

@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class Printer {
 
     Dungeon dungeon;
+    Tracker tracker;
     String OutputType; // OneScreen,ShowAll,ShowEnding
     private Scanner A = new java.util.Scanner(System.in);
 
@@ -13,8 +14,9 @@ public class Printer {
      * 
      * Construct the printer
      */
-    Printer(Dungeon dungeon,String Output) {
+    Printer(Dungeon dungeon, Tracker tracker, String Output) {
         this.dungeon = dungeon;
+        this.tracker = tracker;
         this.OutputType = Output;
     }
 
@@ -25,8 +27,8 @@ public class Printer {
     public void printDungeon() {
         // Level 0 
         Room starting_room = dungeon.getRoom("(0-1-1)");
-        ArrayList<String> occupancy_strings = getOccupancyString(starting_room);
-        String occupancy_string = occupancy_strings.toString().replace("[", "").replace("]", "");
+        ArrayList<String> occupancy_strings = getOccupancyStringArray(starting_room);
+        String occupancy_string = occupancy_strings.toString().replace("[", "").replace("]", "").replace(",", "");
         System.out.println(occupancy_string);
 
         // Levels 1, 2, 3, 4
@@ -55,9 +57,9 @@ public class Printer {
      * 
      * This method gets the string for displaying occupancy in each Room.
      */
-    private ArrayList<String> getOccupancyString(Room room) {
+    private ArrayList<String> getOccupancyStringArray(Room room) {
         // Characters in Room
-        ArrayList<Characters> characters_in_room = room.getCharactersInRoom();
+        ArrayList<Characters> characters_in_room = tracker.getCharactersInRoom(room);
         String char_string = new String();
         for (Characters c:characters_in_room) {
             char_string += c.getName();
@@ -65,21 +67,20 @@ public class Printer {
         }
 
         // Creatures in Room
-        ArrayList<Creatures> creatures_in_room = room.getCreaturesInRoom();
+        ArrayList<Creatures> creatures_in_room = tracker.getCreaturesInRoom(room);
         String creature_string = new String();
         for (Creatures c:creatures_in_room) {
             creature_string += c.getName();
             creature_string += " ";
         }
 
-        // Full Room Occupancy String
+        // Full Room Occupancy String Array
         ArrayList<String> occupancy_strings = new ArrayList<String>();
         occupancy_strings.add(room.getName()); 
         occupancy_strings.add(" : "); 
         occupancy_strings.add(char_string); 
         occupancy_strings.add(" : "); 
         occupancy_strings.add(creature_string); 
-        //String occupancy_string = new String(room.getName() + ": " + char_string + " : " + creature_string);
         return occupancy_strings;
     }
 
@@ -99,7 +100,7 @@ public class Printer {
 
         ArrayList<String> row_strings = new ArrayList<String>();
         for (Room r: row_rooms) {
-            for (String s: getOccupancyString(r)) {
+            for (String s: getOccupancyStringArray(r)) {
                 row_strings.add(s);
             }           
         }
