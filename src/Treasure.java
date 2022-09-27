@@ -32,9 +32,6 @@ abstract public class Treasure {
 
         // Hide treasure there
         this.Location = new_room;
-
-        //DEBUG 
-        System.out.println(new_room.getName());
     }
 
 
