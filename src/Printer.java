@@ -28,7 +28,7 @@ public class Printer {
         // Level 0 
         Room starting_room = dungeon.getRoom("(0-1-1)");
         ArrayList<String> occupancy_strings = getOccupancyStringArray(starting_room);
-        String occupancy_string = occupancy_strings.toString().replace("[", "").replace("]", "");
+        String occupancy_string = occupancy_strings.toString().replace("[", "").replace("]", "").replace(",", "");
         System.out.println(occupancy_string);
 
         // Levels 1, 2, 3, 4
