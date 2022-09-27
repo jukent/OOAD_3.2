@@ -21,7 +21,7 @@ public class GameEngine {
     
     Tracker tracker = new Tracker(dungeon, characterList, creatureList, treasureList);
 
-    protected Printer printer = new Printer(dungeon, Output);
+    protected Printer printer = new Printer(dungeon, tracker, Output);
 
 
 
