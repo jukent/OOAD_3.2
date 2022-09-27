@@ -46,7 +46,7 @@ public class Tracker {
 
 
     public void increaseTreasureCount(int count) {
-        this.treasureCount += treasureCount;
+        this.treasureCount = treasureCount + count;
     }
 
     public void setCharacterStats(ArrayList<Characters> characterList) {
@@ -129,5 +129,13 @@ public class Tracker {
 
     public ArrayList<Creatures> getCreatureList() {
         return creatureList;
+    }
+
+    public void removeCreature(Creatures creature){
+        this.creatureList.remove(creature);
+    }
+
+    public void removeCharacter(Characters character){
+        this.characterList.remove(character);
     }
 }

@@ -26,10 +26,6 @@ public class GameEngine {
 
 
     // Game variables that track win condition
-    //private int treasureCount = 0;
-    //private int deadTreasureCount = 0;
-    private int CreatureCount = 1;
-    private int CharacterCount = 0;
     private int RoundCounter = 0;
     private int ID = 0;
     
@@ -44,7 +40,6 @@ public class GameEngine {
      */
     public GameEngine(String OutputType) {
         Output = OutputType;
-        printer = new Printer(dungeon, tracker, Output);
         populateEntities();
         if (Output != "ShowNone") {
             System.out.println("Starting Game!");
@@ -145,8 +140,10 @@ public class GameEngine {
 
         if(CharacterRoll > 0) {
             if(CharacterRoll > CreatureRoll) {
+                // Character Wins
                 B.loseHealth(1);
-                tracker.setCreatureStats(creatureList); // Remove dead creature
+                //tracker.setCreatureStats(creatureList); // Remove dead creature
+                tracker.removeCreature(B);
 
                 if (Output != "ShowNone") {
                     System.out.print("Fight: ");
@@ -160,8 +157,13 @@ public class GameEngine {
                     System.out.println();
                 }
             } else if (CharacterRoll < CreatureRoll) {
+                // Creature Wins
                 A.loseHealth(1);
-                tracker.setCharacterStats(characterList); // Update hp or remove dead adventurer
+                if (A.getHealth() > 0) {
+                    tracker.setCharacterStats(characterList); // Update hp 
+                } else {
+                    tracker.removeCharacter(A); // Remove dead character
+                }
 
                 if (Output != "ShowNone") {
                     System.out.print("Fight: ");
@@ -173,6 +175,7 @@ public class GameEngine {
                 }
             }
         } else {
+            // Tie
             if (Output != "ShowNone") {
                 System.out.println("Fight Skipped");
             }
@@ -196,7 +199,6 @@ public class GameEngine {
             if (Score >= NeededScore) {
                 // If Treasure found
                 Treasure currentItem = treasure_in_room.get(0);
-                //currentItem.setFound(true);
 
                 if (Output != "ShowNone") {
                     // If printing
@@ -249,29 +251,28 @@ public class GameEngine {
      */
     private void processTurn() {
         Logger logger = new Logger(tracker);
+        printer = new Printer(dungeon, tracker, Output);
         // Process Characters
         for(Characters I: characterList) {
             if (EndCondition) {
                 // Stops processing Characters if end condition is met
                 process1Character(I); // Process character
                 checkWinCondition(); // Updates win conditions}
+
+                // Printing
+                if (Output == "OneScreen") {
+                    System.out.print("\033[H\033[2J");
+                    System.out.flush();
+                }
+                if (Output == "OneScreen" || Output == "ShowAll") {
+                    printer.printDungeon();
+                    printer.pause();
+                }
             } else {
                 break;
             }
         }
-
-        // Print Logger at end of each all-character turn -- move this to Logger
-        if (Output == "OneScreen") {
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
-        }
-        if (Output == "OneScreen" || Output == "ShowAll") {
-            //showGameStatus();
-            printer.printDungeon();
-            logger.printLog();
-            System.out.println();
-            //printer.pause();
-        } 
+        logger.printLog(); // should be a saver
 
         // Process Creatures
         for (Creatures I: creatureList) {
@@ -279,22 +280,21 @@ public class GameEngine {
                 // Stops processing Creatures if end condition is met
                 process1Creature(I);
                 checkWinCondition();
+
+                // Printing
+                if (Output == "OneScreen") {
+                    System.out.print("\033[H\033[2J");
+                    System.out.flush();
+                }
+                if (Output == "OneScreen" || Output == "ShowAll") {
+                    printer.printDungeon();
+                    printer.pause();
+                }
             } else {
                 break;
             }
         }
-
-        // Print Logger at end of each all-character turn -- move this to Logger
-        if (Output == "OneScreen") {
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
-        }
-        if (Output == "OneScreen" || Output == "ShowAll") {
-            //showGameStatus();
-            printer.printDungeon();
-            logger.printLog();
-            printer.pause();
-        }
+        logger.printLog(); // should be save
     }
 
 
@@ -308,8 +308,7 @@ public class GameEngine {
      *   or fights if there are Creatures.
      */
     private void process1Character(Characters A) {
- 
-        //Process turn counts for characters. Mostly 1 but runners have 2
+        // Process turn counts for characters. Mostly 1 but runners have 2
         for (int i = 0; i < A.MoveCount; i++) {
             // Move to new Room
             A.move();
@@ -326,7 +325,6 @@ public class GameEngine {
                 continue;
             } else {
                 // If there are no Creatures in the room, look for treasure
-                // Unintelligent (no knowledge of if there IS treasure)
                 simulateTreasure(A);
             }
         }
@@ -378,17 +376,17 @@ public class GameEngine {
             // 24 Treasures Found
             EndCondition = false;
             System.out.println("Game Over");
-            System.out.println("all treasure found");
+            System.out.println("All treasure found");
         } else if (creatureCount <= 0) { 
             //All Creatures eliminated
             EndCondition = false;
             System.out.println("Game Over");
-            System.out.println("all creatures eliminated");
+            System.out.println("All Creatures eliminated");
         } else if (characterCount <= 0) {
             //All Characters defeated
             EndCondition = false;
             System.out.println("Game Over");
-            System.out.println(" all Adventurers eliminated");
+            System.out.println("All Adventurers eliminated");
         } else {
             EndCondition = true;
         }

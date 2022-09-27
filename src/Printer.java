@@ -40,6 +40,10 @@ public class Printer {
             addLevel(l, columns);
         }
         columns.print();
+
+        // Print Character/Creature Status
+        printCharacterStats();
+        printCreatureStats();
     }
 
 
@@ -136,5 +140,42 @@ public class Printer {
         System.out.print(tracker.creatureList.size());
         System.out.print(" Treasures Collected: ");
         System.out.println(tracker.treasureCount);
+    }
+
+        /**
+     * This method prints Character stats: name, treausres, hp.
+     */
+    private void printCharacterStats(){
+
+        String tbl_header = new String("Adventurers\tDamage\tTreasure");
+        System.out.println(tbl_header);
+        for (Characters c: tracker.characterList) {
+            String name = c.getName();
+            String treasure_str = c.getInventoryString();
+            Integer hp = 3-c.getHealth();
+
+            String char_stats = new String(name + "\t\t" + hp + "\t" + treasure_str);
+            System.out.println(char_stats);
+        }
+    }
+
+    /**
+     * This method prints Creature stats: name and number remaining.
+     */
+    private void printCreatureStats() {
+        ArrayList<String> creatureSet= new ArrayList<String>();
+        creatureSet.add("Orbiter");
+        creatureSet.add("Seeker");
+        creatureSet.add("Blinker");
+        String TempString;
+        int[] Counts = {0,0,0};
+        for (Creatures c: tracker.creatureList) {
+            Counts[creatureSet.indexOf(c.getName())] += 1;
+        }
+        System.out.println();
+        for (String A: creatureSet) {
+            TempString = new String(A + " - " + Counts[creatureSet.indexOf(A)] + " Remaining");
+            System.out.println(TempString);
+        }
     }
 }
