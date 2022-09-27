@@ -12,9 +12,13 @@ public class Tracker {
 
     Dungeon dungeon;
     ArrayList<Characters> characterList;
+    ArrayList<Characters> deadCharacterList;
 
     ArrayList<Creatures> creatureList;
+    ArrayList<Creatures> deadCreatureList;
+    
     ArrayList<Treasure> treasureList;
+    ArrayList<Treasure> foundTreasureList;
 
     int roundCounter;
     int treasureCount;
@@ -82,8 +86,6 @@ public class Tracker {
      * @param room
      * @return
      * 
-     * I'm getting confused about making the tracker DO things vs just observe
-     * Do we remove treasures when they are foundj from the treasure list, or just from the room?
      */
     public void removeTreasure(Treasure treasure) {
         this.treasureList.remove(treasure);

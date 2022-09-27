@@ -253,7 +253,8 @@ public class GameEngine {
         Logger logger = new Logger(tracker);
         printer = new Printer(dungeon, tracker, Output);
         // Process Characters
-        for(Characters I: characterList) {
+        for (int i = 0; i < characterList.size(); i++) { // Changing to this type of loop to avoid comodification
+        Characters I =  characterList.get(i);
             if (EndCondition) {
                 // Stops processing Characters if end condition is met
                 process1Character(I); // Process character
@@ -275,7 +276,8 @@ public class GameEngine {
         logger.printLog(); // should be a saver
 
         // Process Creatures
-        for (Creatures I: creatureList) {
+        for (int i = 0; i < creatureList.size(); i++) { // Changing to this type of loop to avoid comodification
+            Creatures I = creatureList.get(i);
             if (EndCondition) {
                 // Stops processing Creatures if end condition is met
                 process1Creature(I);
