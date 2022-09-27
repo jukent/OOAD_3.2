@@ -24,15 +24,17 @@ public class Printer {
      */
     public void printDungeon() {
         // Level 0 
-        System.out.println("Level 0");
         Room starting_room = dungeon.getRoom("(0-1-1)");
-        String occupancy_string = getOccupancyString(starting_room);
+        ArrayList<String> occupancy_strings = getOccupancyString(starting_room);
+        String occupancy_string = occupancy_strings.toString().replace("[", "").replace("]", "");
         System.out.println(occupancy_string);
 
         // Levels 1, 2, 3, 4
+        Columns columns = new Columns();
         for (int l = 1; l <= 4; ++l) {
-            printLevel(l);
+            addLevel(l, columns);
         }
+        columns.print();
     }
 
 
@@ -53,7 +55,7 @@ public class Printer {
      * 
      * This method gets the string for displaying occupancy in each Room.
      */
-    private String getOccupancyString(Room room) {
+    private ArrayList<String> getOccupancyString(Room room) {
         // Characters in Room
         ArrayList<Characters> characters_in_room = room.getCharactersInRoom();
         String char_string = new String();
@@ -71,40 +73,49 @@ public class Printer {
         }
 
         // Full Room Occupancy String
-        String occupancy_string = new String(room.getName() + ": " + char_string + " : " + creature_string);
-        return occupancy_string;
+        ArrayList<String> occupancy_strings = new ArrayList<String>();
+        occupancy_strings.add(room.getName()); 
+        occupancy_strings.add(" : "); 
+        occupancy_strings.add(char_string); 
+        occupancy_strings.add(" : "); 
+        occupancy_strings.add(creature_string); 
+        //String occupancy_string = new String(room.getName() + ": " + char_string + " : " + creature_string);
+        return occupancy_strings;
     }
 
 
     /**
      * @param level: int
      * @param row:: int
+     * @param columns:: Columns
      * 
-     * This method prints a row of the Dungeon and its occupancy.
+     * This method adds a row of the Dungeon and its occupancy to the Columns object.
      */
-    private void printRowString (Integer level, Integer row) {
+    private void addRowString (Integer level, Integer row, Columns columns) {
         ArrayList<Room> row_rooms = new ArrayList<Room>();
         row_rooms.add(dungeon.getRoom("(" + level + "-" + row + "-0)"));
         row_rooms.add(dungeon.getRoom("(" + level + "-" + row + "-1)"));
         row_rooms.add(dungeon.getRoom("(" + level + "-" + row + "-2)"));
-        String row_string = new String();
-        for (Room r:row_rooms) {
-            row_string += getOccupancyString(r);
-            row_string += "    ";
+
+        ArrayList<String> row_strings = new ArrayList<String>();
+        for (Room r: row_rooms) {
+            for (String s: getOccupancyString(r)) {
+                row_strings.add(s);
+            }           
         }
-        System.out.println(row_string);
+        columns.addLine(row_strings);
     }
 
 
     /**
      * @param level: int
+     * @param columns:: Columns
      * 
-     * This method prints a level of the Dungeon and its occupancy.
+     * This method adds a level of the Dungeon and its occupancy to the Columns object.
      */
-    private void printLevel (Integer level) {
-        System.out.println("Level " + level);
+    private void addLevel (Integer level, Columns columns) {
         for (int r = 0; r <= 2; ++r) {
-            printRowString(level, r);
+            addRowString(level, r, columns);
         }
     }
 }

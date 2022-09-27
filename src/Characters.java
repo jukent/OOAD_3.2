@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public abstract class Characters {
@@ -16,12 +17,12 @@ public abstract class Characters {
 
     String name = new String("Character");
     public TreasureHunt HuntBehavior;
-    public Fight FightBehavior;
+    public FightBehavior FightBehavior;
     public ArrayList<Treasure> Inventory = new ArrayList<Treasure>();
     public ArrayList<String> InventoryTypes = new ArrayList<String>();
 
     protected int HP = 3;
-    protected int TreasureCount = 0;
+    // protected int TreasureCount = 0;
     protected int MoveCount = 1;
 
 
@@ -36,7 +37,7 @@ public abstract class Characters {
         System.out.print("Health: ");
         System.out.print(HP);
         System.out.print("Treasure: ");
-        System.out.print(TreasureCount);
+        System.out.print(InventoryTypes);
     }
 
 
@@ -128,17 +129,18 @@ public abstract class Characters {
      * 
      * This method returns how much treasure a Character has found.
      */
-    public int getTreasure() {
-        return this.TreasureCount+Inventory.size();
+    public int getTreasureCount() {
+        //return this.TreasureCount+Inventory.size();
+        return this.Inventory.size();
     }
 
 
     /**
      * This method increases how much treasure a Character has found by one.
      */
-    public void gainTreasure() {
-        this.TreasureCount++;
-    }
+    //public void gainTreasure() {
+    //    this.TreasureCount++;
+    //}
 
 
     /**
@@ -150,7 +152,26 @@ public abstract class Characters {
         return this.name;
     }
 
+
     public void addHealth(int HP){
         this.HP += HP;
+    }
+
+    
+    public ArrayList<Treasure> getInventory() {
+        return this.Inventory;
+    }
+
+
+    public void setInventory(Treasure treasure) {
+        ArrayList<Treasure> inventory = this.getInventory();
+        inventory.add(treasure);
+    }
+
+
+    public String getInventoryString() {
+        ArrayList<String> str_array =  this.InventoryTypes;
+        String inv_str = String.join(", ", str_array);
+        return inv_str;
     }
 }

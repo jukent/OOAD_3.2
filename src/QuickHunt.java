@@ -1,9 +1,11 @@
-public class Quick extends TreasureHunt{
+public class QuickHunt extends TreasureHunt{
     
-    public Quick(){
+
+    public QuickHunt(){
         this.SearchType = "Quick";
         this.NeededScore = 9;
     }
+
 
     public int searchTreasure() {
         if (DiceRolls.rollDice(3)==1){return -1;}

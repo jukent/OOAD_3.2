@@ -123,11 +123,11 @@ public class GameEngine {
      * If a character rolls a -1, fight is skipped.
      */
     private void simulateFight(Characters A, Creatures B) {
-        Fight f1 = A.FightBehavior;
-        Celebration c1 = new Spin(f1);
-        c1 = new Dance(c1);
-        c1 = new Jump(c1);
-        c1 = new Shout(c1);
+        FightBehavior f1 = A.FightBehavior;
+        Celebration c1 = new SpinCelebration(f1);
+        c1 = new DanceCelebration(c1);
+        c1 = new JumpCelebration(c1);
+        c1 = new ShoutCelebration(c1);
 
         int CharacterRoll = c1.fight();
         int CreatureRoll = B.fight();
@@ -187,34 +187,32 @@ public class GameEngine {
                 System.out.print("Treasure Hunt: ");
                 System.out.print(Score);
                 System.out.println(" Success! ");
-                System.out.println("Treasure: "+ treasure_in_room.get(0).getClass());
-                
+                System.out.println("Treasure: " + treasure_in_room.get(0).getClass());
 
                 Treasure CurrentItem = treasure_in_room.get(0);
                 CurrentItem.setFound(true);
-                if(A.InventoryTypes.contains(CurrentItem.getType())){
-                    A.gainTreasure();
+                if (A.InventoryTypes.contains(CurrentItem.getType())) {
+                    A.setInventory(CurrentItem);
                     A.loseHealth(CurrentItem.getTakeDamage());
-                    if(CurrentItem.getType() == "Trap"){
+                    if (CurrentItem.getType() == "Trap") {
                         treasure_in_room.remove(0);
                     }
-                }
-                else{
+                } else {
                     treasure_in_room.remove(0);
                     A.Inventory.add(CurrentItem);
                     A.InventoryTypes.add(CurrentItem.getType());
                     A.loseHealth(CurrentItem.getTakeDamage());
-                    A.addHealth(CurrentItem.getHPBoost()); }
+                    A.addHealth(CurrentItem.getHPBoost()); 
+                }
                 A.getLocation().setTreasureInRoom(treasure_in_room);
             }
         } 
-        if(Score == -1) {
+        if (Score == -1) {
             if (Output != "ShowNone") {
                 System.out.print("Treasure Hunt: ");
                 System.out.println("Search Skipped!");
             }
-        } 
-        else{
+        } else {
             if (Output != "ShowNone") {
                 System.out.print("Treasure Hunt: ");
                 System.out.print(Score);
@@ -238,7 +236,6 @@ public class GameEngine {
                 }
                 if (Output == "OneScreen" || Output == "ShowAll") {
                     showGameStatus();
-                    System.out.println("Creature Movement");
                     printer.printDungeon();
                     printCharacterStats();
                     printCreatureStats();
@@ -263,7 +260,6 @@ public class GameEngine {
                     System.out.flush();}
                 if (Output == "OneScreen" || Output == "ShowAll") {
                     showGameStatus();
-                    System.out.println("Creature Movement");
                     printer.printDungeon();
                     printCharacterStats();
                     printCreatureStats();
@@ -439,9 +435,9 @@ public class GameEngine {
         for (Characters I: CharacterList) {
             if (I.getHealth() > 0) {
                 TempCharacterList.add(I);
-                TC += I.getTreasure();
+                TC += I.getTreasureCount();
             } else if (I.getHealth() <= 0) {
-                DeadTreasureCount += I.getTreasure();
+                DeadTreasureCount += I.getTreasureCount();
             }
         }
         CharacterList = TempCharacterList;
@@ -500,12 +496,15 @@ public class GameEngine {
      * This method prints Character stats: name, treausres, hp.
      */
     private void printCharacterStats(){
+        String tbl_header = new String("Adventurers\tRoom\tDamage\tTreasure");
+        System.out.println(tbl_header);
         for (Characters c: CharacterList) {
             String name = c.getName();
-            Integer g = c.getTreasure();
+            String room = c.getLocation().getName();
             Integer hp = 3-c.getHealth();
+            String treasure = c.getInventoryString();
 
-            String char_stats = new String(name + " - " + g + " Treasure(s) - " + hp + " Damage");
+            String char_stats = new String(name + "\t\t" + room + "\t" + hp + "\t" + treasure);
             System.out.println(char_stats);
         }
     }
@@ -515,19 +514,20 @@ public class GameEngine {
      * This method prints Creature stats: name and number remaining.
      */
     private void printCreatureStats() {
-        ArrayList<String> Creatures= new ArrayList<String>();
-        Creatures.add("Orbiter");
-        Creatures.add("Seeker");
-        Creatures.add("Blinker");
-        String TempString;
-        int[] Counts = {0,0,0};
+        System.out.println("\n");
+        int total_creat = CreatureList.size();
+        System.out.println("Total Active Creatures: " + total_creat);
+
+
+        System.out.println("\n");
+        String tbl_header = new String("Creatures\tRoom");
+        System.out.println(tbl_header);
+  
         for (Creatures c: CreatureList) {
-            Counts[Creatures.indexOf(c.getName())] += 1;
-        }
-        System.out.println();
-        for (String A: Creatures) {
-            TempString = new String(A + " - " + Counts[Creatures.indexOf(A)] + " Remaining");
-            System.out.println(TempString);
+            String name = c.getName();
+            String room = c.getLocation().getName();
+            String creat_stats = new String(name + "\t\t" + room);
+            System.out.println(creat_stats);
         }
     }
 }

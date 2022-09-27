@@ -1,5 +1,5 @@
-public class Stealth extends Fight{
-    public Stealth(){
+public class StealthyFighter extends FightBehavior{
+    public StealthyFighter(){
         this.FightType = "Stealth";}
     
     public int fight(){

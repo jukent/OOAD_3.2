@@ -11,8 +11,8 @@ public class Sneakers extends Characters {
     Sneakers(int A, Dungeon map) {
         this.dungeon = map;
         this.Location = dungeon.getRoom("(0-1-1)");
-        this.FightBehavior = new Stealth();
-        this.HuntBehavior = new Quick();
+        this.FightBehavior = new StealthyFighter();
+        this.HuntBehavior = new QuickHunt();
         super.ID = A;
         name = "Sneaker";
     }

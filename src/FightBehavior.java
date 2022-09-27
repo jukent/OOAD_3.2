@@ -1,4 +1,4 @@
-public abstract class Fight {
+public abstract class FightBehavior {
         
     public String FightType;
 

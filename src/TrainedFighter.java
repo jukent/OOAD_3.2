@@ -1,6 +1,6 @@
-public class Trained extends Fight{
+public class TrainedFighter extends FightBehavior{
 
-    public Trained(){
+    public TrainedFighter(){
     this.FightType = "Trained";}
 
     public int fight(){

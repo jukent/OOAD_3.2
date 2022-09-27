@@ -1,8 +1,11 @@
-public class Creature extends Fight{
-    public Creature(){
+public class Creature extends FightBehavior{
+
+
+    public Creature() {
         this.FightType = "Creature";}
     
-    public int fight(){
+        
+    public int fight() {
             return DiceRolls.rollDice(6) + DiceRolls.rollDice(6);
         }
     
