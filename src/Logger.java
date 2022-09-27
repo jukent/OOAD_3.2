@@ -46,4 +46,12 @@ public class Logger {
             System.out.println(creat_stats);
         }
     }
+
+    public void printLog() {
+        int RoundCounter = tracker.getRoundCounter();
+        System.out.println("Tracker: Turn " + RoundCounter);
+
+        printCharacterStats();
+        printCreatureStats();
+    }
 }

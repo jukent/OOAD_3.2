@@ -6,7 +6,7 @@ public class Tracker {
 
     // publish adventurer and creature enter a room
     // publish adventure/creature wins/loses combat
-    //publish adventurer celebrates
+    // publish adventurer celebrates
     // publish adventurer/creature defeated/removed
     // publish treasure found by adventurer
 

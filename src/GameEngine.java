@@ -191,41 +191,48 @@ public class GameEngine {
         int Score = A.searchTreasure();
 
         ArrayList<Treasure> treasure_in_room = tracker.getTreasureInRoom(A.Location);
+        if (!treasure_in_room.isEmpty()) {
+            // If there is Treasure in the room
+            if (Score >= NeededScore) {
+                // If Treasure found
+                Treasure currentItem = treasure_in_room.get(0);
+                currentItem.setFound(true);
 
-        if (Score >= NeededScore) {
-            Treasure currentItem = treasure_in_room.get(0);
-            currentItem.setFound(true);
-
-            if (Output != "ShowNone" && !treasure_in_room.isEmpty()) {
-                System.out.print("Treasure Hunt: ");
-                System.out.print(Score);
-                System.out.println(" Success! ");
-                System.out.println("Treasure: " + treasure_in_room.get(0).getClass());
-            }
-            if (A.InventoryTypes.contains(currentItem.getType())) {
-                // If we've already encountered this type of treasure
-                if (currentItem.getType() == "Trap") {
-                    // Can encounter multiple traps
-                    A.setInventory(currentItem);
-                    A.loseHealth(currentItem.getTakeDamage()); 
+                if (Output != "ShowNone") {
+                    // If printing
+                    System.out.print("Treasure Hunt: ");
+                    System.out.print(Score);
+                    System.out.println(" Success! ");
+                    System.out.println("Treasure: " + treasure_in_room.get(0).getClass());
+                }
+                if (A.InventoryTypes.contains(currentItem.getType())) {
+                    // If we've already encountered this type of Treasure
+                    if (currentItem.getType() == "Trap") {
+                        // Can encounter multiple traps
+                        A.setInventory(currentItem);
+                        A.loseHealth(currentItem.getTakeDamage()); 
+                        tracker.setCharacterStats(characterList);
+                        tracker.removeTreasure(currentItem);
+                    }
+                } else {
+                    // This is a new type of Treasure
+                    A.InventoryTypes.add(currentItem.getType());
+                    A.loseHealth(currentItem.getTakeDamage());
+                    A.addHealth(currentItem.getHPBoost()); 
                     tracker.setCharacterStats(characterList);
                     tracker.removeTreasure(currentItem);
                 }
             } else {
-                // This is a new type of treasure
-                A.InventoryTypes.add(currentItem.getType());
-                A.loseHealth(currentItem.getTakeDamage());
-                A.addHealth(currentItem.getHPBoost()); 
-                tracker.setCharacterStats(characterList);
-                tracker.removeTreasure(currentItem);
-            }
-        }
-        if (Score == -1) {
-            if (Output != "ShowNone") {
-                System.out.print("Treasure Hunt: ");
-                System.out.println("Search Skipped!");
+                // If Treasure not found
+                if (Output != "ShowNone") {
+                    // If Printing
+                    System.out.print("Treasure Hunt: ");
+                    System.out.print(Score);
+                    System.out.println(" Fail :(");
+                }
             }
         } else {
+            // If no Treasure in room
             if (Output != "ShowNone") {
                 System.out.print("Treasure Hunt: ");
                 System.out.print(Score);
@@ -239,10 +246,11 @@ public class GameEngine {
      * Processes the turns for each Character and for each Creature.
      */
     private void processTurn() {
+        Logger logger = new Logger(tracker);
         // Process Characters
         for(Characters I: characterList) {
             if (EndCondition) {
-                //Stops processing Characters if end condition is met
+                // Stops processing Characters if end condition is met
                 process1Character(I); // Process character
                 checkWinCondition(); // Updates win conditions}
             } else {
@@ -258,11 +266,10 @@ public class GameEngine {
         if (Output == "OneScreen" || Output == "ShowAll") {
             //showGameStatus();
             printer.printDungeon();
-            //printCharacterStats();
-            //printCreatureStats();
+            logger.printLog();
             System.out.println();
-            printer.pause();
-        }
+            //printer.pause();
+        } 
 
         // Process Creatures
         for (Creatures I: creatureList) {
@@ -270,7 +277,6 @@ public class GameEngine {
                 // Stops processing Creatures if end condition is met
                 process1Creature(I);
                 checkWinCondition();
-                printer.pause();
             } else {
                 break;
             }
@@ -284,9 +290,7 @@ public class GameEngine {
         if (Output == "OneScreen" || Output == "ShowAll") {
             //showGameStatus();
             printer.printDungeon();
-            //printCharacterStats();
-            //printCreatureStats();
-            System.out.println();
+            logger.printLog();
             printer.pause();
         }
     }
