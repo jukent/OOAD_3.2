@@ -44,7 +44,7 @@ public class GameEngine {
      */
     public GameEngine(String OutputType) {
         Output = OutputType;
-        printer = new Printer(dungeon, Output);
+        printer = new Printer(dungeon, tracker, Output);
         populateEntities();
         if (Output != "ShowNone") {
             System.out.println("Starting Game!");
