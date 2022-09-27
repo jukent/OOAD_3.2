@@ -12,10 +12,13 @@ public class Tracker {
 
     Dungeon dungeon;
     ArrayList<Characters> characterList;
+
     ArrayList<Creatures> creatureList;
     ArrayList<Treasure> treasureList;
+
     int roundCounter;
-    
+    int treasureCount;
+
 
     public Tracker(Dungeon dungeon, ArrayList<Characters> characterList, ArrayList<Creatures> creatureList, ArrayList<Treasure> treasureList) {
         this.dungeon = dungeon;
@@ -24,6 +27,7 @@ public class Tracker {
         this.treasureList = treasureList;
 
         this.roundCounter = 0;
+        this.treasureCount = 0;
     }
 
 
@@ -35,6 +39,15 @@ public class Tracker {
         this.roundCounter = roundCounter;
     }
 
+
+    public int getTreasureCount() {
+        return treasureCount;
+    }
+
+
+    public void increaseTreasureCount(int count) {
+        this.treasureCount += treasureCount;
+    }
 
     public void setCharacterStats(ArrayList<Characters> characterList) {
         this.characterList = characterList;
@@ -110,4 +123,11 @@ public class Tracker {
         return characters_in_room;  
     }
 
+    public ArrayList<Characters> getCharacterList() {
+        return characterList;
+    }
+
+    public ArrayList<Creatures> getCreatureList() {
+        return creatureList;
+    }
 }

@@ -26,8 +26,8 @@ public class GameEngine {
 
 
     // Game variables that track win condition
-    private int treasureCount = 0;
-    private int deadTreasureCount = 0;
+    //private int treasureCount = 0;
+    //private int deadTreasureCount = 0;
     private int CreatureCount = 1;
     private int CharacterCount = 0;
     private int RoundCounter = 0;
@@ -196,7 +196,7 @@ public class GameEngine {
             if (Score >= NeededScore) {
                 // If Treasure found
                 Treasure currentItem = treasure_in_room.get(0);
-                currentItem.setFound(true);
+                //currentItem.setFound(true);
 
                 if (Output != "ShowNone") {
                     // If printing
@@ -213,6 +213,7 @@ public class GameEngine {
                         A.loseHealth(currentItem.getTakeDamage()); 
                         tracker.setCharacterStats(characterList);
                         tracker.removeTreasure(currentItem);
+                        tracker.increaseTreasureCount(1);
                     }
                 } else {
                     // This is a new type of Treasure
@@ -221,6 +222,7 @@ public class GameEngine {
                     A.addHealth(currentItem.getHPBoost()); 
                     tracker.setCharacterStats(characterList);
                     tracker.removeTreasure(currentItem);
+                    tracker.increaseTreasureCount(1);
                 }
             } else {
                 // If Treasure not found
@@ -367,55 +369,22 @@ public class GameEngine {
      * Checks various end game conditions and modifies EndCondition accordingly
      */
     private void checkWinCondition() {
-        boolean all_treasures_found = true;
-
-        ArrayList<Characters> tempCharacterList = new ArrayList<Characters>();
-        ArrayList<Creatures> tempCreatureList = new ArrayList<Creatures>();
-
-        // Removes Creatures from board if it runs out of health
-        for (Creatures I: creatureList) {
-            if (I.getHealth() > 0) {
-                tempCreatureList.add(I);
-            }
-        }
-        creatureList = tempCreatureList;
-
-        // Removes Character from board if it runs out of health
-        // Only counts treasures if player is alive
-        // I thought this wasn't so?
-        for (Characters I: characterList) {
-            if (I.getHealth() > 0) {
-                tempCharacterList.add(I);
-                treasureCount += I.getTreasureCount();
-            } else if (I.getHealth() <= 0) {
-                deadTreasureCount += I.getTreasureCount();
-            }
-        }
-        characterList = tempCharacterList;
-
-        // Update game tracking variables
-        treasureCount = treasureCount + deadTreasureCount;
-        CreatureCount = creatureList.size();
-        CharacterCount = characterList.size();
-
-        for(Treasure I: treasureList){
-            if(!I.Found){
-                all_treasures_found = false;
-            }
-        }
+        int treasureCount = tracker.getTreasureCount();
+        int creatureCount = tracker.getCharacterList().size();
+        int characterCount = tracker.getCreatureList().size();
 
         // Change End Condition depending on the outcome
-        if (all_treasures_found) { 
+        if (treasureCount == 24) { 
             // 24 Treasures Found
             EndCondition = false;
             System.out.println("Game Over");
             System.out.println("all treasure found");
-        } else if (CreatureCount <= 0) { 
+        } else if (creatureCount <= 0) { 
             //All Creatures eliminated
             EndCondition = false;
             System.out.println("Game Over");
             System.out.println("all creatures eliminated");
-        } else if (CharacterCount <= 0) {
+        } else if (characterCount <= 0) {
             //All Characters defeated
             EndCondition = false;
             System.out.println("Game Over");
@@ -424,20 +393,4 @@ public class GameEngine {
             EndCondition = true;
         }
     }
-
-
-    /**
-     * Shows an overview of game information such as win conditions and entitys
-     */
-    //private void showGameStatus() {
-    //    System.out.print("Game Status: ");
-    //    System.out.print(" Round: ");
-    //    System.out.print(RoundCounter);
-    //    System.out.print(" Characters: ");
-    //    System.out.print(CharacterCount);
-    //    System.out.print(" Creatures: ");
-    //    System.out.print(CreatureCount);
-    //    System.out.print(" Treasures Collected: ");
-    //    System.out.println(TreasureCount);
-    //}
 }

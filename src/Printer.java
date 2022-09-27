@@ -25,6 +25,9 @@ public class Printer {
      * Print the Dungeon and its occupancy.
      */
     public void printDungeon() {
+        // Print Game Status
+        printGameStatus();
+
         // Level 0 
         Room starting_room = dungeon.getRoom("(0-1-1)");
         ArrayList<String> occupancy_strings = getOccupancyStringArray(starting_room);
@@ -118,5 +121,20 @@ public class Printer {
         for (int r = 0; r <= 2; ++r) {
             addRowString(level, r, columns);
         }
+    }
+
+    /**
+     * Shows an overview of game information such as win conditions and entitys
+     */
+    private void printGameStatus() {
+        System.out.print("Game Status: ");
+        System.out.print(" Round: ");
+        System.out.print(tracker.roundCounter);
+        System.out.print(" Characters: ");
+        System.out.print(tracker.characterList.size());
+        System.out.print(" Creatures: ");
+        System.out.print(tracker.creatureList.size());
+        System.out.print(" Treasures Collected: ");
+        System.out.println(tracker.treasureCount);
     }
 }
