@@ -498,7 +498,7 @@ public class GameEngine {
      * This method prints Character stats: name, treausres, hp.
      */
     private void printCharacterStats(){
-        String tbl_header = new String("Adventurers    Room    Damage    Treasure");
+        String tbl_header = new String("Adventurers\tRoom\tDamage\tTreasure");
         System.out.println(tbl_header);
         for (Characters c: CharacterList) {
             String name = c.getName();
@@ -508,7 +508,7 @@ public class GameEngine {
             Integer damage = c.getHealth();
             String treasure = c.getInventoryString();
 
-            String char_stats = new String(name + room + damage + treasure);
+            String char_stats = new String(name + "\t\t" + room + "\t" + damage + "\t" + treasure);
             System.out.println(char_stats);
         }
     }
@@ -518,19 +518,14 @@ public class GameEngine {
      * This method prints Creature stats: name and number remaining.
      */
     private void printCreatureStats() {
-        ArrayList<String> Creatures= new ArrayList<String>();
-        Creatures.add("Orbiter");
-        Creatures.add("Seeker");
-        Creatures.add("Blinker");
-        String TempString;
-        int[] Counts = {0,0,0};
+        String tbl_header = new String("Creatures\tRoom");
+        System.out.println(tbl_header);
+  
         for (Creatures c: CreatureList) {
-            Counts[Creatures.indexOf(c.getName())] += 1;
-        }
-        System.out.println();
-        for (String A: Creatures) {
-            TempString = new String(A + " - " + Counts[Creatures.indexOf(A)] + " Remaining");
-            System.out.println(TempString);
+            String name = c.getName();
+            String room = c.getLocation().getName();
+            String creat_stats = new String(name + "\t\t" + room);
+            System.out.println(creat_stats);
         }
     }
 }
