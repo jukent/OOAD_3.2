@@ -162,7 +162,6 @@ public class GameEngine {
                 System.out.println("Hurt");
                 if (A.getHealth() <= 0) {
                     tracker.removeCharacter(A); // Remove dead character
-                    System.out.println("Dead");
                 }
 
                 if (Output != "ShowNone") {
