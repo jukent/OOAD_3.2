@@ -25,7 +25,8 @@ public class Printer {
     public void printDungeon() {
         // Level 0 
         Room starting_room = dungeon.getRoom("(0-1-1)");
-        String occupancy_string = getOccupancyString(starting_room);
+        ArrayList<String> occupancy_strings = getOccupancyString(starting_room);
+        String occupancy_string = occupancy_strings.toString().replace("[", "").replace("]", "");
         System.out.println(occupancy_string);
 
         // Levels 1, 2, 3, 4
@@ -54,7 +55,7 @@ public class Printer {
      * 
      * This method gets the string for displaying occupancy in each Room.
      */
-    private String getOccupancyString(Room room) {
+    private ArrayList<String> getOccupancyString(Room room) {
         // Characters in Room
         ArrayList<Characters> characters_in_room = room.getCharactersInRoom();
         String char_string = new String();
@@ -72,8 +73,14 @@ public class Printer {
         }
 
         // Full Room Occupancy String
-        String occupancy_string = new String(room.getName() + ": " + char_string + " : " + creature_string);
-        return occupancy_string;
+        ArrayList<String> occupancy_strings = new ArrayList<String>();
+        occupancy_strings.add(room.getName()); 
+        occupancy_strings.add(" : "); 
+        occupancy_strings.add(char_string); 
+        occupancy_strings.add(" : "); 
+        occupancy_strings.add(creature_string); 
+        //String occupancy_string = new String(room.getName() + ": " + char_string + " : " + creature_string);
+        return occupancy_strings;
     }
 
 
@@ -90,8 +97,10 @@ public class Printer {
         row_rooms.add(dungeon.getRoom("(" + level + "-" + row + "-2)"));
 
         ArrayList<String> row_strings = new ArrayList<String>();
-        for (Room r:row_rooms) {
-            row_strings.add(getOccupancyString(r));
+        for (Room r: row_rooms) {
+            for (String s: getOccupancyString(r)) {
+                row_strings.add(s);
+            }           
         }
         columns.addLine(row_strings);
     }

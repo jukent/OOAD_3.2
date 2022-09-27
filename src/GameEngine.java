@@ -236,7 +236,6 @@ public class GameEngine {
                 }
                 if (Output == "OneScreen" || Output == "ShowAll") {
                     showGameStatus();
-                    System.out.println("Creature Movement");
                     printer.printDungeon();
                     printCharacterStats();
                     printCreatureStats();
@@ -261,7 +260,6 @@ public class GameEngine {
                     System.out.flush();}
                 if (Output == "OneScreen" || Output == "ShowAll") {
                     showGameStatus();
-                    System.out.println("Creature Movement");
                     printer.printDungeon();
                     printCharacterStats();
                     printCreatureStats();
