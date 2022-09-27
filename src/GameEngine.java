@@ -501,12 +501,10 @@ public class GameEngine {
         for (Characters c: CharacterList) {
             String name = c.getName();
             String room = c.getLocation().getName();
-            //Integer g = c.getTreasure();
-            //Integer hp = 3-c.getHealth();
-            Integer damage = c.getHealth();
+            Integer hp = 3-c.getHealth();
             String treasure = c.getInventoryString();
 
-            String char_stats = new String(name + "\t\t" + room + "\t" + damage + "\t" + treasure);
+            String char_stats = new String(name + "\t\t" + room + "\t" + hp + "\t" + treasure);
             System.out.println(char_stats);
         }
     }
@@ -516,6 +514,12 @@ public class GameEngine {
      * This method prints Creature stats: name and number remaining.
      */
     private void printCreatureStats() {
+        System.out.println("\n");
+        int total_creat = CreatureList.size();
+        System.out.println("Total Active Creatures: " + total_creat);
+
+
+        System.out.println("\n");
         String tbl_header = new String("Creatures\tRoom");
         System.out.println(tbl_header);
   

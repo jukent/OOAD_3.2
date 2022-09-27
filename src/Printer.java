@@ -32,7 +32,7 @@ public class Printer {
         // Levels 1, 2, 3, 4
         Columns columns = new Columns();
         for (int l = 1; l <= 4; ++l) {
-            printLevel(l, columns);
+            addLevel(l, columns);
         }
         columns.print();
     }
@@ -87,10 +87,11 @@ public class Printer {
     /**
      * @param level: int
      * @param row:: int
+     * @param columns:: Columns
      * 
-     * This method prints a row of the Dungeon and its occupancy.
+     * This method adds a row of the Dungeon and its occupancy to the Columns object.
      */
-    private void printRowString (Integer level, Integer row, Columns columns) {
+    private void addRowString (Integer level, Integer row, Columns columns) {
         ArrayList<Room> row_rooms = new ArrayList<Room>();
         row_rooms.add(dungeon.getRoom("(" + level + "-" + row + "-0)"));
         row_rooms.add(dungeon.getRoom("(" + level + "-" + row + "-1)"));
@@ -108,12 +109,13 @@ public class Printer {
 
     /**
      * @param level: int
+     * @param columns:: Columns
      * 
-     * This method prints a level of the Dungeon and its occupancy.
+     * This method adds a level of the Dungeon and its occupancy to the Columns object.
      */
-    private void printLevel (Integer level, Columns columns) {
+    private void addLevel (Integer level, Columns columns) {
         for (int r = 0; r <= 2; ++r) {
-            printRowString(level, r, columns);
+            addRowString(level, r, columns);
         }
     }
 }
