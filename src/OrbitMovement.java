@@ -6,14 +6,13 @@ public class OrbitMovement extends MovementBehavior {
     }
 
     /* (non-Javadoc)
-     * @see Creatures#move()
+     * @see Entity#move()
      * 
-     * Replace abstract Creature movement with Orbiter movement
-     * Checks if a Character is in the room, if so stays
-     * If not, moves (clockwise or counterclockwise)
+     * Replace abstract Entity movement with Orbiter movement
+     * Moves (clockwise or counterclockwise)
      */
     @Override
-    public void move(Entities entity, Dungeon dungeon) {
+    public void move(Entity entity, Dungeon dungeon) {
         Room current_room = entity.getLocation();
         String direction = entity.getDirection();
 

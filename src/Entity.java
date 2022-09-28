@@ -1,11 +1,11 @@
-public class Entities {
+public class Entity {
 
     public int ID = 0;
     // Example of abstraction - Characters and Creatures all have their information grouped together
     // This was planned in the initial UML design, and was made abstract
     // because it allows a user to interact with characters without
     // knowing the full details.
-    // Entities super class added later for movement behavior
+    // Entity super class added later for movement behavior
 
     // Room location stored Room object accessed by name (level-row-column)
     // Level Range [0-4], Column range [1-3], Row Range [1-3]
@@ -23,7 +23,7 @@ public class Entities {
     /**
      * @return int
      * 
-     * This abstract method calls a Character's fight behavior 
+     * This abstract method calls an Entity's fight behavior 
      * and returns their "fight roll" as an integer.
      */
     public int fight() {
@@ -88,7 +88,7 @@ public class Entities {
     /**
      * @return String
      * 
-     * This method returns a Creature's name.
+     * This method returns an Entity's name.
      */
     public String getName() {
         return this.name;

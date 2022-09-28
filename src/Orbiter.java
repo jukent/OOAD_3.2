@@ -2,12 +2,12 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Random;
 
-public class Orbiters extends Creatures {
+public class Orbiter extends Creature {
     // Example of inheritance
 
     String direction = "clockwise"; // Need to add a default
 
-    Orbiters(int A, Dungeon map) {
+    Orbiter(int A, Dungeon map) {
         super.ID = A;
         this.dungeon = map;
         name = "Orbiter";

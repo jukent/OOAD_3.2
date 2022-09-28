@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public abstract class Characters extends Entities {
+public abstract class Character extends Entity {
 
     public TreasureHunt HuntBehavior;
     public ArrayList<Treasure> Inventory = new ArrayList<Treasure>();

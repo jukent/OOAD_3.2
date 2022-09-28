@@ -1,4 +1,4 @@
-public abstract class Creatures extends Entities {
+public abstract class Creature extends Entity {
 
     protected int HP = 1;
     protected int MoveCount = 1;

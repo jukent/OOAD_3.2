@@ -1,4 +1,4 @@
-public class Sneakers extends Characters { 
+public class Sneakers extends Character { 
     // Example of inheritance
 
 

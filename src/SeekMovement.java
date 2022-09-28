@@ -16,7 +16,7 @@ public class SeekMovement extends MovementBehavior{
      * Then they move to the room with the Character.
      */
     @Override
-    public void move(Entities entity, Dungeon dungeon) {
+    public void move(Entity entity, Dungeon dungeon) {
         Room current_room = entity.getLocation();
 
         // List of nearby rooms
@@ -28,7 +28,7 @@ public class SeekMovement extends MovementBehavior{
             // Convert Exit Room-Name Strings to Rooms 
             Room exit_room = dungeon.getRoom(x);
             // Check if a Character is in the Exit Room
-            ArrayList<Characters> characters_in_room = exit_room.getCharactersInRoom();
+            ArrayList<Character> characters_in_room = exit_room.getCharactersInRoom();
             if (characters_in_room.size() > 0) {
                 // If character in room add it to possible exit_rooms
                 populated_exits.add(exit_room);

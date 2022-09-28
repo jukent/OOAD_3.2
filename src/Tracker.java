@@ -11,11 +11,11 @@ public class Tracker {
     // publish treasure found by adventurer
 
     Dungeon dungeon;
-    ArrayList<Characters> characterList;
-    ArrayList<Characters> deadCharacterList;
+    ArrayList<Character> characterList;
+    ArrayList<Character> deadCharacterList;
 
-    ArrayList<Creatures> creatureList;
-    ArrayList<Creatures> deadCreatureList;
+    ArrayList<Creature> creatureList;
+    ArrayList<Creature> deadCreatureList;
     
     ArrayList<Treasure> treasureList;
     ArrayList<Treasure> foundTreasureList;
@@ -24,7 +24,7 @@ public class Tracker {
     int treasureCount;
 
 
-    public Tracker(Dungeon dungeon, ArrayList<Characters> characterList, ArrayList<Creatures> creatureList, ArrayList<Treasure> treasureList) {
+    public Tracker(Dungeon dungeon, ArrayList<Character> characterList, ArrayList<Creature> creatureList, ArrayList<Treasure> treasureList) {
         this.dungeon = dungeon;
         this.characterList = characterList;
         this.creatureList = creatureList;
@@ -53,11 +53,11 @@ public class Tracker {
         this.treasureCount = treasureCount + count;
     }
 
-    public void setCharacterStats(ArrayList<Characters> characterList) {
+    public void setCharacterStats(ArrayList<Character> characterList) {
         this.characterList = characterList;
     }
 
-    public void setCreatureStats(ArrayList<Creatures> creatureList) {
+    public void setCreatureStats(ArrayList<Creature> creatureList) {
         this.creatureList = creatureList;
     }
 
@@ -97,9 +97,9 @@ public class Tracker {
      * 
      * Method to get Creatures from a particular room.
      */
-    public ArrayList<Creatures> getCreaturesInRoom(Room room) {
-        ArrayList<Creatures> creatures_in_room = new ArrayList<>();
-        for (Creatures c: creatureList) {
+    public ArrayList<Creature> getCreaturesInRoom(Room room) {
+        ArrayList<Creature> creatures_in_room = new ArrayList<>();
+        for (Creature c: creatureList) {
             Room creature_location = c.getLocation();
             if (creature_location == room) {
                 creatures_in_room.add(c);
@@ -114,9 +114,9 @@ public class Tracker {
      * 
      * Method to get Characters from a particular room.
      */
-    public ArrayList<Characters> getCharactersInRoom(Room room) {
-        ArrayList<Characters> characters_in_room = new ArrayList<>();
-        for (Characters c: characterList) {
+    public ArrayList<Character> getCharactersInRoom(Room room) {
+        ArrayList<Character> characters_in_room = new ArrayList<>();
+        for (Character c: characterList) {
             Room character_location = c.getLocation();
             if (character_location == room) {
                 characters_in_room.add(c);
@@ -125,19 +125,19 @@ public class Tracker {
         return characters_in_room;  
     }
 
-    public ArrayList<Characters> getCharacterList() {
+    public ArrayList<Character> getCharacterList() {
         return characterList;
     }
 
-    public ArrayList<Creatures> getCreatureList() {
+    public ArrayList<Creature> getCreatureList() {
         return creatureList;
     }
 
-    public void removeCreature(Creatures creature) {
+    public void removeCreature(Creature creature) {
         this.creatureList.remove(creature);
     }
 
-    public void removeCharacter(Characters character) {
+    public void removeCharacter(Character character) {
         this.characterList.remove(character);
     }
 }

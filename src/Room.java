@@ -6,8 +6,8 @@ public class Room {
     private String name; // The name  of this room, i.e. "(2-0-0)" - String
     private ArrayList<String> exits; // ArrayList of neighboring room names i.e. ["(2-1-0)","(2-0-1)"] 
     
-    private ArrayList<Characters> characters_in_room;
-    private ArrayList<Creatures> creatures_in_room;
+    private ArrayList<Character> characters_in_room;
+    private ArrayList<Creature> creatures_in_room;
     private ArrayList<Treasure> treasure_in_room;
 
 
@@ -38,8 +38,8 @@ public class Room {
         this.exits = exits;
 
 
-        this.characters_in_room = new ArrayList<Characters>();
-        this.creatures_in_room = new ArrayList<Creatures>();
+        this.characters_in_room = new ArrayList<Character>();
+        this.creatures_in_room = new ArrayList<Creature>();
     }
 
 
@@ -99,7 +99,7 @@ public class Room {
      * 
      * This method returns an ArrayList of the Characters in the Room
      */
-    public ArrayList<Characters> getCharactersInRoom() {
+    public ArrayList<Character> getCharactersInRoom() {
         return this.characters_in_room;
     }
 
@@ -109,7 +109,7 @@ public class Room {
      * 
      * This method stores Room occupancy as an ArrayList of Characters in the Room.
      */
-    public void setCharactersInRoom(ArrayList<Characters> characters_in_room) {
+    public void setCharactersInRoom(ArrayList<Character> characters_in_room) {
         this.characters_in_room = characters_in_room;
     }
 
@@ -119,7 +119,7 @@ public class Room {
      * 
      * This method returns an ArrayList of the Creatures in the Room
      */
-    public ArrayList<Creatures> getCreaturesInRoom() {
+    public ArrayList<Creature> getCreaturesInRoom() {
         return this.creatures_in_room;
     }
 
@@ -129,7 +129,7 @@ public class Room {
      * 
      * This method stores Room occupancy as an ArrayList of Creatures in the Room.
      */
-    public void setCreaturesInRoom(ArrayList<Creatures> creatures_in_room) {
+    public void setCreaturesInRoom(ArrayList<Creature> creatures_in_room) {
         this.creatures_in_room = creatures_in_room;
     }
 

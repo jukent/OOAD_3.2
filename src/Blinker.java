@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Blinkers extends Creatures { 
+public class Blinker extends Creature { 
     // Example of inheritance
     
     /**
@@ -11,7 +11,7 @@ public class Blinkers extends Creatures {
      * Blinkers constructor must be passes an ID integer 'A' and the Dungeon
      * Blinkers are assigned a starting room at construction.
      */
-    Blinkers(int A, Dungeon map) {
+    Blinker(int A, Dungeon map) {
         super.ID = A;
         this.dungeon = map;
         this.MovementBehavior = new BlinkMovement();

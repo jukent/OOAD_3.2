@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Random;
 
-public class Seekers extends Creatures {
+public class Seeker extends Creature {
     // Example of inheritance
 
 
@@ -12,7 +12,7 @@ public class Seekers extends Creatures {
      * 
      * Construct a Seeker with ID `A` and the Dungeon.
      */
-    Seekers(int A, Dungeon map) {
+    Seeker(int A, Dungeon map) {
         this.dungeon = map;
         super.ID = A;
         setStartingRoom();

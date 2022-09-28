@@ -15,8 +15,8 @@ public class GameEngine {
     // type, but not the same identity
 
     // ArrayList that contains all characters and Creatures
-    protected ArrayList<Characters> characterList = new ArrayList<Characters>();
-    protected ArrayList<Creatures> creatureList = new ArrayList<Creatures>();
+    protected ArrayList<Character> characterList = new ArrayList<Character>();
+    protected ArrayList<Creature> creatureList = new ArrayList<Creature>();
     protected ArrayList<Treasure> treasureList = new ArrayList<Treasure>();
     
     Tracker tracker = new Tracker(dungeon, characterList, creatureList, treasureList);
@@ -74,24 +74,24 @@ public class GameEngine {
         // of their abstract class.
 
         // Characters
-        characterList.add(new Runners(ID, dungeon));
+        characterList.add(new Runner(ID, dungeon));
         ID++;
         characterList.add(new Sneakers(ID, dungeon));
         ID++;
-        characterList.add(new Thieves(ID, dungeon));
+        characterList.add(new Thief(ID, dungeon));
         ID++;
-        characterList.add(new Brawlers(ID, dungeon));
+        characterList.add(new Brawler(ID, dungeon));
         ID++;
         tracker.setCharacterStats(characterList);
 
         // Creatures
         // Also an example of polymorphism
         for(int i = 0; i <4; i++) {
-            creatureList.add(new Seekers(ID, dungeon));
+            creatureList.add(new Seeker(ID, dungeon));
             ID++;
-            creatureList.add(new Orbiters(ID, dungeon));
+            creatureList.add(new Orbiter(ID, dungeon));
             ID++;
-            creatureList.add(new Blinkers(ID, dungeon));
+            creatureList.add(new Blinker(ID, dungeon));
             ID++;
         }
         tracker.setCreatureStats(creatureList);
@@ -123,7 +123,7 @@ public class GameEngine {
      * 
      * If a character rolls a -1, fight is skipped.
      */
-    private void simulateFight(Characters A, Creatures B) {
+    private void simulateFight(Character A, Creature B) {
         FightBehavior f1 = A.FightBehavior;
         Celebration c1 = new SpinCelebration(f1);
         c1 = new DanceCelebration(c1);
@@ -188,7 +188,7 @@ public class GameEngine {
      * Performs the Character action of searching for treasure.
      * Adds to the Characters treasure count
      */
-    private void simulateTreasure(Characters A) {
+    private void simulateTreasure(Character A) {
         int NeededScore = A.HuntBehavior.NeededScore;
         int Score = A.searchTreasure();
 
@@ -256,7 +256,7 @@ public class GameEngine {
         printer = new Printer(dungeon, tracker, Output);
         // Process Characters
         for (int i = 0; i < characterList.size(); i++) { // Changing to this type of loop to avoid comodification
-        Characters I =  characterList.get(i);
+        Character I =  characterList.get(i);
             if (EndCondition) {
                 // Stops processing Characters if end condition is met
                 process1Character(I); // Process character
@@ -279,7 +279,7 @@ public class GameEngine {
 
         // Process Creatures
         for (int i = 0; i < creatureList.size(); i++) { // Changing to this type of loop to avoid comodification
-            Creatures I = creatureList.get(i);
+            Creature I = creatureList.get(i);
             if (EndCondition) {
                 // Stops processing Creatures if end condition is met
                 process1Creature(I);
@@ -311,7 +311,7 @@ public class GameEngine {
      * - In new Room, the Character searches for treasure if there are no Creatures
      *   or fights if there are Creatures.
      */
-    private void process1Character(Characters A) {
+    private void process1Character(Character A) {
         // Process turn counts for characters. Mostly 1 but runners have 2
         for (int i = 0; i < A.MoveCount; i++) {
             // Move to new Room
@@ -320,10 +320,10 @@ public class GameEngine {
             //tracker.setCharacterStats(characterList);
 
             // Look for creatures
-            ArrayList<Creatures> creatures_in_room = tracker.getCreaturesInRoom(new_room);
+            ArrayList<Creature> creatures_in_room = tracker.getCreaturesInRoom(new_room);
             if (creatures_in_room.size() > 0) {
                 // If there are Creatures in the room, fight
-                for (Creatures c:creatures_in_room) {
+                for (Creature c:creatures_in_room) {
                     simulateFight(A, c);
                 }
                 continue;
@@ -342,14 +342,14 @@ public class GameEngine {
      * - If a Character is in the Room, it automatically fights.
      * - If no other Character is in the Room, move.
      */
-    private void process1Creature(Creatures A){
+    private void process1Creature(Creature A){
         // Get Room information and Characters in the Room
         Room current_room = A.getLocation();
-        ArrayList<Characters> characters_in_room = tracker.getCharactersInRoom(current_room);
+        ArrayList<Character> characters_in_room = tracker.getCharactersInRoom(current_room);
         
         if (characters_in_room.size() > 0) {
             // If there is a character, don't move, fight!
-            for (Characters c: characters_in_room) {
+            for (Character c: characters_in_room) {
                 simulateFight(c, A);
             }
         } else{
@@ -359,8 +359,8 @@ public class GameEngine {
             //tracker.setCreatureStats(creatureList);
             
             // If characters in new room, fight
-            ArrayList<Characters> characters_in_new_room = new_room.getCharactersInRoom();
-            for (Characters c: characters_in_new_room) {
+            ArrayList<Character> characters_in_new_room = new_room.getCharactersInRoom();
+            for (Character c: characters_in_new_room) {
                 simulateFight(c, A);
             }
         }

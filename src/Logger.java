@@ -14,7 +14,7 @@ public class Logger {
     private void printCharacterStats(){
         String tbl_header = new String("Adventurers\tRoom\tDamage\tTreasure");
         System.out.println(tbl_header);
-        for (Characters c: tracker.characterList) {
+        for (Character c: tracker.characterList) {
             String name = c.getName();
             String room = c.getLocation().getName();
             Integer hp = 3-c.getHealth();
@@ -39,7 +39,7 @@ public class Logger {
         String tbl_header = new String("Creatures\tRoom");
         System.out.println(tbl_header);
   
-        for (Creatures c: tracker.creatureList) {
+        for (Creature c: tracker.creatureList) {
             String name = c.getName();
             String room = c.getLocation().getName();
             String creat_stats = new String(name + "\t\t" + room);

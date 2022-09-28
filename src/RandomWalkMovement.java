@@ -12,12 +12,11 @@ public class RandomWalkMovement extends MovementBehavior{
     /* (non-Javadoc)
      * @see MovementBehavior#move()
      * 
-     * The template method controlls Character random movement.
+     * The template method controlls Entity random movement.
      * 
-     * // Perhaps pass in currentLocation instead?? So that these movement patterns aren't tied to a Character or a Creature Class
      */
     @Override
-    public void move(Entities entity, Dungeon dungeon) {
+    public void move(Entity entity, Dungeon dungeon) {
         // Find ArrayList of current room's exits
         Room current_room = entity.getLocation();
         ArrayList<String>exits = current_room.getExits();

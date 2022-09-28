@@ -11,6 +11,7 @@ abstract public class Treasure {
     protected int TakeDamage = 0;
     protected String TreasureType;
     protected boolean Found = false;
+    MovementBehavior OwnerMovementBehavior;
 
 
     /**
@@ -62,14 +63,4 @@ abstract public class Treasure {
     public String getType(){
         return this.TreasureType;
     }
-
-    public boolean isFound(){
-        return this.Found;
-    }
-
-    public void setFound(boolean Found){
-        this.Found = Found;
-    }
-
-
 }

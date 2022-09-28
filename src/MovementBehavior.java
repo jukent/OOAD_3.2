@@ -11,5 +11,9 @@ public abstract class MovementBehavior {
     }
 
 
-    public abstract void move(Entities entity, Dungeon dungeon);
+    /**
+     * @param entity
+     * @param dungeon
+     */
+    public abstract void move(Entity entity, Dungeon dungeon);
 }

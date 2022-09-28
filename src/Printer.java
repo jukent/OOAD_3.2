@@ -66,17 +66,17 @@ public class Printer {
      */
     private ArrayList<String> getOccupancyStringArray(Room room) {
         // Characters in Room
-        ArrayList<Characters> characters_in_room = tracker.getCharactersInRoom(room);
+        ArrayList<Character> characters_in_room = tracker.getCharactersInRoom(room);
         String char_string = new String();
-        for (Characters c:characters_in_room) {
+        for (Character c:characters_in_room) {
             char_string += c.getName();
             char_string += " ";
         }
 
         // Creatures in Room
-        ArrayList<Creatures> creatures_in_room = tracker.getCreaturesInRoom(room);
+        ArrayList<Creature> creatures_in_room = tracker.getCreaturesInRoom(room);
         String creature_string = new String();
-        for (Creatures c:creatures_in_room) {
+        for (Creature c:creatures_in_room) {
             creature_string += c.getName();
             creature_string += " ";
         }
@@ -149,7 +149,7 @@ public class Printer {
 
         String tbl_header = new String("Adventurers\tDamage\tTreasure");
         System.out.println(tbl_header);
-        for (Characters c: tracker.characterList) {
+        for (Character c: tracker.characterList) {
             String name = c.getName();
             String treasure_str = c.getInventoryString();
             Integer hp = 3 - c.getHealth();
@@ -169,12 +169,12 @@ public class Printer {
         creatureSet.add("Blinker");
         String TempString;
         int[] Counts = {0,0,0};
-        for (Creatures c: tracker.creatureList) {
+        for (Creature c: tracker.creatureList) {
             Counts[creatureSet.indexOf(c.getName())] += 1;
         }
         System.out.println();
         for (String A: creatureSet) {
-            TempString = new String(A + " - " + Counts[creatureSet.indexOf(A)] + " Remaining");
+            TempString = new String(A + "(s) - " + Counts[creatureSet.indexOf(A)] + " Remaining");
             System.out.println(TempString);
         }
     }

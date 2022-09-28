@@ -16,7 +16,7 @@ public class BlinkMovement extends MovementBehavior {
      * Replace abstract movement with Blinker movement
      */
     @Override
-    public void move(Entities entity, Dungeon dungeon) {
+    public void move(Entity entity, Dungeon dungeon) {
         Room current_room = entity.getLocation();
 
         // Get a new hashtable to store possible rooms called 'possible_room_map'

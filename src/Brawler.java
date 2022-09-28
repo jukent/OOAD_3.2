@@ -1,4 +1,4 @@
-public class Brawlers extends Characters { 
+public class Brawler extends Character { 
     // Example of inheritance
     
     /**
@@ -8,7 +8,7 @@ public class Brawlers extends Characters {
      * Brawler constructor must be passed in an integer ID 'A' and the Dungeon.
      * Brawler is constructed with starting room.
      */
-    Brawlers(int A, Dungeon map) {
+    Brawler(int A, Dungeon map) {
         super.ID = A;
         this.dungeon = map;
         this.Location = dungeon.getRoom("(0-1-1)");
