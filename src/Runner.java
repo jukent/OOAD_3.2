@@ -1,4 +1,4 @@
-public class Runners extends Characters { 
+public class Runner extends Character { 
     // Example of inheritance
 
 
@@ -8,7 +8,7 @@ public class Runners extends Characters {
      * 
      * Constructs a runner with ID `A` and the Dungeon.
      */
-    Runners (int A, Dungeon map) {
+    Runner (int A, Dungeon map) {
         this.dungeon = map;
         this.Location = dungeon.getRoom("(0-1-1)");
         super.ID = A;
