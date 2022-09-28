@@ -1,4 +1,4 @@
-public class MovementBehavior {
+public abstract class MovementBehavior {
  
     protected String MovementType;
 
@@ -7,18 +7,9 @@ public class MovementBehavior {
      * 
      * Move Constructor
      */
-    public MovementBehavior(String Type){
-        MovementType = Type;
+    public MovementBehavior() {
     }
 
 
-    /**
-     * This method executes movement based on the 4 main movement types.
-     */
-    public void move() {
-        if (MovementType == "Character") {}
-        if (MovementType == "Blinker") {}
-        if (MovementType == "Seeker") {}
-        if (MovementType == "Orbiter") {}
-    }
+    public abstract void move(Entities entity, Dungeon dungeon);
 }

@@ -13,6 +13,7 @@ public class Thieves extends Characters {
         this.Location = dungeon.getRoom("(0-1-1)");
         this.HuntBehavior = new CarefulHunt();
         this.FightBehavior = new TrainedFighter();
+        this.MovementBehavior = new RandomWalkMovement();
         super.ID = A;
         name = "Thief";
     }

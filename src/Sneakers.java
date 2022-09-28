@@ -13,6 +13,7 @@ public class Sneakers extends Characters {
         this.Location = dungeon.getRoom("(0-1-1)");
         this.FightBehavior = new StealthyFighter();
         this.HuntBehavior = new QuickHunt();
+        this.MovementBehavior = new RandomWalkMovement();
         super.ID = A;
         name = "Sneaker";
     }

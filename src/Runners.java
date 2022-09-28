@@ -15,6 +15,7 @@ public class Runners extends Characters {
         super.MoveCount = 2;
         this.FightBehavior = new UntrainedFighter();
         this.HuntBehavior = new QuickHunt();
+        this.MovementBehavior = new RandomWalkMovement();
         name = "Runner";
     }
 }

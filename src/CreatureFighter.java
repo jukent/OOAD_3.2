@@ -1,7 +1,7 @@
-public class Creature extends FightBehavior{
+public class CreatureFighter extends FightBehavior{
 
 
-    public Creature() {
+    public CreatureFighter() {
         this.FightType = "Creature";}
     
         

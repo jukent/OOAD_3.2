@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.Random;
 
 public class Blinkers extends Creatures { 
@@ -15,44 +14,11 @@ public class Blinkers extends Creatures {
     Blinkers(int A, Dungeon map) {
         super.ID = A;
         this.dungeon = map;
+        this.MovementBehavior = new BlinkMovement();
         name = "Blinker";
 
         //Blinkers start anywhere on the 4th level
         setStartingRoom();
-    }
-
-
-    /* (non-Javadoc)
-     * @see Creatures#move()
-     * 
-     * Replace abstract creature movement with Blinker movement
-     * Checks if a character is in the room, if so stays
-     * If not, blinks to another random room in the dungeon
-     */
-    @Override
-    public void move(){
-        Room current_room = this.getLocation();
-
-        // Get a new hashtable to store possible rooms called 'possible_room_map'
-        // Hashtable values point to a subset of the Room objects in the main dungeon map
-        Hashtable<String, Room> possible_room_map = new Hashtable<String, Room>();
-        possible_room_map.putAll(dungeon.getMap()); // Learned method from Geeks for Geeks: "How to Copy Map Content to Another Hashtable in Java?(https://www.geeksforgeeks.org/how-to-copy-map-content-to-another-hashtable-in-java/)
-        possible_room_map.remove("0-1-1"); // Remove entrace room
-        possible_room_map.remove(current_room.getName()); // Remove current room
-
-        // Randomly select one of the rooms - learned from Stack Overflow question (https://stackoverflow.com/questions/38248381/pick-a-random-element-from-a-hashtable)
-        // Convert values to an ArrayList of Room so that Rooms can grabbed via index
-        ArrayList<Room> possible_rooms = new ArrayList<Room>(possible_room_map.values());
-
-        // Get random index from 0 (inclusive) to the length of possible rooms (exclusive)
-        Random random = new Random();
-        int random_index = random.nextInt(possible_rooms.size());
-
-        // Grab a Room from the random index
-        Room new_room = possible_rooms.get(random_index);
-            
-        // Move there
-        this.setLocation(new_room);
     }
 
 
@@ -63,7 +29,6 @@ public class Blinkers extends Creatures {
      */
     @Override
     protected void setStartingRoom() {
-
         // Generate an ArrayList of possible starting rooms
         // Generating a fresh list in a for-looped seemed simpler than removing every room not on the 4th level 
         // as done in the `move()` method
