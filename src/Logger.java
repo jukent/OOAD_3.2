@@ -1,3 +1,9 @@
+//import java.util.logging.Logger;
+import java.io.FileWriter;
+import java.io.IOException;
+
+// UPDATE TO USE LOGGING API -- https://www.vogella.com/tutorials/Logging/article.html
+
 public class Logger {
     // to be instantiated at the beginning of each full adventurer/creature turn (not individual) and closes at the end of each turn
     // print results to "Logger-n.txt" where n is the turn of the simulation
@@ -48,8 +54,20 @@ public class Logger {
     }
 
     public void printLog() {
-        int RoundCounter = tracker.getRoundCounter();
-        System.out.println("Tracker: Turn " + RoundCounter);
+        int roundCounter = tracker.getRoundCounter();
+
+        String fileName = new String("Logger-" + roundCounter + ".txt");
+
+        try {
+            FileWriter fileWriter = new FileWriter(fileName);
+            fileWriter.write("");
+            fileWriter.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred. Could not write file.");
+            e.printStackTrace();
+        }
+
+        System.out.println("Tracker: Turn " + roundCounter);
 
         printCharacterStats();
         printCreatureStats();
