@@ -6,7 +6,6 @@ public abstract class Characters extends Entities {
     public ArrayList<Treasure> Inventory = new ArrayList<Treasure>();
     public ArrayList<String> InventoryTypes = new ArrayList<String>();
 
-    protected int HP = 3;
     protected int MoveCount = 1;
 
 

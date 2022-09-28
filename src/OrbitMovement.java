@@ -2,6 +2,7 @@ public class OrbitMovement extends MovementBehavior {
     
 
     public OrbitMovement() {
+        this.MovementType = "Orbit";
     }
 
     /* (non-Javadoc)

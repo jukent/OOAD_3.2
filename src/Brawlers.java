@@ -14,7 +14,6 @@ public class Brawlers extends Characters {
         this.Location = dungeon.getRoom("(0-1-1)");
         this.FightBehavior = new ExpertFighter();
         this.HuntBehavior = new CarelessHunt();
-        this.MovementBehavior = new RandomWalkMovement();
         name = "Brawler";
     }
 }

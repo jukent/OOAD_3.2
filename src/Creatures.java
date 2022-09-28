@@ -1,7 +1,5 @@
 public abstract class Creatures extends Entities {
 
-    FightBehavior FightBehavior = new CreatureFighter();
-
     protected int HP = 1;
     protected int MoveCount = 1;
 

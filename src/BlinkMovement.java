@@ -6,6 +6,7 @@ public class BlinkMovement extends MovementBehavior {
 
 
     public BlinkMovement() {
+        this.MovementType = "Blink";
     }
 
     

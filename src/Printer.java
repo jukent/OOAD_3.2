@@ -152,7 +152,7 @@ public class Printer {
         for (Characters c: tracker.characterList) {
             String name = c.getName();
             String treasure_str = c.getInventoryString();
-            Integer hp = 3-c.getHealth();
+            Integer hp = 3 - c.getHealth();
 
             String char_stats = new String(name + "\t\t" + hp + "\t" + treasure_str);
             System.out.println(char_stats);

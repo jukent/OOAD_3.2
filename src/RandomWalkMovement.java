@@ -5,6 +5,7 @@ public class RandomWalkMovement extends MovementBehavior{
     
 
     public RandomWalkMovement() {
+        this.MovementType = "RandomWalk";
     }
 
 

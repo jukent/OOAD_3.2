@@ -5,6 +5,7 @@ public class SeekMovement extends MovementBehavior{
 
 
     public SeekMovement() {
+        this.MovementType = "Seek";
     }
 
 

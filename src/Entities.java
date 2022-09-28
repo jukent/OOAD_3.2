@@ -14,10 +14,10 @@ public class Entities {
 
     String name = new String("Entity");
     String direction = new String();
-    protected int HP;
+    int HP = 3;
 
-    public FightBehavior FightBehavior;
-    public MovementBehavior MovementBehavior;
+    public FightBehavior FightBehavior = new CreatureFighter();
+    public MovementBehavior MovementBehavior = new RandomWalkMovement();
 
 
     /**
