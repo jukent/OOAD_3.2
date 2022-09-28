@@ -1,12 +1,12 @@
-public class Creature extends FightBehavior{
+public abstract class Creature extends Entity {
+
+    protected int HP = 1;
+    protected int MoveCount = 1;
 
 
-    public Creature() {
-        this.FightType = "Creature";}
-    
-        
-    public int fight() {
-            return DiceRolls.rollDice(6) + DiceRolls.rollDice(6);
-        }
-    
+    /**
+     * The abstract method sets a Creature's starting room
+     * to be overwritten with more specific Creature behavior.
+     */
+    protected void setStartingRoom() {}
 }

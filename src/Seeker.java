@@ -2,22 +2,29 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Random;
 
-abstract public class Treasure {
-    
-    protected Room Location;
-    protected int OwnerFightBonus = 0;
-    protected int AdversaryFightBonus = 0;
-    protected int HPBoost = 0;
-    protected int TakeDamage = 0;
-    protected String TreasureType;
-    protected boolean Found = false;
-    MovementBehavior OwnerMovementBehavior;
+public class Seeker extends Creature {
+    // Example of inheritance
 
 
     /**
-     * @param dungeon
+     * @param A: int
+     * @param map: Dungeon
+     * 
+     * Construct a Seeker with ID `A` and the Dungeon.
      */
-    protected void setLocation(Dungeon dungeon) {
+    Seeker(int A, Dungeon map) {
+        this.dungeon = map;
+        super.ID = A;
+        setStartingRoom();
+        name = "Seeker";
+        this.MovementBehavior = new SeekMovement();
+    }
+
+
+    /**
+     * Randomly generate starting room for orbiters from any exterior room on any level
+     */
+    protected void setStartingRoom() {
         // Get new map of possible Rooms
         Hashtable<String, Room> possible_room_map = new Hashtable<String, Room>();
         possible_room_map.putAll(dungeon.getMap()); // Learned method from Geeks for Geeks: "How to Copy Map Content to Another Hashtable in Java?(https://www.geeksforgeeks.org/how-to-copy-map-content-to-another-hashtable-in-java/)
@@ -31,36 +38,7 @@ abstract public class Treasure {
 
         Room new_room = starting_rooms.get(random_index);
 
-        // Hide treasure there
-        this.Location = new_room;
-    }
-
-
-    /**
-     * @return Room
-     * 
-     * This method returns a Treasure's location.
-     */
-    public Room getLocation() {
-        return this.Location;
-    }
-
-    public int getFB(){
-        return this.OwnerFightBonus;
-    }
-
-    public int getAFB(){
-        return this.AdversaryFightBonus;
-    }
-
-    public int getHPBoost(){
-        return this.HPBoost;
-    }
-
-    public int getTakeDamage(){
-        return this.TakeDamage;
-    }
-    public String getType(){
-        return this.TreasureType;
+        // Start there
+        this.setLocation(new_room);
     }
 }
