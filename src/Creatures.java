@@ -1,7 +1,5 @@
 public abstract class Creatures extends Entities {
 
-
-    String name = "Creature";
     FightBehavior FightBehavior = new CreatureFighter();
 
     protected int HP = 1;

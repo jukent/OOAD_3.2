@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public abstract class Characters extends Entities {
 
-    String name = "Character";
     public TreasureHunt HuntBehavior;
     public ArrayList<Treasure> Inventory = new ArrayList<Treasure>();
     public ArrayList<String> InventoryTypes = new ArrayList<String>();
