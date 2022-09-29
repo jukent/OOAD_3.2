@@ -126,7 +126,7 @@ public class Tracker {
 
         Room room = character.getLocation();
         ArrayList<Character> characters_in_room = room.getCharactersInRoom();
-        characters_in_room.add(character);
+        characters_in_room.remove(character);
         room.setCharactersInRoom(characters_in_room);
     }
 
