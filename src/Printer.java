@@ -35,7 +35,7 @@ public class Printer {
         System.out.println(occupancy_string);
 
         // Levels 1, 2, 3, 4
-        Columns columns = new Columns();
+        PrinterColumns columns = new PrinterColumns();
         for (int l = 1; l <= 4; ++l) {
             addLevel(l, columns);
         }
@@ -66,7 +66,7 @@ public class Printer {
      */
     private ArrayList<String> getOccupancyStringArray(Room room) {
         // Characters in Room
-        ArrayList<Character> characters_in_room = tracker.getCharactersInRoom(room);
+        ArrayList<Character> characters_in_room = room.getCharactersInRoom();
         String char_string = new String();
         for (Character c:characters_in_room) {
             char_string += c.getName();
@@ -74,7 +74,7 @@ public class Printer {
         }
 
         // Creatures in Room
-        ArrayList<Creature> creatures_in_room = tracker.getCreaturesInRoom(room);
+        ArrayList<Creature> creatures_in_room = room.getCreaturesInRoom();
         String creature_string = new String();
         for (Creature c:creatures_in_room) {
             creature_string += c.getName();
@@ -99,7 +99,7 @@ public class Printer {
      * 
      * This method adds a row of the Dungeon and its occupancy to the Columns object.
      */
-    private void addRowString (Integer level, Integer row, Columns columns) {
+    private void addRowString (Integer level, Integer row, PrinterColumns columns) {
         ArrayList<Room> row_rooms = new ArrayList<Room>();
         row_rooms.add(dungeon.getRoom("(" + level + "-" + row + "-0)"));
         row_rooms.add(dungeon.getRoom("(" + level + "-" + row + "-1)"));
@@ -121,7 +121,7 @@ public class Printer {
      * 
      * This method adds a level of the Dungeon and its occupancy to the Columns object.
      */
-    private void addLevel (Integer level, Columns columns) {
+    private void addLevel (Integer level, PrinterColumns columns) {
         for (int r = 0; r <= 2; ++r) {
             addRowString(level, r, columns);
         }

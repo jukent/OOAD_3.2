@@ -56,16 +56,16 @@ public class Logger {
     public void printLog() {
         int roundCounter = tracker.getRoundCounter();
 
-        String fileName = new String("Logger-" + roundCounter + ".txt");
+        //String fileName = new String("Logger-" + roundCounter + ".txt");
 
-        try {
-            FileWriter fileWriter = new FileWriter(fileName);
-            fileWriter.write("");
-            fileWriter.close();
-        } catch (IOException e) {
-            System.out.println("An error occurred. Could not write file.");
-            e.printStackTrace();
-        }
+        //try {
+        //    FileWriter fileWriter = new FileWriter(fileName);
+        //    fileWriter.write("");
+        //    fileWriter.close();
+        //} catch (IOException e) {
+        //    System.out.println("An error occurred. Could not write file.");
+        //    e.printStackTrace();
+        //}
 
         System.out.println("Tracker: Turn " + roundCounter);
 

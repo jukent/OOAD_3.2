@@ -83,6 +83,13 @@ public class GameEngine {
         characterList.add(new Brawler(ID, dungeon));
         ID++;
         tracker.setCharacterStats(characterList);
+        // Unclear if observer pattern makes it so the game engine doesn't manage the character or creature lists at all
+        // but creates events for the tracker to manage these lists, and the game engine pulls from the tracker
+        // or if the tracker should simply "observe" and store information -- seems less useful.
+        // go to office hours thursday 1:30-3
+        // game engine and tracker are subscribers?
+        // also information is already stored in Character objects, should tracker maintain a separate data table? Seems cumbersome, when can just point to characters
+        // 
 
         // Creatures
         // Also an example of polymorphism
@@ -141,10 +148,10 @@ public class GameEngine {
         if(CharacterRoll > 0) {
             if(CharacterRoll > CreatureRoll) {
                 // Character Wins
-                B.loseHealth(1);
+                tracker.characterWon(A, B);
                 tracker.removeCreature(B);
 
-                if (Output != "ShowNone") {
+                if (Output != "ShowNone") { // PUT ALL OF THIS INTO THE TRACKER??
                     System.out.print("Fight: ");
                     System.out.print(A.getClass().getSimpleName() + ": ");
                     System.out.print(CharacterRoll);
@@ -153,13 +160,12 @@ public class GameEngine {
                     System.out.println(" " + A.getClass().getSimpleName() + " Wins :D ");
                     System.out.print(A.getName() + " celebrates!: ");
                     c1.celebrate();
+                    tracker.characterCelebrated(A, c1);
                     System.out.println();
                 }
             } else if (CharacterRoll < CreatureRoll) {
                 // Creature Wins
-                A.loseHealth(1);
-                //tracker.setCharacterStats(characterList); // Update hp 
-                System.out.println("Hurt");
+                tracker.creatureWon(A, B);
                 if (A.getHealth() <= 0) {
                     tracker.removeCharacter(A); // Remove dead character
                 }
@@ -192,12 +198,13 @@ public class GameEngine {
         int NeededScore = A.HuntBehavior.NeededScore;
         int Score = A.searchTreasure();
 
-        ArrayList<Treasure> treasure_in_room = tracker.getTreasureInRoom(A.Location);
+        //ArrayList<Treasure> treasure_in_room = tracker.getTreasuresInRoom(A.Location);
+        ArrayList<Treasure> treasure_in_room = A.Location.getTreasuresInRoom();
         if (!treasure_in_room.isEmpty()) {
             // If there is Treasure in the room
             if (Score >= NeededScore) {
                 // If Treasure found
-                Treasure currentItem = treasure_in_room.get(0);
+                Treasure currentItem = treasure_in_room.get(0); // only find first treasure (if multiple)
 
                 if (Output != "ShowNone") {
                     // If printing
@@ -209,24 +216,20 @@ public class GameEngine {
                 if (A.InventoryTypes.contains(currentItem.getType())) {
                     // If we've already encountered this type of Treasure
                     if (currentItem.getType() == "Trap") {
-                        // Can encounter multiple traps
+                        // Can only encounter multiple traps
                         A.setInventory(currentItem);
-                        A.loseHealth(currentItem.getTakeDamage());
-                        //tracker.setCharacterStats(characterList);
+                        A.loseHealth(currentItem.getTakeDamage()); // if Trap
+                        tracker.treasureFound(currentItem);
                         if (A.getHealth() <= 0) {
-                            tracker.removeCharacter(A); // Remove dead character                            System.out.println("Dead");
+                            tracker.removeCharacter(A); // Remove dead character
                         } 
-                        tracker.removeTreasure(currentItem);
-                        tracker.increaseTreasureCount(1);
                     }
                 } else {
                     // This is a new type of Treasure
                     A.InventoryTypes.add(currentItem.getType());
-                    A.loseHealth(currentItem.getTakeDamage());
-                    A.addHealth(currentItem.getHPBoost()); 
-                    //tracker.setCharacterStats(characterList);
-                    tracker.removeTreasure(currentItem);
-                    tracker.increaseTreasureCount(1);
+                    A.loseHealth(currentItem.getTakeDamage()); // if Trap
+                    A.addHealth(currentItem.getHPBoost());  // if Potion
+                    tracker.treasureFound(currentItem);
                 }
             } else {
                 // If Treasure not found
@@ -315,15 +318,17 @@ public class GameEngine {
         // Process turn counts for characters. Mostly 1 but runners have 2
         for (int i = 0; i < A.MoveCount; i++) {
             // Move to new Room
+            Room old_room = A.getLocation();
             A.move();
             Room new_room = A.getLocation();
-            //tracker.setCharacterStats(characterList);
+            tracker.characterMoved(A, old_room, new_room);
 
             // Look for creatures
-            ArrayList<Creature> creatures_in_room = tracker.getCreaturesInRoom(new_room);
+            ArrayList<Creature> creatures_in_room = new_room.getCreaturesInRoom();
             if (creatures_in_room.size() > 0) {
                 // If there are Creatures in the room, fight
-                for (Creature c:creatures_in_room) {
+                for (int j = 0; j < creatures_in_room.size(); j++) {
+                    Creature c = creatures_in_room.get(j);
                     simulateFight(A, c);
                 }
                 continue;
@@ -344,19 +349,20 @@ public class GameEngine {
      */
     private void process1Creature(Creature A){
         // Get Room information and Characters in the Room
-        Room current_room = A.getLocation();
-        ArrayList<Character> characters_in_room = tracker.getCharactersInRoom(current_room);
-        
+        Room old_room = A.getLocation();
+
+        ArrayList<Character> characters_in_room = old_room.getCharactersInRoom();
         if (characters_in_room.size() > 0) {
             // If there is a character, don't move, fight!
-            for (Character c: characters_in_room) {
+            for (int i = 0; i < characters_in_room.size(); i++) {
+                Character c = characters_in_room.get(i);
                 simulateFight(c, A);
             }
         } else{
             // If no character, move
             A.move();
             Room new_room = A.getLocation();
-            //tracker.setCreatureStats(creatureList);
+            tracker.creatureMoved(A, old_room, new_room);
             
             // If characters in new room, fight
             ArrayList<Character> characters_in_new_room = new_room.getCharactersInRoom();

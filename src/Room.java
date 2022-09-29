@@ -8,7 +8,7 @@ public class Room {
     
     private ArrayList<Character> characters_in_room;
     private ArrayList<Creature> creatures_in_room;
-    private ArrayList<Treasure> treasure_in_room;
+    private ArrayList<Treasure> treasures_in_room;
 
 
     /**
@@ -40,6 +40,7 @@ public class Room {
 
         this.characters_in_room = new ArrayList<Character>();
         this.creatures_in_room = new ArrayList<Creature>();
+        this.treasures_in_room = new ArrayList<Treasure>();
     }
 
 
@@ -137,16 +138,16 @@ public class Room {
     /**
      * 
      */
-    public ArrayList<Treasure> getTreasureInRoom() {
-        return this.treasure_in_room;
+    public ArrayList<Treasure> getTreasuresInRoom() {
+        return this.treasures_in_room;
     }
 
 
     /**
      * 
      */
-    public void setTreasureInRoom(ArrayList<Treasure> treasure) {
-        this.treasure_in_room = treasure;
+    public void setTreasuresInRoom(ArrayList<Treasure> treasures) {
+        this.treasures_in_room = treasures;
     }    
     
     
