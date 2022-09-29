@@ -28,16 +28,6 @@ public abstract class Character extends Entity {
     }
 
 
-    /**
-     * @return int
-     * 
-     * This method returns how much treasure a Character has found.
-     */
-    public int getTreasureCount() {
-        return this.Inventory.size();
-    }
-
-
     public void addHealth(int HP){
         this.HP += HP;
     }

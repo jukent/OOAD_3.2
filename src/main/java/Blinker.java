@@ -12,7 +12,7 @@ public class Blinker extends Creature {
      * Blinkers constructor must be passes an ID integer 'A' and the Dungeon
      * Blinkers are assigned a starting room at construction.
      */
-    Blinker(int A, Dungeon map) {
+    public Blinker(int A, Dungeon map) {
         super.ID = A;
         this.dungeon = map;
         this.MovementBehavior = new BlinkMovement();

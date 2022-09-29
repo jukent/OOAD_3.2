@@ -32,6 +32,9 @@ public class RandomWalkMovementTest {
         Tracker tracker = new Tracker(dungeon, characterList, null, null);
         tracker.setCharacterStats(characterList);
 
+
+        Assert.assertEquals("RandomWalk", test_character.getMovementType());
+
         test_character.move();
         Room new_room = test_character.getLocation();
         tracker.characterMoved(test_character, old_room, new_room);

@@ -11,7 +11,6 @@ public abstract class MovementBehavior {
     public MovementBehavior() {
     }
 
-
     /**
      * @param entity
      * @param dungeon
