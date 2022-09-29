@@ -351,11 +351,11 @@ public class GameEngine {
         // Get Room information and Characters in the Room
         Room old_room = A.getLocation();
 
-        ArrayList<Character> characters_in_room = old_room.getCharactersInRoom();
-        if (characters_in_room.size() > 0) {
+        ArrayList<Character> characters_in_old_room = old_room.getCharactersInRoom();
+        if (characters_in_old_room.size() > 0) {
             // If there is a character, don't move, fight!
-            for (int i = 0; i < characters_in_room.size(); i++) {
-                Character c = characters_in_room.get(i);
+            for (int i = 0; i < characters_in_old_room.size(); i++) {
+                Character c = characters_in_old_room.get(i);
                 simulateFight(c, A);
             }
         } else{
@@ -366,7 +366,8 @@ public class GameEngine {
             
             // If characters in new room, fight
             ArrayList<Character> characters_in_new_room = new_room.getCharactersInRoom();
-            for (Character c: characters_in_new_room) {
+            for (int i = 0; i < characters_in_new_room.size(); i++) {
+                Character c = characters_in_new_room.get(i);
                 simulateFight(c, A);
             }
         }
