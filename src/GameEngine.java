@@ -151,7 +151,7 @@ public class GameEngine {
                 tracker.characterWon(A, B);
                 tracker.removeCreature(B);
 
-                if (Output != "ShowNone") { // PUT ALL OF THIS INTO THE TRACKER??
+                if (Output != "ShowNone") {
                     System.out.print("Fight: ");
                     System.out.print(A.getClass().getSimpleName() + ": ");
                     System.out.print(CharacterRoll);
@@ -205,6 +205,7 @@ public class GameEngine {
             if (Score >= NeededScore) {
                 // If Treasure found
                 Treasure currentItem = treasure_in_room.get(0); // only find first treasure (if multiple)
+                // Possible "feature" if character has treasure of type treasures_in_room[0] already but not treasures_in_room[1], character still doesn't get treasures[1]
 
                 if (Output != "ShowNone") {
                     // If printing
