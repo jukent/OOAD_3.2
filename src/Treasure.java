@@ -11,7 +11,7 @@ abstract public class Treasure {
     protected int TakeDamage = 0;
     protected String TreasureType;
     protected boolean Found = false;
-    MovementBehavior OwnerMovementBehavior;
+    //MovementBehavior OwnerMovementBehavior;
 
 
     /**
@@ -29,10 +29,10 @@ abstract public class Treasure {
         Random random = new Random();
         int random_index = random.nextInt(starting_rooms.size());
 
-        Room new_room = starting_rooms.get(random_index);
+        Room room = starting_rooms.get(random_index);
 
         // Hide treasure there
-        this.Location = new_room;
+        this.Location = room;
     }
 
 

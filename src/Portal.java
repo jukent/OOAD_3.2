@@ -7,6 +7,6 @@ public class Portal extends Treasure {
     public Portal(int ID, Dungeon dungeon) {
         setLocation(dungeon);  
         this.TreasureType = "Portal";
-        this.OwnerMovementBehavior = new BlinkMovement();
+        //this.OwnerMovementBehavior = new BlinkMovement();
     }
 }
