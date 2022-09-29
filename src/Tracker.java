@@ -10,7 +10,8 @@ public class Tracker {
     // publish adventurer/creature defeated/removed
     // publish treasure found by adventurer
 
-    // A more modern approach is for an “observer” to be only a reference to a method or function. In languages with first-class functions, and especially ones with closures, this is a much more common way to do observers.
+    // A more modern approach is for an “observer” to be only a reference to a method or function. 
+    // In languages with first-class functions, and especially ones with closures, this is a much more common way to do observers.
     // http://gameprogrammingpatterns.com/observer.html
 
     Dungeon dungeon;

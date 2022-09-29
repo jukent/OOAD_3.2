@@ -20,15 +20,19 @@ public class Logger {
     private void logCharacterStats(FileWriter fileWriter){
         String tbl_header = new String("Adventurers\tRoom\tDamage\tTreasure");
         try {
+            fileWriter.write("\n");
             fileWriter.write(tbl_header);
+
+            fileWriter.write("\n");
             for (Character c: tracker.characterList) {
                 String name = c.getName();
                 String room = c.getLocation().getName();
                 Integer hp = 3-c.getHealth();
                 String treasure = c.getInventoryString();
 
-                String char_stats = new String(name + "\t\t" + room + "\t" + hp + "\t" + treasure);
+                String char_stats = new String(name + "\t\t" + room + "\t" + hp + "\t\t" + treasure);
                 fileWriter.write(char_stats);
+                fileWriter.write("\n");
             }
         } catch (IOException e) {
             System.out.println("An error occurred. Could not write Character stats to file.");
@@ -45,17 +49,19 @@ public class Logger {
             fileWriter.write("\n");
             int total_creat = tracker.creatureList.size();
             fileWriter.write("Total Active Creatures: " + total_creat);
-
+            fileWriter.write("\n");
 
             fileWriter.write("\n");
             String tbl_header = new String("Creatures\tRoom");
             fileWriter.write(tbl_header);
+            fileWriter.write("\n");
     
             for (Creature c: tracker.creatureList) {
                 String name = c.getName();
                 String room = c.getLocation().getName();
                 String creat_stats = new String(name + "\t\t" + room);
                 fileWriter.write(creat_stats);
+                fileWriter.write("\n");
             }
         } catch (IOException e) {
             System.out.println("An error occurred. Could not write Creature stats to file.");
@@ -66,13 +72,14 @@ public class Logger {
     public void printLog() {
         int roundCounter = tracker.getRoundCounter();
 
-        String fileName = new String("Logger-" + roundCounter + ".txt");
+        String fileName = new String("Logger-files/Logger-" + roundCounter + ".txt");
 
         try {
             FileWriter fileWriter = new FileWriter(fileName);
 
             String round_string = new String("Tracker: Turn " + roundCounter);
             fileWriter.write(round_string);
+            fileWriter.write("\n");
 
             logCharacterStats(fileWriter);
             logCreatureStats(fileWriter);
