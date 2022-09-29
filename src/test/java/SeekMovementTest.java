@@ -32,6 +32,7 @@ public class SeekMovementTest {
         Assert.assertEquals(test_seeker.getLocation(), old_room);
 
         Tracker tracker = new Tracker(dungeon, null, creatureList, null);
+        tracker.setCreatureStats(creatureList);
 
         test_seeker.move();
         Room new_room = test_seeker.getLocation();
@@ -62,6 +63,8 @@ public class SeekMovementTest {
         Assert.assertEquals(old_room, character_room);
 
         Tracker tracker = new Tracker(dungeon, characterList, creatureList, null);
+        tracker.setCharacterStats(characterList);
+        tracker.setCreatureStats(creatureList);
 
         test_seeker.move();
         Room new_room = test_seeker.getLocation();
@@ -100,23 +103,12 @@ public class SeekMovementTest {
         Assert.assertTrue(exits.contains(character_room.getName()));
 
         Tracker tracker = new Tracker(dungeon, characterList, creatureList, null);
+        tracker.setCharacterStats(characterList);
+        tracker.setCreatureStats(creatureList);
 
         // check that we can get characters in room
         ArrayList<Character> characters_in_room = character_room.getCharactersInRoom();
         Assert.assertEquals(characters_in_room, characterList);
-        
-        // Check that populated_exits is not empty
-        //ArrayList<Room> populated_exits = new ArrayList<>();
-        //for (String x: exits) {
-        //    Room exit_room = dungeon.getRoom(x);
-        //    ArrayList<Character> characters_in_room = exit_room.getCharactersInRoom();
-        //    if (characters_in_room.size() > 0) {
-        //        populated_exits.add(exit_room);
-        //    }
-        //}
-        //Assert.assertTrue(populated_exits.size() == 1);
-
-
 
         test_seeker.move();
         Room new_room = test_seeker.getLocation();
