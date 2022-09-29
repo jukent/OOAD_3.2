@@ -14,7 +14,7 @@ public class Entity {
     protected Room Location;
 
     String name = new String("Entity");
-    String direction = new String();
+    String direction = new String("clockwise");
     int HP = 3;
 
     public FightBehavior FightBehavior = new CreatureFighter();
@@ -60,7 +60,10 @@ public class Entity {
         return this.Location;
     }
 
-
+    public void setDirection(String new_direction) {
+        this.direction = new_direction;
+    }
+    
     public String getDirection() {
         return this.direction;
     }

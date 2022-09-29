@@ -58,8 +58,4 @@ public class Orbiter extends Creature {
         String direction = directions.get(random_index);
         setDirection(direction);
     }
-
-    public void setDirection(String new_direction) {
-        this.direction = new_direction;
-    }
 }
