@@ -29,7 +29,7 @@ public class RandomWalkMovementTest {
 
         Assert.assertEquals(test_character.getLocation(), old_room);
 
-        Tracker tracker = new Tracker(dungeon, null, null, null);
+        Tracker tracker = new Tracker(dungeon, characterList, null, null);
         tracker.setCharacterStats(characterList);
 
         test_character.move();
@@ -37,7 +37,6 @@ public class RandomWalkMovementTest {
         tracker.characterMoved(test_character, old_room, new_room);
 
         Assert.assertNotEquals(old_room, new_room);
-
 
         // check there is exit from old_room to new_room
         ArrayList<String> exits = old_room.getExits();

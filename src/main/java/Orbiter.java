@@ -8,13 +8,13 @@ public class Orbiter extends Creature {
 
     String direction = "clockwise"; // Need to add a default
 
-    Orbiter(int A, Dungeon map) {
+    public Orbiter(int A, Dungeon map) {
         super.ID = A;
         this.dungeon = map;
         name = "Orbiter";
         this.MovementBehavior = new OrbitMovement();
         setStartingRoom(); // Set starting room
-        this.direction = setDirection(); // Clockwise or Counterclockwise
+        setRandomDirection(); // Clockwise or Counterclockwise
     }
 
 
@@ -47,7 +47,7 @@ public class Orbiter extends Creature {
      * 
      * Randomly return "clockwise" or "counterclockwise" to set Orbiter direction
      */
-    private String setDirection() {
+    private void setRandomDirection() {
         ArrayList<String> directions = new ArrayList<String>();
         directions.add("clockwise");
         directions.add("counterclockwise");
@@ -56,6 +56,10 @@ public class Orbiter extends Creature {
         int random_index = random.nextInt(2);
 
         String direction = directions.get(random_index);
-        return direction;
+        setDirection(direction);
+    }
+
+    public void setDirection(String new_direction) {
+        this.direction = new_direction;
     }
 }
