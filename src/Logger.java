@@ -69,7 +69,7 @@ public class Logger {
         }
     }
 
-    public void printLog() {
+    public void logRound() {
         int roundCounter = tracker.getRoundCounter();
 
         String fileName = new String("Logger-files/Logger-" + roundCounter + ".txt");
