@@ -17,17 +17,22 @@ public class Logger {
     /**
      * This method prints Character stats: name, treausres, hp.
      */
-    private void printCharacterStats(){
+    private void logCharacterStats(FileWriter fileWriter){
         String tbl_header = new String("Adventurers\tRoom\tDamage\tTreasure");
-        System.out.println(tbl_header);
-        for (Character c: tracker.characterList) {
-            String name = c.getName();
-            String room = c.getLocation().getName();
-            Integer hp = 3-c.getHealth();
-            String treasure = c.getInventoryString();
+        try {
+            fileWriter.write(tbl_header);
+            for (Character c: tracker.characterList) {
+                String name = c.getName();
+                String room = c.getLocation().getName();
+                Integer hp = 3-c.getHealth();
+                String treasure = c.getInventoryString();
 
-            String char_stats = new String(name + "\t\t" + room + "\t" + hp + "\t" + treasure);
-            System.out.println(char_stats);
+                String char_stats = new String(name + "\t\t" + room + "\t" + hp + "\t" + treasure);
+                fileWriter.write(char_stats);
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred. Could not write Character stats to file.");
+            e.printStackTrace();
         }
     }
 
@@ -35,41 +40,47 @@ public class Logger {
     /**
      * This method prints Creature stats: name and number remaining.
      */
-    private void printCreatureStats() {
-        System.out.println("\n");
-        int total_creat = tracker.creatureList.size();
-        System.out.println("Total Active Creatures: " + total_creat);
+    private void logCreatureStats(FileWriter fileWriter) {
+        try {
+            fileWriter.write("\n");
+            int total_creat = tracker.creatureList.size();
+            fileWriter.write("Total Active Creatures: " + total_creat);
 
 
-        System.out.println("\n");
-        String tbl_header = new String("Creatures\tRoom");
-        System.out.println(tbl_header);
-  
-        for (Creature c: tracker.creatureList) {
-            String name = c.getName();
-            String room = c.getLocation().getName();
-            String creat_stats = new String(name + "\t\t" + room);
-            System.out.println(creat_stats);
+            fileWriter.write("\n");
+            String tbl_header = new String("Creatures\tRoom");
+            fileWriter.write(tbl_header);
+    
+            for (Creature c: tracker.creatureList) {
+                String name = c.getName();
+                String room = c.getLocation().getName();
+                String creat_stats = new String(name + "\t\t" + room);
+                fileWriter.write(creat_stats);
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred. Could not write Creature stats to file.");
+            e.printStackTrace();
         }
     }
 
     public void printLog() {
         int roundCounter = tracker.getRoundCounter();
 
-        //String fileName = new String("Logger-" + roundCounter + ".txt");
+        String fileName = new String("Logger-" + roundCounter + ".txt");
 
-        //try {
-        //    FileWriter fileWriter = new FileWriter(fileName);
-        //    fileWriter.write("");
-        //    fileWriter.close();
-        //} catch (IOException e) {
-        //    System.out.println("An error occurred. Could not write file.");
-        //    e.printStackTrace();
-        //}
+        try {
+            FileWriter fileWriter = new FileWriter(fileName);
 
-        System.out.println("Tracker: Turn " + roundCounter);
+            String round_string = new String("Tracker: Turn " + roundCounter);
+            fileWriter.write(round_string);
 
-        printCharacterStats();
-        printCreatureStats();
+            logCharacterStats(fileWriter);
+            logCreatureStats(fileWriter);
+
+            fileWriter.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred. Could not write file.");
+            e.printStackTrace();
+        }
     }
 }
