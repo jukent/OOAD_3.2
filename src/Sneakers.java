@@ -14,6 +14,7 @@ public class Sneakers extends Character {
         this.FightBehavior = new StealthyFighter();
         this.HuntBehavior = new QuickHunt();
         super.ID = A;
+        checkPortalInInventory();
         name = "Sneaker";
     }
 }

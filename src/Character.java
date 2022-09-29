@@ -9,6 +9,13 @@ public abstract class Character extends Entity {
     protected int MoveCount = 1;
 
 
+    public void checkPortalInInventory() {
+        if (this.InventoryTypes.contains("Portal")) {
+            this.MovementBehavior = new BlinkMovement();
+        }
+    }
+
+
     /**
      * @return int
      * 

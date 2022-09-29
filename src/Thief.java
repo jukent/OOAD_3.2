@@ -15,5 +15,6 @@ public class Thief extends Character {
         this.FightBehavior = new TrainedFighter();
         super.ID = A;
         name = "Thief";
+        checkPortalInInventory();
     }
 }
