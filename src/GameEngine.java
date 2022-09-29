@@ -278,7 +278,6 @@ public class GameEngine {
                 break;
             }
         }
-        logger.printLog(); // should be a saver
 
         // Process Creatures
         for (int i = 0; i < creatureList.size(); i++) { // Changing to this type of loop to avoid comodification
@@ -301,7 +300,7 @@ public class GameEngine {
                 break;
             }
         }
-        logger.printLog(); // should be save
+        logger.logRound();
     }
 
 
