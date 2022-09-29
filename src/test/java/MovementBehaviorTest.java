@@ -14,7 +14,7 @@ import main.java.Room;
 import main.java.Seeker;
 import main.java.Tracker;
 
-public class CreatureStayWithCharacterTest {
+public class MovementBehaviorTest {
 
     Dungeon dungeon = new Dungeon();
 
