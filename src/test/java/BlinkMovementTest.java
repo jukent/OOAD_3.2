@@ -12,9 +12,7 @@ import main.java.Character;
 import main.java.Dungeon;
 import main.java.Portal;
 import main.java.Room;
-import main.java.BlinkMovement;
 import main.java.Blinker;
-import main.java.Treasure;
 
 public class BlinkMovementTest {
 
@@ -49,8 +47,8 @@ public class BlinkMovementTest {
 
         Room old_room = character.getLocation();
 
-       Portal portal = new Portal(1, dungeon);
-       Assert.assertEquals("Portal", portal.getType());
+        Portal portal = new Portal(1, dungeon);
+        Assert.assertEquals("Portal", portal.getType());
 
         character.setInventory(portal);
         Assert.assertTrue(character.Inventory.contains(portal));
@@ -66,7 +64,6 @@ public class BlinkMovementTest {
 
         character.move();
         Room new_room = character.getLocation();
-
         Assert.assertNotEquals(old_room, new_room);
     }
 }
