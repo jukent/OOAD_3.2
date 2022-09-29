@@ -101,4 +101,8 @@ public class Entity {
     public String getMovementType() {
         return this.MovementBehavior.MovementType;
     }
+
+    public void setMovementBehavior(MovementBehavior movement_behavior) {
+        this.MovementBehavior = movement_behavior;
+    }
 }

@@ -12,7 +12,6 @@ abstract public class Treasure {
     protected int TakeDamage = 0;
     protected String TreasureType;
     protected boolean Found = false;
-    //MovementBehavior OwnerMovementBehavior;
 
 
     /**
