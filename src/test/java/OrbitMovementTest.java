@@ -10,7 +10,6 @@ import main.java.Orbiter;
 import main.java.Creature;
 import main.java.Dungeon;
 import main.java.Room;
-import main.java.Tracker;
 
 public class OrbitMovementTest {
 
@@ -32,14 +31,10 @@ public class OrbitMovementTest {
 
         Assert.assertEquals(test_orbiter.getLocation(), old_room);
 
-        Tracker tracker = new Tracker(dungeon, null, creatureList, null);
-        tracker.setCreatureStats(creatureList);
-
         Assert.assertEquals("Orbit", test_orbiter.getMovementType());
 
         test_orbiter.move();
         Room new_room = test_orbiter.getLocation();
-        tracker.creatureMoved(test_orbiter, old_room, new_room);
 
         Assert.assertNotEquals(old_room, new_room);
         Assert.assertEquals("(1-0-1)", new_room.getName());
@@ -60,14 +55,10 @@ public class OrbitMovementTest {
 
         Assert.assertEquals(test_orbiter.getLocation(), old_room);
 
-        Tracker tracker = new Tracker(dungeon, null, creatureList, null);
-        tracker.setCreatureStats(creatureList);
-
         Assert.assertEquals("Orbit", test_orbiter.getMovementType());
 
         test_orbiter.move();
         Room new_room = test_orbiter.getLocation();
-        tracker.creatureMoved(test_orbiter, old_room, new_room);
 
         Assert.assertNotEquals(old_room, new_room);
         Assert.assertEquals("(1-1-0)", new_room.getName());

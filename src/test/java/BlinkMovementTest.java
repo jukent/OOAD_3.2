@@ -14,7 +14,6 @@ import main.java.Portal;
 import main.java.Room;
 import main.java.BlinkMovement;
 import main.java.Blinker;
-import main.java.Tracker;
 import main.java.Treasure;
 
 public class BlinkMovementTest {
@@ -32,14 +31,10 @@ public class BlinkMovementTest {
         int level = old_room.getLevel();
         Assert.assertEquals(4, level);
 
-        Tracker tracker = new Tracker(dungeon, null, creatureList, null);
-        tracker.setCreatureStats(creatureList);
-
         Assert.assertEquals("Blink", blinker.getMovementType());
 
         blinker.move();
         Room new_room = blinker.getLocation();
-        tracker.creatureMoved(blinker, old_room, new_room);
 
         Assert.assertNotEquals(old_room, new_room);
     }
@@ -58,12 +53,7 @@ public class BlinkMovementTest {
         Portal portal = new Portal(1, dungeon);
         treasureList.add(portal);
 
-        Tracker tracker = new Tracker(dungeon, characterList, null, null);
-        tracker.setCharacterStats(characterList);
-        tracker.setTreasureStats(treasureList);
-
         character.setInventory(portal);
-        tracker.treasureFound(portal);
 
         Assert.assertTrue(character.Inventory.contains(portal));
         Assert.assertEquals("Portal", portal.getType());
@@ -80,7 +70,6 @@ public class BlinkMovementTest {
 
         character.move();
         Room new_room = character.getLocation();
-        tracker.characterMoved(character, old_room, new_room);
 
         Assert.assertNotEquals(old_room, new_room);
     }

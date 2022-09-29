@@ -10,7 +10,6 @@ import main.java.Brawler;
 import main.java.Character;
 import main.java.Dungeon;
 import main.java.Room;
-import main.java.Tracker;
 
 public class RandomWalkMovementTest {
 
@@ -29,15 +28,10 @@ public class RandomWalkMovementTest {
 
         Assert.assertEquals(test_character.getLocation(), old_room);
 
-        Tracker tracker = new Tracker(dungeon, characterList, null, null);
-        tracker.setCharacterStats(characterList);
-
-
         Assert.assertEquals("RandomWalk", test_character.getMovementType());
 
         test_character.move();
         Room new_room = test_character.getLocation();
-        tracker.characterMoved(test_character, old_room, new_room);
 
         Assert.assertNotEquals(old_room, new_room);
 
