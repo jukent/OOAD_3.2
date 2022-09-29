@@ -49,14 +49,11 @@ public class BlinkMovementTest {
 
         Room old_room = character.getLocation();
 
-        ArrayList<Treasure> treasureList = new ArrayList<Treasure>();
-        Portal portal = new Portal(1, dungeon);
-        treasureList.add(portal);
+       Portal portal = new Portal(1, dungeon);
+       Assert.assertEquals("Portal", portal.getType());
 
         character.setInventory(portal);
-
         Assert.assertTrue(character.Inventory.contains(portal));
-        Assert.assertEquals("Portal", portal.getType());
 
         ArrayList<String> inventory_array = new ArrayList<String>();
         inventory_array.add(portal.getType());
@@ -64,8 +61,7 @@ public class BlinkMovementTest {
         Assert.assertTrue(character.InventoryTypes.contains(portal.getType()));
         Assert.assertTrue(character.InventoryTypes.contains("Portal"));
 
-        BlinkMovement movement_behavior = new BlinkMovement();
-        character.setMovementBehavior(movement_behavior);
+        character.checkPortalInInventory();
         Assert.assertEquals("Blink", character.getMovementType());
 
         character.move();

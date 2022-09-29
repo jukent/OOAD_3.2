@@ -320,6 +320,7 @@ public class GameEngine {
         for (int i = 0; i < A.MoveCount; i++) {
             // Move to new Room
             Room old_room = A.getLocation();
+            A.checkPortalInInventory();
             A.move();
             Room new_room = A.getLocation();
             tracker.characterMoved(A, old_room, new_room);

@@ -11,7 +11,8 @@ public abstract class Character extends Entity {
 
 
     public void checkPortalInInventory() {
-        if (this.InventoryTypes.contains("Portal")) {
+        ArrayList<String> inventory_types =  getInventoryTypes();
+        if (inventory_types.contains("Portal")) {
             BlinkMovement blink_movement_behavior = new BlinkMovement();
             setMovementBehavior(blink_movement_behavior);
         }
@@ -43,12 +44,10 @@ public abstract class Character extends Entity {
         ArrayList<Treasure> inventory = this.getInventory();
         inventory.add(treasure);
 
-
         ArrayList<String> InventoryTypes = getInventoryTypes();
         InventoryTypes.add(treasure.getType());
         setInventoryTypes(InventoryTypes);
     }
-
 
 
     public ArrayList<String> getInventoryTypes() {
