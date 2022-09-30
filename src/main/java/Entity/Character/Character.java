@@ -131,4 +131,14 @@ public abstract class Character extends Entity {
         String inventoryString = String.join(", ", inventoryArray);
         return inventoryString;
     }
+
+
+    /**
+     * @return TreasureHunt
+     * 
+     * Returns a Character's Treasure Hunt behavior.
+     */
+    public TreasureHunt getSearchBehavior() {
+        return this.searchBehavior;
+    }
 }

@@ -56,7 +56,7 @@ abstract public class Treasure {
      * 
      * This method returns a Treasure's ownerFightBonus.
      */
-    public int getFB() {
+    public int getFightBonus() {
         return this.ownerFightBonus;
     }
 

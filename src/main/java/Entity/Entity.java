@@ -140,6 +140,16 @@ public class Entity {
 
 
     /**
+     * @return FightBehavior
+     * 
+     * Returns an Entity's FightBehavior.
+     */
+    public FightBehavior getFightBehavior() {
+        return this.fightBehavior;
+    }
+
+
+    /**
      * @return String
      * 
      * This method returns an Entity's MovementType (i.e., "Orbit", "RandomWalk", "Seek", "Blink").

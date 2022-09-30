@@ -42,21 +42,21 @@ public class GameEngine {
     // and creatures. Otherwise, we would have an many dungeons of the same 
     // type, but not the same identity
 
-    // ArrayList that contains all characters and Creatures
+    // ArrayLists that contains all Characters, Creatures, and Treasures
     protected ArrayList<Character> characterList = new ArrayList<Character>();
     protected ArrayList<Creature> creatureList = new ArrayList<Creature>();
     protected ArrayList<Treasure> treasureList = new ArrayList<Treasure>();
     
-    Tracker tracker = new Tracker(dungeon, characterList, creatureList, treasureList);
+    Tracker tracker = new Tracker(dungeon, characterList, creatureList, treasureList); // Game Tracker
 
-    protected Printer printer = new Printer(dungeon, tracker, Output);
+    protected Printer printer = new Printer(dungeon, tracker, Output); // Game Printer
 
     // Game variables that track win condition
-    private int RoundCounter = 0;
-    private int ID = 0;
+    private int roundCounter = 0; // The Integer round number
+    private int id = 0; // Object ID value
     
-    private boolean EndCondition = true;
-    private Scanner A = new java.util.Scanner(System.in);
+    private boolean endCondition = true; // End Condition check
+    private Scanner scanner = new java.util.Scanner(System.in); // Scanner for user input
 
 
     /**
@@ -70,7 +70,7 @@ public class GameEngine {
         if (Output != "ShowNone") {
             System.out.println("Starting Game!");
             System.out.println("Press Enter To Continue...");
-            A.nextLine();
+            scanner.nextLine();
         }   
     }
 
@@ -80,12 +80,12 @@ public class GameEngine {
      * Characters and Creatures. Ends if the end condition is completed
      */
     public void runGame() {
-        while (EndCondition) {
-            RoundCounter++;
-            tracker.setRoundCounter(RoundCounter);
+        while (endCondition) {
+            roundCounter++;
+            tracker.setRoundCounter(roundCounter); // publish round counter to Tracker
             processTurn();
         }        
-        A.close();
+        scanner.close();
     }
     
 
@@ -100,113 +100,108 @@ public class GameEngine {
         // of their abstract class.
 
         // Characters
-        characterList.add(new Runner(ID, dungeon));
-        ID++;
-        characterList.add(new Sneaker(ID, dungeon));
-        ID++;
-        characterList.add(new Thief(ID, dungeon));
-        ID++;
-        characterList.add(new Brawler(ID, dungeon));
-        ID++;
-        tracker.setCharacterStats(characterList);
-        // Unclear if observer pattern makes it so the game engine doesn't manage the character or creature lists at all
-        // but creates events for the tracker to manage these lists, and the game engine pulls from the tracker
-        // or if the tracker should simply "observe" and store information -- seems less useful.
-        // go to office hours thursday 1:30-3
-        // game engine and tracker are subscribers?
-        // also information is already stored in Character objects, should tracker maintain a separate data table? Seems cumbersome, when can just point to characters
-        // 
+        characterList.add(new Runner(id, dungeon));
+        id++;
+        characterList.add(new Sneaker(id, dungeon));
+        id++;
+        characterList.add(new Thief(id, dungeon));
+        id++;
+        characterList.add(new Brawler(id, dungeon));
+        id++;
+        tracker.setCharacterStats(characterList); // publish initial Character stats
 
         // Creatures
         // Also an example of polymorphism
         for(int i = 0; i < 4; i++) {
-            creatureList.add(new Seeker(ID, dungeon));
-            ID++;
-            creatureList.add(new Orbiter(ID, dungeon));
-            ID++;
-            creatureList.add(new Blinker(ID, dungeon));
-            ID++;
+            creatureList.add(new Seeker(id, dungeon));
+            id++;
+            creatureList.add(new Orbiter(id, dungeon));
+            id++;
+            creatureList.add(new Blinker(id, dungeon));
+            id++;
         }
-        tracker.setCreatureStats(creatureList);
+        tracker.setCreatureStats(creatureList); // publish initial Creature stats
 
+        // Treasures
         for(int i = 0; i < 4; i++) {
-            treasureList.add(new Sword(ID, dungeon));
-            ID++;
-            treasureList.add(new Gem(ID, dungeon));
-            ID++;
-            treasureList.add(new Armor(ID, dungeon));
-            ID++;
-            treasureList.add(new Portal(ID, dungeon));
-            ID++;
-            treasureList.add(new Trap(ID, dungeon));
-            ID++;
-            treasureList.add(new Potion(ID, dungeon));
-            ID++;
+            treasureList.add(new Sword(id, dungeon));
+            id++;
+            treasureList.add(new Gem(id, dungeon));
+            id++;
+            treasureList.add(new Armor(id, dungeon));
+            id++;
+            treasureList.add(new Portal(id, dungeon));
+            id++;
+            treasureList.add(new Trap(id, dungeon));
+            id++;
+            treasureList.add(new Potion(id, dungeon));
+            id++;
         }
-        tracker.setTreasureStats(treasureList);
+        tracker.setTreasureStats(treasureList); // publish initial Treasure stats
     }
     
 
     /**
-     * @param A: Characters
-     * @param B: Creatures
+     * @param character: Characters
+     * @param creature: Creatures
      * 
      * Input a Character `A` and Creature `B`
      * Deducts health if a dice roll is larger than the other. 
      * 
      * If a character rolls a -1, fight is skipped.
      */
-    private void simulateFight(Character A, Creature B) {
-        FightBehavior f1 = A.FightBehavior;
-        Celebration c1 = new SpinCelebration(f1);
-        c1 = new DanceCelebration(c1);
-        c1 = new JumpCelebration(c1);
-        c1 = new ShoutCelebration(c1);
+    private void simulateFight(Character character, Creature creature) {
+        FightBehavior fightBehavior = character.getFightBehavior();
+        Celebration celebration = new SpinCelebration(fightBehavior);
+        celebration = new DanceCelebration(celebration);
+        celebration = new JumpCelebration(celebration);
+        celebration = new ShoutCelebration(celebration);
 
-        int CharacterRoll = c1.fight();
-        int CreatureRoll = B.fight();
+        int characterRoll = celebration.fight();
+        int creatureRoll = creature.fight();
 
-        for(Treasure I: A.Inventory){
-            CharacterRoll += I.getFB();
-            CreatureRoll += I.getAFB();
+        for(Treasure t: character.getInventory()){
+            characterRoll += t.getFightBonus();
+            creatureRoll += t.getAdversaryFightBonus();
         }
 
-        if(CharacterRoll > 0) {
-            if(CharacterRoll > CreatureRoll) {
-                // Character Wins
-                tracker.characterWon(A, B);
-                tracker.removeCreature(B);
+        if(characterRoll > 0) {
+            // If fight not skipped
+            if(characterRoll > creatureRoll) {
+                // If Character Wins
+                tracker.characterWon(character, creature); // Publish Character won to Tracker
+                tracker.removeCreature(creature); // Remove dead Creature, publish to Tracker
 
                 if (Output != "ShowNone") {
                     System.out.print("Fight: ");
-                    System.out.print(A.getClass().getSimpleName() + ": ");
-                    System.out.print(CharacterRoll);
-                    System.out.print(" " + B.getClass().getSimpleName() + ": ");
-                    System.out.print(CreatureRoll);
-                    System.out.println(" " + A.getClass().getSimpleName() + " Wins :D ");
-                    System.out.print(A.getName() + " celebrates!: ");
-                    c1.celebrate();
-                    tracker.characterCelebrated(A, c1);
+                    System.out.print(character.getClass().getSimpleName() + ": ");
+                    System.out.print(characterRoll);
+                    System.out.print(" " + creature.getClass().getSimpleName() + ": ");
+                    System.out.print(creatureRoll);
+                    System.out.println(" " + character.getClass().getSimpleName() + " Wins :D ");
+                    System.out.print(character.getName() + " celebrates!: ");
+                    celebration.celebrate();
+                    tracker.characterCelebrated(character, celebration); // Publish Character celebrated to Tracker
                     System.out.println();
                 }
-            } else if (CharacterRoll < CreatureRoll) {
-                // Creature Wins
-                tracker.creatureWon(A, B);
-                if (A.getHealth() <= 0) {
-                    tracker.removeCharacter(A); // Remove dead character
+            } else if (characterRoll < creatureRoll) {
+                // If Creature Wins
+                tracker.creatureWon(character, creature); // Publish Creature won to Tracker
+                if (character.getHealth() <= 0) {
+                    tracker.removeCharacter(character); // Remove dead Character, publish to Tracker
                 }
 
                 if (Output != "ShowNone") {
                     System.out.print("Fight: ");
-                    System.out.print(A.getClass().getSimpleName() + ": ");
-                    System.out.print(CharacterRoll);
-                    System.out.print(" " + B.getClass().getSimpleName() + ": ");
-                    System.out.print(CreatureRoll);
+                    System.out.print(character.getClass().getSimpleName() + ": ");
+                    System.out.print(characterRoll);
+                    System.out.print(" " + creature.getClass().getSimpleName() + ": ");
+                    System.out.print(creatureRoll);
                     System.out.println(" Creature Wins :( ");
                 }
             }
         } else {
-            // Tie
+            // Fight skipped (Roll of -1)
             if (Output != "ShowNone") {
                 System.out.println("Fight Skipped");
             }
@@ -215,55 +210,54 @@ public class GameEngine {
     
 
     /**
-     * @param A: Character
+     * @param character: Character
      * 
      * Performs the Character action of searching for treasure.
      * Adds to the Characters treasure count
      */
-    private void simulateTreasure(Character A) {
-        int NeededScore = A.HuntBehavior.NeededScore;
-        int Score = A.searchTreasure();
+    private void simulateTreasure(Character character) {
+        int neededScore = character.getSearchBehavior().getNeededScore();
+        int score = character.searchTreasure();
 
-        //ArrayList<Treasure> treasure_in_room = tracker.getTreasuresInRoom(A.Location);
-        ArrayList<Treasure> treasure_in_room = A.getLocation().getTreasuresInRoom();
-        if (!treasure_in_room.isEmpty()) {
+        ArrayList<Treasure> treasureInRoom = character.getLocation().getTreasuresInRoom();
+        if (!treasureInRoom.isEmpty()) {
             // If there is Treasure in the room
-            if (Score >= NeededScore) {
+            if (score >= neededScore) {
                 // If Treasure found
-                Treasure currentItem = treasure_in_room.get(0); // only find first treasure (if multiple)
-                // Possible "feature" if character has treasure of type treasures_in_room[0] already but not treasures_in_room[1], character still doesn't get treasures[1]
+                Treasure currentItem = treasureInRoom.get(0); // only find first Treasure (if multiple)
+                // Possible "feature" if Character has Treasure of first type already but not of second, Character still doesn't get the second Treasure.
 
                 if (Output != "ShowNone") {
                     // If printing
                     System.out.print("Treasure Hunt: ");
-                    System.out.print(Score);
+                    System.out.print(score);
                     System.out.println(" Success! ");
-                    System.out.println("Treasure: " + treasure_in_room.get(0).getClass());
+                    System.out.println("Treasure: " + treasureInRoom.get(0).getClass());
                 }
-                if (A.getInventoryTypes().contains(currentItem.getType())) {
+                if (character.getInventoryTypes().contains(currentItem.getType())) {
                     // If we've already encountered this type of Treasure
                     if (currentItem.getType() == "Trap") {
                         // Can only encounter multiple traps
-                        A.addInventory(currentItem);
-                        A.loseHealth(currentItem.getTakeDamage()); // if Trap
-                        tracker.treasureFound(currentItem);
-                        if (A.getHealth() <= 0) {
-                            tracker.removeCharacter(A); // Remove dead character
+                        character.addInventory(currentItem);
+                        character.loseHealth(currentItem.getTakeDamage()); // if Trap
+                        tracker.treasureFound(currentItem); // Publish Treasure found to Tracker
+                        if (character.getHealth() <= 0) {
+                            tracker.removeCharacter(character); // Remove dead Character, publish to Tracker
                         } 
                     }
                 } else {
                     // This is a new type of Treasure
-                    A.addInventory(currentItem);
-                    A.loseHealth(currentItem.getTakeDamage()); // if Trap
-                    A.addHealth(currentItem.getHPBoost());  // if Potion
-                    tracker.treasureFound(currentItem);
+                    character.addInventory(currentItem);
+                    character.loseHealth(currentItem.getTakeDamage()); // if Trap
+                    character.addHealth(currentItem.getHPBoost());  // if Potion
+                    tracker.treasureFound(currentItem); // Publish Treasure found to Tracker
                 }
             } else {
                 // If Treasure not found
                 if (Output != "ShowNone") {
                     // If Printing
                     System.out.print("Treasure Hunt: ");
-                    System.out.print(Score);
+                    System.out.print(score);
                     System.out.println(" Fail :(");
                 }
             }
@@ -271,7 +265,7 @@ public class GameEngine {
             // If no Treasure in room
             if (Output != "ShowNone") {
                 System.out.print("Treasure Hunt: ");
-                System.out.print(Score);
+                System.out.print(score);
                 System.out.println(" Fail :(");
             }
         }
@@ -286,10 +280,10 @@ public class GameEngine {
         printer = new Printer(dungeon, tracker, Output);
         // Process Characters
         for (int i = 0; i < characterList.size(); i++) { // Changing to this type of loop to avoid comodification
-        Character I =  characterList.get(i);
-            if (EndCondition) {
+        Character character =  characterList.get(i);
+            if (endCondition) {
                 // Stops processing Characters if end condition is met
-                process1Character(I); // Process character
+                process1Character(character); // Process character
                 checkWinCondition(); // Updates win conditions}
 
                 // Printing
@@ -308,10 +302,10 @@ public class GameEngine {
 
         // Process Creatures
         for (int i = 0; i < creatureList.size(); i++) { // Changing to this type of loop to avoid comodification
-            Creature I = creatureList.get(i);
-            if (EndCondition) {
+            Creature creature = creatureList.get(i);
+            if (endCondition) {
                 // Stops processing Creatures if end condition is met
-                process1Creature(I);
+                process1Creature(creature);
                 checkWinCondition();
 
                 // Printing
@@ -332,7 +326,7 @@ public class GameEngine {
 
 
     /**
-     * @param A: Character
+     * @param character: Character
      * 
      * This method processes the decision making for one Character:
      * - If a Creature is in the Room, it automatically fights.
@@ -340,69 +334,69 @@ public class GameEngine {
      * - In new Room, the Character searches for treasure if there are no Creatures
      *   or fights if there are Creatures.
      */
-    private void process1Character(Character A) {
+    private void process1Character(Character character) {
         // Process turn counts for characters. Mostly 1 but runners have 2
-        for (int i = 0; i < A.getMoveCount(); i++) {
+        for (int i = 0; i < character.getMoveCount(); i++) {
             // Move to new Room
-            Room old_room = A.getLocation();
-            A.checkPortalInInventory();
-            A.move();
-            Room new_room = A.getLocation();
-            tracker.characterMoved(A, old_room, new_room);
+            Room oldRoom = character.getLocation();
+            character.checkPortalInInventory(); // Check if Character will Blink or RandomWalk
+            character.move();
+            Room newRoom = character.getLocation();
+            tracker.characterMoved(character, oldRoom, newRoom); // Publish Character moved to Tracker
 
             // Look for creatures
-            ArrayList<Creature> creatures_in_room = new_room.getCreaturesInRoom();
-            if (creatures_in_room.size() > 0) {
+            ArrayList<Creature> creaturesInRoom = newRoom.getCreaturesInRoom();
+            if (creaturesInRoom.size() > 0) {
                 // If there are Creatures in the room, fight
-                for (int j = 0; j < creatures_in_room.size(); j++) {
-                    Creature c = creatures_in_room.get(j);
-                    simulateFight(A, c);
+                for (int j = 0; j < creaturesInRoom.size(); j++) {
+                    Creature creature = creaturesInRoom.get(j);
+                    simulateFight(character, creature);
                 }
                 continue;
             } else {
                 // If there are no Creatures in the room, look for treasure
-                simulateTreasure(A);
+                simulateTreasure(character);
             }
         }
     }
     
 
     /**
-     * @param A: Creature
+     * @param creature: Creature
      * 
      * Processes the decision making for one Creature:
      * - If a Character is in the Room, it automatically fights.
      * - If no other Character is in the Room, move.
      */
-    private void process1Creature(Creature A) {
+    private void process1Creature(Creature creature) {
         // Get Room information and Characters in the Room
-        Room old_room = A.getLocation();
+        Room oldRoom = creature.getLocation();
 
-        ArrayList<Character> characters_in_old_room = old_room.getCharactersInRoom();
-        if (characters_in_old_room.size() > 0) {
+        ArrayList<Character> charactersInOldRoom = oldRoom.getCharactersInRoom();
+        if (charactersInOldRoom.size() > 0) {
             // If there is a character, don't move, fight!
-            for (int i = 0; i < characters_in_old_room.size(); i++) {
-                Character c = characters_in_old_room.get(i);
-                simulateFight(c, A);
+            for (int i = 0; i < charactersInOldRoom.size(); i++) {
+                Character character = charactersInOldRoom.get(i);
+                simulateFight(character, creature);
             }
         } else{
             // If no character, move
-            A.move();
-            Room new_room = A.getLocation();
-            tracker.creatureMoved(A, old_room, new_room);
+            creature.move();
+            Room newRoom = creature.getLocation();
+            tracker.creatureMoved(creature, oldRoom, newRoom); // Publish Creature moved to Tracker
             
             // If characters in new room, fight
-            ArrayList<Character> characters_in_new_room = new_room.getCharactersInRoom();
-            for (int i = 0; i < characters_in_new_room.size(); i++) {
-                Character c = characters_in_new_room.get(i);
-                simulateFight(c, A);
+            ArrayList<Character> charactersInNewRoom = newRoom.getCharactersInRoom();
+            for (int i = 0; i < charactersInNewRoom.size(); i++) {
+                Character character = charactersInNewRoom.get(i);
+                simulateFight(character, creature);
             }
         }
     }
     
     
     /**
-     * Checks various end game conditions and modifies EndCondition accordingly
+     * Checks various end game conditions and modifies EndCondition accordingly.
      */
     private void checkWinCondition() {
         int treasureCount = tracker.getTreasureCount();
@@ -412,21 +406,21 @@ public class GameEngine {
         // Change End Condition depending on the outcome
         if (treasureCount == 24) { 
             // 24 Treasures Found
-            EndCondition = false;
+            endCondition = false;
             System.out.println("Game Over");
             System.out.println("All treasure found");
         } else if (creatureCount <= 0) { 
             //All Creatures eliminated
-            EndCondition = false;
+            endCondition = false;
             System.out.println("Game Over");
             System.out.println("All Creatures eliminated");
         } else if (characterCount <= 0) {
             //All Characters defeated
-            EndCondition = false;
+            endCondition = false;
             System.out.println("Game Over");
             System.out.println("All Adventurers eliminated");
         } else {
-            EndCondition = true;
+            endCondition = true;
         }
     }
 }

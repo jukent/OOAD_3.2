@@ -11,4 +11,14 @@ public abstract class TreasureHunt {
      * This abstract method searches for treasure by rolling dice and returns the "dice roll" integer.
      */
     public abstract int searchTreasure();
+
+
+    /**
+     * @return int
+     * 
+     * Returns the needed dice roll for a Treasure Search behavior.
+     */
+    public int getNeededScore() {
+        return this.neededScore;
+    }
 }
