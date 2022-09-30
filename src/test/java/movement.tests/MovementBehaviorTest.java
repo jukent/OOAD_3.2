@@ -16,35 +16,36 @@ public class MovementBehaviorTest {
 
     Dungeon dungeon = new Dungeon();
 
+    
     @Test
     public void testStayWithCharacter() {
 
         ArrayList<Character> characterList = new ArrayList<Character>();
-        Brawler test_character = new Brawler(0, dungeon);
-        characterList.add(test_character);
+        Brawler character = new Brawler(0, dungeon);
+        characterList.add(character);
 
-        Room character_room = dungeon.getRoom("(1-0-0)");
-        test_character.setLocation(character_room);
+        Room characterRoom = dungeon.getRoom("(1-0-0)");
+        character.setLocation(characterRoom);
         
         ArrayList<Creature> creatureList = new ArrayList<Creature>();
-        Seeker test_seeker = new Seeker(1, dungeon);
-        creatureList.add(test_seeker);
+        Seeker seeker = new Seeker(1, dungeon);
+        creatureList.add(seeker);
 
-        Room old_room = dungeon.getRoom("(1-0-0)");
-        test_seeker.setLocation(old_room);
+        Room oldRoom = dungeon.getRoom("(1-0-0)");
+        seeker.setLocation(oldRoom);
 
-        Assert.assertEquals(test_seeker.getLocation(), old_room);
-        Assert.assertEquals(old_room, character_room);
+        Assert.assertEquals(test_seeker.getLocation(), oldRoom);
+        Assert.assertEquals(oldRoom, characterRoom);
 
         Tracker tracker = new Tracker(dungeon, characterList, creatureList, null);
         tracker.setCharacterStats(characterList);
         tracker.setCreatureStats(creatureList);
 
         test_seeker.move();
-        Room new_room = test_seeker.getLocation();
-        tracker.creatureMoved(test_seeker, old_room, new_room);
+        Room newRoom = seeker.getLocation();
+        tracker.creatureMoved(seeker, oldRoom, newRoom);
 
-        Assert.assertEquals(old_room, new_room);
-        Assert.assertEquals(character_room, new_room);
+        Assert.assertEquals(oldRoom, newRoom);
+        Assert.assertEquals(characterRoom, newRoom);
     }
 }

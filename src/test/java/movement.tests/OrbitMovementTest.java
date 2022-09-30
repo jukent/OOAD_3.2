@@ -16,49 +16,44 @@ public class OrbitMovementTest {
 
     @Test
     public void testOrbitClockwise() {
-
-        ArrayList<Creature> creatureList = new ArrayList<Creature>();
         Orbiter test_orbiter = new Orbiter(0, dungeon);
-        test_orbiter.setDirection("clockwise");
-        creatureList.add(test_orbiter);
+        orbiter.setDirection("clockwise");
 
-        Assert.assertEquals("clockwise", test_orbiter.getDirection());
+        Assert.assertEquals("clockwise", orbiter.getDirection());
 
-        Room old_room = dungeon.getRoom("(1-0-0)");
-        test_orbiter.setLocation(old_room);
+        Room oldRoom = dungeon.getRoom("(1-0-0)");
+        orbiter.setLocation(oldRoom);
 
-        Assert.assertEquals(test_orbiter.getLocation(), old_room);
+        Assert.assertEquals(orbiter.getLocation(), oldRoom);
 
-        Assert.assertEquals("Orbit", test_orbiter.getMovementType());
+        Assert.assertEquals("Orbit", orbiter.getMovementType());
 
-        test_orbiter.move();
-        Room new_room = test_orbiter.getLocation();
+        orbiter.move();
+        Room newRoom = orbiter.getLocation();
 
-        Assert.assertNotEquals(old_room, new_room);
-        Assert.assertEquals("(1-0-1)", new_room.getName());
+        Assert.assertNotEquals(oldRoom, newRoom);
+        Assert.assertEquals("(1-0-1)", newRoom.getName());
     }
+
 
     @Test
     public void testOrbitCounterClockwise() {
-
-        ArrayList<Creature> creatureList = new ArrayList<Creature>();
-        Orbiter test_orbiter = new Orbiter(0, dungeon);
-        test_orbiter.setDirection("counterclockwise");
-        creatureList.add(test_orbiter);
+        Orbiter orbiter = new Orbiter(0, dungeon);
+        orbiter.setDirection("counterclockwise");
 
         Assert.assertEquals("counterclockwise", test_orbiter.getDirection());
 
-        Room old_room = dungeon.getRoom("(1-0-0)");
-        test_orbiter.setLocation(old_room);
+        Room oldRoom = dungeon.getRoom("(1-0-0)");
+        orbiter.setLocation(oldRoom);
 
-        Assert.assertEquals(test_orbiter.getLocation(), old_room);
+        Assert.assertEquals(orbiter.getLocation(), oldRoom);
 
-        Assert.assertEquals("Orbit", test_orbiter.getMovementType());
+        Assert.assertEquals("Orbit", orbiter.getMovementType());
 
-        test_orbiter.move();
-        Room new_room = test_orbiter.getLocation();
+        orbiter.move();
+        Room newRoom = orbiter.getLocation();
 
-        Assert.assertNotEquals(old_room, new_room);
-        Assert.assertEquals("(1-1-0)", new_room.getName());
+        Assert.assertNotEquals(oldRoom, newRoom);
+        Assert.assertEquals("(1-1-0)", newRoom.getName());
     }
 }
