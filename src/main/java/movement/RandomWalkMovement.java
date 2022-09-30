@@ -1,17 +1,17 @@
-package MovementBehavior;
+package movement;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-import Dungeon.Dungeon;
-import Dungeon.Room;
-import Entity.Entity;
+import dungeon.Dungeon;
+import dungeon.Room;
+import entity.Entity;
 
 public class RandomWalkMovement extends MovementBehavior{
     
 
     /**
-     * 
+     * Constructor for Random Walking Movement.
      */
     public RandomWalkMovement() {
         this.setMovementType("RandomWalk");
@@ -19,7 +19,7 @@ public class RandomWalkMovement extends MovementBehavior{
 
 
     /* (non-Javadoc)
-     * @see MovementBehavior#move()
+     * @see movement.MovementBehavior#move(entity.Entity, dungeon.Dungeon)
      * 
      * The template method controlls Entity random movement.
      * 
@@ -27,18 +27,18 @@ public class RandomWalkMovement extends MovementBehavior{
     @Override
     public void move(Entity entity, Dungeon dungeon) {
         // Find ArrayList of current room's exits
-        Room current_room = entity.getLocation();
-        ArrayList<String>exits = current_room.getExits();
+        Room currentRoom = entity.getLocation();
+        ArrayList<String> exits = currentRoom.getExits();
 
         // Select one of the exit rooms by random number generation
         Random random = new Random();
-        int random_index = random.nextInt(exits.size());
+        int i = random.nextInt(exits.size());
 
         // Find the room associated with the random index
-        String new_room_name = exits.get(random_index);
-        Room new_room = dungeon.getRoom(new_room_name);
+        String newRoomName = exits.get(i);
+        Room newRoom = dungeon.getRoom(newRoomName);
     
         // Move there
-        entity.setLocation(new_room);
+        entity.setLocation(newRoom);
     }
 }

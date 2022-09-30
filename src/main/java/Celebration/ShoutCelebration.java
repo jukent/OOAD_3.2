@@ -1,22 +1,26 @@
-package Celebration;
+package celebration;
 
-import FightBehavior.FightBehavior;
-import Util.DiceRolls;
+import fight.FightBehavior;
+import util.DiceRolls;
 
 public class ShoutCelebration extends Celebration {
 
 
     /**
      * @param fight
+     * 
+     * Shout Celebration constructor.
      */
     public ShoutCelebration(FightBehavior fight) {
-        //this.celebrationRef = celebrate;
         this.fightRef = fight;
     }
 
 
     /* (non-Javadoc)
-     * @see Celebration.Celebration#fight()
+     * @see celebration.Celebration#fight()
+     * @return int
+     * 
+     * Returns the "fight" dice-roll integer.
      */
     public int fight() {
         return this.fightRef.fight();
@@ -24,7 +28,9 @@ public class ShoutCelebration extends Celebration {
 
 
     /* (non-Javadoc)
-     * @see Celebration.Celebration#celebrate()
+     * @see celebration.Celebration#celebrate()
+     * 
+     * Executes shouting celebration a random number of times.
      */
     public void celebrate() {
         this.fightRef.celebrate();

@@ -1,25 +1,25 @@
-package Entity.Character;
+package entity.character;
 
-import Dungeon.Dungeon;
-import FightBehavior.StealthyFighter;
-import TreasureHuntBehavior.QuickHunt;
+import dungeon.Dungeon;
+import fight.StealthyFighter;
+import treasurehunt.QuickHunt;
 
 public class Sneaker extends Character { 
     // Example of inheritance
 
 
     /**
-     * @param A: int
+     * @param id: int
      * @param map: Dungeon
      * 
-     * Construct Sneakers with ID `A` and the Dungeon
+     * Construct Sneakers with an Integer ID `id` and the Dungeon
      */
-    public Sneaker(int A, Dungeon map) {
-        this.dungeon = map;
-        this.Location = dungeon.getRoom("(0-1-1)");
-        this.FightBehavior = new StealthyFighter();
-        this.HuntBehavior = new QuickHunt();
-        super.ID = A;
-        name = "Sneaker";
+    public Sneaker(int id, Dungeon map) {
+        super.id = id; // Sneaker ID value
+        this.dungeon = map; // Game Dungeon
+        this.location = dungeon.getRoom("(0-1-1)"); // Begin in Entrance Room
+        this.fightBehavior = new StealthyFighter(); // FightType is Stealthy
+        this.searchBehavior = new QuickHunt(); // SearchType is Quick
+        name = "Sneaker"; // Sring name
     }
 }

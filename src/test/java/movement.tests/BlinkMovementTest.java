@@ -1,16 +1,17 @@
-package MovementBehaviorTest;
+package movement.tests;
+
 import java.util.ArrayList;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import Dungeon.Dungeon;
-import Dungeon.Room;
-import Entity.Character.Brawler;
-import Entity.Character.Character;
-import Entity.Creature.Blinker;
-import Entity.Creature.Creature;
-import Treasure.Portal;
+import dungeon.Dungeon;
+import dungeon.Room;
+import entity.character.Brawler;
+import entity.character.Character;
+import entity.creature.Blinker;
+import entity.creature.Creature;
+import treasure.Portal;
 
 public class BlinkMovementTest {
 

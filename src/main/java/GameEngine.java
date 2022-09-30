@@ -1,37 +1,33 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import Dungeon.Dungeon;
-import Dungeon.Room;
-
-import Entity.Character.Character;
-import Entity.Character.Brawler;
-import Entity.Character.Runner;
-import Entity.Character.Sneaker;
-import Entity.Character.Thief;
-
-import Entity.Creature.Creature;
-import Entity.Creature.Blinker;
-import Entity.Creature.Orbiter;
-import Entity.Creature.Seeker;
-import FightBehavior.FightBehavior;
-import Treasure.Treasure;
-import Treasure.Armor;
-import Treasure.Gem;
-import Treasure.Portal;
-import Treasure.Potion;
-import Treasure.Sword;
-import Treasure.Trap;
-import Celebration.Celebration;
-import Celebration.DanceCelebration;
-import Celebration.JumpCelebration;
-import Celebration.ShoutCelebration;
-import Celebration.SpinCelebration;
-
-import Printer.Printer;
-
-import Tracker.Tracker;
-import Tracker.Logger;
+import celebration.Celebration;
+import celebration.DanceCelebration;
+import celebration.JumpCelebration;
+import celebration.ShoutCelebration;
+import celebration.SpinCelebration;
+import dungeon.Dungeon;
+import dungeon.Room;
+import entity.character.Brawler;
+import entity.character.Character;
+import entity.character.Runner;
+import entity.character.Sneaker;
+import entity.character.Thief;
+import entity.creature.Blinker;
+import entity.creature.Creature;
+import entity.creature.Orbiter;
+import entity.creature.Seeker;
+import fight.FightBehavior;
+import printer.Printer;
+import track.Logger;
+import track.Tracker;
+import treasure.Armor;
+import treasure.Gem;
+import treasure.Portal;
+import treasure.Potion;
+import treasure.Sword;
+import treasure.Trap;
+import treasure.Treasure;
 
 public class GameEngine {
 

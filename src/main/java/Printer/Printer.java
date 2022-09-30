@@ -1,32 +1,33 @@
-package Printer;
+package printer;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import Dungeon.Dungeon;
-import Dungeon.Room;
-import Entity.Character.Character;
-import Entity.Creature.Creature;
-import Tracker.Tracker;
+import dungeon.Dungeon;
+import dungeon.Room;
+import entity.character.Character;
+import entity.creature.Creature;
+import track.Tracker;
 
 public class Printer {
 
-    Dungeon dungeon;
-    Tracker tracker;
-    String OutputType; // OneScreen,ShowAll,ShowEnding
-    private Scanner A = new java.util.Scanner(System.in);
+    Dungeon dungeon; // Game Dungeon
+    Tracker tracker; // Game Tracker
+    String OutputType; // Output options: OneScreen, ShowAll, ShowEnding
+    private Scanner scanner = new java.util.Scanner(System.in); // A Scanner for awaiting user input
 
     
     /**
      * @param dungeon: Dungeon
-     * @param Output: String
+     * @param output: String
+     * @param tracker: Tracker
      * 
-     * Construct the printer
+     * Construct the printer.
      */
-    public Printer(Dungeon dungeon, Tracker tracker, String Output) {
-        this.dungeon = dungeon;
-        this.tracker = tracker;
-        this.OutputType = Output;
+    public Printer(Dungeon dungeon, Tracker tracker, String output) {
+        this.dungeon = dungeon; // Game Dungeon
+        this.tracker = tracker; // Game Tracker
+        this.OutputType = output; // Output type String
     }
 
 
@@ -38,15 +39,15 @@ public class Printer {
         printGameStatus();
 
         // Level 0 
-        Room starting_room = dungeon.getRoom("(0-1-1)");
-        ArrayList<String> occupancy_strings = getOccupancyStringArray(starting_room);
-        String occupancy_string = occupancy_strings.toString().replace("[", "").replace("]", "").replace(",", "");
-        System.out.println(occupancy_string);
+        Room startingRoom = dungeon.getRoom("(0-1-1)");
+        ArrayList<String> occupancyArray = getOccupancyStringArray(startingRoom);
+        String occupancyString = occupancyArray.toString().replace("[", "").replace("]", "").replace(",", "");
+        System.out.println(occupancyString);
 
         // Levels 1, 2, 3, 4
         PrinterColumns columns = new PrinterColumns();
         for (int l = 1; l <= 4; ++l) {
-            addLevel(l, columns);
+            addLevelArray(l, columns);
         }
         columns.print();
 
@@ -62,42 +63,42 @@ public class Printer {
     public void pause() {
         if (OutputType == "OneScreen") {
             System.out.println("Press Enter To Continue...");
-            A.nextLine();
+            scanner.nextLine();
         }
     }
 
 
     /**
      * @param room: Room
-     * @return String
+     * @return ArrayList<String>
      * 
      * This method gets the string for displaying occupancy in each Room.
      */
     private ArrayList<String> getOccupancyStringArray(Room room) {
         // Characters in Room
-        ArrayList<Character> characters_in_room = room.getCharactersInRoom();
-        String char_string = new String();
-        for (Character c:characters_in_room) {
-            char_string += c.getName();
-            char_string += " ";
+        ArrayList<Character> charactersInRoom = room.getCharactersInRoom();
+        String characterString = new String();
+        for (Character c:charactersInRoom) {
+            characterString += c.getName();
+            characterString += " ";
         }
 
         // Creatures in Room
-        ArrayList<Creature> creatures_in_room = room.getCreaturesInRoom();
-        String creature_string = new String();
-        for (Creature c:creatures_in_room) {
-            creature_string += c.getName();
-            creature_string += " ";
+        ArrayList<Creature> creaturesInRoom = room.getCreaturesInRoom();
+        String creatureString = new String();
+        for (Creature c:creaturesInRoom) {
+            creatureString += c.getName();
+            creatureString += " ";
         }
 
         // Full Room Occupancy String Array
-        ArrayList<String> occupancy_strings = new ArrayList<String>();
-        occupancy_strings.add(room.getName()); 
-        occupancy_strings.add(" : "); 
-        occupancy_strings.add(char_string); 
-        occupancy_strings.add(" : "); 
-        occupancy_strings.add(creature_string); 
-        return occupancy_strings;
+        ArrayList<String> occupancyArray = new ArrayList<String>();
+        occupancyArray.add(room.getName()); 
+        occupancyArray.add(" : "); 
+        occupancyArray.add(characterString); 
+        occupancyArray.add(" : "); 
+        occupancyArray.add(creatureString); 
+        return occupancyArray;
     }
 
 
@@ -108,19 +109,19 @@ public class Printer {
      * 
      * This method adds a row of the Dungeon and its occupancy to the Columns object.
      */
-    private void addRowString (Integer level, Integer row, PrinterColumns columns) {
-        ArrayList<Room> row_rooms = new ArrayList<Room>();
-        row_rooms.add(dungeon.getRoom("(" + level + "-" + row + "-0)"));
-        row_rooms.add(dungeon.getRoom("(" + level + "-" + row + "-1)"));
-        row_rooms.add(dungeon.getRoom("(" + level + "-" + row + "-2)"));
+    private void addRowArray (Integer level, Integer row, PrinterColumns columns) {
+        ArrayList<Room> rowRooms = new ArrayList<Room>();
+        rowRooms.add(dungeon.getRoom("(" + level + "-" + row + "-0)"));
+        rowRooms.add(dungeon.getRoom("(" + level + "-" + row + "-1)"));
+        rowRooms.add(dungeon.getRoom("(" + level + "-" + row + "-2)"));
 
-        ArrayList<String> row_strings = new ArrayList<String>();
-        for (Room r: row_rooms) {
+        ArrayList<String> rowArray = new ArrayList<String>();
+        for (Room r: rowRooms) {
             for (String s: getOccupancyStringArray(r)) {
-                row_strings.add(s);
+                rowArray.add(s);
             }           
         }
-        columns.addLine(row_strings);
+        columns.addLine(rowArray);
     }
 
 
@@ -130,9 +131,9 @@ public class Printer {
      * 
      * This method adds a level of the Dungeon and its occupancy to the Columns object.
      */
-    private void addLevel (Integer level, PrinterColumns columns) {
+    private void addLevelArray (Integer level, PrinterColumns columns) {
         for (int r = 0; r <= 2; ++r) {
-            addRowString(level, r, columns);
+            addRowArray(level, r, columns);
         }
     }
 
@@ -155,16 +156,15 @@ public class Printer {
      * This method prints Character stats: name, treausres, hp.
      */
     private void printCharacterStats(){
-
-        String tbl_header = new String("Adventurers\tDamage\tTreasure");
-        System.out.println(tbl_header);
+        String tableHeader = new String("Adventurers\tDamage\tTreasure");
+        System.out.println(tableHeader);
         for (Character c: tracker.getCharacterList()) {
             String name = c.getName();
-            String treasure_str = c.getInventoryString();
-            Integer hp = 3 - c.getHealth();
+            String treasureString = c.getInventoryString();
+            Integer damage = 3 - c.getHealth();
 
-            String char_stats = new String(name + "\t\t" + hp + "\t" + treasure_str);
-            System.out.println(char_stats);
+            String characterStats = new String(name + "\t\t" + damage + "\t" + treasureString);
+            System.out.println(characterStats);
         }
     }
 

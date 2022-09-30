@@ -1,32 +1,29 @@
-package Entity;
+package entity;
 
-import Dungeon.Dungeon;
-import Dungeon.Room;
-import FightBehavior.CreatureFighter;
-import FightBehavior.FightBehavior;
-import MovementBehavior.MovementBehavior;
-import MovementBehavior.RandomWalkMovement;
+import dungeon.Dungeon;
+import dungeon.Room;
+import fight.CreatureFighter;
+import fight.FightBehavior;
+import movement.MovementBehavior;
+import movement.RandomWalkMovement;
 
 public class Entity {
-
-    public int ID = 0;
     // Example of abstraction - Characters and Creatures all have their information grouped together
     // This was planned in the initial UML design, and was made abstract
     // because it allows a user to interact with characters without
     // knowing the full details.
     // Entity super class added later for movement behavior
 
-    // Room location stored Room object accessed by name (level-row-column)
-    // Level Range [0-4], Column range [1-3], Row Range [1-3]
-    protected Dungeon dungeon;
-    protected Room Location;
+    public int id = 0; // Integer ID value
+    protected Dungeon dungeon; // Game Dungeon
+    protected Room location; // Room location
 
-    protected String name = new String("Entity");
-    String direction = new String("clockwise");
-    protected int HP = 3;
+    protected String name = new String("Entity"); // Simple Entity name String
+    String direction = new String("clockwise"); // Dummy String direction value
+    protected int hp = 3; // Health Points Integer
 
-    public FightBehavior FightBehavior = new CreatureFighter();
-    public MovementBehavior MovementBehavior = new RandomWalkMovement();
+    public FightBehavior fightBehavior = new CreatureFighter(); // FightBehavior
+    public MovementBehavior movementBehavior = new RandomWalkMovement(); // MovementBehavior
 
 
     /**
@@ -36,7 +33,7 @@ public class Entity {
      * and returns their "fight roll" as an integer.
      */
     public int fight() {
-        return FightBehavior.fight();
+        return fightBehavior.fight();
     }
     
 
@@ -45,7 +42,7 @@ public class Entity {
      * to be overwritten by more specific behavior.
      */
     public void move() {
-        MovementBehavior.move(this, dungeon);
+        movementBehavior.move(this, dungeon);
     }
 
 
@@ -55,7 +52,7 @@ public class Entity {
      * This method manually sets Entity's location without influence from other Rooms.
      */
     public void setLocation(Room room) {
-        this.Location = room;
+        this.location = room;
     }
 
 
@@ -65,12 +62,17 @@ public class Entity {
      * This method returns an Entity's location.
      */
     public Room getLocation() {
-        return this.Location;
+        return this.location;
     }
 
     
     /**
-     * @param new_direction
+     * @param new_direction: String
+     * 
+     * This method sets an Entity's "direction"
+     * 
+     * This is only used for Orbiter's, but since we wanted to encapsalate MovementBehavior to work for Creatures or Entity's (so that Characters could blink),
+     * All Entity's needed to have any parameters that could be called up by any of the 'move()' methods.
      */
     public void setDirection(String new_direction) {
         this.direction = new_direction;
@@ -78,7 +80,9 @@ public class Entity {
     
 
     /**
-     * @return
+     * @return String
+     * 
+     * Make's an entity's movement direction accessible.
      */
     public String getDirection() {
         return this.direction;
@@ -91,7 +95,7 @@ public class Entity {
      * This method returns an Entity's health.
      */
     public int getHealth() {
-        return this.HP;
+        return this.hp;
     }
 
 
@@ -101,7 +105,7 @@ public class Entity {
      * This method decreases an Entity's health by the integer 'n'.
      */
     public void loseHealth(int n) {
-        this.HP = this.HP - n;
+        this.hp = this.hp - n;
     }
 
 
@@ -116,17 +120,41 @@ public class Entity {
 
 
     /**
-     * @return
+     * @return String
+     * 
+     * This method returns an Entity's type of FightBehavior (i.e. "Creature", "Expert", "Stealthy", "Trained", "Untrained").
+     */
+    public String getFightType() {
+        return this.fightBehavior.getFightType();
+    }
+
+
+    /**
+     * @param fightBehavior: FightBehavior
+     * 
+     * This method sets an Entity's fight behavior.
+     */
+    public void setFightBehavior(FightBehavior fightBehavior) {
+        this.fightBehavior = fightBehavior;
+    }
+
+
+    /**
+     * @return String
+     * 
+     * This method returns an Entity's MovementType (i.e., "Orbit", "RandomWalk", "Seek", "Blink").
      */
     public String getMovementType() {
-        return this.MovementBehavior.getMovementType();
+        return this.movementBehavior.getMovementType();
     }
 
 
     /**
      * @param movement_behavior
+     * 
+     * This method sets an Entity's MovementBehavior.
      */
     public void setMovementBehavior(MovementBehavior movement_behavior) {
-        this.MovementBehavior = movement_behavior;
+        this.movementBehavior = movement_behavior;
     }
 }

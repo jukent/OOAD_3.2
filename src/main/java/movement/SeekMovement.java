@@ -1,65 +1,66 @@
-package MovementBehavior;
+package movement;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-import Dungeon.Dungeon;
-import Dungeon.Room;
-import Entity.Entity;
-import Entity.Character.Character;
+import dungeon.Dungeon;
+import dungeon.Room;
+import entity.Entity;
+import entity.character.Character;
 
 public class SeekMovement extends MovementBehavior{
 
 
     /**
-     * 
+     * Constructor for Seeker Movement.
      */
     public SeekMovement() {
         this.setMovementType("Seek");
     }
 
 
+
     /* (non-Javadoc)
-     * @see MovementBehavior#move()
+     * @see movement.MovementBehavior#move(entity.Entity, dungeon.Dungeon)
      * 
      * Seekers move by staying still and waiting for a Character to be in a nearby Room
      * Then they move to the room with the Character.
      */
     @Override
     public void move(Entity entity, Dungeon dungeon) {
-        Room current_room = entity.getLocation();
+        Room currentRoom = entity.getLocation();
 
         // List of nearby rooms
-        ArrayList<String> exits = current_room.getExits();
+        ArrayList<String> exits = currentRoom.getExits();
         
         // Populate an ArrayList of populated nearby rooms (with characters)
-        ArrayList<Room> populated_exits = new ArrayList<>();
+        ArrayList<Room> populatedExits = new ArrayList<>();
         for (String x: exits) {
             // Convert Exit Room-Name Strings to Rooms 
-            Room exit_room = dungeon.getRoom(x);
+            Room exitRoom = dungeon.getRoom(x);
             // Check if a Character is in the Exit Room
-            ArrayList<Character> characters_in_room = exit_room.getCharactersInRoom();
-            if (characters_in_room.size() > 0) {
+            ArrayList<Character> charactersInRoom = exitRoom.getCharactersInRoom();
+            if (charactersInRoom.size() > 0) {
                 // If character in room add it to possible exit_rooms
-                populated_exits.add(exit_room);
+                populatedExits.add(exitRoom);
             }
         }
 
         // Move based on interesections
-        if (populated_exits.size() == 0 ) {
+        if (populatedExits.size() == 0 ) {
             // If no intersection, don't move
             entity.setLocation(entity.getLocation());
-        } else if (populated_exits.size() == 1) {
+        } else if (populatedExits.size() == 1) {
             // If one intersection, move there
-            Room new_room = populated_exits.get(0);
-            entity.setLocation(new_room);
+            Room newRoom = populatedExits.get(0);
+            entity.setLocation(newRoom);
         } else {
             // If multiple intersections, choose one randomly
             Random random = new Random();
-            int random_index = random.nextInt(populated_exits.size());
+            int i = random.nextInt(populatedExits.size());
         
-            Room new_room = populated_exits.get(random_index);
-            entity.setLocation(new_room);
+            Room newRoom = populatedExits.get(i);
+            entity.setLocation(newRoom);
         } 
     }
 }

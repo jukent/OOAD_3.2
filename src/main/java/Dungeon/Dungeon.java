@@ -1,4 +1,5 @@
-package Dungeon;
+package dungeon;
+
 import java.util.Hashtable;
 
 public class Dungeon {
@@ -9,6 +10,7 @@ public class Dungeon {
     // only the needed information to access it from the outside. 
     // Any additional information is hidden in private methods.
 
+    
     /**
      * Constructs the Dungeon object which contains a map of all rooms
      * 
@@ -18,7 +20,7 @@ public class Dungeon {
      */
     public Dungeon() {
         // constructor
-        int num_levels = 4;
+        int num_levels = 4; // The number of levels deep of the dungeon
 
         this.map = generateMap(num_levels);
     }

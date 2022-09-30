@@ -1,11 +1,11 @@
-package Entity.Creature;
+package entity.creature;
 
-import Entity.Entity;
+import entity.Entity;
 
 public abstract class Creature extends Entity {
 
-    protected int HP = 1;
-    protected int MoveCount = 1;
+    protected int hp = 1; // Health Point integer is 1, one-hit-kills
+    protected int moveCount = 1; // Integer movement count
 
 
     /**

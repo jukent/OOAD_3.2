@@ -1,4 +1,4 @@
-package TreasureHuntBehavior;
+package treasurehunt;
 public abstract class TreasureHunt {
     
     public String SearchType;

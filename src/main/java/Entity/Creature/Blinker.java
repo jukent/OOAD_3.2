@@ -1,37 +1,36 @@
-package Entity.Creature;
+package entity.creature;
 import java.util.ArrayList;
 import java.util.Random;
 
-import Dungeon.Dungeon;
-import Dungeon.Room;
-import MovementBehavior.BlinkMovement;
+import dungeon.Dungeon;
+import dungeon.Room;
+import movement.BlinkMovement;
 
 public class Blinker extends Creature { 
     // Example of inheritance
     
     
     /**
-     * @param A: int
+     * @param id: int
      * @param map: Dungeon
      * 
-     * Blinkers constructor must be passes an ID integer 'A' and the Dungeon
+     * Blinkers constructor must be passed an ID integer 'id' and the Dungeon
      * Blinkers are assigned a starting room at construction.
      */
-    public Blinker(int A, Dungeon map) {
-        super.ID = A;
-        this.dungeon = map;
-        this.MovementBehavior = new BlinkMovement();
+    public Blinker(int id, Dungeon map) {
+        super.id = id; // Blinker ID value
+        this.dungeon = map; // Game Dungeon
+        this.movementBehavior = new BlinkMovement(); // MovementType is Blink
         name = "Blinker";
 
-        //Blinkers start anywhere on the 4th level
-        setStartingRoom();
+        setStartingRoom(); //Blinkers start anywhere on the 4th level
     }
 
 
     /* (non-Javadoc)
-     * @see Creatures#setStartingRoom()
+     * @see entity.creature.Creature#setStartingRoom()
      * 
-     * Randomly generate starting room for blinker from any room on 4th level
+     * Randomly generate starting room for Blinker from any room on 4th level.
      */
     @Override
     protected void setStartingRoom() {
@@ -39,22 +38,22 @@ public class Blinker extends Creature {
         // Generating a fresh list in a for-looped seemed simpler than removing every room not on the 4th level 
         // as done in the `move()` method
         // ArrayList values point to identical Room objects as in the main dungeon map
-        ArrayList<Room> starting_rooms = new ArrayList<Room>();
+        ArrayList<Room> startingRooms = new ArrayList<Room>();
 
         for (int r = 0; r < 2; ++r) { // row
             for (int c = 0; c < 2; ++c) { // column
-                String room_name = new String("(4-" + r + "-" + c + ")"); 
-                starting_rooms.add(dungeon.getRoom(room_name));   
+                String roomName = new String("(4-" + r + "-" + c + ")"); 
+                startingRooms.add(dungeon.getRoom(roomName));   
             }
         }
                 
         // Randomly select one of the rooms - learned from Stack Overflow question (https://stackoverflow.com/questions/38248381/pick-a-random-element-from-a-hashtable)
         Random random = new Random();
-        int random_index = random.nextInt(starting_rooms.size());
+        int i = random.nextInt(startingRooms.size());
 
-        Room new_room = starting_rooms.get(random_index);
+        Room newRoom = startingRooms.get(i);
 
         // Start there
-        this.setLocation(new_room);
+        this.setLocation(newRoom);
     }
 }

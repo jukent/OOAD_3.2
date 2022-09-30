@@ -1,12 +1,13 @@
-package MovementBehaviorTest;
+package movement.tests;
+
 import org.junit.Test;
 import java.util.ArrayList;
 import org.junit.Assert;
 
-import Entity.Character.Character;
-import Entity.Character.Brawler;
-import Dungeon.Dungeon;
-import Dungeon.Room;
+import dungeon.Dungeon;
+import dungeon.Room;
+import entity.character.Brawler;
+import entity.character.Character;
 
 public class RandomWalkMovementTest {
 

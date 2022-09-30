@@ -1,10 +1,10 @@
-package Tracker;
+package track;
 //import java.util.logging.Logger;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import Entity.Character.Character;
-import Entity.Creature.Creature;
+import entity.character.Character;
+import entity.creature.Creature;
 
 // UPDATE TO USE LOGGING API -- https://www.vogella.com/tutorials/Logging/article.html
 

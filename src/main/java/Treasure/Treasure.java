@@ -1,11 +1,11 @@
-package Treasure;
+package treasure;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Random;
 
-import Dungeon.Dungeon;
-import Dungeon.Room;
+import dungeon.Dungeon;
+import dungeon.Room;
 
 abstract public class Treasure {
     

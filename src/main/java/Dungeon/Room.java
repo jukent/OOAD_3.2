@@ -1,9 +1,10 @@
-package Dungeon;
+package dungeon;
+
 import java.util.ArrayList;
 
-import Entity.Character.Character;
-import Entity.Creature.Creature;
-import Treasure.Treasure;
+import entity.character.Character;
+import entity.creature.Creature;
+import treasure.Treasure;
 
 public class Room {
 
@@ -11,9 +12,9 @@ public class Room {
     private String name; // The name  of this room, i.e. "(2-0-0)" - String
     private ArrayList<String> exits; // ArrayList of neighboring room names i.e. ["(2-1-0)","(2-0-1)"] 
     
-    private ArrayList<Character> characters_in_room;
-    private ArrayList<Creature> creatures_in_room;
-    private ArrayList<Treasure> treasures_in_room;
+    private ArrayList<Character> characters_in_room; // ArrayList of Character occupancy
+    private ArrayList<Creature> creatures_in_room; // ArrayList of Creature occupancy
+    private ArrayList<Treasure> treasures_in_room; // ArrayList of Treasure occupancy
 
 
     /**
@@ -24,7 +25,7 @@ public class Room {
      * Constructs the room object based on its level, row, and column coordinates.
      * Rooms have level, row, and column coordinates, 
      * as well as a name generated from these coordinates,
-     * and a mapping of valid standard exit room names
+     * and a mapping of valid standard exit room names.
      */
     public Room(int level, int row, int column) {
         // An example of identity
@@ -52,7 +53,7 @@ public class Room {
     /**
      * @return name: String
      * 
-     * Let other classes grab a room's name
+     * Let other classes grab a room's name.
      */
     public String getName() {
         return name;
@@ -62,7 +63,7 @@ public class Room {
     /**
      * @return exits: ArrayList<String> (cardinal directions, neighboring room names)
      * 
-     * Let other classess access a room's neighboring rooms (and in what direction if we need that)
+     * Let other classess access a room's neighboring rooms (and in what direction if we need that).
      */
     public ArrayList<String> getExits() {
         return exits;
@@ -72,8 +73,8 @@ public class Room {
     /**
      * @return level: Integer
      * 
-     * Let other classess easily access a room's level
-     * Might be needed for creatures whose movement may be limited to one level.
+     * Let other classess easily access a room's level.
+     * Needed for creatures whose movement may be limited to one level and for tests.
      */
     public Integer getLevel() {
         return level;
@@ -83,7 +84,7 @@ public class Room {
     /**
      * @return row: Integer
      * 
-     * Let other classess easily access a room's row
+     * Let other classess easily access a room's row.
      */
     public Integer getRow() {
         return row;
@@ -93,7 +94,7 @@ public class Room {
     /**
      * @return column: Integer
      * 
-     * Let other classess easily access a room's column
+     * Let other classess easily access a room's column.
      */
     public Integer getColumn() {
         return column;
@@ -103,7 +104,7 @@ public class Room {
     /**
      * @return ArrayList<Characters>
      * 
-     * This method returns an ArrayList of the Characters in the Room
+     * This method returns an ArrayList of the Characters in the Room.
      */
     public ArrayList<Character> getCharactersInRoom() {
         return this.characters_in_room;
@@ -123,7 +124,7 @@ public class Room {
     /**
      * @return ArrayList<Creatures>
      * 
-     * This method returns an ArrayList of the Creatures in the Room
+     * This method returns an ArrayList of the Creatures in the Room.
      */
     public ArrayList<Creature> getCreaturesInRoom() {
         return this.creatures_in_room;
@@ -141,7 +142,7 @@ public class Room {
 
 
     /**
-     * 
+     * This method exposes the ArrayList of Treasures in the room.
      */
     public ArrayList<Treasure> getTreasuresInRoom() {
         return this.treasures_in_room;
@@ -149,7 +150,7 @@ public class Room {
 
 
     /**
-     * 
+     * This method sets the Arraylist of Treasures in the room.
      */
     public void setTreasuresInRoom(ArrayList<Treasure> treasures) {
         this.treasures_in_room = treasures;

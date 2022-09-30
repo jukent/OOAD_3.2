@@ -1,25 +1,25 @@
-package Entity.Character;
+package entity.character;
 
-import Dungeon.Dungeon;
-import FightBehavior.TrainedFighter;
-import TreasureHuntBehavior.CarefulHunt;
+import dungeon.Dungeon;
+import fight.TrainedFighter;
+import treasurehunt.CarefulHunt;
 
 public class Thief extends Character {
     // Example of inheritance
 
 
     /**
-     * @param A: int
+     * @param id: int
      * @param map: Dungeon
      * 
-     * Construct Thieves with ID `A` and the Dungeon
+     * Construct Thieves with an Integer ID `id` and the Dungeon
      */
-    public Thief(int A, Dungeon map) {
-        this.dungeon = map;
-        this.Location = dungeon.getRoom("(0-1-1)");
-        this.HuntBehavior = new CarefulHunt();
-        this.FightBehavior = new TrainedFighter();
-        super.ID = A;
-        name = "Thief";
+    public Thief(int id, Dungeon map) {
+        super.id = id; // Thief ID value
+        this.dungeon = map; // Game Dungeon
+        this.location = dungeon.getRoom("(0-1-1)"); // Start in Entrance Room
+        this.fightBehavior = new TrainedFighter(); // FightType is Trained
+        this.searchBehavior = new CarefulHunt(); // SearhType is Careful
+        name = "Thief"; // String name
     }
 }

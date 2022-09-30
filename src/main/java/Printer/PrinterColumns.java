@@ -1,8 +1,15 @@
-package Printer;
+package printer;
 
 import java.util.ArrayList;
 import java.util.List;
 
+// PrinterColumns is a helper class for Printer
+// It is used to print the columns of the dungeon in clean columns
+// This makes it easier to see the relative relationship of Rooms despite their occupancy
+// which affects their String length.
+
+// This Class is almost 1-1 borrowed from candied_orange's response to StackOverflow question 
+// "Is there an easy way to output two columns to the console in Java?"
 //https://stackoverflow.com/questions/699878/is-there-an-easy-way-to-output-two-columns-to-the-console-in-java
 public class PrinterColumns {
 
@@ -12,35 +19,37 @@ public class PrinterColumns {
 
 
     /**
-     * @param row_strings
-     * @return
+     * @param rowStrings: List<String>
+     * @return PrinterColumns
+     * 
+     * This method adds a List of Strings to the PrinterColumns.
      */
-    public PrinterColumns addLine(List<String> row_strings) {
+    public PrinterColumns addLine(List<String> rowStrings) {
 
         if (numColumns == -1) {
-            numColumns = row_strings.size();
+            numColumns = rowStrings.size();
             for(int column = 0; column < numColumns; column++) {
                 maxLengths.add(0);
             }
         }
 
-        if (numColumns != row_strings.size()) {
+        if (numColumns != rowStrings.size()) {
             throw new IllegalArgumentException();
         }
 
         for (int column = 0; column < numColumns; column++) {
-            int length = Math.max(maxLengths.get(column), row_strings.get(column).length());
+            int length = Math.max(maxLengths.get(column), rowStrings.get(column).length());
             maxLengths.set( column, length);
         }
 
-        lines.add(row_strings);
+        lines.add(rowStrings);
 
         return this;
     }
 
 
     /**
-     * 
+     * This method prints.
      */
     public void print() {
         System.out.println(toString());
@@ -49,6 +58,10 @@ public class PrinterColumns {
 
     /* (non-Javadoc)
      * @see java.lang.Object#toString()
+     * 
+     * @return String
+     * 
+     * This method turns things into padded Strings.
      */
     public String toString() {
         String result = "";
@@ -65,7 +78,9 @@ public class PrinterColumns {
     /**
      * @param word
      * @param newLength
-     * @return
+     * @return String
+     * 
+     * This method changes a String length by padding it with white space to match the desired Column width.
      */
     private String pad(String word, int newLength) {
         while (word.length() < newLength) {

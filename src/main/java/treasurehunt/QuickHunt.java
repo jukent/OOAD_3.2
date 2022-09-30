@@ -1,6 +1,6 @@
-package TreasureHuntBehavior;
+package treasurehunt;
 
-import Util.DiceRolls;
+import util.DiceRolls;
 
 public class QuickHunt extends TreasureHunt{
     

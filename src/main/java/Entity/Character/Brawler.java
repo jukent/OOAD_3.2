@@ -1,26 +1,26 @@
-package Entity.Character;
+package entity.character;
 
-import Dungeon.Dungeon;
-import FightBehavior.ExpertFighter;
-import TreasureHuntBehavior.CarelessHunt;
+import dungeon.Dungeon;
+import fight.ExpertFighter;
+import treasurehunt.CarelessHunt;
 
 public class Brawler extends Character { 
     // Example of inheritance
     
     
     /**
-     * @param A: int
+     * @param id: int
      * @param map: Dungeon
      * 
-     * Brawler constructor must be passed in an integer ID 'A' and the Dungeon.
+     * Brawler constructor must be passed in an integer ID `id` and the Dungeon.
      * Brawler is constructed with starting room.
      */
-    public Brawler(int A, Dungeon map) {
-        super.ID = A;
-        this.dungeon = map;
-        this.Location = dungeon.getRoom("(0-1-1)");
-        this.FightBehavior = new ExpertFighter();
-        this.HuntBehavior = new CarelessHunt();
-        name = "Brawler";
+    public Brawler(int id, Dungeon map) {
+        super.id = id; // Brawler ID value
+        this.dungeon = map; // Game Dungeon
+        this.location = dungeon.getRoom("(0-1-1)"); // Begin in Entrance Room
+        this.fightBehavior = new ExpertFighter(); // FightType is Expert
+        this.searchBehavior = new CarelessHunt(); // SearchType is Careless
+        name = "Brawler"; // String name
     }
 }

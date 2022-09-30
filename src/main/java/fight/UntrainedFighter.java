@@ -1,20 +1,24 @@
-package FightBehavior;
+package fight;
 
-import Util.DiceRolls;
+import util.DiceRolls;
 
 public class UntrainedFighter extends FightBehavior {
     
     
     /**
-     * 
+     * Constructor for an Untrained Fighter.
      */
     public UntrainedFighter() {
-        this.FightType = "Untrained";
+        setFightType("Untrained");
     }
     
 
     /* (non-Javadoc)
      * @see FightingBehavior.FightBehavior#fight()
+     * 
+     * @return int
+     * 
+     * Returns the dice roll for an Untrained Fighter (no strength buff).
      */
     public int fight() {
         return DiceRolls.rollDice(6) + DiceRolls.rollDice(6);

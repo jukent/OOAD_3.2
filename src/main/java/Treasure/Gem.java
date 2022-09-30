@@ -1,6 +1,6 @@
-package Treasure;
+package treasure;
 
-import Dungeon.Dungeon;
+import dungeon.Dungeon;
 
 public class Gem extends Treasure {
 
