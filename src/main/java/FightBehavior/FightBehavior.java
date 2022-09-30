@@ -1,4 +1,4 @@
-package FightingBehavior;
+package FightBehavior;
 
 public abstract class FightBehavior {
 

@@ -1,7 +1,7 @@
 package Entity.Character;
 
 import Dungeon.Dungeon;
-import FightingBehavior.TrainedFighter;
+import FightBehavior.TrainedFighter;
 import TreasureHuntBehavior.CarefulHunt;
 
 public class Thief extends Character {

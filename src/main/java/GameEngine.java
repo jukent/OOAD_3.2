@@ -14,7 +14,7 @@ import Entity.Creature.Creature;
 import Entity.Creature.Blinker;
 import Entity.Creature.Orbiter;
 import Entity.Creature.Seeker;
-
+import FightBehavior.FightBehavior;
 import Treasure.Treasure;
 import Treasure.Armor;
 import Treasure.Gem;
@@ -22,9 +22,6 @@ import Treasure.Portal;
 import Treasure.Potion;
 import Treasure.Sword;
 import Treasure.Trap;
-
-import FightingBehavior.FightBehavior;
-
 import Celebration.Celebration;
 import Celebration.DanceCelebration;
 import Celebration.JumpCelebration;

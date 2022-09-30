@@ -1,15 +1,13 @@
-package test.java;
+package MovementBehaviorTest;
 
 import org.junit.Test;
-
 import java.util.ArrayList;
-
 import org.junit.Assert;
 
-import main.java.Orbiter;
-import main.java.Creature;
-import main.java.Dungeon;
-import main.java.Room;
+import Entity.Creature.Creature;
+import Entity.Creature.Orbiter;
+import Dungeon.Dungeon;
+import Dungeon.Room;
 
 public class OrbitMovementTest {
 

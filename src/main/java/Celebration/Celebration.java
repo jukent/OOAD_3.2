@@ -1,6 +1,6 @@
 package Celebration;
 
-import FightingBehavior.FightBehavior;
+import FightBehavior.FightBehavior;
 
 public abstract class Celebration extends FightBehavior {
 

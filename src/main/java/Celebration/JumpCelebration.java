@@ -1,6 +1,6 @@
 package Celebration;
 
-import FightingBehavior.FightBehavior;
+import FightBehavior.FightBehavior;
 import Util.DiceRolls;
 
 public class JumpCelebration extends Celebration {

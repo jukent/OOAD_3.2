@@ -1,7 +1,7 @@
 package Entity.Character;
 
 import Dungeon.Dungeon;
-import FightingBehavior.StealthyFighter;
+import FightBehavior.StealthyFighter;
 import TreasureHuntBehavior.QuickHunt;
 
 public class Sneaker extends Character { 

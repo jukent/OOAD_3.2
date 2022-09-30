@@ -2,8 +2,8 @@ package Entity;
 
 import Dungeon.Dungeon;
 import Dungeon.Room;
-import FightingBehavior.CreatureFighter;
-import FightingBehavior.FightBehavior;
+import FightBehavior.CreatureFighter;
+import FightBehavior.FightBehavior;
 import MovementBehavior.MovementBehavior;
 import MovementBehavior.RandomWalkMovement;
 

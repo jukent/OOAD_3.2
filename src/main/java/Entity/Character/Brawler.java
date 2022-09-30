@@ -1,7 +1,7 @@
 package Entity.Character;
 
 import Dungeon.Dungeon;
-import FightingBehavior.ExpertFighter;
+import FightBehavior.ExpertFighter;
 import TreasureHuntBehavior.CarelessHunt;
 
 public class Brawler extends Character { 

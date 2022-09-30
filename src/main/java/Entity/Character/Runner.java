@@ -1,7 +1,7 @@
 package Entity.Character;
 
 import Dungeon.Dungeon;
-import FightingBehavior.UntrainedFighter;
+import FightBehavior.UntrainedFighter;
 import TreasureHuntBehavior.QuickHunt;
 
 public class Runner extends Character { 

@@ -1,4 +1,4 @@
-package FightingBehavior;
+package FightBehavior;
 
 import Util.DiceRolls;
 
@@ -13,7 +13,7 @@ public class StealthyFighter extends FightBehavior {
     }
     
     /* (non-Javadoc)
-     * @see FightingBehavior.FightBehavior#fight()
+     * @see FightBehavior.FightBehavior#fight()
      */
     public int fight() {
         if (DiceRolls.rollDice(2) == 1) {
