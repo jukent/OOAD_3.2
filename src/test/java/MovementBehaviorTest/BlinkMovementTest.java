@@ -1,3 +1,4 @@
+package MovementBehaviorTest;
 import java.util.ArrayList;
 
 import org.junit.Assert;
