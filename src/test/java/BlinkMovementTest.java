@@ -1,3 +1,5 @@
+package test.java;
+
 import java.util.ArrayList;
 
 import org.junit.Assert;
