@@ -1,6 +1,40 @@
-package main.java;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import Dungeon.Dungeon;
+import Dungeon.Room;
+
+import Entity.Character.Character;
+import Entity.Character.Brawler;
+import Entity.Character.Runner;
+import Entity.Character.Sneaker;
+import Entity.Character.Thief;
+
+import Entity.Creature.Creature;
+import Entity.Creature.Blinker;
+import Entity.Creature.Orbiter;
+import Entity.Creature.Seeker;
+
+import Treasure.Treasure;
+import Treasure.Armor;
+import Treasure.Gem;
+import Treasure.Portal;
+import Treasure.Potion;
+import Treasure.Sword;
+import Treasure.Trap;
+
+import FightingBehavior.FightBehavior;
+
+import Celebration.Celebration;
+import Celebration.DanceCelebration;
+import Celebration.JumpCelebration;
+import Celebration.ShoutCelebration;
+import Celebration.SpinCelebration;
+
+import Printer.Printer;
+
+import Tracker.Tracker;
+import Tracker.Logger;
 
 public class GameEngine {
 
@@ -23,8 +57,6 @@ public class GameEngine {
     Tracker tracker = new Tracker(dungeon, characterList, creatureList, treasureList);
 
     protected Printer printer = new Printer(dungeon, tracker, Output);
-
-
 
     // Game variables that track win condition
     private int RoundCounter = 0;
@@ -77,7 +109,7 @@ public class GameEngine {
         // Characters
         characterList.add(new Runner(ID, dungeon));
         ID++;
-        characterList.add(new Sneakers(ID, dungeon));
+        characterList.add(new Sneaker(ID, dungeon));
         ID++;
         characterList.add(new Thief(ID, dungeon));
         ID++;
@@ -94,7 +126,7 @@ public class GameEngine {
 
         // Creatures
         // Also an example of polymorphism
-        for(int i = 0; i <4; i++) {
+        for(int i = 0; i < 4; i++) {
             creatureList.add(new Seeker(ID, dungeon));
             ID++;
             creatureList.add(new Orbiter(ID, dungeon));
@@ -104,7 +136,7 @@ public class GameEngine {
         }
         tracker.setCreatureStats(creatureList);
 
-        for(int i = 0; i<4; i++) {
+        for(int i = 0; i < 4; i++) {
             treasureList.add(new Sword(ID, dungeon));
             ID++;
             treasureList.add(new Gem(ID, dungeon));
@@ -200,7 +232,7 @@ public class GameEngine {
         int Score = A.searchTreasure();
 
         //ArrayList<Treasure> treasure_in_room = tracker.getTreasuresInRoom(A.Location);
-        ArrayList<Treasure> treasure_in_room = A.Location.getTreasuresInRoom();
+        ArrayList<Treasure> treasure_in_room = A.getLocation().getTreasuresInRoom();
         if (!treasure_in_room.isEmpty()) {
             // If there is Treasure in the room
             if (Score >= NeededScore) {
@@ -215,11 +247,11 @@ public class GameEngine {
                     System.out.println(" Success! ");
                     System.out.println("Treasure: " + treasure_in_room.get(0).getClass());
                 }
-                if (A.InventoryTypes.contains(currentItem.getType())) {
+                if (A.getInventoryTypes().contains(currentItem.getType())) {
                     // If we've already encountered this type of Treasure
                     if (currentItem.getType() == "Trap") {
                         // Can only encounter multiple traps
-                        A.setInventory(currentItem);
+                        A.addInventory(currentItem);
                         A.loseHealth(currentItem.getTakeDamage()); // if Trap
                         tracker.treasureFound(currentItem);
                         if (A.getHealth() <= 0) {
@@ -228,7 +260,7 @@ public class GameEngine {
                     }
                 } else {
                     // This is a new type of Treasure
-                    A.InventoryTypes.add(currentItem.getType());
+                    A.addInventory(currentItem);
                     A.loseHealth(currentItem.getTakeDamage()); // if Trap
                     A.addHealth(currentItem.getHPBoost());  // if Potion
                     tracker.treasureFound(currentItem);
@@ -317,7 +349,7 @@ public class GameEngine {
      */
     private void process1Character(Character A) {
         // Process turn counts for characters. Mostly 1 but runners have 2
-        for (int i = 0; i < A.MoveCount; i++) {
+        for (int i = 0; i < A.getMoveCount(); i++) {
             // Move to new Room
             Room old_room = A.getLocation();
             A.checkPortalInInventory();
@@ -349,7 +381,7 @@ public class GameEngine {
      * - If a Character is in the Room, it automatically fights.
      * - If no other Character is in the Room, move.
      */
-    private void process1Creature(Creature A){
+    private void process1Creature(Creature A) {
         // Get Room information and Characters in the Room
         Room old_room = A.getLocation();
 
