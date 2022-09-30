@@ -15,6 +15,7 @@ public class Runner extends Character {
         super.MoveCount = 2;
         this.FightBehavior = new UntrainedFighter();
         this.HuntBehavior = new QuickHunt();
+        checkPortalInInventory();
         name = "Runner";
     }
 }

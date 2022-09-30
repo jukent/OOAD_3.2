@@ -22,7 +22,7 @@ public class SeekMovement extends MovementBehavior{
         // List of nearby rooms
         ArrayList<String>exits = current_room.getExits();
         
-        // Populate an ArrayList of populated nearby rooms
+        // Populate an ArrayList of populated nearby rooms (with characters)
         ArrayList<Room> populated_exits = new ArrayList<>();
         for (String x: exits) {
             // Convert Exit Room-Name Strings to Rooms 

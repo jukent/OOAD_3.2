@@ -9,6 +9,13 @@ public abstract class Character extends Entity {
     protected int MoveCount = 1;
 
 
+    public void checkPortalInInventory() {
+        if (this.InventoryTypes.contains("Portal")) {
+            this.MovementBehavior = new BlinkMovement();
+        }
+    }
+
+
     /**
      * @return int
      * 
@@ -47,6 +54,7 @@ public abstract class Character extends Entity {
 
 
     public String getInventoryString() {
+        // Doesn't display Trap multiple times if the same adventurer encountered multiple traps?
         ArrayList<String> str_array =  this.InventoryTypes;
         String inv_str = String.join(", ", str_array);
         return inv_str;
