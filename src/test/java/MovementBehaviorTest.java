@@ -1,15 +1,13 @@
-package test.java;
-
 import org.junit.Test;
 import java.util.ArrayList;
 import org.junit.Assert;
 
 import Entity.Character.Character;
 import Entity.Character.Brawler;
-import Entity.Creatur.Creature;
+import Entity.Creature.Creature;
 import Entity.Creature.Seeker;
 import Dungeon.Dungeon;
-import Room.Room;
+import Dungeon.Room;
 import Tracker.Tracker;
 
 public class MovementBehaviorTest {
