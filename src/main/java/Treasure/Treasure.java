@@ -9,34 +9,35 @@ import dungeon.Room;
 
 abstract public class Treasure {
     
-    protected Room Location;
-    protected int OwnerFightBonus = 0;
-    protected int AdversaryFightBonus = 0;
-    protected int HPBoost = 0;
-    protected int TakeDamage = 0;
-    protected String TreasureType;
-    protected boolean Found = false;
+    protected Room location; // The Treasure's hiding room.
+    protected int ownerFightBonus = 0; // Integer amount of added strength buff this Treasure gives a Character
+    protected int adversaryFightBonus = 0; // Integer amount of added strength buff this Treasure gives a Creature
+    protected int hpBoost = 0; // Integer amount of added health points this Treasure gives a Character
+    protected int takeDamage = 0; // Integer amount of damage this Treasure does to a Character
+    protected String treasureType; // String type of Treasure
 
 
     /**
-     * @param dungeon
+     * @param dungeon: Dungeon
+     * 
+     * Sets the starting Room where the Treasure is hidden.
      */
     protected void setLocation(Dungeon dungeon) {
         // Get new map of possible Rooms
-        Hashtable<String, Room> possible_room_map = new Hashtable<String, Room>();
-        possible_room_map.putAll(dungeon.getMap()); // Learned method from Geeks for Geeks: "How to Copy Map Content to Another Hashtable in Java?(https://www.geeksforgeeks.org/how-to-copy-map-content-to-another-hashtable-in-java/)
-        possible_room_map.remove("(0-1-1)"); // Remove entrace room
+        Hashtable<String, Room> possibleRoomMap = new Hashtable<String, Room>();
+        possibleRoomMap.putAll(dungeon.getMap()); // Learned method from Geeks for Geeks: "How to Copy Map Content to Another Hashtable in Java?(https://www.geeksforgeeks.org/how-to-copy-map-content-to-another-hashtable-in-java/)
+        possibleRoomMap.remove("(0-1-1)"); // Remove entrace room
                 
         // Randomly select one of the Rooms - learned from Stack Overflow question (https://stackoverflow.com/questions/38248381/pick-a-random-element-from-a-hashtable)
-        ArrayList<Room> starting_rooms = new ArrayList<Room>(possible_room_map.values());
+        ArrayList<Room> rooms = new ArrayList<Room>(possibleRoomMap.values());
         
         Random random = new Random();
-        int random_index = random.nextInt(starting_rooms.size());
+        int i = random.nextInt(rooms.size());
 
-        Room room = starting_rooms.get(random_index);
+        Room room = rooms.get(i);
 
         // Hide treasure there
-        this.Location = room;
+        this.location = room;
     }
 
 
@@ -46,46 +47,56 @@ abstract public class Treasure {
      * This method returns a Treasure's location.
      */
     public Room getLocation() {
-        return this.Location;
+        return this.location;
     }
 
     
     /**
-     * @return
+     * @return int
+     * 
+     * This method returns a Treasure's ownerFightBonus.
      */
-    public int getFB(){
-        return this.OwnerFightBonus;
+    public int getFB() {
+        return this.ownerFightBonus;
     }
 
 
     /**
-     * @return
+     * @return int
+     * 
+     * This method returns a Treasure's adversaryFightBonus.
      */
-    public int getAFB(){
-        return this.AdversaryFightBonus;
+    public int getAdversaryFightBonus() {
+        return this.adversaryFightBonus;
     }
 
 
     /**
-     * @return
+     * @return int
+     * 
+     * This method returns the hp Boost for the Treasure.
      */
-    public int getHPBoost(){
-        return this.HPBoost;
+    public int getHPBoost() {
+        return this.hpBoost;
     }
 
 
     /**
-     * @return
+     * @return int
+     * 
+     * This method returns how much damage the Treasure inflicts.
      */
-    public int getTakeDamage(){
-        return this.TakeDamage;
+    public int getTakeDamage() {
+        return this.takeDamage;
     }
 
 
     /**
-     * @return
+     * @return String
+     * 
+     * This method returns the String for the Treasure type.
      */
-    public String getType(){
-        return this.TreasureType;
+    public String getType() {
+        return this.treasureType;
     }
 }

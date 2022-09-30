@@ -6,11 +6,14 @@ public class Gem extends Treasure {
 
 
     /**
-     * @param ID
+     * @param id: int
+     * @param dungeon: Dungeon
+     * 
+     * Constructor for a Gem Treasure with Integer ID `id` and the Dungeon.
      */
-    public Gem(int ID, Dungeon dungeon) {
-        this.AdversaryFightBonus = 1;
-        this.TreasureType = "Gem";
-        setLocation(dungeon);
+    public Gem(int ID, Dungeon dungeon) { 
+        setLocation(dungeon); // Game Dungeon
+        this.adversaryFightBonus = 1; // Gems give a Creature a strength buff of 1
+        this.treasureType = "Gem"; // String name
     }
 }

@@ -6,12 +6,14 @@ public class Sword extends Treasure {
     
     
     /**
-     * @param ID
-     * @param dungeon
+     * @param id: int
+     * @param dungeon: Dungeon
+     * 
+     * Constructor for a Sword Treasure with Integer ID `id` and the Dungeon.
      */
-    public Sword(int ID, Dungeon dungeon) {
-        this.OwnerFightBonus = 1;
-        this.TreasureType = "Sword";
-        setLocation(dungeon);
+    public Sword(int id, Dungeon dungeon) {
+        setLocation(dungeon); // Game Dungeon
+        this.ownerFightBonus = 1; // Swords give a Character strength buff of 1
+        this.treasureType = "Sword"; // String name
     }
 }

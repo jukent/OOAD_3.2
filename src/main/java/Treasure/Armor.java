@@ -6,11 +6,14 @@ public class Armor extends Treasure {
     
 
     /**
-     * @param ID
+     * @param id: int
+     * @param dungeon: Dungeon
+     * 
+     * Constructor for an Armor treasure with Integer ID `id` and the Dungeon.
      */
-    public Armor(int ID, Dungeon dungeon) {
-        this.AdversaryFightBonus = -1;
-        this.TreasureType = "Armor";
-        setLocation(dungeon);
+    public Armor(int id, Dungeon dungeon) {
+        setLocation(dungeon); // Game Dungeon
+        this.adversaryFightBonus = -1; // Armor provides defense by giving Creature's a stength buff of -1
+        this.treasureType = "Armor"; // String name
     }
 }

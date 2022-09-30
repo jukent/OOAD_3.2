@@ -6,12 +6,14 @@ public class Trap extends Treasure {
 
 
     /**
-     * @param ID
-     * @param dungeon
+     * @param id: int
+     * @param dungeon: Dungeon
+     * 
+     * Constructor for a Trap treasure with Integer ID `id` and the Dungeon.
      */
-    public Trap(int ID, Dungeon dungeon) {
-        setLocation(dungeon);
-        this.TakeDamage = 1;
-        this.TreasureType = "Trap";
+    public Trap(int id, Dungeon dungeon) {
+        setLocation(dungeon); // Game Dungeon
+        this.takeDamage = 1; // Traps do 1 point of damage
+        this.treasureType = "Trap"; // String name
     }
 }
