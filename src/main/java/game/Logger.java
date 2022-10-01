@@ -1,4 +1,4 @@
-package track;
+package game;
 
 import java.io.FileWriter;
 import java.io.IOException;

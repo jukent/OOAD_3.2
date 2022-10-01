@@ -1,4 +1,4 @@
-package printer;
+package game;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -7,7 +7,6 @@ import dungeon.Dungeon;
 import dungeon.Room;
 import entity.character.Character;
 import entity.creature.Creature;
-import track.Tracker;
 
 public class Printer {
 
