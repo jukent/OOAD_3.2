@@ -1,11 +1,9 @@
 Tracker: Turn 28
 
 Adventurers	Room	Damage	Treasure
-Sneaker		(1-2-2)	1		
-Thief		(1-1-2)	2		Portal, Gem, Armor, Sword
-Brawler		(4-0-2)	0		Gem, Sword
+Runner		(4-1-1)	1		Armor, Sword
+Thief		(1-2-1)	0		Gem
 
-Total Active Creatures: 1
+Total Active Creatures: 0
 
 Creatures	Room
-Orbiter		(2-2-0)
