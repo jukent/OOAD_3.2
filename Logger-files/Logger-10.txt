@@ -1,0 +1,12 @@
+Tracker: Turn 10
+
+Adventurers	Room	Damage	Treasure
+Sneaker		(1-0-2)	1		
+Thief		(1-0-1)	2		Portal, Gem
+Brawler		(4-1-1)	0		
+
+Total Active Creatures: 2
+
+Creatures	Room
+Orbiter		(1-2-1)
+Orbiter		(2-1-0)

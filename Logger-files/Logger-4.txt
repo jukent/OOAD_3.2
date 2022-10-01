@@ -1,0 +1,20 @@
+Tracker: Turn 4
+
+Adventurers	Room	Damage	Treasure
+Runner		(1-2-1)	0		Potion
+Sneaker		(2-1-1)	1		
+Thief		(4-2-2)	1		Portal, Gem
+Brawler		(1-1-2)	0		
+
+Total Active Creatures: 9
+
+Creatures	Room
+Orbiter		(1-1-0)
+Blinker		(4-2-2)
+Seeker		(2-1-1)
+Orbiter		(1-0-1)
+Seeker		(4-1-1)
+Orbiter		(2-2-2)
+Seeker		(2-1-1)
+Orbiter		(4-2-1)
+Blinker		(4-2-1)

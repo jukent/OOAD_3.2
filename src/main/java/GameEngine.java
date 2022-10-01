@@ -1,33 +1,15 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import celebration.Celebration;
-import celebration.DanceCelebration;
-import celebration.JumpCelebration;
-import celebration.ShoutCelebration;
-import celebration.SpinCelebration;
-import dungeon.Dungeon;
-import dungeon.Room;
-import entity.character.Brawler;
+import celebration.*;
+import dungeon.*;
 import entity.character.Character;
-import entity.character.Runner;
-import entity.character.Sneaker;
-import entity.character.Thief;
-import entity.creature.Blinker;
-import entity.creature.Creature;
-import entity.creature.Orbiter;
-import entity.creature.Seeker;
+import entity.character.*;
+import entity.creature.*;
 import fight.FightBehavior;
 import printer.Printer;
-import track.Logger;
-import track.Tracker;
-import treasure.Armor;
-import treasure.Gem;
-import treasure.Portal;
-import treasure.Potion;
-import treasure.Sword;
-import treasure.Trap;
-import treasure.Treasure;
+import track.*;
+import treasure.*;
 
 public class GameEngine {
 
