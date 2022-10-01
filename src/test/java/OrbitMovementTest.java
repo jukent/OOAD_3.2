@@ -1,13 +1,9 @@
-package test.java;
-
 import org.junit.Test;
-import java.util.ArrayList;
 import org.junit.Assert;
 
 import dungeon.Dungeon;
 import dungeon.Room;
-import entity.creature.Creature;
-import entity.creature.Orbiter;
+import entity.Orbiter;
 
 public class OrbitMovementTest {
 
@@ -16,7 +12,7 @@ public class OrbitMovementTest {
 
     @Test
     public void testOrbitClockwise() {
-        Orbiter test_orbiter = new Orbiter(0, dungeon);
+        Orbiter orbiter = new Orbiter(0, dungeon);
         orbiter.setDirection("clockwise");
 
         Assert.assertEquals("clockwise", orbiter.getDirection());
@@ -41,7 +37,7 @@ public class OrbitMovementTest {
         Orbiter orbiter = new Orbiter(0, dungeon);
         orbiter.setDirection("counterclockwise");
 
-        Assert.assertEquals("counterclockwise", test_orbiter.getDirection());
+        Assert.assertEquals("counterclockwise", orbiter.getDirection());
 
         Room oldRoom = dungeon.getRoom("(1-0-0)");
         orbiter.setLocation(oldRoom);

@@ -2,8 +2,8 @@ package dungeon;
 
 import java.util.ArrayList;
 
-import entity.character.Character;
-import entity.creature.Creature;
+import entity.Creature;
+import entity.Character;
 import treasure.Treasure;
 
 public class Room {

@@ -1,4 +1,4 @@
-package entity.character;
+package entity;
 
 import dungeon.Dungeon;
 import fight.TrainedFighter;

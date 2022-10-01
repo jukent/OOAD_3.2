@@ -3,8 +3,8 @@ package game;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import entity.character.Character;
-import entity.creature.Creature;
+import entity.Creature;
+import entity.Character;
 
 
 

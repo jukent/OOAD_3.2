@@ -1,8 +1,7 @@
-package entity.character;
+package entity;
 
 import java.util.ArrayList;
 
-import entity.Entity;
 import movement.BlinkMovement;
 import treasure.Treasure;
 import treasurehunt.TreasureHunt;

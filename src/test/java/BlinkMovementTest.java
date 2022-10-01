@@ -1,5 +1,3 @@
-package test.java;
-
 import java.util.ArrayList;
 
 import org.junit.Assert;
@@ -7,10 +5,8 @@ import org.junit.Test;
 
 import dungeon.Dungeon;
 import dungeon.Room;
-import entity.character.Brawler;
-import entity.character.Character;
-import entity.creature.Blinker;
-import entity.creature.Creature;
+import entity.Blinker;
+import entity.Brawler;
 import treasure.Portal;
 
 public class BlinkMovementTest {
@@ -44,13 +40,13 @@ public class BlinkMovementTest {
         Assert.assertEquals("Portal", portal.getType());
 
         character.addInventory(portal);
-        Assert.assertTrue(character.Inventory.contains(portal));
+        Assert.assertTrue(character.getInventory().contains(portal));
 
         ArrayList<String> inventoryArray = new ArrayList<String>();
         inventoryArray.add(portal.getType());
-        Assert.assertEquals(character.InventoryTypes, inventoryArray);
-        Assert.assertTrue(character.InventoryTypes.contains(portal.getType()));
-        Assert.assertTrue(character.InventoryTypes.contains("Portal"));
+        Assert.assertEquals(character.getInventoryTypes(), inventoryArray);
+        Assert.assertTrue(character.getInventoryTypes().contains(portal.getType()));
+        Assert.assertTrue(character.getInventoryTypes().contains("Portal"));
 
         character.checkPortalInInventory();
         Assert.assertEquals("Blink", character.getMovementType());

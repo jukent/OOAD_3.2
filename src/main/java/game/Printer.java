@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 import dungeon.Dungeon;
 import dungeon.Room;
-import entity.character.Character;
-import entity.creature.Creature;
+import entity.Creature;
+import entity.Character;
 
 public class Printer {
 

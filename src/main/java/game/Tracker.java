@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import celebration.Celebration;
 import dungeon.Dungeon;
 import dungeon.Room;
-import entity.character.Character;
-import entity.creature.Creature;
+import entity.Creature;
+import entity.Character;
 import treasure.Treasure;
 
 // This Tracker is instantiated at beginning of game and active till end.

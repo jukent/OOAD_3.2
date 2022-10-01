@@ -6,7 +6,7 @@ import java.util.Random;
 import dungeon.Dungeon;
 import dungeon.Room;
 import entity.Entity;
-import entity.character.Character;
+import entity.Character;
 
 public class SeekMovement extends MovementBehavior{
 

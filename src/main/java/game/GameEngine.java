@@ -5,9 +5,8 @@ import java.util.Scanner;
 
 import celebration.*;
 import dungeon.*;
-import entity.character.Character;
-import entity.character.*;
-import entity.creature.*;
+import entity.*;
+import entity.Character;
 import fight.FightBehavior;
 import treasure.*;
 

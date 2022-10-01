@@ -1,4 +1,4 @@
-package entity.creature;
+package entity;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
