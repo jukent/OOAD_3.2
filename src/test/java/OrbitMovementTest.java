@@ -1,4 +1,4 @@
-package movement.tests;
+package test.java;
 
 import org.junit.Test;
 import java.util.ArrayList;
