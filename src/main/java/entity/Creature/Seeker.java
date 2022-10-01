@@ -1,4 +1,5 @@
 package entity.creature;
+
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Random;
