@@ -34,9 +34,7 @@ public class GameEngine {
 
     protected Printer printer = new Printer(dungeon, tracker, output); // Game Printer
 
-    // Game variables that track win condition
     private int roundCounter = 0; // The Integer round number
-    
     private boolean endCondition = true; // End Condition check
     private Scanner scanner = new java.util.Scanner(System.in); // Scanner for user input
 
