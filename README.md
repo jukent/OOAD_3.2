@@ -1,10 +1,10 @@
 # OOAD_3.2
+[![Java CI](https://github.com/jukent/OOAD_3.2/actions/workflows/junit_tests.yaml/badge.svg)](https://github.com/jukent/OOAD_3.2/actions/workflows/junit_tests.yaml)
+
 ## OOAD5448: Raiders of the Lost Arctangent
 by David Chaparro and Julia Kent
 
 Java version: 17.0.1
-
-[![Java CI](https://github.com/jukent/OOAD_3.2/actions/workflows/junit_tests.yaml/badge.svg)](https://github.com/jukent/OOAD_3.2/actions/workflows/junit_tests.yaml)
 
 Expanding the Raiders of the Lost Arctangent Game to use specific treasures and design patterns. Previous iteration can be found at: https://github.com/jukent/OOAD5448_P2.2
 
