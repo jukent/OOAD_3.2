@@ -34,7 +34,6 @@ public class GameEngine {
 
     // Game variables that track win condition
     private int roundCounter = 0; // The Integer round number
-    private int id = 0; // Object ID value
     
     private boolean endCondition = true; // End Condition check
     private Scanner scanner = new java.util.Scanner(System.in); // Scanner for user input
@@ -47,7 +46,6 @@ public class GameEngine {
      */
     public GameEngine(String OutputType) {
         Output = OutputType;
-        populateEntities();
         if (Output != "ShowNone") {
             System.out.println("Starting Game!");
             System.out.println("Press Enter To Continue...");
@@ -61,6 +59,7 @@ public class GameEngine {
      * Characters and Creatures. Ends if the end condition is completed
      */
     public void runGame() {
+        populateEntities(dungeon, tracker);
         while (endCondition) {
             roundCounter++;
             tracker.setRoundCounter(roundCounter); // publish round counter to Tracker
@@ -73,12 +72,14 @@ public class GameEngine {
     /**
      * Populate CharacterList and CreatureList with Characters and Creatures
      */
-    private void populateEntities() {
+    public void populateEntities(Dungeon dungeon, Tracker tracker) {
         // Example of polymorphism. 
         // In this case we are adding subclasses to an ArrayList
         // but the ArrayList is made of an abstract class
         // All Characters or Creatures behave as the instance
         // of their abstract class.
+
+        int id = 0; // Object ID value
 
         // Characters
         characterList.add(new Runner(id, dungeon));
@@ -379,7 +380,7 @@ public class GameEngine {
     /**
      * Checks various end game conditions and modifies EndCondition accordingly.
      */
-    private void checkWinCondition() {
+    public void checkWinCondition() {
         int treasureCount = tracker.getTreasureCount();
         int creatureCount = tracker.getCharacterList().size();
         int characterCount = tracker.getCreatureList().size();

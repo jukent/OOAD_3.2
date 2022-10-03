@@ -85,6 +85,16 @@ public class Tracker {
 
 
     /**
+     * @param n: int
+     * 
+     * Returns the Integer Treasure count value.
+     */
+    public void setTreasureCount(int n) {
+        this.treasureCount = n;
+    }
+
+
+    /**
      * @param character: Character
      * @param room: Room
      * 
@@ -216,7 +226,7 @@ public class Tracker {
      * Tracker updates the Treasure count and the Room occupancy.
      */
     public void treasureFound(Treasure treasure) {
-        this.treasureCount = treasureCount + 1; // Increase counter by one
+        setTreasureCount(getTreasureCount() + 1); // Increase counter by one
         this.treasureList.remove(treasure); // remove from treasure list
         
         // publish to room that treasure no longer there
@@ -349,5 +359,15 @@ public class Tracker {
 
         // Add creature to new room occupancy
         publishCreatureEntersRoom(creature, newRoom);
+    }
+
+    
+    /**
+     * @return ArrayList<Treasure> 
+     * 
+     * Exposes the Tracker's Treasure List.
+     */
+    public ArrayList<Treasure> getTreasureList() {
+        return this.treasureList;
     }
 }
