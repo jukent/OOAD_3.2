@@ -17,18 +17,18 @@ import game.GameEngine;
 public class CelebrationTest {
     Dungeon dungeon = new Dungeon();
     Character A = new Runner(1, dungeon);
-    FightBehavior fightBehavior = A.getfightBehavior();
+    FightBehavior fightBehavior = A.getFightBehavior();
 
 
     @Test
     public void testWrap() {
-        Celebration tJ = new Jump(FightBehavior);
+        Celebration tJ = new JumpCelebration(fightBehavior);
         tJ = new Spin(tJ); 
     }
 
 
     @Test
     public void testDance() {
-        Celebration tJ = new Dance(FightBehavior);
+        Celebration tJ = new DanceCelebration(fightBehavior);
     }
 }
