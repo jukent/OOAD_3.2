@@ -15,7 +15,7 @@ public class Portal extends Treasure {
      * Portal is activated by checking for its type in a Character's Treasure inventory before movement.
      */
     public Portal(int id, Dungeon dungeon) {
-        setLocation(dungeon);  // Game Dungeon
+        hide(dungeon);  // Game Dungeon
         this.treasureType = "Portal"; // String name
     }
 }

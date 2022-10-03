@@ -12,7 +12,7 @@ public class Potion extends Treasure {
      * Constructor for a Potion Treasure with Integer ID `id` and the Dungeon.
      */
     public Potion(int id, Dungeon dungeon) {
-        setLocation(dungeon); // Game Dungeon
+        hide(dungeon); // Game Dungeon
         this.hpBoost = 1; // Potions restore 1 health point 
         this.treasureType = "Potion"; // String name
     }

@@ -21,4 +21,14 @@ public abstract class TreasureHunt {
     public int getNeededScore() {
         return this.neededScore;
     }
+
+
+    /**
+     * @return String
+     * 
+     * Returns the String Treasure Hunt type for a Hunt behavior.
+     */
+    public String getType() {
+        return this.searchType;
+    }
 }

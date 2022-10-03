@@ -22,7 +22,7 @@ abstract public class Treasure {
      * 
      * Sets the starting Room where the Treasure is hidden.
      */
-    protected void setLocation(Dungeon dungeon) {
+    protected void hide(Dungeon dungeon) {
         // Get new map of possible Rooms
         Hashtable<String, Room> possibleRoomMap = new Hashtable<String, Room>();
         possibleRoomMap.putAll(dungeon.getMap()); // Learned method from Geeks for Geeks: "How to Copy Map Content to Another Hashtable in Java?(https://www.geeksforgeeks.org/how-to-copy-map-content-to-another-hashtable-in-java/)
@@ -37,9 +37,18 @@ abstract public class Treasure {
         Room room = rooms.get(i);
 
         // Hide treasure there
-        this.location = room;
+        setLocation(room);
     }
 
+
+    /**
+     * @param room: Rooom
+     * 
+     * This method sets a Treasure's location.
+     */
+    public void setLocation(Room room) {
+        this.location = room;
+    }
 
     /**
      * @return Room

@@ -12,7 +12,7 @@ public class Trap extends Treasure {
      * Constructor for a Trap treasure with Integer ID `id` and the Dungeon.
      */
     public Trap(int id, Dungeon dungeon) {
-        setLocation(dungeon); // Game Dungeon
+        hide(dungeon); // Game Dungeon
         this.takeDamage = 1; // Traps do 1 point of damage
         this.treasureType = "Trap"; // String name
     }

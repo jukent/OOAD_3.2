@@ -125,7 +125,6 @@ public abstract class Character extends Entity {
      * This method returns the Character's Treasure inventory types as a string.
      */
     public String getInventoryString() {
-        // Doesn't display Trap multiple times if the same adventurer encountered multiple traps?
         ArrayList<String> inventoryArray =  getInventoryTypes();
         String inventoryString = String.join(", ", inventoryArray);
         return inventoryString;
