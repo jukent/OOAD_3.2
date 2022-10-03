@@ -12,7 +12,7 @@ import treasure.*;
 
 public class GameEngine {
 
-    private String Output = "ShowAll"; // OneScreen,ShowEnding,ShowAll
+    private String output = "ShowNone"; // OneScreen,ShowEnding,ShowAll,ShowNone
 
     protected Dungeon dungeon = new Dungeon(); // Example of identity
     // Dungeon is an example of identity. While we could create an instance
@@ -32,7 +32,7 @@ public class GameEngine {
     // Using the Tracker is an example of the Observer pattern. Events are published to the Tracker (pointed out in comments)
     // And then the Tracker let's any interested parties know about the events.
 
-    protected Printer printer = new Printer(dungeon, tracker, Output); // Game Printer
+    protected Printer printer = new Printer(dungeon, tracker, output); // Game Printer
 
     // Game variables that track win condition
     private int roundCounter = 0; // The Integer round number
@@ -42,13 +42,13 @@ public class GameEngine {
 
 
     /**
-     * @param OutputType: String
+     * @param outputType: String
      * 
      * Constructor to initialize board.
      */
-    public GameEngine(String OutputType) {
-        Output = OutputType;
-        if (Output != "ShowNone") {
+    public GameEngine(String outputType) {
+        this.output = outputType;
+        if (output != "ShowNone") {
             System.out.println("Starting Game!");
             System.out.println("Press Enter To Continue...");
             scanner.nextLine();
@@ -158,8 +158,10 @@ public class GameEngine {
                 // If Character Wins
                 tracker.characterWon(character, creature, characterRoll, creatureRoll); // Publish Character won to Tracker
                 tracker.removeCreature(creature); // Remove dead Creature, publish to Trackers
-                celebration.celebrate();
-                tracker.characterCelebrated(character, celebration); // Publish Character celebrated to Tracker
+                if (output != "ShowNone") {
+                    celebration.celebrate();
+                    tracker.characterCelebrated(character, celebration); // Publish Character celebrated to Tracker
+                }
                 // Example of Observer pattern, Tracker let's interested parties/subsribers
                 // (Printer, Logger, Room)'s know about these events.
             } else if (characterRoll < creatureRoll) {
@@ -232,8 +234,7 @@ public class GameEngine {
      * Processes the turns for each Character and for each Creature.
      */
     private void processTurn() {
-        Logger logger = new Logger(tracker);
-        printer = new Printer(dungeon, tracker, Output);
+        Logger logger = new Logger(tracker, output);
         // Process Characters
         for (int i = 0; i < characterList.size(); i++) { // Changing to this type of loop to avoid comodification
         Character character =  characterList.get(i);
@@ -243,11 +244,11 @@ public class GameEngine {
                 checkWinCondition(); // Updates win conditions}
 
                 // Printing
-                if (Output == "OneScreen") {
+                if (output == "OneScreen") {
                     System.out.print("\033[H\033[2J");
                     System.out.flush();
                 }
-                if (Output == "OneScreen" || Output == "ShowAll") {
+                if (output == "OneScreen" || output == "ShowAll") {
                     printer.printDungeon();
                     printer.pause();
                 }
@@ -265,11 +266,11 @@ public class GameEngine {
                 checkWinCondition();
 
                 // Printing
-                if (Output == "OneScreen") {
+                if (output == "OneScreen") {
                     System.out.print("\033[H\033[2J");
                     System.out.flush();
                 }
-                if (Output == "OneScreen" || Output == "ShowAll") {
+                if (output == "OneScreen" || output == "ShowAll") {
                     printer.printDungeon();
                     printer.pause();
                 }
@@ -356,8 +357,8 @@ public class GameEngine {
      */
     public void checkWinCondition() {
         int treasureCount = tracker.getTreasureCount();
-        int creatureCount = tracker.getCharacterList().size();
-        int characterCount = tracker.getCreatureList().size();
+        int creatureCount = tracker.getCreatureList().size();
+        int characterCount = tracker.getCharacterList().size();
 
         // Change End Condition depending on the outcome
         if (treasureCount == 24) { 
@@ -365,16 +366,19 @@ public class GameEngine {
             endCondition = false;
             System.out.println("Game Over");
             System.out.println("All treasure found");
+            System.out.println("\n");
         } else if (creatureCount <= 0) { 
             //All Creatures eliminated
             endCondition = false;
             System.out.println("Game Over");
             System.out.println("All Creatures eliminated");
+            System.out.println("\n");
         } else if (characterCount <= 0) {
             //All Characters defeated
             endCondition = false;
             System.out.println("Game Over");
             System.out.println("All Adventurers eliminated");
+            System.out.println("\n");
         } else {
             endCondition = true;
         }

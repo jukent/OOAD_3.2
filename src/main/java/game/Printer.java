@@ -13,7 +13,7 @@ public class Printer {
 
     Dungeon dungeon; // Game Dungeon
     Tracker tracker; // Game Tracker
-    String outputType; // Output options: OneScreen, ShowAll, ShowEnding
+    String outputType; // Output options: OneScreen, ShowAll, ShowEnding, ShowNone
     private Scanner scanner = new java.util.Scanner(System.in); // A Scanner for awaiting user input
 
     
@@ -35,25 +35,27 @@ public class Printer {
      * Print the Dungeon and its occupancy.
      */
     public void printDungeon() {
-        // Print Game Status
-        printGameStatus();
+        if (outputType != "ShowNone") {
+            // Print Game Status
+            printGameStatus();
 
-        // Level 0 
-        Room startingRoom = dungeon.getRoom("(0-1-1)");
-        ArrayList<String> occupancyArray = getOccupancyStringArray(startingRoom);
-        String occupancyString = occupancyArray.toString().replace("[", "").replace("]", "").replace(",", "");
-        System.out.println(occupancyString);
+            // Level 0 
+            Room startingRoom = dungeon.getRoom("(0-1-1)");
+            ArrayList<String> occupancyArray = getOccupancyStringArray(startingRoom);
+            String occupancyString = occupancyArray.toString().replace("[", "").replace("]", "").replace(",", "");
+            System.out.println(occupancyString);
 
-        // Levels 1, 2, 3, 4
-        PrinterColumns columns = new PrinterColumns();
-        for (int l = 1; l <= 4; ++l) {
-            addLevelArray(l, columns);
+            // Levels 1, 2, 3, 4
+            PrinterColumns columns = new PrinterColumns();
+            for (int l = 1; l <= 4; ++l) {
+                addLevelArray(l, columns);
+            }
+            columns.print();
+
+            // Print Character/Creature Status
+            printCharacterStats();
+            printCreatureStats();
         }
-        columns.print();
-
-        // Print Character/Creature Status
-        printCharacterStats();
-        printCreatureStats();
     }
 
 

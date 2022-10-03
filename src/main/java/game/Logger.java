@@ -16,6 +16,7 @@ import entity.Character;
 public class Logger {
 
     Tracker tracker; // The Game Tracker
+    String outputType; //
 
 
     /**
@@ -23,8 +24,9 @@ public class Logger {
      * 
      * Constructor for the turn Logger.
      */
-    public Logger(Tracker tracker) {
+    public Logger(Tracker tracker, String outputType) {
         this.tracker = tracker; // The Game Tracker
+        this.outputType = outputType; // Output options: OneScreen, ShowAll, ShowEnding, ShowNone
     }
 
 
@@ -93,24 +95,27 @@ public class Logger {
      * The method logs all required components for each round (Character stats and Creature stats)
      */
     public void logRound() {
-        int roundCounter = tracker.getRoundCounter();
+        if (outputType != "ShowNone") {
+        // Don't produce Logs for multiple game runs with "ShowNone" set
+            int roundCounter = tracker.getRoundCounter();
 
-        String fileName = new String("Logger-files/Logger-" + roundCounter + ".txt");
+            String fileName = new String("Logger-files/Logger-" + roundCounter + ".txt");
 
-        try {
-            FileWriter fileWriter = new FileWriter(fileName);
+            try {
+                FileWriter fileWriter = new FileWriter(fileName);
 
-            String roundString = new String("Tracker: Turn " + roundCounter);
-            fileWriter.write(roundString);
-            fileWriter.write("\n");
+                String roundString = new String("Tracker: Turn " + roundCounter);
+                fileWriter.write(roundString);
+                fileWriter.write("\n");
 
-            logCharacterStats(fileWriter);
-            logCreatureStats(fileWriter);
+                logCharacterStats(fileWriter);
+                logCreatureStats(fileWriter);
 
-            fileWriter.close();
-        } catch (IOException e) {
-            System.out.println("An error occurred. Could not write file.");
-            e.printStackTrace();
+                fileWriter.close();
+            } catch (IOException e) {
+                System.out.println("An error occurred. Could not write file.");
+                e.printStackTrace();
+            }
         }
     }
 }
