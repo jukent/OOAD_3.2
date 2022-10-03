@@ -1,15 +1,9 @@
-package test.java;
-
 import org.junit.Test;
-
-import java.util.ArrayList;
-
 import org.junit.Assert;
 
-import main.java.Orbiter;
-import main.java.Creature;
-import main.java.Dungeon;
-import main.java.Room;
+import dungeon.Dungeon;
+import dungeon.Room;
+import entity.Orbiter;
 
 public class OrbitMovementTest {
 
@@ -18,49 +12,44 @@ public class OrbitMovementTest {
 
     @Test
     public void testOrbitClockwise() {
+        Orbiter orbiter = new Orbiter(0, dungeon);
+        orbiter.setDirection("clockwise");
 
-        ArrayList<Creature> creatureList = new ArrayList<Creature>();
-        Orbiter test_orbiter = new Orbiter(0, dungeon);
-        test_orbiter.setDirection("clockwise");
-        creatureList.add(test_orbiter);
+        Assert.assertEquals("clockwise", orbiter.getDirection());
 
-        Assert.assertEquals("clockwise", test_orbiter.getDirection());
+        Room oldRoom = dungeon.getRoom("(1-0-0)");
+        orbiter.setLocation(oldRoom);
 
-        Room old_room = dungeon.getRoom("(1-0-0)");
-        test_orbiter.setLocation(old_room);
+        Assert.assertEquals(orbiter.getLocation(), oldRoom);
 
-        Assert.assertEquals(test_orbiter.getLocation(), old_room);
+        Assert.assertEquals("Orbit", orbiter.getMovementType());
 
-        Assert.assertEquals("Orbit", test_orbiter.getMovementType());
+        orbiter.move();
+        Room newRoom = orbiter.getLocation();
 
-        test_orbiter.move();
-        Room new_room = test_orbiter.getLocation();
-
-        Assert.assertNotEquals(old_room, new_room);
-        Assert.assertEquals("(1-0-1)", new_room.getName());
+        Assert.assertNotEquals(oldRoom, newRoom);
+        Assert.assertEquals("(1-0-1)", newRoom.getName());
     }
+
 
     @Test
     public void testOrbitCounterClockwise() {
+        Orbiter orbiter = new Orbiter(0, dungeon);
+        orbiter.setDirection("counterclockwise");
 
-        ArrayList<Creature> creatureList = new ArrayList<Creature>();
-        Orbiter test_orbiter = new Orbiter(0, dungeon);
-        test_orbiter.setDirection("counterclockwise");
-        creatureList.add(test_orbiter);
+        Assert.assertEquals("counterclockwise", orbiter.getDirection());
 
-        Assert.assertEquals("counterclockwise", test_orbiter.getDirection());
+        Room oldRoom = dungeon.getRoom("(1-0-0)");
+        orbiter.setLocation(oldRoom);
 
-        Room old_room = dungeon.getRoom("(1-0-0)");
-        test_orbiter.setLocation(old_room);
+        Assert.assertEquals(orbiter.getLocation(), oldRoom);
 
-        Assert.assertEquals(test_orbiter.getLocation(), old_room);
+        Assert.assertEquals("Orbit", orbiter.getMovementType());
 
-        Assert.assertEquals("Orbit", test_orbiter.getMovementType());
+        orbiter.move();
+        Room newRoom = orbiter.getLocation();
 
-        test_orbiter.move();
-        Room new_room = test_orbiter.getLocation();
-
-        Assert.assertNotEquals(old_room, new_room);
-        Assert.assertEquals("(1-1-0)", new_room.getName());
+        Assert.assertNotEquals(oldRoom, newRoom);
+        Assert.assertEquals("(1-1-0)", newRoom.getName());
     }
 }

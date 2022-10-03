@@ -1,0 +1,16 @@
+Tracker: Turn 9
+
+Adventurers	Room	Damage	Treasure
+Runner		(1-0-1)	0		Armor
+Thief		(1-0-2)	0		Gem
+Brawler		(3-2-2)	2		Portal, Sword
+
+Total Active Creatures: 6
+
+Creatures	Room
+Seeker		(4-1-0)
+Orbiter		(2-2-1)
+Blinker		(1-1-1)
+Seeker		(3-0-0)
+Blinker		(3-0-2)
+Seeker		(4-1-0)

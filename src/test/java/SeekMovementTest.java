@@ -1,18 +1,14 @@
-package test.java;
-
 import org.junit.Test;
-
 import java.util.ArrayList;
-
 import org.junit.Assert;
 
-import main.java.Brawler;
-import main.java.Creature;
-import main.java.Character;
-import main.java.Dungeon;
-import main.java.Room;
-import main.java.Seeker;
-import main.java.Tracker;
+import dungeon.Dungeon;
+import dungeon.Room;
+import entity.Creature;
+import entity.Seeker;
+import entity.Brawler;
+import entity.Character;
+import game.Tracker;
 
 public class SeekMovementTest {
 
