@@ -44,6 +44,7 @@ public class JumpCelebration extends Celebration {
      * 
      * Executes jumping celebration a random number of times.
      */
+    @Override
     public void celebrate() {
         this.fightRef.celebrate();
         for(int i = 0; i < DiceRolls.rollDice(3) - 1; i++) {

@@ -10,6 +10,9 @@ import entity.Entity;
 
 public class BlinkMovement extends MovementBehavior {
 
+    // Implementation of the strategy OOP Design pattern. This is a subclass
+    // of the strategy pattern.
+
 
     /**
      * Constructor for Blinker Movement.

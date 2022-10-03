@@ -17,7 +17,7 @@ public class SpinCelebration extends Celebration {
         super(fight);
     }
 
-    
+
      /**
      * @param celebrateRef: Celebration
      * 
@@ -44,6 +44,7 @@ public class SpinCelebration extends Celebration {
      * 
      * Executes spinning celebration a random number of times.
      */
+    @Override
     public void celebrate() {
         this.fightRef.celebrate();
         for(int i = 0; i < DiceRolls.rollDice(3) - 1; i++) {

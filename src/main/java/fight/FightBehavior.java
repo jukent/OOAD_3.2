@@ -35,4 +35,10 @@ public abstract class FightBehavior {
     public void setFightType(String fightType) {
         this.fightType = fightType;
     }
+
+
+    /**
+     * Celebration decorator.
+     */
+    public void celebrate() {};
 }

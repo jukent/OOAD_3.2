@@ -17,6 +17,7 @@ public class DanceCelebration extends Celebration {
         super(fight);
     }
 
+
      /**
      * @param celebrateRef: Celebration
      * 
@@ -33,6 +34,7 @@ public class DanceCelebration extends Celebration {
      * 
      * Returns the "fight" dice-roll integer.
      */
+    @Override
     public int fight() {
         return this.fightRef.fight();
     }
@@ -43,6 +45,7 @@ public class DanceCelebration extends Celebration {
      * 
      * Executes dancing celebration a random number of times.
      */
+    @Override
     public void celebrate() {
         this.fightRef.celebrate();
         for(int i = 0; i < DiceRolls.rollDice(3) - 1; i++) {

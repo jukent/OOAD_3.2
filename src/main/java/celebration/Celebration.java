@@ -13,21 +13,21 @@ public abstract class Celebration extends FightBehavior {
     // fight behavior using the same methods.
 
 
+
     /**
      * @param fight: FightBehavior
      * 
-     * Celebration constructor.
+     *  Celebration constructor.
      */
-
     public Celebration(FightBehavior fight) {
         this.fightRef = fight;
     }
-
-
+    
+    
     /**
      * @param celebrateRef: Celebration
      * 
-     * Dance Celebration constructor.
+     * Celebration constructor.
      */
 
     public Celebration(Celebration celebrateRef) {

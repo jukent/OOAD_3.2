@@ -4,7 +4,7 @@ import fight.FightBehavior;
 import util.DiceRolls;
 
 public class ShoutCelebration extends Celebration {
-    
+
     // Subclass of a decorator pattern
 
 
@@ -44,6 +44,7 @@ public class ShoutCelebration extends Celebration {
      * 
      * Executes shouting celebration a random number of times.
      */
+    @Override
     public void celebrate() {
         this.fightRef.celebrate();
         for(int i = 0; i < DiceRolls.rollDice(3) - 1; i++) {
