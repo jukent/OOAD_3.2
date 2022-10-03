@@ -1,6 +1,7 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import celebration.Celebration;
 import dungeon.Dungeon;
@@ -34,6 +35,13 @@ public class Tracker {
     int roundCounter; // Integer Round value
     int treasureCount; // Integer found Treasure count
 
+    String outputType;
+
+    String fightResult; // Result of the last fight: "CharacterWon", "CreatureWon", or "FightSkipped"
+    HashMap<String, String> fightValues = new HashMap<String, String>(); // Ordered HashMap mapping Character and Creature from most recent fight to their integer roll values.
+
+    String treasureHuntResult; // Result of the last trasure hunt: "TreasureFound", "TreasureNotFound", or "DuplicateTreasureFound"
+    HashMap<String, String> treasureHuntValues = new HashMap<String, String>(); // HashMap of Treasure and Treasure roll from most recent treasure hunt.
 
     /**
      * @param dungeon: Dungeon
@@ -225,13 +233,21 @@ public class Tracker {
      * 
      * Tracker updates the Treasure count and the Room occupancy.
      */
-    public void treasureFound(Treasure treasure) {
+    public void treasureFound(Treasure treasure, Integer score) {
         setTreasureCount(getTreasureCount() + 1); // Increase counter by one
         this.treasureList.remove(treasure); // remove from treasure list
         
         // publish to room that treasure no longer there
         Room room  = treasure.getLocation();
         publishTreasureExitsRoom(treasure, room);
+
+        // Expose results for Printer
+        treasureHuntResult = "TreasureFound";
+        treasureHuntValues.clear();
+        treasureHuntValues.put("result", treasureHuntResult);
+        treasureHuntValues.put("treasure", treasure.getType());
+        treasureHuntValues.put("score", score.toString());
+
     }
 
 
@@ -263,8 +279,17 @@ public class Tracker {
      * 
      * Tracker reduces Creature's health points by 1.
      */
-    public void characterWon(Character character, Creature creature) {
+    public void characterWon(Character character, Creature creature, int characterRoll, int creatureRoll) {
         creature.loseHealth(1);
+
+        // Expose results for printer subscriber to use
+        fightResult = "CharacterWon";
+        fightValues.clear();
+        fightValues.put("result", fightResult);
+        fightValues.put("character", character.getName());
+        fightValues.put("characterRoll", String.valueOf(characterRoll));
+        fightValues.put("creature", creature.getName());
+        fightValues.put("creatureRoll", String.valueOf(creatureRoll));
     }
 
 
@@ -276,8 +301,17 @@ public class Tracker {
      * 
      * Tracker reduces Character's health points by 1.
      */
-    public void creatureWon(Character character, Creature creature) {
+    public void creatureWon(Character character, Creature creature, int characterRoll, int creatureRoll) {
         character.loseHealth(1);
+
+        // Expose results for printer subscriber to use
+        fightResult = "CreatureWon";
+        fightValues.clear();
+        fightValues.put("result", fightResult);
+        fightValues.put("character", character.getName());
+        fightValues.put("characterRoll", String.valueOf(characterRoll));
+        fightValues.put("creature", creature.getName());
+        fightValues.put("creatureRoll", String.valueOf(creatureRoll));
     }
 
 
@@ -290,7 +324,7 @@ public class Tracker {
      * Tracker does nothing with this as of yet, but it was requested by the assignment.
      */
     public void characterCelebrated(Character character, Celebration celebration) {
-            // Requested, but not sure what to do with this information
+        // Requested, but not sure what to do with this information
     }
 
 
@@ -369,5 +403,42 @@ public class Tracker {
      */
     public ArrayList<Treasure> getTreasureList() {
         return this.treasureList;
+    }
+
+
+    public void fightSkipped() {
+        // Expose results for printer subscriber to use
+        fightResult = "FightSkipped";
+        fightValues.clear();
+        fightValues.put("result", fightResult);
+    }
+
+
+    public HashMap<String, String> getFightValues() {
+        return this.fightValues;
+    }
+
+
+    public void duplicateTreasureFind(Treasure treasure, Integer score) {
+        // Expose results for Printer
+        treasureHuntResult = "DuplicateTreasureFound";
+        treasureHuntValues.clear();
+        treasureHuntValues.put("result", treasureHuntResult);
+        treasureHuntValues.put("treasure", treasure.getType());
+        treasureHuntValues.put("score", score.toString());
+    }
+
+
+    public void treasureNotFound(Integer score) {
+        // Expose results for Printer
+        treasureHuntResult = "TreasureNotFound";
+        treasureHuntValues.clear();
+        treasureHuntValues.put("result", treasureHuntResult);
+        treasureHuntValues.put("score", score.toString());
+    }
+
+
+    public HashMap<String, String> getTreasureHuntValues() {
+        return this.treasureHuntValues;
     }
 }

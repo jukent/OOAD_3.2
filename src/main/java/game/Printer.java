@@ -1,18 +1,22 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Scanner;
 
 import dungeon.Dungeon;
 import dungeon.Room;
 import entity.Creature;
+import entity.Entity;
+import treasure.Treasure;
 import entity.Character;
 
 public class Printer {
 
     Dungeon dungeon; // Game Dungeon
     Tracker tracker; // Game Tracker
-    String OutputType; // Output options: OneScreen, ShowAll, ShowEnding
+    String outputType; // Output options: OneScreen, ShowAll, ShowEnding
     private Scanner scanner = new java.util.Scanner(System.in); // A Scanner for awaiting user input
 
     
@@ -26,7 +30,7 @@ public class Printer {
     public Printer(Dungeon dungeon, Tracker tracker, String output) {
         this.dungeon = dungeon; // Game Dungeon
         this.tracker = tracker; // Game Tracker
-        this.OutputType = output; // Output type String
+        this.outputType = output; // Output type String
     }
 
 
@@ -60,7 +64,7 @@ public class Printer {
      * A pause method between turns asking the player to continue.
      */
     public void pause() {
-        if (OutputType == "OneScreen") {
+        if (outputType == "OneScreen") {
             System.out.println("Press Enter To Continue...");
             scanner.nextLine();
         }
@@ -184,6 +188,104 @@ public class Printer {
         for (String A: creatureSet) {
             TempString = new String(A + "(s) - " + Counts[creatureSet.indexOf(A)] + " Remaining");
             System.out.println(TempString);
+        }
+    }
+
+
+    private void printCharacterWins(String character, String creature, String characterRoll, String creatureRoll) {
+        System.out.print("Fight: ");
+        System.out.print(character + ": ");
+        System.out.print(characterRoll);
+        System.out.print(" " + creature + ": ");
+        System.out.print(creatureRoll);
+        System.out.println(" " + character + " Wins :D ");
+        System.out.print(character + " celebrates!: ");
+        System.out.println();
+    }
+
+
+    private void printCreatureWins(String character, String creature, String characterRoll, String creatureRoll) {
+        // if creature wins
+        System.out.print("Fight: ");
+        System.out.print(character + ": ");
+        System.out.print(characterRoll);
+        System.out.print(" " + creature + ": ");
+        System.out.print(creatureRoll);
+        System.out.println(" Creature Wins :( ");
+    }
+
+    
+    private void printFightSkipped() {
+        // Fight skipped (Roll of -1)
+        System.out.println("Fight Skipped");
+
+    }
+
+
+    public void printFightResults() {
+        if (outputType != "ShowNone") {
+            HashMap<String, String> fightValues = tracker.getFightValues();
+            String result = fightValues.get("result"); // "CharacterWon", "CreatureWon", "FightSkipped"
+            if (result == "FightSkipped") {
+                // If Fight skipped
+                printFightSkipped();
+            } else {
+                // Fight not skipped
+                String character = fightValues.get("character");
+                String characterRoll = fightValues.get("characterRoll");
+                String creature= fightValues.get("creature");
+                String creatureRoll = fightValues.get("creatureRoll");
+
+                if (result == "CharacterWon") {
+                    // If Characer Won
+                    printCharacterWins(character, creature, characterRoll, creatureRoll);
+                } else if (result == "CreatureWon") {
+                    // If Creature Won
+                    printCreatureWins(character, creature, characterRoll, creatureRoll);
+                }
+            }
+        }
+    }
+
+
+    private void printTreasureHuntSuccess(String treasure, String score) {
+        System.out.print("Treasure Hunt: ");
+        System.out.print(score);
+        System.out.println(" Success! ");
+        System.out.println("Treasure: " + treasure);
+    }
+
+
+    private void printDuplicateTreasureHunt(String treasure, String score) {
+        System.out.print("Treasure Hunt: ");
+        System.out.print(score);
+        System.out.println(" Success! ");
+        System.out.println("Treasure: " + treasure);
+        System.out.println(treasure + " Already in Inventory :(");
+    }
+
+
+    private void printTreasureHuntFail(String score) {
+        System.out.print("Treasure Hunt: ");
+        System.out.print(score);
+        System.out.println(" Fail :(");
+    }
+
+
+    public void printTreasureHuntResults() {
+        if (outputType != "ShowNone") {
+            HashMap<String, String> treasureValues = tracker.getTreasureHuntValues();
+            String result = treasureValues.get("result"); // "TreasureFound", "TreasureNotFound", "DuplicateTreasureFound"
+            if (result == "TreasureFound") {
+                // If Treasure Found
+                printTreasureHuntSuccess(treasureValues.get("treasure"), treasureValues.get("score"));
+            } else if (result == "DuplicateTreasureFound") {
+                // If Treasure Already Found
+                printDuplicateTreasureHunt(treasureValues.get("treasure"), treasureValues.get("score"));
+            } else if (result == "TreasureNotFound") {
+                // If Treasure Not Found
+                printTreasureHuntFail(treasureValues.get("score"));
+            }
         }
     }
 }

@@ -29,6 +29,8 @@ public class GameEngine {
     protected ArrayList<Treasure> treasureList = new ArrayList<Treasure>();
     
     Tracker tracker = new Tracker(dungeon, characterList, creatureList, treasureList); // Game Tracker
+    // Using the Tracker is an example of the Observer pattern. Events are published to the Tracker (pointed out in comments)
+    // And then the Tracker let's any interested parties know about the events.
 
     protected Printer printer = new Printer(dungeon, tracker, Output); // Game Printer
 
@@ -90,7 +92,8 @@ public class GameEngine {
         id++;
         characterList.add(new Brawler(id, dungeon));
         id++;
-        tracker.setCharacterStats(characterList); // publish initial Character stats
+        tracker.setCharacterStats(characterList); // publish initial Character stats to Tracker
+        // Example of Observer pattern, Tracker in turn tells Rooms (subscriber) of new occupancy.
 
         // Creatures
         // Also an example of polymorphism
@@ -102,7 +105,8 @@ public class GameEngine {
             creatureList.add(new Blinker(id, dungeon));
             id++;
         }
-        tracker.setCreatureStats(creatureList); // publish initial Creature stats
+        tracker.setCreatureStats(creatureList); // publish initial Creature stats to Tracker
+        // Again, example of Observer pattern.
 
         // Treasures
         for(int i = 0; i < 4; i++) {
@@ -119,7 +123,8 @@ public class GameEngine {
             treasureList.add(new Potion(id, dungeon));
             id++;
         }
-        tracker.setTreasureStats(treasureList); // publish initial Treasure stats
+        tracker.setTreasureStats(treasureList); // publish initial Treasure stats to Tracker
+        // Again, example of Observer pattern.
     }
     
 
@@ -151,43 +156,25 @@ public class GameEngine {
             // If fight not skipped
             if(characterRoll > creatureRoll) {
                 // If Character Wins
-                tracker.characterWon(character, creature); // Publish Character won to Tracker
-                tracker.removeCreature(creature); // Remove dead Creature, publish to Tracker
-
-                if (Output != "ShowNone") {
-                    System.out.print("Fight: ");
-                    System.out.print(character.getClass().getSimpleName() + ": ");
-                    System.out.print(characterRoll);
-                    System.out.print(" " + creature.getClass().getSimpleName() + ": ");
-                    System.out.print(creatureRoll);
-                    System.out.println(" " + character.getClass().getSimpleName() + " Wins :D ");
-                    System.out.print(character.getName() + " celebrates!: ");
-                    celebration.celebrate();
-                    tracker.characterCelebrated(character, celebration); // Publish Character celebrated to Tracker
-                    System.out.println();
-                }
+                tracker.characterWon(character, creature, characterRoll, creatureRoll); // Publish Character won to Tracker
+                tracker.removeCreature(creature); // Remove dead Creature, publish to Trackers
+                celebration.celebrate();
+                tracker.characterCelebrated(character, celebration); // Publish Character celebrated to Tracker
+                // Example of Observer pattern, Tracker let's interested parties/subsribers
+                // (Printer, Logger, Room)'s know about these events.
             } else if (characterRoll < creatureRoll) {
                 // If Creature Wins
-                tracker.creatureWon(character, creature); // Publish Creature won to Tracker
+                tracker.creatureWon(character, creature, characterRoll, creatureRoll); // Publish Creature won to Tracker
                 if (character.getHealth() <= 0) {
                     tracker.removeCharacter(character); // Remove dead Character, publish to Tracker
                 }
-
-                if (Output != "ShowNone") {
-                    System.out.print("Fight: ");
-                    System.out.print(character.getClass().getSimpleName() + ": ");
-                    System.out.print(characterRoll);
-                    System.out.print(" " + creature.getClass().getSimpleName() + ": ");
-                    System.out.print(creatureRoll);
-                    System.out.println(" Creature Wins :( ");
-                }
             }
         } else {
-            // Fight skipped (Roll of -1)
-            if (Output != "ShowNone") {
-                System.out.println("Fight Skipped");
-            }
+            // If characterRoll = -1, fight was skipped
+            tracker.fightSkipped(); // Publish fight skipped to Tracker
         }
+        printer.printFightResults();
+        // Printer is informed of results to print via the Tracker, example of Observer pattern
     }
     
 
@@ -208,49 +195,36 @@ public class GameEngine {
                 // If Treasure found
                 Treasure currentItem = treasureInRoom.get(0); // only find first Treasure (if multiple)
                 // Possible "feature" if Character has Treasure of first type already but not of second, Character still doesn't get the second Treasure.
-
-                if (Output != "ShowNone") {
-                    // If printing
-                    System.out.print("Treasure Hunt: ");
-                    System.out.print(score);
-                    System.out.println(" Success! ");
-                    System.out.println("Treasure: " + treasureInRoom.get(0).getClass());
-                }
                 if (character.getInventoryTypes().contains(currentItem.getType())) {
                     // If we've already encountered this type of Treasure
                     if (currentItem.getType() == "Trap") {
                         // Can only encounter multiple traps
                         character.addInventory(currentItem);
                         character.loseHealth(currentItem.getTakeDamage()); // if Trap
-                        tracker.treasureFound(currentItem); // Publish Treasure found to Tracker
+                        tracker.treasureFound(currentItem, score); // Publish Treasure found to Tracker
                         if (character.getHealth() <= 0) {
                             tracker.removeCharacter(character); // Remove dead Character, publish to Tracker
                         } 
+                    } else {
+                        tracker.duplicateTreasureFind(currentItem, score); // Publish to Tracker that duplicate item was found
                     }
                 } else {
                     // This is a new type of Treasure
                     character.addInventory(currentItem);
                     character.loseHealth(currentItem.getTakeDamage()); // if Trap
                     character.addHealth(currentItem.getHPBoost());  // if Potion
-                    tracker.treasureFound(currentItem); // Publish Treasure found to Tracker
+                    tracker.treasureFound(currentItem, score); // Publish Treasure found to Tracker
                 }
             } else {
                 // If Treasure not found
-                if (Output != "ShowNone") {
-                    // If Printing
-                    System.out.print("Treasure Hunt: ");
-                    System.out.print(score);
-                    System.out.println(" Fail :(");
-                }
+                tracker.treasureNotFound(score);
             }
         } else {
             // If no Treasure in room
-            if (Output != "ShowNone") {
-                System.out.print("Treasure Hunt: ");
-                System.out.print(score);
-                System.out.println(" Fail :(");
-            }
+            tracker.treasureNotFound(score);
         }
+        printer.printTreasureHuntResults(); // Example of Observer Pattern
+        // Printer knows results to print from Tracker
     }
     
     
