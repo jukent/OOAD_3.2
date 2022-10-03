@@ -4,7 +4,9 @@ import util.DiceRolls;
 
 public class UntrainedFighter extends FightBehavior {
     
-    
+        //Implementation of the strategy OOP Design pattern. This is a subclass
+    //of the strategy pattern
+
     /**
      * Constructor for an Untrained Fighter.
      */

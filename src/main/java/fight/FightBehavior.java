@@ -2,6 +2,10 @@ package fight;
 
 public abstract class FightBehavior {
 
+    //Implementation of the strategy OOP Design pattern. Subclasses change
+    //behavior and encapsulate what varies
+
+    
     public String fightType; // String description of Fight Behavior
 
 
@@ -11,12 +15,6 @@ public abstract class FightBehavior {
      * This method executes the fight by rolling two dice and adding any extra strength buffs.
      */
     public abstract int fight();
-
-
-    /**
-     * 
-     */
-    public void celebrate() {};
 
 
     /**

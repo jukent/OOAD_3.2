@@ -4,6 +4,8 @@ import util.DiceRolls;
 
 public class CarelessHunt extends TreasureHunt {
 
+    //Implementation of the strategy OOP Design pattern. This is a subclass
+    //of the strategy pattern
 
     /**
      * Constructor for a Careless Treasure Hunt.
