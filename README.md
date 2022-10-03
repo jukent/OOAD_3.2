@@ -4,6 +4,8 @@ by David Chaparro and Julia Kent
 
 Java version: 17.0.1
 
+[![Java CI](https://github.com/jukent/OOAD_3.2/actions/workflows/junit_tests.yaml/badge.svg)](https://github.com/jukent/OOAD_3.2/actions/workflows/junit_tests.yaml)
+
 Expanding the Raiders of the Lost Arctangent Game to use specific treasures and design patterns. Previous iteration can be found at: https://github.com/jukent/OOAD5448_P2.2
 
 --------------------------------
@@ -76,7 +78,7 @@ The instructions were unspecified on if there should be a decision tree for Char
 
 ## JUnit Testing
 
-Testing was done with Maven for Java via the "Test Runner for Java" extension within Visual Studio Code (https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-test). This required we set up a `vscode/settings.json` file pointing to our `main/` and `test/` directories and a `pom.xml` file specifying that we use JUnit version 4.13.2 and that our tests are in `test/`.
+Testing was origioonally done with Maven for Java via the "Test Runner for Java" extension within Visual Studio Code (https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-test). This required we set up a `vscode/settings.json` file pointing to our `main/` and `test/` directories and a `pom.xml` file specifying that we use JUnit version 4.13.2 and that our tests are in `test/`.
 
 Tests were useful for testing edge cases (such as Seeker movement and Character with Portal movement) because they allowed us to set up the scenarios and assert the correct outcome, as opposed to running the simulation repeatedly watching for the Seeker to move.
 
@@ -84,7 +86,7 @@ Some methods that were previously hidden had to be exposed as "public" for the t
 
 We have 18 tests, spanning movement, treasure hunting, and the game engine. Ideally we'd strive for more code coverage, but we tested the most suspect areas of the code and are satisfied for this assignment.
 
-A screenshot of our passing tests is in `Tests.png`.
+Testing is now done automatically on every new push to the GitHub repository with GitHub actions. The steps for this are in `.github/workflows/junit_test.yml` and can be viewed in the "Actions" tab. Here are recent test results: https://github.com/jukent/OOAD_3.2/actions/runs/3177805039/jobs/5178657139
 
 ## Citations
 
