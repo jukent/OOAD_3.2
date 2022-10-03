@@ -3,4 +3,8 @@
   <groupId>junit</groupId>
   <artifactId>junit</artifactId>
   <version>4.13.2</version>
+  <properties>
+     <maven.compiler.source>1.8</maven.compiler.source>
+     <maven.compiler.target>1.8</maven.compiler.target>
+</properties>
 </project>
