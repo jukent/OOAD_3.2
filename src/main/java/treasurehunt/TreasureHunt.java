@@ -1,6 +1,9 @@
 package treasurehunt;
 public abstract class TreasureHunt {
     
+    //Implementation of the strategy OOP Design pattern. Subclasses extend
+    //This behavior
+
     public String searchType; // String type for Treasue Hunting Behavior
     public int neededScore; // Required Integer dice roll to find treasure
 
