@@ -406,21 +406,33 @@ public class Tracker {
     }
 
 
+    /**
+     * Publishes event that the fight was skipped.
+     */
     public void fightSkipped() {
-        // Expose results for printer subscriber to use
         fightResult = "FightSkipped";
         fightValues.clear();
         fightValues.put("result", fightResult);
     }
 
 
+    /**
+     * @return HashMap<String, String>
+     * 
+     * Exposes the HashMap of Fight Values (who fought, what were their dice rolls, what was the result).
+     */
     public HashMap<String, String> getFightValues() {
         return this.fightValues;
     }
 
 
+    /**
+     * @param treasure: Treasure
+     * @param score: Integer
+     * 
+     * Publishes the event that the Treasure was already found.
+     */
     public void duplicateTreasureFind(Treasure treasure, Integer score) {
-        // Expose results for Printer
         treasureHuntResult = "DuplicateTreasureFound";
         treasureHuntValues.clear();
         treasureHuntValues.put("result", treasureHuntResult);
@@ -429,8 +441,12 @@ public class Tracker {
     }
 
 
+    /**
+     * @param score: Integer
+     * 
+     * Publishes the event that Treasure was not found.
+     */
     public void treasureNotFound(Integer score) {
-        // Expose results for Printer
         treasureHuntResult = "TreasureNotFound";
         treasureHuntValues.clear();
         treasureHuntValues.put("result", treasureHuntResult);
@@ -438,6 +454,11 @@ public class Tracker {
     }
 
 
+    /**
+     * @return HashMap<String, String>
+     * 
+     * Exposes the HashMap of Treasure Hunting Values (what was found, what was the dice roll, what was the result).
+     */
     public HashMap<String, String> getTreasureHuntValues() {
         return this.treasureHuntValues;
     }

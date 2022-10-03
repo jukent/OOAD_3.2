@@ -192,6 +192,14 @@ public class Printer {
     }
 
 
+    /**
+     * @param character: String
+     * @param creature: String
+     * @param characterRoll: String
+     * @param creatureRoll: String
+     * 
+     * Prints the entities and their dice rolls when a Character wins the fight.
+     */
     private void printCharacterWins(String character, String creature, String characterRoll, String creatureRoll) {
         System.out.print("Fight: ");
         System.out.print(character + ": ");
@@ -204,8 +212,15 @@ public class Printer {
     }
 
 
+    /**
+     * @param character: String
+     * @param creature: String
+     * @param characterRoll: String
+     * @param creatureRoll: String
+     * 
+     * Prints the entities and their dice rolls when a Creature wins the fight.
+     */
     private void printCreatureWins(String character, String creature, String characterRoll, String creatureRoll) {
-        // if creature wins
         System.out.print("Fight: ");
         System.out.print(character + ": ");
         System.out.print(characterRoll);
@@ -215,13 +230,21 @@ public class Printer {
     }
 
     
+    /**
+     * Prints that the fight was skipped.
+     */
     private void printFightSkipped() {
-        // Fight skipped (Roll of -1)
         System.out.println("Fight Skipped");
 
     }
 
 
+    /**
+     * Prints the fight results.
+     * 
+     * Example of Observer pattern, Printer has subscribed to values from the Tracker 
+     * that are updated whenever a fighting event is published.
+     */
     public void printFightResults() {
         if (outputType != "ShowNone") {
             HashMap<String, String> fightValues = tracker.getFightValues();
@@ -248,6 +271,12 @@ public class Printer {
     }
 
 
+    /**
+     * @param treasure: String
+     * @param score: String
+     * 
+     * Prints the treasure and dice roll for a successful treasure hunt.
+     */
     private void printTreasureHuntSuccess(String treasure, String score) {
         System.out.print("Treasure Hunt: ");
         System.out.print(score);
@@ -256,6 +285,12 @@ public class Printer {
     }
 
 
+    /**
+     * @param treasure: String
+     * @param score: String
+     * 
+     * Prints the treasure and dice rolls for a duplicate treasure hunt.
+     */
     private void printDuplicateTreasureHunt(String treasure, String score) {
         System.out.print("Treasure Hunt: ");
         System.out.print(score);
@@ -265,6 +300,11 @@ public class Printer {
     }
 
 
+    /**
+     * @param score: String
+     * 
+     * Prints the dice roll for an unsuccessful treasure hunt.
+     */
     private void printTreasureHuntFail(String score) {
         System.out.print("Treasure Hunt: ");
         System.out.print(score);
@@ -272,6 +312,12 @@ public class Printer {
     }
 
 
+    /**
+     * Prints the results of treasure hunting.
+     * 
+     * Example of Observer pattern, Printer has subscribed to values from the Tracker 
+     * that are updated whenever a treasure hunting event is published.
+     */
     public void printTreasureHuntResults() {
         if (outputType != "ShowNone") {
             HashMap<String, String> treasureValues = tracker.getTreasureHuntValues();
