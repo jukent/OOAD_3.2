@@ -1,15 +1,10 @@
-package test.java;
-
 import org.junit.Test;
-
 import java.util.ArrayList;
-
 import org.junit.Assert;
 
-import main.java.Brawler;
-import main.java.Character;
-import main.java.Dungeon;
-import main.java.Room;
+import dungeon.Dungeon;
+import dungeon.Room;
+import entity.Brawler;
 
 public class RandomWalkMovementTest {
 
@@ -18,25 +13,21 @@ public class RandomWalkMovementTest {
 
     @Test
     public void testRandomWalk() {
+        Brawler character = new Brawler(0, dungeon);
+        Room oldRoom = dungeon.getRoom("(1-0-0)");
+        character.setLocation(oldRoom);
 
-        ArrayList<Character> characterList = new ArrayList<Character>();
-        Brawler test_character = new Brawler(0, dungeon);
-        characterList.add(test_character);
+        Assert.assertEquals(character.getLocation(), oldRoom);
 
-        Room old_room = dungeon.getRoom("(1-0-0)");
-        test_character.setLocation(old_room);
+        Assert.assertEquals("RandomWalk", character.getMovementType());
 
-        Assert.assertEquals(test_character.getLocation(), old_room);
+        character.move();
+        Room newRoom = character.getLocation();
 
-        Assert.assertEquals("RandomWalk", test_character.getMovementType());
+        Assert.assertNotEquals(oldRoom, newRoom);
 
-        test_character.move();
-        Room new_room = test_character.getLocation();
-
-        Assert.assertNotEquals(old_room, new_room);
-
-        // check there is exit from old_room to new_room
-        ArrayList<String> exits = old_room.getExits();
-        Assert.assertTrue(exits.contains(new_room.getName()));
+        // check there is exit from oldRoom to newRoom
+        ArrayList<String> exits = oldRoom.getExits();
+        Assert.assertTrue(exits.contains(newRoom.getName()));
     }
 }

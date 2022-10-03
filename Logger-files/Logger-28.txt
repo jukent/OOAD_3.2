@@ -1,0 +1,9 @@
+Tracker: Turn 28
+
+Adventurers	Room	Damage	Treasure
+Runner		(4-1-1)	1		Armor, Sword
+Thief		(1-2-1)	0		Gem
+
+Total Active Creatures: 0
+
+Creatures	Room
