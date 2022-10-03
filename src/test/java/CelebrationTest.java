@@ -9,7 +9,7 @@ import entity.Character;
 import entity.*;
 import treasure.*;
 import fight.*;
-import Celebration.*;
+import celebration.*;
 import game.Tracker;
 import game.GameEngine;
 
@@ -17,7 +17,7 @@ import game.GameEngine;
 public class CelebrationTest {
     Dungeon dungeon = new Dungeon();
     Character A = new Runner(1, dungeon);
-    FightBehavior fightBehavior = A.fightBehavior;
+    FightBehavior fightBehavior = A.getfightBehavior();
 
 
     @Test
