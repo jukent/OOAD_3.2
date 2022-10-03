@@ -9,7 +9,10 @@ import entity.Entity;
 
 public class RandomWalkMovement extends MovementBehavior{
     
+    // Implementation of the strategy OOP Design pattern. This is a subclass
+    // of the strategy pattern.
 
+    
     /**
      * Constructor for Random Walking Movement.
      */

@@ -6,6 +6,9 @@ import entity.Entity;
 
 public class OrbitMovement extends MovementBehavior {
     
+    // Implementation of the strategy OOP Design pattern. This is a subclass
+    // of the strategy pattern.
+
 
     /**
      * Constructor for Orbiter Movement.

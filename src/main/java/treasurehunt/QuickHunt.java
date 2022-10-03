@@ -4,8 +4,9 @@ import util.DiceRolls;
 
 public class QuickHunt extends TreasureHunt{
     
-    //Implementation of the strategy OOP Design pattern. This is a subclass
-    //of the strategy pattern
+    // Implementation of the strategy OOP Design pattern. This is a subclass
+    // of the strategy pattern.
+
 
     /**
      * Constructor for a Quick Treasure Hunt.

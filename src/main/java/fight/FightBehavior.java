@@ -2,8 +2,8 @@ package fight;
 
 public abstract class FightBehavior {
 
-    //Implementation of the strategy OOP Design pattern. Subclasses change
-    //behavior and encapsulate what varies
+    // Implementation of the strategy OOP Design pattern. Subclasses change
+    // behavior and encapsulate what varies.
 
     
     public String fightType; // String description of Fight Behavior

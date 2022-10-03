@@ -5,25 +5,28 @@ import util.DiceRolls;
 
 public class SpinCelebration extends Celebration {
 
-    //Subclass of a decorator pattern
+    // Subclass of a decorator pattern
+
 
     /**
      * @param fight: FightBehavior
      * 
-     * Dance Celebration constructor.
+     * Spin Celebration constructor.
      */
     public SpinCelebration(FightBehavior fight) {
-        super(fight)
+        super(fight);
     }
 
+    
      /**
      * @param celebrateRef: Celebration
      * 
-     * Dance Celebration constructor.
+     * Spin Celebration constructor.
      */
     public SpinCelebration(Celebration celebrateRef) {
-        super(celebrateRef)
+        super(celebrateRef);
     }
+
 
     /* (non-Javadoc)
      * @see celebration.Celebration#fight()

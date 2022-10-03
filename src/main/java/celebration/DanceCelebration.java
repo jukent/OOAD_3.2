@@ -5,7 +5,7 @@ import util.DiceRolls;
 
 public class DanceCelebration extends Celebration {
 
-    //Subclass of a decorator pattern
+    // Subclass of a decorator pattern
 
 
     /**
@@ -14,7 +14,7 @@ public class DanceCelebration extends Celebration {
      * Dance Celebration constructor.
      */
     public DanceCelebration(FightBehavior fight) {
-        super(fight)
+        super(fight);
     }
 
      /**
@@ -22,9 +22,8 @@ public class DanceCelebration extends Celebration {
      * 
      * Dance Celebration constructor.
      */
-
     public DanceCelebration(Celebration celebrateRef) {
-        super(celebrateRef)
+        super(celebrateRef);
     }
 
 
