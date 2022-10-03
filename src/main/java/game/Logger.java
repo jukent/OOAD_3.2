@@ -7,9 +7,12 @@ import entity.Creature;
 import entity.Character;
 
 
+// Example of Observer Pattern
 
 // Logger Class to be instantiated at the beginning of each full adventurer/creature turn (not individual) and closes at the end of each turn.
 // Logs results to "Logger-n.txt" where n is the turn of the simulation.
+// Logged values are stored/managed/updated by the Tracker whenever a relevant event is published.
+
 public class Logger {
 
     Tracker tracker; // The Game Tracker

@@ -10,6 +10,7 @@ import entity.Creature;
 import entity.Character;
 import treasure.Treasure;
 
+// Example of Observer pattern.
 // This Tracker is instantiated at beginning of game and active till end.
 // It subscribes for the following published events and maintain a data structure in memory for game status:
 //  - adventurer and creature enter a room
@@ -24,7 +25,7 @@ import treasure.Treasure;
 // Decision informed from "Game Programming Patterns" a book by Robert Nystrom http://gameprogrammingpatterns.com/observer.html
 // "A more modern approach is for an “observer” to be only a reference to a method or function. 
 // In languages with first-class functions, and especially ones with closures, this is a much more common way to do observers.""
-// 
+
 public class Tracker {
 
     Dungeon dungeon; // Game Dungeon

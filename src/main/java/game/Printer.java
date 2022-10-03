@@ -2,14 +2,11 @@ package game;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Scanner;
 
 import dungeon.Dungeon;
 import dungeon.Room;
 import entity.Creature;
-import entity.Entity;
-import treasure.Treasure;
 import entity.Character;
 
 public class Printer {
