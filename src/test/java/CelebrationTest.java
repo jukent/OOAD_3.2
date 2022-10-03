@@ -23,7 +23,7 @@ public class CelebrationTest {
     @Test
     public void testWrap() {
         Celebration tJ = new JumpCelebration(fightBehavior);
-        tJ = new Spin(tJ); 
+        tJ = new SpinCelebration(tJ); 
     }
 
 
