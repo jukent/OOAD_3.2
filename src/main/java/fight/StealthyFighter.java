@@ -4,6 +4,8 @@ import util.DiceRolls;
 
 public class StealthyFighter extends FightBehavior {
 
+        //Implementation of the strategy OOP Design pattern. This is a subclass
+    //of the strategy pattern
 
     /**
      * Constructor for a Stealthy Fighter.

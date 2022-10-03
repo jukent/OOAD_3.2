@@ -136,13 +136,16 @@ public class GameEngine {
      * If a character rolls a -1, fight is skipped.
      */
     private void simulateFight(Character character, Creature creature) {
+
+        //Decorator pattern. Wraps fightbehavior into celebration decorator
+        //Fight method is called from the celebration decorator
         FightBehavior fightBehavior = character.getFightBehavior();
         Celebration celebration = new SpinCelebration(fightBehavior);
         celebration = new DanceCelebration(celebration);
         celebration = new JumpCelebration(celebration);
         celebration = new ShoutCelebration(celebration);
 
-        int characterRoll = celebration.fight();
+        int characterRoll = celebration.fight(); //Called from celebration decorator
         int creatureRoll = creature.fight();
 
         for(Treasure t: character.getInventory()){
