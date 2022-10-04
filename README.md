@@ -53,7 +53,7 @@ Characters won by finding 24 Treasures 0 times. <br/>
 Characters won by defeating all creatures 23 times. <br/>
 Characters lost by all being defeated 7 time. <br/>
 
-From these results we can see that the new Treasure implementations made finding all Treasures much less likely. 
+From these results we can see that the new Treasure implementations made finding all Treasures much less likely.
 Characters are rarely defeated, perhaps this could be balanced by adding more Creatures to the Dungeon or increasing Creature attack power.
 
 ## Identified OO Patterns
@@ -116,7 +116,7 @@ We used these [instructions for setting up testing](https://code.visualstudio.co
 
 This resource was useful for understanding the Observer pattern: ["Game Programming Patterns" a book by Robert Nystrom](http://gameprogrammingpatterns.com/observer.html).
 
-The `PrinterColumns` class was almost one-to-one borrowed from candied_orange's response to the StackOverflow question ["Is there an easy way to output two columns to the console in Java?"](https://stackoverflow.com/questions/699878/is-there-an-easy-way-to-output-two-columns-to-the-console-in-java). 
+The `PrinterColumns` class was almost one-to-one borrowed from candied_orange's response to the StackOverflow question ["Is there an easy way to output two columns to the console in Java?"](https://stackoverflow.com/questions/699878/is-there-an-easy-way-to-output-two-columns-to-the-console-in-java).
 We added documentation via comments and Javadocs were added to show that we understand the borrowed code.
 
 [GitHub actions instructions for testing with Maven](https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven).
