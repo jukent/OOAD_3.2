@@ -2,15 +2,16 @@ package fight;
 
 import util.DiceRolls;
 
-public class ExpertFighter extends FightBehavior {
+public class ExpertFightBehavior extends FightBehavior {
 
-    //Implementation of the strategy OOP Design pattern. This is a subclass
-    //of the strategy pattern
+    // Implementation of the strategy OOP Design pattern. This is a subclass
+    // of the strategy pattern
 
+    
     /**
      * Constructor for an Expert Fighter.
      */
-    public ExpertFighter() {
+    public ExpertFightBehavior() {
         setFightType("Expert");
     }
     

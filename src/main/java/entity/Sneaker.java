@@ -1,8 +1,8 @@
 package entity;
 
 import dungeon.Dungeon;
-import fight.StealthyFighter;
-import treasurehunt.QuickHunt;
+import fight.StealthyFightBehavior;
+import treasurehunt.QuickHuntBehavior;
 
 public class Sneaker extends Character { 
     // Example of inheritance
@@ -18,8 +18,8 @@ public class Sneaker extends Character {
         super.id = id; // Sneaker ID value
         this.dungeon = map; // Game Dungeon
         this.location = dungeon.getRoom("(0-1-1)"); // Begin in Entrance Room
-        this.fightBehavior = new StealthyFighter(); // FightType is Stealthy
-        this.searchBehavior = new QuickHunt(); // SearchType is Quick
+        this.fightBehavior = new StealthyFightBehavior(); // FightType is Stealthy
+        this.searchBehavior = new QuickHuntBehavior(); // SearchType is Quick
         name = "Sneaker"; // Sring name
     }
 }

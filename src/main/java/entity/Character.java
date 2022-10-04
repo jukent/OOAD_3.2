@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 import movement.BlinkMovement;
 import treasure.Treasure;
-import treasurehunt.TreasureHunt;
+import treasurehunt.TreasureHuntBehavior;
 
 public abstract class Character extends Entity {
 
-    public TreasureHunt searchBehavior; // Treasure Hunting behavior
+    public TreasureHuntBehavior searchBehavior; // Treasure Hunting behavior
     public ArrayList<Treasure> inventory = new ArrayList<Treasure>(); // ArrayList of Treasure inventory
     public ArrayList<String> inventoryTypes = new ArrayList<String>(); // ArrayList of Treasure inventory types (Strings)
 
@@ -136,7 +136,7 @@ public abstract class Character extends Entity {
      * 
      * Returns a Character's Treasure Hunt behavior.
      */
-    public TreasureHunt getSearchBehavior() {
+    public TreasureHuntBehavior getSearchBehavior() {
         return this.searchBehavior;
     }
 }

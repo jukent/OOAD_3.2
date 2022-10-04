@@ -2,7 +2,7 @@ package entity;
 
 import dungeon.Dungeon;
 import dungeon.Room;
-import fight.CreatureFighter;
+import fight.CreatureFightBehavior;
 import fight.FightBehavior;
 import movement.MovementBehavior;
 import movement.RandomWalkMovement;
@@ -22,7 +22,7 @@ public class Entity {
     String direction = new String("clockwise"); // Dummy String direction value
     protected int hp = 3; // Health Points Integer
 
-    public FightBehavior fightBehavior = new CreatureFighter(); // FightBehavior
+    public FightBehavior fightBehavior = new CreatureFightBehavior(); // FightBehavior
     public MovementBehavior movementBehavior = new RandomWalkMovement(); // MovementBehavior
 
 

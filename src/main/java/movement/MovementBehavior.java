@@ -5,6 +5,8 @@ import entity.Entity;
 
 public abstract class MovementBehavior {
  
+    // Implementation of the strategy OOP Design pattern. 
+
     private String movementType;
 
     

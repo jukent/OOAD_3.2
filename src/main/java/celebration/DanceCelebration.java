@@ -5,7 +5,7 @@ import util.DiceRolls;
 
 public class DanceCelebration extends Celebration {
 
-    //Subclass of a decorator pattern
+    // Subclass of a decorator pattern
 
 
     /**
@@ -14,17 +14,17 @@ public class DanceCelebration extends Celebration {
      * Dance Celebration constructor.
      */
     public DanceCelebration(FightBehavior fight) {
-        super(fight)
+        super(fight);
     }
+
 
      /**
      * @param celebrateRef: Celebration
      * 
      * Dance Celebration constructor.
      */
-
     public DanceCelebration(Celebration celebrateRef) {
-        super(celebrateRef)
+        super(celebrateRef);
     }
 
 
@@ -34,6 +34,7 @@ public class DanceCelebration extends Celebration {
      * 
      * Returns the "fight" dice-roll integer.
      */
+    @Override
     public int fight() {
         return this.fightRef.fight();
     }
@@ -44,6 +45,7 @@ public class DanceCelebration extends Celebration {
      * 
      * Executes dancing celebration a random number of times.
      */
+    @Override
     public void celebrate() {
         this.fightRef.celebrate();
         for(int i = 0; i < DiceRolls.rollDice(3) - 1; i++) {

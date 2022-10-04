@@ -1,8 +1,8 @@
 package entity;
 
 import dungeon.Dungeon;
-import fight.UntrainedFighter;
-import treasurehunt.QuickHunt;
+import fight.UntrainedFightBehavior;
+import treasurehunt.QuickHuntBehavior;
 
 public class Runner extends Character { 
     // Example of inheritance
@@ -19,8 +19,8 @@ public class Runner extends Character {
         this.dungeon = map; // Game Dungeon
         this.location = dungeon.getRoom("(0-1-1)"); // Begin in Entrance Room
         setMoveCount(2); // Int moveCount of 2, Runner's get twice the turns, 
-        this.fightBehavior = new UntrainedFighter(); // FightType is Untrained
-        this.searchBehavior = new QuickHunt(); // SearchType is Quick
+        this.fightBehavior = new UntrainedFightBehavior(); // FightType is Untrained
+        this.searchBehavior = new QuickHuntBehavior(); // SearchType is Quick
         name = "Runner"; // String name
     }
 }

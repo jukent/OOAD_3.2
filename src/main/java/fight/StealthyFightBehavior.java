@@ -2,18 +2,20 @@ package fight;
 
 import util.DiceRolls;
 
-public class StealthyFighter extends FightBehavior {
+public class StealthyFightBehavior extends FightBehavior {
 
-        //Implementation of the strategy OOP Design pattern. This is a subclass
-    //of the strategy pattern
+    // Implementation of the strategy OOP Design pattern. This is a subclass
+    // of the strategy pattern.
+
 
     /**
      * Constructor for a Stealthy Fighter.
      */
-    public StealthyFighter() {
+    public StealthyFightBehavior() {
         setFightType("Stealth");
     }
     
+
     /* (non-Javadoc)
      * @see FightBehavior.FightBehavior#fight()
      * 
