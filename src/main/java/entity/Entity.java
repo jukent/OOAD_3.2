@@ -105,7 +105,7 @@ public class Entity {
      * This method decreases an Entity's health by the integer 'n'.
      */
     public void loseHealth(int n) {
-        this.hp = this.hp - n;
+        this.hp -= n;
     }
 
 

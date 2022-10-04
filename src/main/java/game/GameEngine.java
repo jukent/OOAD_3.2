@@ -12,7 +12,7 @@ import treasure.*;
 
 public class GameEngine {
 
-    private String output = "ShowNone"; // OneScreen,ShowEnding,ShowAll,ShowNone
+    protected String output; // OneScreen,ShowEnding,ShowAll,ShowNone
 
     protected Dungeon dungeon = new Dungeon(); // Example of identity
     // Dungeon is an example of identity. While we could create an instance
@@ -32,7 +32,7 @@ public class GameEngine {
     // Using the Tracker is an example of the Observer pattern. Events are published to the Tracker (pointed out in comments)
     // And then the Tracker let's any interested parties know about the events.
 
-    protected Printer printer = new Printer(dungeon, tracker, output); // Game Printer
+    protected Printer printer; // Game Printer
 
     private int roundCount = 0; // The Integer round number
     private boolean endCondition = true; // End Condition check
@@ -45,12 +45,8 @@ public class GameEngine {
      * Constructor to initialize board.
      */
     public GameEngine(String outputType) {
-        this.output = outputType;
-        if (output != "ShowNone") {
-            System.out.println("Starting Game!");
-            System.out.println("Press Enter To Continue...");
-            scanner.nextLine();
-        }   
+        printer = new Printer(dungeon, tracker, outputType);
+        printer.printStartingScreen();
     }
 
 
@@ -159,24 +155,27 @@ public class GameEngine {
                 // If Character Wins
                 tracker.characterWon(character, creature, characterRoll, creatureRoll); // Publish Character won to Tracker
                 tracker.removeCreature(creature); // Remove dead Creature, publish to Trackers
-                if (output != "ShowNone") {
-                    celebration.celebrate();
-                    tracker.characterCelebrated(character, celebration); // Publish Character celebrated to Tracker
-                }
+                tracker.characterCelebrated(character, celebration);
+                printer.printFightResults();
+                printer.printCelebration(celebration);
+                     // Publish Character celebrated to Tracker
+                
                 // Example of Observer pattern, Tracker let's interested parties/subsribers
                 // (Printer, Logger, Room)'s know about these events.
             } else if (characterRoll < creatureRoll) {
                 // If Creature Wins
                 tracker.creatureWon(character, creature, characterRoll, creatureRoll); // Publish Creature won to Tracker
                 if (character.getHealth() <= 0) {
+                    printer.printFightResults();
                     tracker.removeCharacter(character); // Remove dead Character, publish to Tracker
                 }
             }
         } else {
             // If characterRoll = -1, fight was skipped
             tracker.fightSkipped(); // Publish fight skipped to Tracker
+            printer.printFightResults();
         }
-        printer.printFightResults();
+        
         // Printer is informed of results to print via the Tracker, example of Observer pattern
     }
     
@@ -365,18 +364,21 @@ public class GameEngine {
         if (treasureCount == 24) { 
             // 24 Treasures Found
             endCondition = false;
+            System.out.println();
             System.out.println("Game Over");
             System.out.println("All treasure found");
             System.out.println("\n");
         } else if (creatureCount <= 0) { 
             //All Creatures eliminated
             endCondition = false;
+            System.out.println();
             System.out.println("Game Over");
             System.out.println("All Creatures eliminated");
             System.out.println("\n");
         } else if (characterCount <= 0) {
             //All Characters defeated
             endCondition = false;
+            System.out.println();
             System.out.println("Game Over");
             System.out.println("All Adventurers eliminated");
             System.out.println("\n");

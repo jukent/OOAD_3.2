@@ -7,8 +7,8 @@ import fight.FightBehavior;
  */
 public abstract class Celebration extends FightBehavior {
 
-    protected Celebration celebrationRef;
-    protected FightBehavior fightRef;
+    public Celebration celebrationRef;
+    public FightBehavior fightRef;
 
     protected static final int ROLL_NUMBER = 3;
 
@@ -19,26 +19,8 @@ public abstract class Celebration extends FightBehavior {
     // to modify the behavior of fight behavior using the same methods.
 
 
-    /**
-     * @param fight: FightBehavior
-     * 
-     *  Celebration constructor.
-     */
-    public Celebration(FightBehavior fight) {
-        this.fightRef = fight;
-    }
-    
-    
-    /**
-     * @param celebrateRef: Celebration
-     * 
-     * Celebration constructor.
-     */
 
-    public Celebration(Celebration celebrateRef) {
-        this.fightRef = celebrateRef.fightRef;
-        this.celebrationRef = celebrateRef;
-    }
+
 
 
     /* (non-Javadoc)

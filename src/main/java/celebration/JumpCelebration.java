@@ -14,7 +14,7 @@ public class JumpCelebration extends Celebration {
      * Jump Celebration constructor.
      */
     public JumpCelebration(FightBehavior fight) {
-        super(fight);
+        this.fightRef = fight;
     }
 
 
@@ -24,7 +24,8 @@ public class JumpCelebration extends Celebration {
      * Jump Celebration constructor.
      */
     public JumpCelebration(Celebration celebrateRef) {
-        super(celebrateRef);
+        this.fightRef = celebrateRef.fightRef;
+        this.celebrationRef = celebrateRef;
     }
 
 
@@ -46,8 +47,10 @@ public class JumpCelebration extends Celebration {
      */
     @Override
     public void celebrate() {
-        this.fightRef.celebrate();
-        for(int i = 0; i < DiceRolls.rollDice(ROLL_NUMBER) - 1; i++) {
+        if (this.celebrationRef != null) {
+            this.celebrationRef.celebrate();
+        }
+        for (int i = 0; i < DiceRolls.rollDice(ROLL_NUMBER) - 1; i++) {
             System.out.print("Jump! ");
         }
     }
