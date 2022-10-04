@@ -12,7 +12,6 @@ public abstract class Celebration extends FightBehavior {
 
     protected static final int ROLL_NUMBER = 3;
 
-
     // This is our decorator pattern.
     // The celebration decorator decorates the fight behaviors
     // and can inherit fight references and celebration references

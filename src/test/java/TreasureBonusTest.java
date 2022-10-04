@@ -26,7 +26,6 @@ public class TreasureBonusTest {
         Assert.assertEquals(1,E.getOwnerFightBonus());
     }
 
-
     @Test
     public void testHPAddition(){
         A.addHealth(B.getHPBoost());
