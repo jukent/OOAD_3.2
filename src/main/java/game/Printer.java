@@ -271,11 +271,6 @@ public class Printer {
         }
     }
 
-    public void printCelebration(Celebration C1){
-        if (outputType != "ShowNone"){
-            C1.celebrate();
-            System.out.println();}
-    }
 
     /**
      * @param C1 Celebration
