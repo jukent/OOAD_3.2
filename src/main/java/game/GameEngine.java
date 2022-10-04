@@ -153,7 +153,7 @@ public class GameEngine {
             // If fight not skipped
             if(characterRoll > creatureRoll) {
                 // If Character Wins
-                tracker.characterWon(character, celebration,creature, characterRoll, creatureRoll); // Publish Character won to Tracker
+                tracker.characterWon(character, celebration, creature, characterRoll, creatureRoll); // Publish Character won to Tracker
                 tracker.removeCreature(creature); // Remove dead Creature, publish to Trackers
                 tracker.characterCelebrated(character, celebration);
                 printer.printFightResults();
