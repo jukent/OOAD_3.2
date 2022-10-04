@@ -14,7 +14,7 @@ public class Sneaker extends Character {
      *
      * Construct Sneakers with an Integer ID `id` and the Dungeon
      */
-    public Sneaker(int id, Dungeon map) {
+    public Sneaker(final int id, final Dungeon map) {
         setID(id); // Sneaker ID value
         setDungeon(map); // Game Dungeon
         setLocation(getDungeon().getRoom("(0-1-1)")); // Begin in Entrance Room

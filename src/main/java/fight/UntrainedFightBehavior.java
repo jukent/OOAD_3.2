@@ -8,6 +8,9 @@ public class UntrainedFightBehavior extends FightBehavior {
     // of the strategy pattern.
 
 
+    protected final static int DICESIDES = 6;
+
+
     /**
      * Constructor for an Untrained Fighter.
      */
@@ -24,7 +27,6 @@ public class UntrainedFightBehavior extends FightBehavior {
      * Returns the dice roll for an Untrained Fighter (no strength buff).
      */
     public int fight() {
-        final int DICESIDES = 6;
         return DiceRolls.rollDice(DICESIDES) + DiceRolls.rollDice(DICESIDES);
     }
 }

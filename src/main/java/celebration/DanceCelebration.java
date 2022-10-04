@@ -13,7 +13,7 @@ public class DanceCelebration extends Celebration {
      *
      * Dance Celebration constructor.
      */
-    public DanceCelebration(FightBehavior fight) {
+    public DanceCelebration(final FightBehavior fight) {
         setFightRef(fight);
     }
 
@@ -23,7 +23,7 @@ public class DanceCelebration extends Celebration {
      *
      * Dance Celebration constructor.
      */
-    public DanceCelebration(Celebration celebrateRef) {
+    public DanceCelebration(final Celebration celebrateRef) {
         setFightRef(celebrateRef.getFightRef());
         setCelebrationRef(celebrateRef);
     }

@@ -21,20 +21,21 @@ public class BlinkMovement extends MovementBehavior {
         setMovementType("Blink");
     }
 
-    
+
     /* (non-Javadoc)
      * @see movement.MovementBehavior#move(entity.Entity, dungeon.Dungeon)
      *
      * Replace abstract movement with Blinker movement
      */
     @Override
-    public void move(Entity entity, Dungeon dungeon) {
+    public void move(final Entity entity, final Dungeon dungeon) {
         Room currentRoom = entity.getLocation();
 
         // Get a new hashtable to store possible rooms called
-        // Hashtable values point to a subset of the Room objects in the main dungeon map
+        // Hashtable values point to a subset of the Room objects
         Hashtable<String, Room> possibleRoomMap = new Hashtable<String, Room>();
-        possibleRoomMap.putAll(dungeon.getMap()); // Learned method from Geeks for Geeks:
+        possibleRoomMap.putAll(dungeon.getMap());
+        // Learned method from Geeks for Geeks:
         //  "How to Copy Map Content to Another Hashtable in Java?
         // https://www.geeksforgeeks.org/
         //  how-to-copy-map-content-to-another-hashtable-in-java/

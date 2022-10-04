@@ -11,7 +11,7 @@ public class Armor extends Treasure {
      *
      * Constructor for an Armor treasure with Integer ID `id` and the Dungeon.
      */
-    public Armor(int id, Dungeon dungeon) {
+    public Armor(final int id, final Dungeon dungeon) {
         hide(dungeon); // Game Dungeon
         setAdversaryFightBonus(-1); // Armor provides defense
         // by giving Creature's a stength buff of -1

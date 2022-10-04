@@ -24,7 +24,7 @@ public class MovementBehaviorTest {
 
         Room characterRoom = dungeon.getRoom("(1-0-0)");
         character.setLocation(characterRoom);
-        
+
         ArrayList<Creature> creatureList = new ArrayList<Creature>();
         Seeker seeker = new Seeker(1, dungeon);
         creatureList.add(seeker);

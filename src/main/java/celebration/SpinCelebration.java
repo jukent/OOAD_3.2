@@ -13,7 +13,7 @@ public class SpinCelebration extends Celebration {
      *
      * Spin Celebration constructor.
      */
-    public SpinCelebration(FightBehavior fight) {
+    public SpinCelebration(final FightBehavior fight) {
         setFightRef(fight);
     }
 
@@ -23,7 +23,7 @@ public class SpinCelebration extends Celebration {
      *
      * Spin Celebration constructor.
      */
-    public SpinCelebration(Celebration celebrateRef) {
+    public SpinCelebration(final Celebration celebrateRef) {
         setFightRef(celebrateRef.getFightRef());
         setCelebrationRef(celebrateRef);
     }

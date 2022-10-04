@@ -7,6 +7,9 @@ public class ExpertFightBehavior extends FightBehavior {
     // Implementation of the strategy OOP Design pattern. This is a subclass
     // of the strategy pattern
 
+    protected final static int DICESIDES = 6;
+
+
 
     /**
      * Constructor for an Expert Fighter.
@@ -24,7 +27,7 @@ public class ExpertFightBehavior extends FightBehavior {
      * Returns the dice roll for an Expert Fighter (strength buff of 2).
      */
     public int fight() {
-        final int DICESIDES = 6;
-        return DiceRolls.rollDice(DICESIDES) + DiceRolls.rollDice(DICESIDES) + 2;
+        return DiceRolls.rollDice(DICESIDES) 
+            + DiceRolls.rollDice(DICESIDES) + 2;
     }
 }

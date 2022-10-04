@@ -8,7 +8,7 @@ public class Main {
      *
      * This is the main method that runs the game.
      */
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         run1Game();
         //runNGames(30);
     }
@@ -25,9 +25,9 @@ public class Main {
 
 
     /**
-     * @param N int
+     * @param n int
      *
-     * This method runs 'N' games.
+     * This method runs 'n' games.
      */
     public static void runNGames(int n) {
         for (int i = 0; i < n; i++) {

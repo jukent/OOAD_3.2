@@ -10,13 +10,13 @@ import dungeon.Room;
 abstract public class Treasure {
 
     private Room location; // The Treasure's hiding room.
-    private int ownerFightBonus = 0; // Integer amount 
-    // of added strength buff this Treasure gives a Character
-    private int adversaryFightBonus = 0; // Integer amount of 
+    private int ownerFightBonus = 0; // Integer amount of
+    // added strength buff this Treasure gives a Character
+    private int adversaryFightBonus = 0; // Integer amount of
     // added strength buff this Treasure gives a Creature
-    private int hpBoost = 0; // Integer amount of 
+    private int hpBoost = 0; // Integer amount of
     // added health points this Treasure gives a Character
-    private int takeDamage = 0; // Integer amount of 
+    private int takeDamage = 0; // Integer amount of
     // damage this Treasure does to a Character
     private String treasureType; // String type of Treasure
 
@@ -26,15 +26,16 @@ abstract public class Treasure {
      *
      * Sets the starting Room where the Treasure is hidden.
      */
-    protected void hide(Dungeon dungeon) {
+    protected void hide(final Dungeon dungeon) {
         // Get new map of possible Rooms
         Hashtable<String, Room> possibleRoomMap = new Hashtable<String, Room>();
-        possibleRoomMap.putAll(dungeon.getMap()); // Learned method from Geeks for Geeks: 
+        possibleRoomMap.putAll(dungeon.getMap());
+        // Learned method from Geeks for Geeks: 
         // "How to Copy Map Content to Another Hashtable in Java?
         // https://www.geeksforgeeks.org/
         //  how-to-copy-map-content-to-another-hashtable-in-java/
         possibleRoomMap.remove("(0-1-1)"); // Remove entrace room
-                
+
         // Randomly select one of the Rooms -
         // learned from Stack Overflow question:
         // https://stackoverflow.com/questions/
@@ -56,7 +57,7 @@ abstract public class Treasure {
      *
      * This method sets a Treasure's location.
      */
-    public final void setLocation(Room room) {
+    public void setLocation(final Room room) {
         this.location = room;
     }
 
@@ -86,7 +87,7 @@ abstract public class Treasure {
      *
      * This method sets a Treasure's ownerFightBonus.
      */
-    public final void setOwnerFightBonus(int n) {
+    public void setOwnerFightBonus(final int n) {
         this.ownerFightBonus = n;
     }
 
@@ -106,7 +107,7 @@ abstract public class Treasure {
      *
      * This method sets a Treasure's adversaryFightBonus.
      */
-    public final void setAdversaryFightBonus(int n) {
+    public void setAdversaryFightBonus(final int n) {
         this.adversaryFightBonus = n;
     }
 
@@ -126,7 +127,7 @@ abstract public class Treasure {
      *
      * This method setss the hp Boost for the Treasure.
      */
-    public final void setHPBoost(int n) {
+    public void setHPBoost(final int n) {
         this.hpBoost = n;
     }
 
@@ -146,7 +147,7 @@ abstract public class Treasure {
      *
      * This method sets how much damage the Treasure inflicts.
      */
-    public final void setTakeDamage(int n) {
+    public void setTakeDamage(final int n) {
         this.takeDamage = n;
     }
 
@@ -166,7 +167,7 @@ abstract public class Treasure {
      *
      * This method sets the String for the Treasure type.
      */
-    public final void setTreasureType(String type) {
+    public void setTreasureType(final String type) {
         this.treasureType = type;
     }
 }

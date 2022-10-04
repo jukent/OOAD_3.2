@@ -9,7 +9,7 @@ public abstract class Celebration extends FightBehavior {
 
     private Celebration celebrationRef; // Celebration reference
     private FightBehavior fightRef; // Fight reference
-    
+
     protected static final int ROLLNUMBER = 3; // Roll number (not magic number)
 
     // This is our decorator pattern.
@@ -50,7 +50,7 @@ public abstract class Celebration extends FightBehavior {
      *
      * Sets the Celebration reference.
      */
-    final void setCelebrationRef(Celebration celebrationRef) {
+    final void setCelebrationRef(final Celebration celebrationRef) {
         this.celebrationRef = celebrationRef;
     }
 
@@ -71,7 +71,7 @@ public abstract class Celebration extends FightBehavior {
      *
      * Sets the decorated Fight Behavior.
      */
-    final void setFightRef(FightBehavior fightRef) {
+    final void setFightRef(final FightBehavior fightRef) {
         this.fightRef = fightRef;
     }
 }

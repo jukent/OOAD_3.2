@@ -7,13 +7,15 @@ public class CarefulHuntBehavior extends TreasureHuntBehavior {
     // Implementation of the strategy OOP Design pattern. This is a subclass
     // of the strategy pattern.
 
+    protected final static int NEEDEDSCORE = 7;
+    protected final static int DICESIDES = 6;
+
 
     /**
      * Constructor for a Careful Treasure Hunt.
      */
     public CarefulHuntBehavior() {
         setSearchType("Careful"); // String Name
-        final int NEEDEDSCORE = 7;
         setNeededScore(NEEDEDSCORE); // Required dice roll of Integer 7
     }
 
@@ -25,7 +27,6 @@ public class CarefulHuntBehavior extends TreasureHuntBehavior {
      */
     @Override
     public int searchTreasure() {
-        final int DICESIDES = 6;
         return DiceRolls.rollDice(DICESIDES) + DiceRolls.rollDice(DICESIDES);
     }
 }

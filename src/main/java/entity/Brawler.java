@@ -15,7 +15,7 @@ public class Brawler extends Character {
      * Brawler constructor must be passed in an integer ID `id` and the Dungeon.
      * Brawler is constructed with starting room.
      */
-    public Brawler(int id, Dungeon map) {
+    public Brawler(final int id, final Dungeon map) {
         setID(id); // Brawler ID value
         setDungeon(map); // Game Dungeon
         setLocation(getDungeon().getRoom("(0-1-1)")); // Begin in Entrance Room

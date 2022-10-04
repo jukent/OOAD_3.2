@@ -28,7 +28,7 @@ public class RandomWalkMovement extends MovementBehavior {
      *
      */
     @Override
-    public void move(Entity entity, Dungeon dungeon) {
+    public void move(final Entity entity, final Dungeon dungeon) {
         // Find ArrayList of current room's exits
         Room currentRoom = entity.getLocation();
         ArrayList<String> exits = currentRoom.getExits();

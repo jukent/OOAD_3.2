@@ -20,7 +20,7 @@ public class Orbiter extends Creature {
      * and the Dungeon.
      * Orbiters are assigned a starting room at construction.
      */
-    public Orbiter(int id, Dungeon map) {
+    public Orbiter(final int id, final Dungeon map) {
         setID(id); // Orbiter ID value
         setHP(1); // 1 Health point for Creatures
         setDungeon(map); // Game Dungeon

@@ -12,11 +12,17 @@ public class Room {
     final private int row; // The row coordinate for this room - Integer
     final private int column; // The column coordinates for this room - Integer
     private String name; // The name  of this room, i.e. "(2-0-0)" - String
-    private ArrayList<String> exits; // ArrayList of neighboring room names i.e. ["(2-1-0)","(2-0-1)"] 
+    private ArrayList<String> exits; // ArrayList of neighboring room names
+    // i.e. ["(2-1-0)","(2-0-1)"] 
     
     private ArrayList<Character> charactersInRoom; // ArrayList of Character
     private ArrayList<Creature> creaturesInRoom; // ArrayList of Creature
     private ArrayList<Treasure> treasuresInRoom; // ArrayList of Treasure
+
+
+    // Avoiding magic numbers
+    protected final static int MINLEVEL = 1; // Dungeon highest level (not starting room)
+    protected final static int MAXLEVEL = 4; // Dungeon max levels
 
 
     /**
@@ -24,7 +30,8 @@ public class Room {
      * @param row Integer
      * @param column Integer
      *
-     * Constructs the room object based on its level, row, and column coordinates.
+     * Constructs the room object based on its coordinates.
+     *
      * Rooms have level, row, and column coordinates,
      * as well as a name generated from these coordinates,
      * and a mapping of valid standard exit room names.
@@ -186,10 +193,6 @@ public class Room {
      * to wait for an object containing all of the rooms to exist.
      */
     private ArrayList<String> findExits() {
-        // Avoiding magic numbers
-        final int MINLEVEL = 1; // Dungeon highest level (not starting room)
-        final int MAXLEVEL = 4; // Dungeon max levels
-
         ArrayList<String> exits = new ArrayList<String>();
         if (this.level == 0) {
             // If in starting room (0-1-1), only stairs down

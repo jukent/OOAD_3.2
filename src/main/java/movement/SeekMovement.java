@@ -30,7 +30,7 @@ public class SeekMovement extends MovementBehavior {
      * a nearby Room, then they move to the room with the Character.
      */
     @Override
-    public void move(Entity entity, Dungeon dungeon) {
+    public void move(final Entity entity, final Dungeon dungeon) {
         Room currentRoom = entity.getLocation();
 
         // List of nearby rooms

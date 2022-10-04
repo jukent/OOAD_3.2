@@ -60,8 +60,8 @@ public class Tracker {
      *
      * Constructor for the Tracker.
      */
-    public Tracker(ArrayList<Character> characterList, ArrayList<Creature> creatureList,
-        ArrayList<Treasure> treasureList) {
+    public Tracker(final ArrayList<Character> characterList, final ArrayList<Creature> creatureList,
+        final ArrayList<Treasure> treasureList) {
             this.characterList = characterList; // An ArrayList of all active Characters
             this.creatureList = creatureList; // An ArrayList of all active Creatures
             this.treasureList = treasureList; // An ArrayList of all hidden Treasures
@@ -86,7 +86,7 @@ public class Tracker {
      *
      * This sets the Integer Round count value.
      */
-    public void setRoundCount(int roundCount) {
+    public void setRoundCount(final int roundCount) {
         this.roundCount = roundCount;
     }
 
@@ -106,7 +106,7 @@ public class Tracker {
      *
      * Returns the Integer Treasure count value.
      */
-    public void setTreasureCount(int n) {
+    public void setTreasureCount(final int n) {
         this.treasureCount = n;
     }
 
@@ -117,7 +117,7 @@ public class Tracker {
      *
      * Publishes the Character exiting a Room to the Room's occupancy.
      */
-    public void publishCharacterExitsRoom(Character character, Room room) {
+    public void publishCharacterExitsRoom(final Character character, final Room room) {
         ArrayList<Character> charactersInRoom = room.getCharactersInRoom();
         charactersInRoom.remove(character);
         room.setCharactersInRoom(charactersInRoom);
@@ -130,7 +130,7 @@ public class Tracker {
      *
      * Publishes a Character entering a Room to the Room's occupancy.
      */
-    public void publishCharacterEntersRoom(Character character, Room room) {
+    public void publishCharacterEntersRoom(final Character character, final Room room) {
         ArrayList<Character> charactersInRoom = room.getCharactersInRoom();
         charactersInRoom.add(character);
         room.setCharactersInRoom(charactersInRoom);
@@ -145,7 +145,7 @@ public class Tracker {
      * Done separately from Characters because it is conventient
      * for the Room's to store Characters and Creatures separately.
      */
-    public void publishCreatureExitsRoom(Creature creature, Room room) {
+    public void publishCreatureExitsRoom(final Creature creature, final Room room) {
         ArrayList<Creature> creaturesInRoom = room.getCreaturesInRoom();
         creaturesInRoom.remove(creature);
         room.setCreaturesInRoom(creaturesInRoom);
@@ -158,7 +158,7 @@ public class Tracker {
      *
      * Publishes a Creature Entering a Room to the Room's occupancy.
      */
-    public void publishCreatureEntersRoom(Creature creature, Room room) {
+    public void publishCreatureEntersRoom(final Creature creature, final Room room) {
         ArrayList<Creature> creaturesInRoom = room.getCreaturesInRoom();
         creaturesInRoom.add(creature);
         room.setCreaturesInRoom(creaturesInRoom);
@@ -171,7 +171,7 @@ public class Tracker {
      *
      * Publishes Treasure being removed from a Room to the Room's occupancy.
      */
-    public void publishTreasureExitsRoom(Treasure treasure, Room room) {
+    public void publishTreasureExitsRoom(final Treasure treasure, final Room room) {
         ArrayList<Treasure> treasuresInRoom = room.getTreasuresInRoom();
         treasuresInRoom.remove(treasure);
         room.setTreasuresInRoom(treasuresInRoom);
@@ -184,7 +184,7 @@ public class Tracker {
      *
      * Publishes Treasure being hidden in a Room to the Room's occupancy.
      */
-    public void publishTreasureInRoom(Treasure treasure, Room room) {
+    public void publishTreasureInRoom(final Treasure treasure, final Room room) {
         ArrayList<Treasure> treasuresInRoom = room.getTreasuresInRoom();
         treasuresInRoom.add(treasure);
         room.setTreasuresInRoom(treasuresInRoom);
@@ -197,7 +197,7 @@ public class Tracker {
      * Sets the initial Character stats for the Tracker
      * and publishes starting Room occupancy.
      */
-    public void setCharacterStats(ArrayList<Character> characterList) {
+    public void setCharacterStats(final ArrayList<Character> characterList) {
         this.characterList = characterList;
         // Publish Character occupancy to rooms
         for (Character c: characterList) {
@@ -213,7 +213,7 @@ public class Tracker {
      * Sets the initial Creature stats for the Tracker
      * and publishes starting Room occupancy.
      */
-    public void setCreatureStats(ArrayList<Creature> creatureList) {
+    public void setCreatureStats(final ArrayList<Creature> creatureList) {
         this.creatureList = creatureList;
         // Publish Creature occupancy to rooms
         for (Creature c: creatureList) {
@@ -229,7 +229,7 @@ public class Tracker {
      * Sets the initial Treasure stats for the Tracker
      * and publishes starting Room occupancy.
      */
-    public void setTreasureStats(ArrayList<Treasure> treasureList) {
+    public void setTreasureStats(final ArrayList<Treasure> treasureList) {
         this.treasureList = treasureList;
         // Publish Treasure occupancy to rooms
         for (Treasure t: treasureList) {
@@ -246,7 +246,7 @@ public class Tracker {
      *
      * Tracker updates the Treasure count and the Room occupancy.
      */
-    public void treasureFound(Treasure treasure, Integer score) {
+    public void treasureFound(final Treasure treasure, final Integer score) {
         setTreasureCount(getTreasureCount() + 1); // Increase counter by one
         this.treasureList.remove(treasure); // remove from treasure list
         
@@ -293,7 +293,7 @@ public class Tracker {
      *
      * Tracker reduces Creature's health points by 1.
      */
-    public void characterWon(Character character, Creature creature,
+    public void characterWon(final Character character, final Creature creature,
         int characterRoll, int creatureRoll) {
             creature.loseHealth(1);
 
@@ -318,7 +318,7 @@ public class Tracker {
      *
      * Tracker reduces Character's health points by 1.
      */
-    public void creatureWon(Character character, Creature creature,
+    public void creatureWon(final Character character, final Creature creature,
         int characterRoll, int creatureRoll) {
             character.loseHealth(1);
 
@@ -342,8 +342,9 @@ public class Tracker {
      * Tracker does nothing with this as of yet,
      * but it was requested by the assignment.
      */
-    public void characterCelebrated(Character character, Celebration celebration) {
-        fightValues.put("celebration", celebration.toString());
+    public void characterCelebrated(final Character character,
+        final Celebration celebration) {
+            fightValues.put("celebration", celebration.toString());
     }
 
 
@@ -355,7 +356,7 @@ public class Tracker {
      * Tracker removes the Character from the active Character list
      * and lets Room subscriper know of new occupancy.
      */
-    public void removeCharacter(Character character) {
+    public void removeCharacter(final Character character) {
         this.characterList.remove(character);
 
         // Publish Occupancy to Rooms
@@ -372,7 +373,7 @@ public class Tracker {
      * Tracker removes the Creature from the active Creature list
      * and lets Room subscriber know of new occupancy.
      */
-    public void removeCreature(Creature creature) {
+    public void removeCreature(final Creature creature) {
         this.creatureList.remove(creature);
 
         // Publish Creature Occupancy to Rooms
@@ -390,8 +391,8 @@ public class Tracker {
      *
      * Tracker lets Room subscribers know of new occupancy.
      */
-    public void characterMoved(Character character,
-        Room oldRoom, Room newRoom) {
+    public void characterMoved(final Character character,
+        final Room oldRoom, final Room newRoom) {
         // Remove character from old room occupancy
         publishCharacterExitsRoom(character, oldRoom);
 
@@ -409,13 +410,13 @@ public class Tracker {
      *
      * Tracker lets Room subscribers know of new occupancy.
      */
-    public void creatureMoved(Creature creature,
-        Room oldRoom, Room newRoom) {
-        // Remove creature from old room occupancy
-        publishCreatureExitsRoom(creature, oldRoom);
+    public void creatureMoved(final Creature creature,
+        final Room oldRoom, final Room newRoom) {
+            // Remove creature from old room occupancy
+            publishCreatureExitsRoom(creature, oldRoom);
 
-        // Add creature to new room occupancy
-        publishCreatureEntersRoom(creature, newRoom);
+            // Add creature to new room occupancy
+            publishCreatureEntersRoom(creature, newRoom);
     }
 
     
@@ -456,7 +457,7 @@ public class Tracker {
      *
      * Publishes the event that the Treasure was already found.
      */
-    public void duplicateTreasureFound(Treasure treasure, Integer score) {
+    public void duplicateTreasureFound(final Treasure treasure, final Integer score) {
         treasureHuntResult = "DuplicateTreasureFound";
         treasureHuntValues.clear();
         treasureHuntValues.put("result", treasureHuntResult);
@@ -470,7 +471,7 @@ public class Tracker {
      *
      * Publishes the event that Treasure was not found.
      */
-    public void treasureNotFound(Integer score) {
+    public void treasureNotFound(final Integer score) {
         treasureHuntResult = "TreasureNotFound";
         treasureHuntValues.clear();
         treasureHuntValues.put("result", treasureHuntResult);

@@ -34,7 +34,7 @@ public abstract class FightBehavior {
      *
      * Sets the FightBehavior type.
      */
-    public final void setFightType(String fightType) {
+    public final void setFightType(final String fightType) {
         this.fightType = fightType;
     }
 

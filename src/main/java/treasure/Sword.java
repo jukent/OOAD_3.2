@@ -11,7 +11,7 @@ public class Sword extends Treasure {
      *
      * Constructor for a Sword Treasure with Integer ID `id` and the Dungeon.
      */
-    public Sword(int id, Dungeon dungeon) {
+    public Sword(final int id, final Dungeon dungeon) {
         hide(dungeon); // Game Dungeon
         setOwnerFightBonus(1); // Swords give a Character strength buff of 1
         setTreasureType("Sword"); // String name

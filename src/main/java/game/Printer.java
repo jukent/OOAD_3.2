@@ -14,12 +14,12 @@ public class Printer {
 
     private final Dungeon dungeon; // Game Dungeon
     private final Tracker tracker; // Game Tracker
-    private final String outputType; // Output options: 
+    private final String outputType; // Output options:
     // OneScreen, ShowAll, ShowEnding, ShowNone
     private final Scanner scanner
         = new java.util.Scanner(System.in); // A Scanner for awaiting user input
 
-    
+
     /**
      * @param dungeon Dungeon
      * @param output String
@@ -27,7 +27,7 @@ public class Printer {
      *
      * Construct the printer.
      */
-    public Printer(Dungeon dungeon, Tracker tracker, String output) {
+    public Printer(final Dungeon dungeon, final Tracker tracker, final String output) {
         this.dungeon = dungeon; // Game Dungeon
         this.tracker = tracker; // Game Tracker
         this.outputType = output; // Output type String
@@ -43,9 +43,10 @@ public class Printer {
             System.out.println();
             printGameStatus();
 
-            // Level 0 
+            // Level 0
             Room startingRoom = dungeon.getRoom("(0-1-1)");
-            ArrayList<String> occupancyArray = getOccupancyStringArray(startingRoom);
+            ArrayList<String> occupancyArray
+                = getOccupancyStringArray(startingRoom);
             String occupancyString
                 = occupancyArray.toString()
                 .replace("[", "")
@@ -194,7 +195,7 @@ public class Printer {
         creatureSet.add("Seeker");
         creatureSet.add("Blinker");
         String TempString;
-        int[] counts = {0 ,0, 0};
+        int[] counts = {0, 0, 0};
         for (Creature c: tracker.getCreatureList()) {
             counts[creatureSet.indexOf(c.getName())] += 1;
         }
@@ -214,7 +215,7 @@ public class Printer {
      *
      * Prints the entities and their dice rolls when a Character wins the fight.
      */
-    private void printCharacterWins(String character, String creature,
+    private void printCharacterWins(final String character, final String creature,
         String characterRoll, String creatureRoll) {
             System.out.print("Fight: ");
             System.out.print(character + ": ");
@@ -235,7 +236,7 @@ public class Printer {
      *
      * Prints the entities and their dice rolls when a Creature wins the fight.
      */
-    private void printCreatureWins(String character, String creature,
+    private void printCreatureWins(final String character, final String creature,
         String characterRoll, String creatureRoll) {
             System.out.print("Fight: ");
             System.out.print(character + ": ");
@@ -272,7 +273,7 @@ public class Printer {
                 // Fight not skipped
                 String character = fightValues.get("character");
                 String characterRoll = fightValues.get("characterRoll");
-                String creature= fightValues.get("creature");
+                String creature = fightValues.get("creature");
                 String creatureRoll = fightValues.get("creatureRoll");
 
                 if (result == "CharacterWon") {
@@ -294,7 +295,7 @@ public class Printer {
      *
      * Print the VCelebration.
      */
-    public void printCelebration(Celebration c1) {
+    public void printCelebration(final Celebration c1) {
         if (outputType != "ShowNone"){
             c1.celebrate();
             System.out.println();}
@@ -306,7 +307,7 @@ public class Printer {
      *
      * Prints the treasure and dice roll for a successful treasure hunt.
      */
-    private void printTreasureHuntSuccess(String treasure, String score) {
+    private void printTreasureHuntSuccess(final String treasure, final String score) {
         System.out.print("Treasure Hunt: ");
         System.out.print(score);
         System.out.println(" Success! ");
@@ -320,7 +321,7 @@ public class Printer {
      *
      * Prints the treasure and dice rolls for a duplicate treasure hunt.
      */
-    private void printDuplicateTreasureHunt(String treasure, String score) {
+    private void printDuplicateTreasureHunt(final String treasure, final String score) {
         if (outputType != "ShowNone") {
             System.out.print("Treasure Hunt: ");
             System.out.print(score);
@@ -336,7 +337,7 @@ public class Printer {
      *
      * Prints the dice roll for an unsuccessful treasure hunt.
      */
-    private void printTreasureHuntFail(String score) {
+    private void printTreasureHuntFail(final String score) {
         System.out.print("Treasure Hunt: ");
         System.out.print(score);
         System.out.println(" Fail :(");
@@ -390,5 +391,4 @@ public class Printer {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
-
 }

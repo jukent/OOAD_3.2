@@ -25,7 +25,7 @@ public class OrbitMovement extends MovementBehavior {
      * Moves (clockwise or counterclockwise).
      */
     @Override
-    public void move(Entity entity, Dungeon dungeon) {
+    public void move(final Entity entity, final Dungeon dungeon) {
         Room currentRoom = entity.getLocation();
         String direction = entity.getDirection();
 

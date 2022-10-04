@@ -14,7 +14,7 @@ public class Thief extends Character {
      *
      * Construct Thieves with an Integer ID `id` and the Dungeon
      */
-    public Thief(int id, Dungeon map) {
+    public Thief(final int id, final Dungeon map) {
         setID(id); // Thief ID value
         setDungeon(map); // Game Dungeon
         setLocation(getDungeon().getRoom("(0-1-1)")); // Start in Entrance Room

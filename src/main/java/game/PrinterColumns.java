@@ -26,7 +26,7 @@ public class PrinterColumns {
      *
      * This method adds a List of Strings to the PrinterColumns.
      */
-    public PrinterColumns addLine(List<String> rowStrings) {
+    public PrinterColumns addLine(final List<String> rowStrings) {
 
         if (numColumns == -1) {
             numColumns = rowStrings.size();

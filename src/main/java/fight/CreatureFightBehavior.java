@@ -4,6 +4,8 @@ import util.DiceRolls;
 
 public class CreatureFightBehavior extends FightBehavior {
 
+    protected final static int DICESIDES = 6;
+
 
     /**
      * Creature Fighter constructor.
@@ -21,7 +23,6 @@ public class CreatureFightBehavior extends FightBehavior {
      * Returns the dice roll for a Creature Fighter (no strength buff).
      */
     public int fight() {
-        final int DICESIDES = 6;
         return DiceRolls.rollDice(DICESIDES) + DiceRolls.rollDice(DICESIDES);
     }
 }

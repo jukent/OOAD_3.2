@@ -33,7 +33,7 @@ public abstract class TreasureHuntBehavior {
      *
      * Sets the needed dice roll for a Treasure Search behavior.
      */
-    public final void setNeededScore(int n) {
+    public void setNeededScore(final int n) {
         this.neededScore = n;
     }
 
@@ -53,7 +53,7 @@ public abstract class TreasureHuntBehavior {
      *
      * Sets the String Treasure Hunt type for a Hunt behavior.
      */
-    public final void setSearchType(String type) {
+    public void setSearchType(final String type) {
         this.searchType = type;
     }
 

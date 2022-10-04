@@ -8,6 +8,9 @@ public class TrainedFightBehavior extends FightBehavior {
     // of the strategy pattern.
 
 
+    protected final static int DICESIDES = 6;
+
+
     /**
      * Constructor for a Trained Fighter.
      */
@@ -23,7 +26,7 @@ public class TrainedFightBehavior extends FightBehavior {
      * Returns the dice roll for a Trained Fighter (strength buff of 1).
      */
     public int fight() {
-        final int DICESIDES = 6;
-        return DiceRolls.rollDice(DICESIDES) + DiceRolls.rollDice(DICESIDES) + 1;
+        return DiceRolls.rollDice(DICESIDES)
+            + DiceRolls.rollDice(DICESIDES) + 1;
     }
 }

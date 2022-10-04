@@ -21,6 +21,8 @@ public class Logger {
     private Tracker tracker; // The Game Tracker
     private String outputType; // String output options
 
+    protected final static int MAXHEALTH = 3;
+
 
     /**
      * @param tracker Tracker
@@ -28,10 +30,11 @@ public class Logger {
      *
      * Constructor for the turn Logger.
      */
-    public Logger(Tracker tracker, String outputType) {
+    public Logger(final Tracker tracker, final String outputType) {
         this.tracker = tracker; // The Game Tracker
         this.outputType =
-            outputType; // Output options: OneScreen, ShowAll, ShowEnding, ShowNone
+            outputType; // Output options:
+            // OneScreen, ShowAll, ShowEnding, ShowNone
     }
 
 
@@ -49,7 +52,6 @@ public class Logger {
 
             fileWriter.write("\n");
 
-            final int MAXHEALTH = 3;
             for (Character c: tracker.getCharacterList()) {
                 String name = c.getName();
                 String location = c.getLocation().getName();

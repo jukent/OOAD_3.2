@@ -8,11 +8,11 @@ import entity.*;
 
 
 public class FightBehaviorTest {
-    Dungeon dungeon = new Dungeon();
-    Character runner = new Runner(1, dungeon);
-    Character brawler = new Brawler(1,dungeon);
-    Character sneaker = new Sneaker(1, dungeon);
-    Character thief = new Thief(1,dungeon);
+    private Dungeon dungeon = new Dungeon();
+    private Character runner = new Runner(1, dungeon);
+    private Character brawler = new Brawler(1,dungeon);
+    private Character sneaker = new Sneaker(1, dungeon);
+    private Character thief = new Thief(1, dungeon);
 
 
     @Test

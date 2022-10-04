@@ -18,7 +18,7 @@ public class Blinker extends Creature {
      * Blinkers constructor must be passed an ID integer 'id' and the Dungeon
      * Blinkers are assigned a starting room at construction.
      */
-    public Blinker(int id, Dungeon map) {
+    public Blinker(final int id, final Dungeon map) {
         setID(id); // Blinker ID value
         setHP(1); // 1 Health point for Creatures
         setDungeon(map); // Game Dungeon

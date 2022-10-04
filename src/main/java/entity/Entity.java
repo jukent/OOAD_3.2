@@ -8,7 +8,8 @@ import movement.MovementBehavior;
 import movement.RandomWalkMovement;
 
 public class Entity {
-    // Example of abstraction - Characters and Creatures all have their information grouped together
+    // Example of abstraction -
+    // Characters and Creatures all have their information grouped together
     // This was planned in the initial UML design, and was made abstract
     // because it allows a user to interact with characters without
     // knowing the full details.
@@ -22,7 +23,8 @@ public class Entity {
         = new String("Entity"); // Simple Entity name String
     private String direction
         = new String("clockwise"); // Dummy String direction value
-    private int hp = 3; // Health Points Integer
+    private final static int HP = 3; // Health Points Integer
+    private int hp = HP;
     private int moveCount = 1; // Integer movement count
 
     private FightBehavior fightBehavior
@@ -40,7 +42,7 @@ public class Entity {
     public int fight() {
         return fightBehavior.fight();
     }
-    
+
 
     /**
      * Template function for specific move directions
@@ -56,7 +58,7 @@ public class Entity {
      *
      * This method manually sets Entity's location.
      */
-    public void setLocation(Room room) {
+    public void setLocation(final Room room) {
         this.location = room;
     }
 
@@ -81,10 +83,10 @@ public class Entity {
      * (so that Characters could blink), all Entity's needed to have any
      * parameters that could be called up by any of the 'move()' methods.
      */
-    public void setDirection(String direction) {
+    public void setDirection(final String direction) {
         this.direction = direction;
     }
-    
+
 
     /**
      * @return String
@@ -111,7 +113,7 @@ public class Entity {
      *
      * This method decreases an Entity's health by the integer 'n'.
      */
-    public void loseHealth(int n) {
+    public void loseHealth(final int n) {
         this.hp -= n;
     }
 
@@ -142,7 +144,7 @@ public class Entity {
      *
      * This method sets an Entity's fight behavior.
      */
-    public final void setFightBehavior(FightBehavior fightBehavior) {
+    public void setFightBehavior(final FightBehavior fightBehavior) {
         this.fightBehavior = fightBehavior;
     }
 
@@ -173,8 +175,8 @@ public class Entity {
      * 
      * This method sets an Entity's MovementBehavior.
      */
-    public void setMovementBehavior(MovementBehavior movement_behavior) {
-        this.movementBehavior = movement_behavior;
+    public void setMovementBehavior(final MovementBehavior movementBehavior) {
+        this.movementBehavior = movementBehavior;
     }
 
 
@@ -213,7 +215,7 @@ public class Entity {
      *
      * Sets an Entity's ID.
      */
-    public final void setID(int id) {
+    public void setID(final int id) {
         this.id = id;
     }
 
@@ -233,7 +235,7 @@ public class Entity {
      *
      * Sets an Entity's move count.
      */
-    public final void setMoveCount(int moveCount) {
+    public void setMoveCount(final int moveCount) {
         this.moveCount = moveCount;
     }
 
@@ -253,7 +255,7 @@ public class Entity {
      *
      * Sets the Entity dungeon.
      */
-    public final void setDungeon(Dungeon dungeon) {
+    public void setDungeon(final Dungeon dungeon) {
         this.dungeon = dungeon;
     }
 
@@ -263,7 +265,7 @@ public class Entity {
      *
      * Sets an Entity's name.
      */
-    public final void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 }

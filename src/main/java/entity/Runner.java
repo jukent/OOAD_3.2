@@ -14,7 +14,7 @@ public class Runner extends Character {
      *
      * Constructs a runner with an Integer `id` and the Dungeon.
      */
-    public Runner(int id, Dungeon map) {
+    public Runner(final int id, final Dungeon map) {
         setID(id); // Runner ID value
         setDungeon(map); // Game Dungeon
         setLocation(getDungeon().getRoom("(0-1-1)")); // Begin in Entrance Room

@@ -12,7 +12,8 @@ public abstract class Character extends Entity {
     private ArrayList<Treasure> inventory
         = new ArrayList<Treasure>(); // ArrayList of Treasure inventory
     private ArrayList<String> inventoryTypes
-        = new ArrayList<String>(); // ArrayList of Treasure inventory types (Strings)
+        = new ArrayList<String>(); // ArrayList of Treasure inventory types
+        // (Strings)
 
 
     /**
@@ -50,7 +51,7 @@ public abstract class Character extends Entity {
      *
      * This method adds health to a Character's health points.
      */
-    public void addHealth(int n) {
+    public void addHealth(final int n) {
         setHP(getHP() + n);
     }
 
@@ -71,7 +72,7 @@ public abstract class Character extends Entity {
      * This method adds a single Treasure to the Character's treasure inventory
      * and updates their Treasure inventory types to match.
      */
-    public void addInventory(Treasure treasure) {
+    public void addInventory(final Treasure treasure) {
         ArrayList<Treasure> inventory = getInventory();
         inventory.add(treasure);
 
@@ -96,7 +97,7 @@ public abstract class Character extends Entity {
      *
      * This method sets the Character's Treasure inventory types.
      */
-    public void setInventoryTypes(ArrayList<String> inventoryTypes) {
+    public void setInventoryTypes(final ArrayList<String> inventoryTypes) {
         this.inventoryTypes = inventoryTypes;
     }
 

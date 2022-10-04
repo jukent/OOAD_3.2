@@ -27,7 +27,7 @@ public class GameEngine {
     private ArrayList<Character> characterList = new ArrayList<Character>();
     private ArrayList<Creature> creatureList = new ArrayList<Creature>();
     private ArrayList<Treasure> treasureList = new ArrayList<Treasure>();
-    
+
     private final Tracker tracker
         = new Tracker(characterList, creatureList, treasureList); // Game Tracker
     // Using the Tracker is an example of the Observer pattern.
@@ -38,7 +38,10 @@ public class GameEngine {
 
     private int roundCount = 0; // The Integer round number
     private boolean endCondition = true; // End Condition check
-    private final Scanner scanner = new java.util.Scanner(System.in); // Scanner for user input
+    private final Scanner scanner
+        = new java.util.Scanner(System.in); // Scanner for user input
+
+    protected final static int NUMEACH = 4;
 
 
     /**
@@ -46,7 +49,7 @@ public class GameEngine {
      *
      * Constructor to initialize board.
      */
-    public GameEngine(String outputType) {
+    public GameEngine(final String outputType) {
         printer = new Printer(dungeon, tracker, outputType);
         printer.printStartingScreen();
     }
@@ -74,7 +77,7 @@ public class GameEngine {
      *
      * Populate CharacterList and CreatureList with Characters and Creatures
      */
-    public void populateEntities(Dungeon dungeon, Tracker tracker) {
+    public void populateEntities(final Dungeon dungeon, final Tracker tracker) {
         // Example of polymorphism.
         // In this case we are adding subclasses to an ArrayList
         // but the ArrayList is made of an abstract class
@@ -98,7 +101,6 @@ public class GameEngine {
 
         // Creatures
         // Also an example of polymorphism
-        final int NUMEACH = 4;
         for (int i = 0; i < NUMEACH; i++) {
             creatureList.add(new Seeker(id, dungeon));
             id++;
@@ -136,12 +138,12 @@ public class GameEngine {
      * @param character Character
      * @param creature Creature
      *
-     * Input a Character `A` and Creature `B`
+     * Input a Character and Creature 
      * Deducts health if a dice roll is larger than the other.
      *
      * If a character rolls a -1, fight is skipped.
      */
-    private void simulateFight(Character character, Creature creature) {
+    private void simulateFight(final Character character, final Creature creature) {
 
         // Decorator pattern. Wraps fightbehavior into celebration decorator
         // Fight method is called from the celebration decorator
@@ -202,7 +204,7 @@ public class GameEngine {
      * Performs the Character action of searching for treasure.
      * Adds to the Characters treasure count
      */
-    private void simulateTreasureHunt(Character character) {
+    private void simulateTreasureHunt(final Character character) {
         int neededScore = character.getSearchBehavior().getNeededScore();
         int score = character.searchTreasure();
 
@@ -236,7 +238,7 @@ public class GameEngine {
                 } else {
                     // This is a new type of Treasure
                     character.addInventory(currentItem);
-                    character.loseHealth(currentItem.getTakeDamage()); 
+                    character.loseHealth(currentItem.getTakeDamage());
                     character.addHealth(currentItem.getHPBoost());
                     // Publish Treasure found to Tracker
                     tracker.treasureFound(currentItem, score);
@@ -300,7 +302,7 @@ public class GameEngine {
      *      searches for treasure if there are no Creatures
      *      or fights if there are Creatures.
      */
-    private void process1Character(Character character) {
+    private void process1Character(final Character character) {
         // Process turn counts for characters. Mostly 1 but runners have 2
         for (int i = 0; i < character.getMoveCount(); i++) {
             // Move to new Room
@@ -336,7 +338,7 @@ public class GameEngine {
      * - If a Character is in the Room, it automatically fights.
      * - If no other Character is in the Room, move.
      */
-    private void process1Creature(Creature creature) {
+    private void process1Creature(final Creature creature) {
         // Get Room information and Characters in the Room
         Room oldRoom = creature.getLocation();
 

@@ -8,6 +8,10 @@ public class StealthyFightBehavior extends FightBehavior {
     // of the strategy pattern.
 
 
+    protected final static int COINFLIP = 2;
+    protected final static int DICESIDES = 6;
+
+
     /**
      * Constructor for a Stealthy Fighter.
      */
@@ -26,12 +30,11 @@ public class StealthyFightBehavior extends FightBehavior {
      * indicated by a return value of -1.
      */
     public int fight() {
-        final int COINFLIP = 2;
         if (DiceRolls.rollDice(COINFLIP) == 1) {
             return -1;
         } else {
-            final int DICESIDES = 6;
-            return DiceRolls.rollDice(DICESIDES) + DiceRolls.rollDice(DICESIDES) + 1;
+            return DiceRolls.rollDice(DICESIDES)
+                + DiceRolls.rollDice(DICESIDES) + 1;
         }
     }
 }

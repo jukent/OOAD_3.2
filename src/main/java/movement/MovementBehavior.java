@@ -32,7 +32,7 @@ public abstract class MovementBehavior {
      *
      * Sets the MovementBehavior type.
      */
-    public final void setMovementType(String movementType) {
+    public void setMovementType(final String movementType) {
         this.movementType = movementType;
     }
 

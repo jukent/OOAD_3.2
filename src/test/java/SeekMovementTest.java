@@ -52,7 +52,7 @@ public class SeekMovementTest {
         character.setLocation(characterRoom);
 
         Assert.assertEquals(character.getLocation(), characterRoom);
-        
+
         ArrayList<Creature> creatureList = new ArrayList<Creature>();
         Seeker seeker = new Seeker(1, dungeon);
         creatureList.add(seeker);
@@ -64,7 +64,7 @@ public class SeekMovementTest {
 
         Assert.assertNotEquals(oldRoom, characterRoom);
 
-        // check there is exit to character_room
+        // check there is exit to characterRoom
         ArrayList<String> exits = oldRoom.getExits();
         Assert.assertTrue(exits.contains(characterRoom.getName()));
 
@@ -81,10 +81,10 @@ public class SeekMovementTest {
         Assert.assertEquals("Seek", seeker.getMovementType());
 
         seeker.move();
-        Room new_room = seeker.getLocation();
-        tracker.creatureMoved(seeker, oldRoom, new_room);
+        Room newRoom = seeker.getLocation();
+        tracker.creatureMoved(seeker, oldRoom, newRoom);
 
         Assert.assertNotEquals(seeker.getLocation(), oldRoom);
-        Assert.assertEquals(characterRoom, new_room);
+        Assert.assertEquals(characterRoom, newRoom);
     } 
 }
