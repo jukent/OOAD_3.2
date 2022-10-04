@@ -1,0 +1,13 @@
+Tracker: Turn 25
+
+Adventurers	Room	Damage	Treasure
+Sneaker		(1-0-0)	0		Gem, Potion, Armor
+Thief		(3-2-0)	1		Armor, Potion, Trap, Trap, Portal
+Brawler		(2-1-0)	0		
+
+Total Active Creatures: 3
+
+Creatures	Room
+Orbiter		(4-2-1)
+Blinker		(1-0-1)
+Blinker		(4-2-2)
