@@ -59,7 +59,7 @@ public class JumpCelebration extends Celebration {
             results += this.celebrationRef.trackCelebrate();
         }
         for (int i = 0; i < DiceRolls.rollDice(3) - 1; i++) {
-            Results += "Jump! ";
+            results += "Jump! ";
         }
         return Results;
     }
