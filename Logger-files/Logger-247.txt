@@ -1,0 +1,8 @@
+Tracker: Turn 247
+
+Adventurers	Room	Damage	Treasure
+Brawler		(4-0-2)	1		Trap, Sword, Armor, Trap, Gem, Potion
+
+Total Active Creatures: 0
+
+Creatures	Room

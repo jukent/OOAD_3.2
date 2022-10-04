@@ -1,0 +1,14 @@
+Tracker: Turn 13
+
+Adventurers	Room	Damage	Treasure
+Sneaker		(1-2-2)	0		Gem, Potion
+Thief		(1-0-2)	0		Armor, Potion, Trap
+Brawler		(2-1-0)	0		
+
+Total Active Creatures: 4
+
+Creatures	Room
+Orbiter		(4-0-1)
+Seeker		(4-0-2)
+Blinker		(3-0-0)
+Blinker		(4-0-2)

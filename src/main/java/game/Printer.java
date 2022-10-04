@@ -38,6 +38,7 @@ public class Printer {
     public void printDungeon() {
         if (outputType != "ShowNone") {
             // Print Game Status
+            System.out.println();
             printGameStatus();
 
             // Level 0 
@@ -63,11 +64,12 @@ public class Printer {
     /**
      * A pause method between turns asking the player to continue.
      */
-    public void pause() {
+    public void printPause(){
         if (outputType == "OneScreen") {
             System.out.println("Press Enter To Continue...");
             scanner.nextLine();
-        }
+            clearScreen();
+        }  
     }
 
 
@@ -298,11 +300,12 @@ public class Printer {
      * Prints the treasure and dice rolls for a duplicate treasure hunt.
      */
     private void printDuplicateTreasureHunt(String treasure, String score) {
+        if (outputType != "ShowNone"){
         System.out.print("Treasure Hunt: ");
         System.out.print(score);
         System.out.println(" Success! ");
         System.out.println("Treasure: " + treasure);
-        System.out.println(treasure + " Already in Inventory :(");
+        System.out.println(treasure + " Already in Inventory :(");}
     }
 
 
@@ -347,6 +350,11 @@ public class Printer {
             System.out.println("Press Enter To Continue...");
             scanner.nextLine();
         }  
+    }
+
+    private void clearScreen(){
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 
 }

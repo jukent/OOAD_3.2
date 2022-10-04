@@ -1,0 +1,11 @@
+Tracker: Turn 37
+
+Adventurers	Room	Damage	Treasure
+Sneaker		(3-0-1)	1		Gem, Potion, Armor, Portal
+Thief		(3-2-0)	1		Armor, Potion, Trap, Trap, Portal
+Brawler		(2-0-1)	0		Gem
+
+Total Active Creatures: 1
+
+Creatures	Room
+Blinker		(1-1-1)
