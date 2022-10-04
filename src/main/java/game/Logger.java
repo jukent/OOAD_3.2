@@ -97,14 +97,14 @@ public class Logger {
     public void logRound() {
         if (outputType != "ShowNone") {
         // Don't produce Logs for multiple game runs with "ShowNone" set
-            int roundCounter = tracker.getRoundCounter();
+            int roundCount = tracker.getRoundCount();
 
-            String fileName = new String("Logger-files/Logger-" + roundCounter + ".txt");
+            String fileName = new String("Logger-files/Logger-" + roundCount + ".txt");
 
             try {
                 FileWriter fileWriter = new FileWriter(fileName);
 
-                String roundString = new String("Tracker: Turn " + roundCounter);
+                String roundString = new String("Tracker: Turn " + roundCount);
                 fileWriter.write(roundString);
                 fileWriter.write("\n");
 

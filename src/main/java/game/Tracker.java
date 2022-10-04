@@ -33,7 +33,7 @@ public class Tracker {
     ArrayList<Creature> creatureList; // An ArrayList of all active Creatures
     ArrayList<Treasure> treasureList; // An ArrayList of all hidden Treasures
 
-    int roundCounter; // Integer Round value
+    int roundCount; // Integer Round value
     int treasureCount; // Integer found Treasure count
 
     String outputType;
@@ -58,7 +58,7 @@ public class Tracker {
         this.creatureList = creatureList; // An ArrayList of all active Creatures
         this.treasureList = treasureList; // An ArrayList of all hidden Treasures
 
-        this.roundCounter = 0; // Integer Round count value
+        this.roundCount = 0; // Integer Round count value
         this.treasureCount = 0; // Integer found Treasure count
     }
 
@@ -68,8 +68,8 @@ public class Tracker {
      * 
      * This returns the Integer Round count value.
      */
-    public int getRoundCounter() {
-        return roundCounter;
+    public int getRoundCount() {
+        return roundCount;
     }
 
 
@@ -78,8 +78,8 @@ public class Tracker {
      * 
      * This sets the Integer Round count value.
      */
-    public void setRoundCounter(int roundCounter) {
-        this.roundCounter = roundCounter;
+    public void setRoundCount(int roundCount) {
+        this.roundCount = roundCount;
     }
 
 
@@ -433,7 +433,7 @@ public class Tracker {
      * 
      * Publishes the event that the Treasure was already found.
      */
-    public void duplicateTreasureFind(Treasure treasure, Integer score) {
+    public void duplicateTreasureFound(Treasure treasure, Integer score) {
         treasureHuntResult = "DuplicateTreasureFound";
         treasureHuntValues.clear();
         treasureHuntValues.put("result", treasureHuntResult);

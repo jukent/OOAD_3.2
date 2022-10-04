@@ -145,7 +145,7 @@ public class Printer {
     private void printGameStatus() {
         System.out.print("Game Status: ");
         System.out.print(" Round: ");
-        System.out.print(tracker.getRoundCounter());
+        System.out.print(tracker.getRoundCount());
         System.out.print(" Characters: ");
         System.out.print(tracker.getCharacterList().size());
         System.out.print(" Creatures: ");

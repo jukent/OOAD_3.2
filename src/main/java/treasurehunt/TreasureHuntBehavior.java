@@ -1,5 +1,6 @@
 package treasurehunt;
-public abstract class TreasureHunt {
+
+public abstract class TreasureHuntBehavior {
     
     // Implementation of the strategy OOP Design pattern. Subclasses extend
     // this behavior.

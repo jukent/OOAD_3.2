@@ -2,28 +2,28 @@ package treasurehunt;
 
 import util.DiceRolls;
 
-public class CarelessHunt extends TreasureHunt {
-
+public class CarefulHuntBehavior extends TreasureHuntBehavior {
+    
     // Implementation of the strategy OOP Design pattern. This is a subclass
     // of the strategy pattern.
 
 
     /**
-     * Constructor for a Careless Treasure Hunt.
+     * Constructor for a Careful Treasure Hunt.
      */
-    public CarelessHunt() {
-        this.searchType = "Careless"; // String name
-        this.neededScore = 10; // Required Dice Roll of 10
+    public CarefulHuntBehavior() {
+        this.searchType = "Careful"; // String Name
+        this.neededScore = 7; // Required dice roll of Integer 7
     }
 
-    
+
     /* (non-Javadoc)
      * @see treasurehunt.TreasureHunt#searchTreasure()
      * 
-     * Overwrites the abstract treasure hunting with a Careless Hunt.
+     * Overwrides the abstract treasure hunting with a Careful Hunt.
      */
     @Override
     public int searchTreasure() {
         return DiceRolls.rollDice(6) + DiceRolls.rollDice(6);
-    } 
+    }
 }

@@ -34,7 +34,7 @@ public class GameEngine {
 
     protected Printer printer = new Printer(dungeon, tracker, output); // Game Printer
 
-    private int roundCounter = 0; // The Integer round number
+    private int roundCount = 0; // The Integer round number
     private boolean endCondition = true; // End Condition check
     private Scanner scanner = new java.util.Scanner(System.in); // Scanner for user input
 
@@ -61,8 +61,8 @@ public class GameEngine {
     public void runGame() {
         populateEntities(dungeon, tracker);
         while (endCondition) {
-            roundCounter++;
-            tracker.setRoundCounter(roundCounter); // publish round counter to Tracker
+            roundCount++;
+            tracker.setRoundCount(roundCount); // publish round counter to Tracker
             processTurn();
         }        
         scanner.close();
@@ -187,7 +187,7 @@ public class GameEngine {
      * Performs the Character action of searching for treasure.
      * Adds to the Characters treasure count
      */
-    private void simulateTreasure(Character character) {
+    private void simulateTreasureHunt(Character character) {
         int neededScore = character.getSearchBehavior().getNeededScore();
         int score = character.searchTreasure();
 
@@ -209,7 +209,7 @@ public class GameEngine {
                             tracker.removeCharacter(character); // Remove dead Character, publish to Tracker
                         } 
                     } else {
-                        tracker.duplicateTreasureFind(currentItem, score); // Publish to Tracker that duplicate item was found
+                        tracker.duplicateTreasureFound(currentItem, score); // Publish to Tracker that duplicate item was found
                     }
                 } else {
                     // This is a new type of Treasure
@@ -313,7 +313,7 @@ public class GameEngine {
                 continue;
             } else {
                 // If there are no Creatures in the room, look for treasure
-                simulateTreasure(character);
+                simulateTreasureHunt(character);
             }
         }
     }
