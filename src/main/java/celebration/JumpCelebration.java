@@ -47,7 +47,7 @@ public class JumpCelebration extends Celebration {
     @Override
     public void celebrate() {
         this.fightRef.celebrate();
-        for(int i = 0; i < DiceRolls.rollDice(3) - 1; i++) {
+        for(int i = 0; i < DiceRolls.rollDice(ROLL_NUMBER) - 1; i++) {
             System.out.print("Jump! ");
         }
     }

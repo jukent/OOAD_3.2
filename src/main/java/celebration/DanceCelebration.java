@@ -9,8 +9,8 @@ public class DanceCelebration extends Celebration {
 
 
     /**
-     * @param fight: FightBehavior
-     * 
+     * @param fight FightBehavior
+     *
      * Dance Celebration constructor.
      */
     public DanceCelebration(FightBehavior fight) {
@@ -19,8 +19,8 @@ public class DanceCelebration extends Celebration {
 
 
      /**
-     * @param celebrateRef: Celebration
-     * 
+     * @param celebrateRef Celebration
+     *
      * Dance Celebration constructor.
      */
     public DanceCelebration(Celebration celebrateRef) {
@@ -31,8 +31,8 @@ public class DanceCelebration extends Celebration {
     /* (non-Javadoc)
      * @see celebration.Celebration#fight()
      * @return int
-     * 
-     * Returns the "fight" dice-roll integer.
+     *
+     * Implements the "fight" dice-roll integer.
      */
     @Override
     public int fight() {
@@ -42,13 +42,13 @@ public class DanceCelebration extends Celebration {
 
     /* (non-Javadoc)
      * @see celebration.Celebration#celebrate()
-     * 
-     * Executes dancing celebration a random number of times.
+     *
+     * This implementation executes dancing celebration a random number of times.
      */
     @Override
     public void celebrate() {
         this.fightRef.celebrate();
-        for(int i = 0; i < DiceRolls.rollDice(3) - 1; i++) {
+        for (int i = 0; i < DiceRolls.rollDice(ROLL_NUMBER) - 1; i++) {
             System.out.print("Dance! ");
         }
     }
