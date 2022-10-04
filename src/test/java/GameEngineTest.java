@@ -19,12 +19,12 @@ public class GameEngineTest {
     private ArrayList<Character> characterList = new ArrayList<Character>();
     private ArrayList<Creature> creatureList = new ArrayList<Creature>();
     private ArrayList<Treasure> treasureList = new ArrayList<Treasure>();
-    private Tracker tracker = new Tracker(characterList, creatureList, treasureList);
+    private Tracker tracker = new Tracker(dungeon, characterList, creatureList, treasureList);
 
 
     @Test
     public void testPopulateEntities() {
-        gameEngine.populateEntities(dungeon, tracker);
+        gameEngine.populateEntities(this.dungeon, this.tracker);
 
         Assert.assertEquals(4, tracker.getCharacterList().size());
         Assert.assertEquals(12, tracker.getCreatureList().size());

@@ -18,6 +18,7 @@ public class BlinkMovementTest {
         Blinker blinker = new Blinker(0, dungeon);
 
         Room oldRoom = blinker.getLocation();
+
         int level = oldRoom.getLevel();
         Assert.assertEquals(4, level);
 

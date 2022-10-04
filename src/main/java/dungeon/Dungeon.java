@@ -10,7 +10,7 @@ public class Dungeon {
     // only the needed information to access it from the outside. 
     // Any additional information is hidden in private methods.
 
-    
+
     /**
      * Constructs the Dungeon object which contains a map of all rooms
      *
@@ -19,10 +19,8 @@ public class Dungeon {
      * Currently hardcoded to 4 for simplicity.
      */
     public Dungeon() {
-        // constructor
-
-        final int NUM_LEVELS = 3; // The number of levels deep of the dungeon
-        this.map = generateMap(NUM_LEVELS);
+        final int NUM_LEVELS = 4; // The number of levels deep of the dungeon
+        setMap(generateMap(NUM_LEVELS));
     }
 
         
@@ -37,13 +35,23 @@ public class Dungeon {
 
 
     /**
+     * @param map Hashtable<String, Room>
+     *
+     * Sets the Dungeon map
+     */
+    public void setMap(Hashtable<String, Room> map) {
+        this.map = map;
+    }
+
+
+    /**
      * @param roomName String
      * @return room: Room
      *
      * Let other classes get a Room object based on its name.
      */
     public Room getRoom(String roomName) {
-        Room room = this.map.get(roomName);
+        Room room = getMap().get(roomName);
         return room;
     }
 
@@ -58,17 +66,17 @@ public class Dungeon {
      * The Rooms are stored in a Hashtable map with room names as keys pointing to Room objects as values.
      */
     private Hashtable<String, Room> generateMap(int NUM_LEVELS) {
-        this.map = new Hashtable<String, Room>();
+        Hashtable<String, Room> map = new Hashtable<String, Room>();
 
-        for (int l = 0; l <= NUM_LEVELS; ++l) {     
+        for (int l = 0; l <= NUM_LEVELS; l++) {     
             if (l == 0) {
                 // On level 0, there is only one room
                 Room room = new Room(l, 1, 1);
                 map.put(room.getName(), room);
             } else {
                 // On all other levels, there are 3x3 rooms
-                for (int r = 0; r <= 2; ++r) { // row
-                    for (int c = 0; c <= 2; ++c) { // column
+                for (int r = 0; r <= 2; r++) { // row
+                    for (int c = 0; c <= 2; c++) { // column
                         Room room = new Room(l, r, c);       
                         map.put(room.getName(), room);      
                     }

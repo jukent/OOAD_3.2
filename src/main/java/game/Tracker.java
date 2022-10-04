@@ -28,6 +28,8 @@ import treasure.Treasure;
 
 public class Tracker {
 
+    private Dungeon dungeon; // The Game Dungeon
+
     private ArrayList<Character> characterList; // An ArrayList of all active Characters
     private ArrayList<Creature> creatureList; // An ArrayList of all active Creatures
     private ArrayList<Treasure> treasureList; // An ArrayList of all hidden Treasures
@@ -42,14 +44,14 @@ public class Tracker {
     private HashMap<String, String> treasureHuntValues = new HashMap<String, String>(); // HashMap of Treasure and Treasure roll from most recent treasure hunt.
 
     /**
-     * @param dungeon Dungeon
      * @param characterList ArrayList<Character>
      * @param creatureList ArrayList<Creature>
      * @param treasureList ArrayList<Treasure>
      *
      * Constructor for the Tracker.
      */
-    public Tracker(ArrayList<Character> characterList, ArrayList<Creature> creatureList, ArrayList<Treasure> treasureList) {
+    public Tracker(Dungeon dungeon, ArrayList<Character> characterList, ArrayList<Creature> creatureList, ArrayList<Treasure> treasureList) {
+        this.dungeon = dungeon; // The Game Dungeon
         this.characterList = characterList; // An ArrayList of all active Characters
         this.creatureList = creatureList; // An ArrayList of all active Creatures
         this.treasureList = treasureList; // An ArrayList of all hidden Treasures

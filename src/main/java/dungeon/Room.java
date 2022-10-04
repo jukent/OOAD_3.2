@@ -32,7 +32,8 @@ public class Room {
     public Room(int level, int row, int column) {
         // An example of identity
         // A lot of effort is made throughout the code to make sure identical Room objects
-        // Can be access from either the Dungeon object or from subsets (seen in the new Hashtables in Creature movement)
+        // Can be access from either the Dungeon object or from subsets
+        // (seen in the new Hashtables in Creature movement)
 
 
         // constructor
@@ -63,9 +64,11 @@ public class Room {
 
 
     /**
-     * @return exits: ArrayList<String> (cardinal directions, neighboring room names)
+     * @return exits: ArrayList<String>
+     * (cardinal directions, neighboring room names)
      *
-     * Let other classess access a room's neighboring rooms (and in what direction if we need that).
+     * Let other classess access a room's neighboring rooms
+     * (and in what direction if we need that).
      */
     public ArrayList<String> getExits() {
         return exits;

@@ -18,7 +18,7 @@ public class TreasureHuntTest {
     private ArrayList<Character> characterList = new ArrayList<Character>();
     private ArrayList<Creature> creatureList = new ArrayList<Creature>();
     private ArrayList<Treasure> treasureList = new ArrayList<Treasure>();
-    private Tracker tracker = new Tracker(characterList, creatureList, treasureList);
+    private Tracker tracker = new Tracker(dungeon, characterList, creatureList, treasureList);
 
 
     @Test

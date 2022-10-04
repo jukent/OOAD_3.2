@@ -23,11 +23,12 @@ public class Orbiter extends Creature {
      */
     public Orbiter(int id, Dungeon map) {
         setID(id); // Orbiter ID value
+        setHP(1); // 1 Health point for Creatures
         setDungeon(map); // Game Dungeon
         setMovementBehavior(new OrbitMovement()); // MovementType is Orbit
         setName("Orbiter"); // String name
-        setStartingRoom(); // Orbiters start in any outside Room
-        setRandomDirection(); // Clockwise or Counterclockwise
+        setLocation(pickStartingRoom()); // Orbiters start in any outside Room
+        setDirection(pickRandomDirection()); // Clockwise or Counterclockwise
     }
 
 
@@ -37,7 +38,7 @@ public class Orbiter extends Creature {
      * Randomly generate starting room for Orbiters from any exterior room on any level
      */
     @Override
-    protected void setStartingRoom() {
+    protected Room pickStartingRoom() {
         // Get map of possible rooms pointing to identical Room objects as in main dungeon.
         Hashtable<String, Room> possibleRoomMap = new Hashtable<String, Room>();
         possibleRoomMap.putAll(getDungeon().getMap());
@@ -59,15 +60,16 @@ public class Orbiter extends Creature {
         Room newRoom = startingRooms.get(i);
 
         // Start there
-        this.setLocation(newRoom);
+        return newRoom;
     }
+
 
     /**
      * @return String
      *
      * Randomly return "clockwise" or "counterclockwise" to set Orbiter direction
      */
-    private void setRandomDirection() {
+    private String pickRandomDirection() {
         ArrayList<String> directions = new ArrayList<String>();
         directions.add("clockwise");
         directions.add("counterclockwise");
@@ -76,6 +78,6 @@ public class Orbiter extends Creature {
         int i= random.nextInt(2);
 
         String direction = directions.get(i);
-        setDirection(direction);
+        return direction;
     }
 }

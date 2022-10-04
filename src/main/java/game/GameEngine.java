@@ -28,7 +28,7 @@ public class GameEngine {
     private ArrayList<Creature> creatureList = new ArrayList<Creature>();
     private ArrayList<Treasure> treasureList = new ArrayList<Treasure>();
     
-    private Tracker tracker = new Tracker(characterList, creatureList, treasureList); // Game Tracker
+    private Tracker tracker = new Tracker(dungeon, characterList, creatureList, treasureList); // Game Tracker
     // Using the Tracker is an example of the Observer pattern. Events are published to the Tracker (pointed out in comments)
     // And then the Tracker let's any interested parties know about the events.
 
