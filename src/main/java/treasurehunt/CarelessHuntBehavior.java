@@ -12,8 +12,8 @@ public class CarelessHuntBehavior extends TreasureHuntBehavior {
      * Constructor for a Careless Treasure Hunt.
      */
     public CarelessHuntBehavior() {
-        this.searchType = "Careless"; // String name
-        this.neededScore = 10; // Required Dice Roll of 10
+        setSearchType("Careless"); // String name
+        setNeededScore(10); // Required Dice Roll of 10
     }
 
 

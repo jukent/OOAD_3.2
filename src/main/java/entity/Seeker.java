@@ -20,10 +20,9 @@ public class Seeker extends Creature {
      */
     public Seeker(int id, Dungeon map) {
         setID(id); // Seeker ID value
-        this.dungeon = map; // Game Dungeon
-        this.movementBehavior = new SeekMovement(); // MovementType is Seek
-        name = "Seeker"; // String name
-
+        setDungeon(map); // Game Dungeon
+        setMovementBehavior(new SeekMovement()); // MovementType is Seek
+        setName("Seeker"); // String name
         setStartingRoom(); // Seekers start anywhere in Dungeon
     }
 
@@ -38,7 +37,7 @@ public class Seeker extends Creature {
     protected void setStartingRoom() {
         // Get new map of possible Rooms
         Hashtable<String, Room> possibleRoomMap = new Hashtable<String, Room>();
-        possibleRoomMap.putAll(dungeon.getMap()); // Learned method from Geeks for Geeks: "How to Copy Map Content to Another Hashtable in Java?(https://www.geeksforgeeks.org/how-to-copy-map-content-to-another-hashtable-in-java/)
+        possibleRoomMap.putAll(getDungeon().getMap()); // Learned method from Geeks for Geeks: "How to Copy Map Content to Another Hashtable in Java?(https://www.geeksforgeeks.org/how-to-copy-map-content-to-another-hashtable-in-java/)
         possibleRoomMap.remove("(0-1-1)"); // Remove entrace room
                 
         // Randomly select one of the Rooms - learned from Stack Overflow question (https://stackoverflow.com/questions/38248381/pick-a-random-element-from-a-hashtable)
@@ -50,6 +49,6 @@ public class Seeker extends Creature {
         Room newRoom = startingRooms.get(i);
 
         // Start there
-        this.setLocation(newRoom);
+        setLocation(newRoom);
     }
 }

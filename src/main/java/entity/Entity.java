@@ -15,16 +15,16 @@ public class Entity {
     // Entity super class added later for movement behavior
 
     private int id = 0; // Integer ID value
-    protected Dungeon dungeon; // Game Dungeon
-    protected Room location; // Room location
+    private Dungeon dungeon; // Game Dungeon
+    private Room location; // Room location
 
-    protected String name = new String("Entity"); // Simple Entity name String
-    String direction = new String("clockwise"); // Dummy String direction value
+    private String name = new String("Entity"); // Simple Entity name String
+    private String direction = new String("clockwise"); // Dummy String direction value
     private int hp = 3; // Health Points Integer
-    protected int moveCount = 1; // Integer movement count
+    private int moveCount = 1; // Integer movement count
 
-    public FightBehavior fightBehavior = new CreatureFightBehavior(); // FightBehavior
-    public MovementBehavior movementBehavior = new RandomWalkMovement(); // MovementBehavior
+    private FightBehavior fightBehavior = new CreatureFightBehavior(); // FightBehavior
+    private MovementBehavior movementBehavior = new RandomWalkMovement(); // MovementBehavior
 
 
     /**
@@ -68,17 +68,17 @@ public class Entity {
 
     
     /**
-     * @param new_direction String
-     * 
+     * @param direction String
+     *
      * This method sets an Entity's "direction"
-     * 
+     *
      * This is only used for Orbiter's, but since we wanted to encapsalate MovementBehavior
      * to work for Creatures or Entity's (so that Characters could blink),
      * all Entity's needed to have any parameters that could be called up by any of the
      * 'move()' methods.
      */
-    public void setDirection(String new_direction) {
-        this.direction = new_direction;
+    public void setDirection(String direction) {
+        this.direction = direction;
     }
     
 
@@ -231,5 +231,35 @@ public class Entity {
      */
     public void setMoveCount(int moveCount) {
         this.moveCount = moveCount;
+    }
+
+
+    /**
+     * @return Dungeon
+     *
+     * Returns the Entity dungeon.
+     */
+    public Dungeon getDungeon(){
+        return this.dungeon;
+    }
+
+
+    /**
+     * @param dungeon Dungeon
+     *
+     * Sets the Entity dungeon.
+     */
+    public void setDungeon(Dungeon dungeon){
+        this.dungeon = dungeon;
+    }
+
+
+    /**
+     * @param name String
+     *
+     * Sets an Entity's name.
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 }

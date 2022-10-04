@@ -23,10 +23,9 @@ public class Orbiter extends Creature {
      */
     public Orbiter(int id, Dungeon map) {
         setID(id); // Orbiter ID value
-        this.dungeon = map; // Game Dungeon
-        this.movementBehavior = new OrbitMovement(); // MovementType is Orbit
-        name = "Orbiter"; // String name
-        
+        setDungeon(map); // Game Dungeon
+        setMovementBehavior(new OrbitMovement()); // MovementType is Orbit
+        setName("Orbiter"); // String name
         setStartingRoom(); // Orbiters start in any outside Room
         setRandomDirection(); // Clockwise or Counterclockwise
     }
@@ -41,7 +40,7 @@ public class Orbiter extends Creature {
     protected void setStartingRoom() {
         // Get map of possible rooms pointing to identical Room objects as in main dungeon.
         Hashtable<String, Room> possibleRoomMap = new Hashtable<String, Room>();
-        possibleRoomMap.putAll(dungeon.getMap());
+        possibleRoomMap.putAll(getDungeon().getMap());
         // Learned method from Geeks for Geeks:
         // "How to Copy Map Content to Another Hashtable in Java?
         // (https://www.geeksforgeeks.org/how-to-copy-map-content-to-another-hashtable-in-java/)

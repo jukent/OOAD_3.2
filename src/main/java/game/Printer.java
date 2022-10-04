@@ -12,9 +12,9 @@ import celebration.Celebration;
 
 public class Printer {
 
-    Dungeon dungeon; // Game Dungeon
-    Tracker tracker; // Game Tracker
-    String outputType; // Output options: OneScreen, ShowAll, ShowEnding, ShowNone
+    private Dungeon dungeon; // Game Dungeon
+    private Tracker tracker; // Game Tracker
+    private String outputType; // Output options: OneScreen, ShowAll, ShowEnding, ShowNone
     private Scanner scanner = new java.util.Scanner(System.in); // A Scanner for awaiting user input
 
     

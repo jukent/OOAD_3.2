@@ -10,15 +10,15 @@ import celebration.*;
 
 
 public class CelebrationTest {
-    Dungeon dungeon = new Dungeon();
-    Character A = new Runner(1, dungeon);
-    FightBehavior fightBehavior = A.getFightBehavior();
+    private Dungeon dungeon = new Dungeon();
+    private Character A = new Runner(1, dungeon);
+    private FightBehavior fightBehavior = A.getFightBehavior();
 
 
     @Test
     public void testWrap(){
         Celebration tJ = new JumpCelebration(fightBehavior);
         tJ = new SpinCelebration(tJ);
-        Assert.assertEquals("Untrained",tJ.getFightRef().fightType);
+        Assert.assertEquals("Untrained",tJ.getFightRef().getFightType());
     }
 }

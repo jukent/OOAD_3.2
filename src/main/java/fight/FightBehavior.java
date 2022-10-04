@@ -6,7 +6,7 @@ public abstract class FightBehavior {
     // behavior and encapsulate what varies.
 
     
-    public String fightType; // String description of Fight Behavior
+    private String fightType; // String description of Fight Behavior
 
 
     /**

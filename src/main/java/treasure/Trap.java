@@ -13,7 +13,7 @@ public class Trap extends Treasure {
      */
     public Trap(int id, Dungeon dungeon) {
         hide(dungeon); // Game Dungeon
-        this.takeDamage = 1; // Traps do 1 point of damage
-        this.treasureType = "Trap"; // String name
+        setTakeDamage(1); // Traps do 1 point of damage
+        setTreasureType("Trap"); // String name
     }
 }

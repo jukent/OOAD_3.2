@@ -12,8 +12,8 @@ public class QuickHuntBehavior extends TreasureHuntBehavior {
      * Constructor for a Quick Treasure Hunt.
      */
     public QuickHuntBehavior() {
-        this.searchType = "Quick"; // String name
-        this.neededScore = 9; // Required dice roll of 9
+        setSearchType("Quick"); // String name
+        setNeededScore(9); // Required dice roll of 9
     }
 
 

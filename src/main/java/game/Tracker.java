@@ -28,21 +28,18 @@ import treasure.Treasure;
 
 public class Tracker {
 
-    Dungeon dungeon; // Game Dungeon
-    ArrayList<Character> characterList; // An ArrayList of all active Characters
-    ArrayList<Creature> creatureList; // An ArrayList of all active Creatures
-    ArrayList<Treasure> treasureList; // An ArrayList of all hidden Treasures
+    private ArrayList<Character> characterList; // An ArrayList of all active Characters
+    private ArrayList<Creature> creatureList; // An ArrayList of all active Creatures
+    private ArrayList<Treasure> treasureList; // An ArrayList of all hidden Treasures
 
-    int roundCount; // Integer Round value
-    int treasureCount; // Integer found Treasure count
+    private int roundCount; // Integer Round value
+    private int treasureCount; // Integer found Treasure count
 
-    String outputType;
+    private String fightResult; // Result of the last fight: "CharacterWon", "CreatureWon", or "FightSkipped"
+    private HashMap<String, String> fightValues = new HashMap<String, String>(); // Ordered HashMap mapping Character and Creature from most recent fight to their integer roll values.
 
-    String fightResult; // Result of the last fight: "CharacterWon", "CreatureWon", or "FightSkipped"
-    HashMap<String, String> fightValues = new HashMap<String, String>(); // Ordered HashMap mapping Character and Creature from most recent fight to their integer roll values.
-
-    String treasureHuntResult; // Result of the last trasure hunt: "TreasureFound", "TreasureNotFound", or "DuplicateTreasureFound"
-    HashMap<String, String> treasureHuntValues = new HashMap<String, String>(); // HashMap of Treasure and Treasure roll from most recent treasure hunt.
+    private String treasureHuntResult; // Result of the last trasure hunt: "TreasureFound", "TreasureNotFound", or "DuplicateTreasureFound"
+    private HashMap<String, String> treasureHuntValues = new HashMap<String, String>(); // HashMap of Treasure and Treasure roll from most recent treasure hunt.
 
     /**
      * @param dungeon Dungeon
@@ -52,8 +49,7 @@ public class Tracker {
      *
      * Constructor for the Tracker.
      */
-    public Tracker(Dungeon dungeon, ArrayList<Character> characterList, ArrayList<Creature> creatureList, ArrayList<Treasure> treasureList) {
-        this.dungeon = dungeon; // Game Dungeon
+    public Tracker(ArrayList<Character> characterList, ArrayList<Creature> creatureList, ArrayList<Treasure> treasureList) {
         this.characterList = characterList; // An ArrayList of all active Characters
         this.creatureList = creatureList; // An ArrayList of all active Creatures
         this.treasureList = treasureList; // An ArrayList of all hidden Treasures
@@ -246,7 +242,7 @@ public class Tracker {
         treasureHuntResult = "TreasureFound";
         treasureHuntValues.clear();
         treasureHuntValues.put("result", treasureHuntResult);
-        treasureHuntValues.put("treasure", treasure.getType());
+        treasureHuntValues.put("treasure", treasure.getTreasureType());
         treasureHuntValues.put("score", score.toString());
     }
 
@@ -437,7 +433,7 @@ public class Tracker {
         treasureHuntResult = "DuplicateTreasureFound";
         treasureHuntValues.clear();
         treasureHuntValues.put("result", treasureHuntResult);
-        treasureHuntValues.put("treasure", treasure.getType());
+        treasureHuntValues.put("treasure", treasure.getTreasureType());
         treasureHuntValues.put("score", score.toString());
     }
 

@@ -11,7 +11,7 @@ import treasure.Portal;
 
 public class BlinkMovementTest {
 
-    Dungeon dungeon = new Dungeon();
+    private Dungeon dungeon = new Dungeon();
 
     @Test
     public void testCreatureBlink() {
@@ -37,15 +37,15 @@ public class BlinkMovementTest {
         Room oldRoom = character.getLocation();
 
         Portal portal = new Portal(1, dungeon);
-        Assert.assertEquals("Portal", portal.getType());
+        Assert.assertEquals("Portal", portal.getTreasureType());
 
         character.addInventory(portal);
         Assert.assertTrue(character.getInventory().contains(portal));
 
         ArrayList<String> inventoryArray = new ArrayList<String>();
-        inventoryArray.add(portal.getType());
+        inventoryArray.add(portal.getTreasureType());
         Assert.assertEquals(character.getInventoryTypes(), inventoryArray);
-        Assert.assertTrue(character.getInventoryTypes().contains(portal.getType()));
+        Assert.assertTrue(character.getInventoryTypes().contains(portal.getTreasureType()));
         Assert.assertTrue(character.getInventoryTypes().contains("Portal"));
 
         character.checkPortalInInventory();

@@ -5,8 +5,8 @@ public abstract class TreasureHuntBehavior {
     // Implementation of the strategy OOP Design pattern. Subclasses extend
     // this behavior.
 
-    public String searchType; // String type for Treasue Hunting Behavior
-    public int neededScore; // Required Integer dice roll to find treasure
+    private String searchType; // String type for Treasue Hunting Behavior
+    private int neededScore; // Required Integer dice roll to find treasure
 
 
     /**
@@ -28,11 +28,32 @@ public abstract class TreasureHuntBehavior {
 
 
     /**
+     * @param n
+     *
+     * Sets the needed dice roll for a Treasure Search behavior.
+     */
+    public void setNeededScore(int n) {
+        this.neededScore = n;
+    }
+
+
+    /**
      * @return String
      *
      * Returns the String Treasure Hunt type for a Hunt behavior.
      */
-    public String getType() {
+    public String getSearchType() {
         return this.searchType;
     }
+
+
+    /**
+     * @param type String
+     *
+     * Sets the String Treasure Hunt type for a Hunt behavior.
+     */
+    public void setSearchType(String type) {
+        this.searchType = type;
+    }
+
 }

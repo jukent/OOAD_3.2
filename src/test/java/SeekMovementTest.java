@@ -12,7 +12,7 @@ import game.Tracker;
 
 public class SeekMovementTest {
 
-    Dungeon dungeon = new Dungeon();
+    private Dungeon dungeon = new Dungeon();
 
 
     @Test
@@ -27,7 +27,7 @@ public class SeekMovementTest {
 
         Assert.assertEquals(test_seeker.getLocation(), old_room);
 
-        Tracker tracker = new Tracker(dungeon, null, creatureList, null);
+        Tracker tracker = new Tracker(null, creatureList, null);
         tracker.setCreatureStats(creatureList);
 
         Assert.assertEquals("Seek", test_seeker.getMovementType());
@@ -67,7 +67,7 @@ public class SeekMovementTest {
         ArrayList<String> exits = old_room.getExits();
         Assert.assertTrue(exits.contains(character_room.getName()));
 
-        Tracker tracker = new Tracker(dungeon, characterList, creatureList, null);
+        Tracker tracker = new Tracker(characterList, creatureList, null);
         tracker.setCharacterStats(characterList);
         tracker.setCreatureStats(creatureList);
 

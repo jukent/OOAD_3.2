@@ -20,10 +20,9 @@ public class Blinker extends Creature {
      */
     public Blinker(int id, Dungeon map) {
         setID(id); // Blinker ID value
-        this.dungeon = map; // Game Dungeon
-        this.movementBehavior = new BlinkMovement(); // MovementType is Blink
-        name = "Blinker";
-
+        setDungeon(map); // Game Dungeon
+        setMovementBehavior(new BlinkMovement()); // MovementType is Blink
+        setName("Blinker");
         setStartingRoom(); //Blinkers start anywhere on the 4th level
     }
 
@@ -45,7 +44,7 @@ public class Blinker extends Creature {
         for (int r = 0; r < 2; ++r) { // row
             for (int c = 0; c < 2; ++c) { // column
                 String roomName = new String("(4-" + r + "-" + c + ")");
-                startingRooms.add(dungeon.getRoom(roomName));
+                startingRooms.add(getDungeon().getRoom(roomName));
             }
         }
 
@@ -57,6 +56,6 @@ public class Blinker extends Creature {
         Room newRoom = startingRooms.get(i);
 
         // Start there
-        this.setLocation(newRoom);
+        setLocation(newRoom);
     }
 }

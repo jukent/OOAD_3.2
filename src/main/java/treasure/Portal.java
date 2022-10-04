@@ -16,6 +16,6 @@ public class Portal extends Treasure {
      */
     public Portal(int id, Dungeon dungeon) {
         hide(dungeon);  // Game Dungeon
-        this.treasureType = "Portal"; // String name
+        setTreasureType("Portal"); // String name
     }
 }

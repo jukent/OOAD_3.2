@@ -16,10 +16,10 @@ public class Thief extends Character {
      */
     public Thief(int id, Dungeon map) {
         setID(id); // Thief ID value
-        this.dungeon = map; // Game Dungeon
-        this.location = dungeon.getRoom("(0-1-1)"); // Start in Entrance Room
-        this.fightBehavior = new TrainedFightBehavior(); // FightType is Trained
+        setDungeon(map); // Game Dungeon
+        setLocation(getDungeon().getRoom("(0-1-1)")); // Start in Entrance Room
+        setFightBehavior(new TrainedFightBehavior()); // FightType is Trained
         setSearchBehavior(new CarefulHuntBehavior()); // SearhType is Careful
-        name = "Thief"; // String name
+        setName("Thief"); // String name
     }
 }

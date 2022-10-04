@@ -16,11 +16,11 @@ public class Runner extends Character {
      */
     public Runner (int id, Dungeon map) {
         setID(id); // Runner ID value
-        this.dungeon = map; // Game Dungeon
-        this.location = dungeon.getRoom("(0-1-1)"); // Begin in Entrance Room
+        setDungeon(map); // Game Dungeon
+        setLocation(getDungeon().getRoom("(0-1-1)")); // Begin in Entrance Room
         setMoveCount(2); // Int moveCount of 2, Runner's get twice the turns, 
-        this.fightBehavior = new UntrainedFightBehavior(); // FightType is Untrained
-        this.setSearchBehavior(new QuickHuntBehavior()); // SearchType is Quick
-        name = "Runner"; // String name
+        setFightBehavior(new UntrainedFightBehavior()); // FightType is Untrained
+        setSearchBehavior(new QuickHuntBehavior()); // SearchType is Quick
+        setName("Runner"); // String name
     }
 }

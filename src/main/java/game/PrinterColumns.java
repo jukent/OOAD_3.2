@@ -13,9 +13,9 @@ import java.util.List;
 //https://stackoverflow.com/questions/699878/is-there-an-easy-way-to-output-two-columns-to-the-console-in-java
 public class PrinterColumns {
 
-    List<List<String>> lines = new ArrayList<>();
-    List<Integer> maxLengths = new ArrayList<>();
-    int numColumns = -1;
+    private List<List<String>> lines = new ArrayList<>();
+    private List<Integer> maxLengths = new ArrayList<>();
+    private int numColumns = -1;
 
 
     /**

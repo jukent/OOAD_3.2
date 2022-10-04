@@ -13,7 +13,7 @@ public class Gem extends Treasure {
      */
     public Gem(int ID, Dungeon dungeon) { 
         hide(dungeon); // Game Dungeon
-        this.adversaryFightBonus = 1; // Gems give a Creature a strength buff of 1
-        this.treasureType = "Gem"; // String name
+        setAdversaryFightBonus(1); // Gems give a Creature a strength buff of 1
+        setTreasureType("Gem"); // String name
     }
 }

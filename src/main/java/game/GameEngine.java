@@ -12,9 +12,9 @@ import treasure.*;
 
 public class GameEngine {
 
-    protected String output; // OneScreen,ShowEnding,ShowAll,ShowNone
+    private String output; // OneScreen,ShowEnding,ShowAll,ShowNone
 
-    protected Dungeon dungeon = new Dungeon(); // Example of identity
+    private Dungeon dungeon = new Dungeon(); // Example of identity
     // Dungeon is an example of identity. While we could create an instance
     // of dungeon in each character, by having the same instance of dungeon
     // passed to the characters, we can assure that each character
@@ -24,15 +24,15 @@ public class GameEngine {
     // type, but not the same identity
 
     // ArrayLists that contains all Characters, Creatures, and Treasures
-    protected ArrayList<Character> characterList = new ArrayList<Character>();
-    protected ArrayList<Creature> creatureList = new ArrayList<Creature>();
-    protected ArrayList<Treasure> treasureList = new ArrayList<Treasure>();
+    private ArrayList<Character> characterList = new ArrayList<Character>();
+    private ArrayList<Creature> creatureList = new ArrayList<Creature>();
+    private ArrayList<Treasure> treasureList = new ArrayList<Treasure>();
     
-    Tracker tracker = new Tracker(dungeon, characterList, creatureList, treasureList); // Game Tracker
+    private Tracker tracker = new Tracker(characterList, creatureList, treasureList); // Game Tracker
     // Using the Tracker is an example of the Observer pattern. Events are published to the Tracker (pointed out in comments)
     // And then the Tracker let's any interested parties know about the events.
 
-    protected Printer printer; // Game Printer
+    private Printer printer; // Game Printer
 
     private int roundCount = 0; // The Integer round number
     private boolean endCondition = true; // End Condition check
@@ -145,7 +145,7 @@ public class GameEngine {
         int creatureRoll = creature.fight();
 
         for(Treasure t: character.getInventory()){
-            characterRoll += t.getFightBonus();
+            characterRoll += t.getOwnerFightBonus();
             creatureRoll += t.getAdversaryFightBonus();
         }
 
@@ -197,9 +197,9 @@ public class GameEngine {
                 // If Treasure found
                 Treasure currentItem = treasureInRoom.get(0); // only find first Treasure (if multiple)
                 // Possible "feature" if Character has Treasure of first type already but not of second, Character still doesn't get the second Treasure.
-                if (character.getInventoryTypes().contains(currentItem.getType())) {
+                if (character.getInventoryTypes().contains(currentItem.getTreasureType())) {
                     // If we've already encountered this type of Treasure
-                    if (currentItem.getType() == "Trap") {
+                    if (currentItem.getTreasureType() == "Trap") {
                         // Can only encounter multiple traps
                         character.addInventory(currentItem);
                         character.loseHealth(currentItem.getTakeDamage()); // if Trap

@@ -9,12 +9,12 @@ import dungeon.Room;
 
 abstract public class Treasure {
     
-    protected Room location; // The Treasure's hiding room.
-    protected int ownerFightBonus = 0; // Integer amount of added strength buff this Treasure gives a Character
-    protected int adversaryFightBonus = 0; // Integer amount of added strength buff this Treasure gives a Creature
-    protected int hpBoost = 0; // Integer amount of added health points this Treasure gives a Character
-    protected int takeDamage = 0; // Integer amount of damage this Treasure does to a Character
-    protected String treasureType; // String type of Treasure
+    private Room location; // The Treasure's hiding room.
+    private int ownerFightBonus = 0; // Integer amount of added strength buff this Treasure gives a Character
+    private int adversaryFightBonus = 0; // Integer amount of added strength buff this Treasure gives a Creature
+    private int hpBoost = 0; // Integer amount of added health points this Treasure gives a Character
+    private int takeDamage = 0; // Integer amount of damage this Treasure does to a Character
+    private String treasureType; // String type of Treasure
 
 
     /**
@@ -65,8 +65,18 @@ abstract public class Treasure {
      * 
      * This method returns a Treasure's ownerFightBonus.
      */
-    public int getFightBonus() {
+    public int getOwnerFightBonus() {
         return this.ownerFightBonus;
+    }
+
+
+    /**
+     * @param n int
+     * 
+     * This method sets a Treasure's ownerFightBonus.
+     */
+    public void setOwnerFightBonus(int n) {
+        this.ownerFightBonus = n;
     }
 
 
@@ -81,12 +91,32 @@ abstract public class Treasure {
 
 
     /**
+     * @param n int
+     * 
+     * This method sets a Treasure's adversaryFightBonus.
+     */
+    public void setAdversaryFightBonus(int n) {
+        this.adversaryFightBonus = n;
+    }
+
+
+    /**
      * @return int
      * 
      * This method returns the hp Boost for the Treasure.
      */
     public int getHPBoost() {
         return this.hpBoost;
+    }
+
+
+    /**
+     * @param n int
+     * 
+     * This method setss the hp Boost for the Treasure.
+     */
+    public void setHPBoost(int n) {
+        this.hpBoost = n;
     }
 
 
@@ -101,11 +131,31 @@ abstract public class Treasure {
 
 
     /**
+     * @param n int
+     * 
+     * This method sets how much damage the Treasure inflicts.
+     */
+    public void setTakeDamage(int n) {
+        this.takeDamage = n;
+    }
+
+
+    /**
      * @return String
      *
      * This method returns the String for the Treasure type.
      */
-    public String getType() {
+    public String getTreasureType() {
         return this.treasureType;
+    }
+
+
+    /**
+     * @param type String
+     *
+     * This method sets the String for the Treasure type.
+     */
+    public void setTreasureType(String type) {
+        this.treasureType = type;
     }
 }

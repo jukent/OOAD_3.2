@@ -15,8 +15,8 @@ import entity.Character;
 
 public class Logger {
 
-    Tracker tracker; // The Game Tracker
-    String outputType; //
+    private Tracker tracker; // The Game Tracker
+    private String outputType; //
 
 
     /**
@@ -43,7 +43,7 @@ public class Logger {
             fileWriter.write(tableHeader);
 
             fileWriter.write("\n");
-            for (Character c: tracker.characterList) {
+            for (Character c: tracker.getCharacterList()) {
                 String name = c.getName();
                 String location = c.getLocation().getName();
                 Integer damage = 3-c.getHealth();
@@ -68,7 +68,7 @@ public class Logger {
     private void logCreatureStats(FileWriter fileWriter) {
         try {
             fileWriter.write("\n");
-            int total_creat = tracker.creatureList.size();
+            int total_creat = tracker.getCreatureList().size();
             fileWriter.write("Total Active Creatures: " + total_creat);
             fileWriter.write("\n");
 
@@ -77,7 +77,7 @@ public class Logger {
             fileWriter.write(tableHeader);
             fileWriter.write("\n");
     
-            for (Creature c: tracker.creatureList) {
+            for (Creature c: tracker.getCreatureList()) {
                 String name = c.getName();
                 String room = c.getLocation().getName();
                 String creatureStats = new String(name + "\t\t" + room);

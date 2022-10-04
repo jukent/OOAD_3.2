@@ -16,10 +16,10 @@ public class Sneaker extends Character {
      */
     public Sneaker(int id, Dungeon map) {
         setID(id); // Sneaker ID value
-        this.dungeon = map; // Game Dungeon
-        this.location = dungeon.getRoom("(0-1-1)"); // Begin in Entrance Room
-        this.fightBehavior = new StealthyFightBehavior(); // FightType is Stealthy
+        setDungeon(map); // Game Dungeon
+        setLocation(getDungeon().getRoom("(0-1-1)")); // Begin in Entrance Room
+        setFightBehavior(new StealthyFightBehavior()); // FightType is Stealthy
         setSearchBehavior(new QuickHuntBehavior()); // SearchType is Quick
-        name = "Sneaker"; // Sring name
+        setName("Sneaker"); // Sring name
     }
 }

@@ -13,7 +13,7 @@ public class Sword extends Treasure {
      */
     public Sword(int id, Dungeon dungeon) {
         hide(dungeon); // Game Dungeon
-        this.ownerFightBonus = 1; // Swords give a Character strength buff of 1
-        this.treasureType = "Sword"; // String name
+        setOwnerFightBonus(1); // Swords give a Character strength buff of 1
+        setTreasureType("Sword"); // String name
     }
 }

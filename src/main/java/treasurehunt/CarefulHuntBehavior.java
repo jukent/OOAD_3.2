@@ -12,8 +12,8 @@ public class CarefulHuntBehavior extends TreasureHuntBehavior {
      * Constructor for a Careful Treasure Hunt.
      */
     public CarefulHuntBehavior() {
-        this.searchType = "Careful"; // String Name
-        this.neededScore = 7; // Required dice roll of Integer 7
+        setSearchType("Careful"); // String Name
+        setNeededScore(7); // Required dice roll of Integer 7
     }
 
 

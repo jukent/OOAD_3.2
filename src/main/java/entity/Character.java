@@ -77,7 +77,7 @@ public abstract class Character extends Entity {
         inventory.add(treasure);
 
         ArrayList<String> inventoryTypes = getInventoryTypes();
-        inventoryTypes.add(treasure.getType());
+        inventoryTypes.add(treasure.getTreasureType());
         setInventoryTypes(inventoryTypes);
     }
 

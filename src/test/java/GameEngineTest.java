@@ -12,14 +12,14 @@ import game.GameEngine;
 
 public class GameEngineTest {
 
-    GameEngine gameEngine = new GameEngine("ShowNone");
-    Boolean endCondition = true;
+    private GameEngine gameEngine = new GameEngine("ShowNone");
+    private Boolean endCondition = true;
 
-    Dungeon dungeon = new Dungeon();
-    ArrayList<Character> characterList = new ArrayList<Character>();
-    ArrayList<Creature> creatureList = new ArrayList<Creature>();
-    ArrayList<Treasure> treasureList = new ArrayList<Treasure>();
-    Tracker tracker = new Tracker(dungeon, characterList, creatureList, treasureList);
+    private Dungeon dungeon = new Dungeon();
+    private ArrayList<Character> characterList = new ArrayList<Character>();
+    private ArrayList<Creature> creatureList = new ArrayList<Creature>();
+    private ArrayList<Treasure> treasureList = new ArrayList<Treasure>();
+    private Tracker tracker = new Tracker(characterList, creatureList, treasureList);
 
 
     @Test

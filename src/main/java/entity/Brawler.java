@@ -17,11 +17,11 @@ public class Brawler extends Character {
      */
     public Brawler(int id, Dungeon map) {
         setID(id); // Brawler ID value
-        this.dungeon = map; // Game Dungeon
-        this.location = dungeon.getRoom("(0-1-1)"); // Begin in Entrance Room
-        this.fightBehavior = new ExpertFightBehavior(); // FightType is Expert
+        setDungeon(map); // Game Dungeon
+        setLocation(getDungeon().getRoom("(0-1-1)")); // Begin in Entrance Room
+        setFightBehavior(new ExpertFightBehavior()); // FightType is Expert
         setSearchBehavior(new CarelessHuntBehavior()); 
         // SearchType is Careless
-        name = "Brawler"; // String name
+        setName("Brawler"); // String name
     }
 }
