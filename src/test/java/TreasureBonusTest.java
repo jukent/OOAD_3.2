@@ -42,4 +42,13 @@ public class TreasureBonusTest {
         Assert.assertEquals(2,A.getHealth());
 
     }
+
+    @Test
+    public void testHPGain(){
+        A.addHealth(B.getHPBoost());
+        A.loseHealth(F.getTakeDamage());
+        Assert.assertEquals(3,A.getHealth());
+
+
+    }
 }

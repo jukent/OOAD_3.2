@@ -1,9 +1,12 @@
 Tracker: Turn 128
 
 Adventurers	Room	Damage	Treasure
-Brawler		(2-0-1)	1		Trap, Sword, Armor
+Runner		(1-1-2)	0		Sword, Trap, Armor, Gem, Potion
+Sneaker		(3-2-2)	1		Trap, Gem, Portal, Sword
+Thief		(1-1-2)	1		Potion, Armor, Gem, Sword, Trap
+Brawler		(1-2-1)	0		Gem, Armor, Potion
 
 Total Active Creatures: 1
 
 Creatures	Room
-Orbiter		(4-0-1)
+Orbiter		(4-2-0)

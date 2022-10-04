@@ -33,4 +33,6 @@ public abstract class Celebration extends FightBehavior {
      * Abstract celebration method.
      */
     public abstract void celebrate();
+
+    public abstract String trackCelebrate();
 }

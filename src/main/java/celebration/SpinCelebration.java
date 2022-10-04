@@ -52,4 +52,13 @@ public class SpinCelebration extends Celebration {
             System.out.print("Spin! ");
         }
     }
+
+    public String trackCelebrate(){
+        String Results = "";
+        if(this.celebrationRef != null){Results += this.celebrationRef.trackCelebrate();}
+        for(int i = 0; i < DiceRolls.rollDice(3) - 1; i++) {
+            Results += "Spin! ";
+        }
+        return Results;
+    }
 }

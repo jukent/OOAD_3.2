@@ -1,9 +1,13 @@
 Tracker: Turn 49
 
 Adventurers	Room	Damage	Treasure
-Sneaker		(1-0-2)	3		Portal, Sword, Trap
+Runner		(2-0-0)	1		Sword, Trap, Armor
+Sneaker		(2-1-0)	0		
+Thief		(1-2-0)	0		Potion, Armor
+Brawler		(1-0-0)	0		Gem, Armor, Potion
 
-Total Active Creatures: 1
+Total Active Creatures: 2
 
 Creatures	Room
-Seeker		(3-0-2)
+Seeker		(4-0-1)
+Orbiter		(4-2-2)

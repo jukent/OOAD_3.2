@@ -53,4 +53,13 @@ public class DanceCelebration extends Celebration {
             System.out.print("Dance! ");
         }
     }
+
+    public String trackCelebrate(){
+        String Results = "";
+        if(this.celebrationRef != null){Results += this.celebrationRef.trackCelebrate();}
+        for(int i = 0; i < DiceRolls.rollDice(3) - 1; i++) {
+            Results += "Dance! ";
+        }
+        return Results;
+    }
 }

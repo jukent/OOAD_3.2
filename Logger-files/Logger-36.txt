@@ -1,11 +1,13 @@
 Tracker: Turn 36
 
 Adventurers	Room	Damage	Treasure
-Sneaker		(0-1-1)	1		Gem, Potion, Armor, Portal
-Thief		(2-0-0)	1		Armor, Potion, Trap, Trap, Portal
-Brawler		(2-0-2)	0		Gem
+Runner		(3-0-1)	1		Sword, Trap, Armor
+Sneaker		(2-0-2)	0		
+Thief		(1-1-2)	0		Potion, Armor
+Brawler		(1-2-1)	0		Gem, Armor, Potion
 
-Total Active Creatures: 1
+Total Active Creatures: 2
 
 Creatures	Room
-Blinker		(2-1-0)
+Seeker		(4-0-1)
+Orbiter		(4-0-1)

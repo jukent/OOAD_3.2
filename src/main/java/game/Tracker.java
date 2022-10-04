@@ -280,7 +280,7 @@ public class Tracker {
      * 
      * Tracker reduces Creature's health points by 1.
      */
-    public void characterWon(Character character, Creature creature, int characterRoll, int creatureRoll) {
+    public void characterWon(Character character, Celebration celebrationRef, Creature creature, int characterRoll, int creatureRoll) {
         creature.loseHealth(1);
 
         // Expose results for printer subscriber to use
@@ -291,6 +291,7 @@ public class Tracker {
         fightValues.put("characterRoll", String.valueOf(characterRoll));
         fightValues.put("creature", creature.getName());
         fightValues.put("creatureRoll", String.valueOf(creatureRoll));
+        characterCelebrated(character, celebrationRef);
     }
 
 
@@ -325,8 +326,7 @@ public class Tracker {
      * Tracker does nothing with this as of yet, but it was requested by the assignment.
      */
     public void characterCelebrated(Character character, Celebration celebration) {
-        // Requested, but not sure what to do with this information
-        //celebration.celebrate();
+        fightValues.put("celebrations", celebration.trackCelebrate());
     }
 
 
