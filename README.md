@@ -1,12 +1,13 @@
 # OOAD_3.2
 [![Java CI](https://github.com/jukent/OOAD_3.2/actions/workflows/junit_tests.yaml/badge.svg)](https://github.com/jukent/OOAD_3.2/actions/workflows/junit_tests.yaml)
+[![Lint Code Base](https://github.com/jukent/OOAD_3.2/actions/workflows/super_linter.yaml/badge.svg)](https://github.com/jukent/OOAD_3.2/actions/workflows/super_linter.yaml)
 
 ## OOAD5448: Raiders of the Lost Arctangent
 by David Chaparro and Julia Kent
 
 Java version: 17.0.1
 
-Expanding the Raiders of the Lost Arctangent Game to use specific treasures and design patterns. Previous iteration can be found at: https://github.com/jukent/OOAD5448_P2.2
+Expanding the Raiders of the Lost Arctangent Game to use specific treasures and design patterns. Previous iteration can be found at [OOOAD5448_P2.2](https://github.com/jukent/OOAD5448_P2.2).
 
 --------------------------------
 
@@ -40,9 +41,9 @@ To run the game, execute `Main.java` within the project. The terminal will then 
 
 ## Results
 
-Captured output for a single simulated game is in `SingleGameRun.txt` <br/>
-All Tracker ouptuts for this single run are captures in `Logger-files/Logger-n.txt` files. <br/>
-Final summary captured output from 30 runs is in `MultipleGameRun.txt` <br/>
+Captured output for a single simulated game is in [`SingleGameRun.txt`](https://github.com/jukent/OOAD_3.2/blob/main/SingleGameRun.txt) <br/>
+All Tracker ouptuts for this single run are captures in [`Logger-files/Logger-n.txt` files](https://github.com/jukent/OOAD_3.2/tree/main/Logger-files). <br/>
+Final summary captured output from 30 runs is in [`MultipleGameRun.txt`](https://github.com/jukent/OOAD_3.2/blob/main/MultipleGameRun.txt) <br/>
 
 The results of the 30-game runs can be summarized as: <br/>
 Characters won by finding 24 Treasures 0 times. <br/>
@@ -68,7 +69,9 @@ It was tricky to decide what the `Tracker` should be responsible for in the true
 
 ## Changes to UML Diagram
 
-The planned UML pretty accurately represents the end state of the project. We did not anticipate the number of methods that `Tracker` and `Logger` would use, how we would rename some methods, classes, and variables, or how we would move some code around. Due to the Observer pattern, the `Printer` class now has more methods that were previously the responsiblity of the `GameEngine`. We also added a `PrinterColumns` Class to help clean up the printing method. Perhaps the biggest difference is the creation of the `Entity` superclass. We did not predict how useful that would be for encapsulating movement patterns during the design/planning phase for this project.
+The planned UML pretty accurately represents the end state of the project. We did not anticipate the number of methods that `Tracker` and `Logger` would use, how we would rename some methods, classes, and variables, or how we would move some code around. Due to the Observer pattern, the `Printer` class now has more methods that were previously the responsiblity of the `GameEngine`. We also added a `PrinterColumns` Class to help clean up the printing method. Perhaps the biggest difference is the creation of the `Entity` superclass. We did not predict how useful that would be for encapsulating movement patterns during the design/planning phase for this project. 
+
+For comparison here is the [original UML](https://github.com/jukent/OOAD_3.2/blob/main/ClassDiagram_3.1.png) and the [updated UML](https://github.com/jukent/OOAD_3.2/blob/main/ClassDiagram_3.2UPDATED.png)
 
 Getters and Setters are left off of the UML diagram for readability.
 
@@ -78,24 +81,22 @@ The instructions were unspecified on if there should be a decision tree for Char
 
 ## JUnit Testing
 
-Testing was origioonally done with Maven for Java via the "Test Runner for Java" extension within Visual Studio Code (https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-test). This required we set up a `vscode/settings.json` file pointing to our `main/` and `test/` directories and a `pom.xml` file specifying that we use JUnit version 4.13.2 and that our tests are in `test/`.
+Testing was origionally done with Maven for Java via the ["Test Runner for Java" extension](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-test) within Visual Studio Code. This required we set up a `vscode/settings.json` file pointing to our `main/` and `test/` directories and a `pom.xml` file specifying that we use JUnit version 4.13.2 and that our tests are in `test/`.
 
 Tests were useful for testing edge cases (such as Seeker movement and Character with Portal movement) because they allowed us to set up the scenarios and assert the correct outcome, as opposed to running the simulation repeatedly watching for the Seeker to move.
 
 Some methods that were previously hidden had to be exposed as "public" for the testing framework to be able to access them. This is permissable, but ideally we'd want a Testing framework that does not interfere with how the codebase was originally designed.
 
-We have 18 tests, spanning movement, treasure hunting, and the game engine. Ideally we'd strive for more code coverage, but we tested the most suspect areas of the code and are satisfied for this assignment.
+We have 22 tests, spanning movement, treasure hunting, celebration, fighting, treasures, and the game engine; all visible in the [`/src/test/java` folder](https://github.com/jukent/OOAD_3.2/tree/main/src/test/java). Ideally we'd strive for more code coverage, but we tested the most suspect areas of the code and are satisfied for this assignment.
 
-Testing is now done automatically on every new push to the GitHub repository with GitHub actions. The steps for this are in `.github/workflows/junit_test.yml` and can be viewed in the "Actions" tab. Here are recent test results: https://github.com/jukent/OOAD_3.2/actions/runs/3177805039/jobs/5178657139
+Testing is now done automatically on every new push to the GitHub repository with GitHub actions Continuous Integration. The steps for this are in [`.github/workflows/junit_test.yml`](https://github.com/jukent/OOAD_3.2/blob/main/.github/workflows/junit_tests.yaml) and can be viewed in the "Actions" tab. [Here are recent test results](https://github.com/jukent/OOAD_3.2/actions/runs/3182673557/jobs/5188932278). 
 
 ## Citations
 
-Testing possibilities were learned from this JUnit documentation: https://junit.sourceforge.net/javadoc/org/junit/Assert.html
+Testing possibilities were learned from this [JUnit documentation](https://junit.sourceforge.net/javadoc/org/junit/Assert.html).
 
-We used these instructions for setting up testing: https://code.visualstudio.com/docs/java/java-testing
+We used these [instructions for setting up testing](https://code.visualstudio.com/docs/java/java-testing).
 
-This resource was useful for understanding the Observer pattern: "Game Programming Patterns" a book by Robert Nystrom http://gameprogrammingpatterns.com/observer.html
+This resource was useful for understanding the Observer pattern: ["Game Programming Patterns" a book by Robert Nystrom](http://gameprogrammingpatterns.com/observer.html).
 
-The `PrinterColumns` class was almost one-to-one borrowed from candied_orange's response to the StackOverflow question "Is there an easy way to output two columns to the console in Java?":
-//https://stackoverflow.com/questions/699878/is-there-an-easy-way-to-output-two-columns-to-the-console-in-java
-Documentation via comments and Javadocs were added to show that we understand the borrowed code.
+The `PrinterColumns` class was almost one-to-one borrowed from candied_orange's response to the StackOverflow question ["Is there an easy way to output two columns to the console in Java?"](https://stackoverflow.com/questions/699878/is-there-an-easy-way-to-output-two-columns-to-the-console-in-java). We added documentation via comments and Javadocs were added to show that we understand the borrowed code.
