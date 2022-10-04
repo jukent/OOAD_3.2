@@ -12,7 +12,7 @@ import treasure.*;
 
 public class GameEngine {
 
-    private String output; // OneScreen,ShowEnding,ShowAll,ShowNone
+    private String output; // OneScreen,ShowAll,ShowNone
 
     private Dungeon dungeon = new Dungeon(); // Example of identity
     // Dungeon is an example of identity. While we could create an instance
@@ -236,22 +236,13 @@ public class GameEngine {
     private void processTurn() {
         Logger logger = new Logger(tracker, output);
         // Process Characters
+        printer.printDungeon();
         for (int i = 0; i < characterList.size(); i++) { // Changing to this type of loop to avoid comodification
         Character character =  characterList.get(i);
             if (endCondition) {
                 // Stops processing Characters if end condition is met
                 process1Character(character); // Process character
                 checkWinCondition(); // Updates win conditions}
-
-                // Printing
-                if (output == "OneScreen") {
-                    System.out.print("\033[H\033[2J");
-                    System.out.flush();
-                }
-                if (output == "OneScreen" || output == "ShowAll") {
-                    printer.printDungeon();
-                    printer.pause();
-                }
             } else {
                 break;
             }
@@ -265,20 +256,11 @@ public class GameEngine {
                 // Stops processing Creatures if end condition is met
                 process1Creature(creature);
                 checkWinCondition();
-
-                // Printing
-                if (output == "OneScreen") {
-                    System.out.print("\033[H\033[2J");
-                    System.out.flush();
-                }
-                if (output == "OneScreen" || output == "ShowAll") {
-                    printer.printDungeon();
-                    printer.pause();
-                }
             } else {
                 break;
             }
         }
+        printer.printPause();
         logger.logRound();
     }
 
@@ -366,21 +348,24 @@ public class GameEngine {
             // 24 Treasures Found
             endCondition = false;
             System.out.println();
-            System.out.println("Game Over");
+            System.out.print("Game Over: Round ");
+            System.out.println(roundCount);
             System.out.println("All treasure found");
             System.out.println("\n");
         } else if (creatureCount <= 0) { 
             //All Creatures eliminated
             endCondition = false;
             System.out.println();
-            System.out.println("Game Over");
+            System.out.print("Game Over: Round ");
+            System.out.println(roundCount);
             System.out.println("All Creatures eliminated");
             System.out.println("\n");
         } else if (characterCount <= 0) {
             //All Characters defeated
             endCondition = false;
             System.out.println();
-            System.out.println("Game Over");
+            System.out.print("Game Over: Round ");
+            System.out.println(roundCount);
             System.out.println("All Adventurers eliminated");
             System.out.println("\n");
         } else {

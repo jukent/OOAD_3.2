@@ -1,0 +1,9 @@
+Tracker: Turn 73
+
+Adventurers	Room	Damage	Treasure
+Sneaker		(3-0-0)	3		Portal, Sword, Trap, Gem
+
+Total Active Creatures: 1
+
+Creatures	Room
+Seeker		(3-0-2)
