@@ -4,7 +4,7 @@ public class Main{
 
 
     /**
-     * @param args: String[]
+     * @param args String[]
      * 
      * This is the main method that runs the game.
      */
@@ -24,7 +24,7 @@ public class Main{
 
 
     /**
-     * @param N: int
+     * @param N int
      * 
      * This method runs 'N' games.
      */

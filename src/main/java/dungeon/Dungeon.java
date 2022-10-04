@@ -37,7 +37,7 @@ public class Dungeon {
 
 
     /**
-     * @param room_name: String
+     * @param room_name String
      * @return room: Room
      * 
      * Let other classes get a Room object based on its name.
@@ -49,7 +49,7 @@ public class Dungeon {
 
 
     /**
-     * @param num_levels: Integer 
+     * @param num_levels Integer 
      * @return map: Hashtable<String, Room> (room names, room object)
      * 
      * Generates the Rooms for the dungeon for any number of levels ('num_levels'),

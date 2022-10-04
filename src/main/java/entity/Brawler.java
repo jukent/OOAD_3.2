@@ -9,8 +9,8 @@ public class Brawler extends Character {
     
     
     /**
-     * @param id: int
-     * @param map: Dungeon
+     * @param id int
+     * @param map Dungeon
      * 
      * Brawler constructor must be passed in an integer ID `id` and the Dungeon.
      * Brawler is constructed with starting room.

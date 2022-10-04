@@ -27,7 +27,7 @@ public abstract class MovementBehavior {
 
 
     /**
-     * @param movementType
+     * @param movementType String
      * 
      * Sets the MovementBehavior type.
      */
@@ -37,8 +37,8 @@ public abstract class MovementBehavior {
 
 
     /**
-     * @param entity
-     * @param dungeon
+     * @param entity Entity
+     * @param dungeon Dungeon
      * 
      * Abstract method for Entity movement.
      */

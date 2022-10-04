@@ -64,7 +64,7 @@ public abstract class Character extends Entity {
 
 
     /**
-     * @param n: int
+     * @param n int
      * 
      * This method adds health to a Character's health points.
      */
@@ -84,7 +84,7 @@ public abstract class Character extends Entity {
 
 
     /**
-     * @param treasure: Treasure
+     * @param treasure Treasure
      * 
      * This method adds a single Treasure to the Character's treasure inventory
      * and updates their Treasure inventory types to match.
@@ -110,7 +110,7 @@ public abstract class Character extends Entity {
 
 
     /**
-     * @param inventoryTypes: ArrayList<String> 
+     * @param inventoryTypes ArrayList<String> 
      * 
      * This method sets the Character's Treasure inventory types.
      */

@@ -13,8 +13,8 @@ public class Seeker extends Creature {
 
 
     /**
-     * @param id: int
-     * @param map: Dungeon
+     * @param id int
+     * @param map Dungeon
      * 
      * Construct a Seeker with an Integer ID `id` and the Dungeon.
      */

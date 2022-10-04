@@ -9,7 +9,7 @@ public class ShoutCelebration extends Celebration {
 
 
     /**
-     * @param fight: FightBehavior
+     * @param fight FightBehavior
      * 
      * Shout Celebration constructor.
      */
@@ -19,7 +19,7 @@ public class ShoutCelebration extends Celebration {
 
 
      /**
-     * @param celebrateRef: Celebration
+     * @param celebrateRef Celebration
      * 
      * Shout Celebration constructor.
      */

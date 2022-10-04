@@ -51,7 +51,7 @@ public abstract class Celebration extends FightBehavior {
 
 
     /**
-     * @param celebrationRef: Celebration
+     * @param celebrationRef Celebration
      * 
      * Sets the Celebration reference.
      */
@@ -72,7 +72,7 @@ public abstract class Celebration extends FightBehavior {
 
 
     /**
-     * @param fightRef: FightBehavior
+     * @param fightRef FightBehavior
      * 
      * Sets the decorated Fight Behavior.
      */

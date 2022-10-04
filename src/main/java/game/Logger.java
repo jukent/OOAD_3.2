@@ -20,7 +20,7 @@ public class Logger {
 
 
     /**
-     * @param tracker: Tracker
+     * @param tracker Tracker
      * 
      * Constructor for the turn Logger.
      */
@@ -32,7 +32,7 @@ public class Logger {
 
    
     /**
-     * @param fileWriter: FileWriter
+     * @param fileWriter FileWriter
      * 
      * This method logs Character stats: name, location, damage, and treausres.
      */
@@ -61,7 +61,7 @@ public class Logger {
 
     
     /**
-     * @param fileWriter: FileWriter
+     * @param fileWriter FileWriter
      * 
      * This method logs Creature stats: name and location.
      */

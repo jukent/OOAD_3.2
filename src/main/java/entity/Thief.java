@@ -9,8 +9,8 @@ public class Thief extends Character {
 
 
     /**
-     * @param id: int
-     * @param map: Dungeon
+     * @param id int
+     * @param map Dungeon
      * 
      * Construct Thieves with an Integer ID `id` and the Dungeon
      */

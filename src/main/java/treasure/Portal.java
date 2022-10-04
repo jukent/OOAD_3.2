@@ -6,8 +6,8 @@ public class Portal extends Treasure {
 
     
     /**
-     * @param id: int
-     * @param dungeon: Dungeon
+     * @param id int
+     * @param dungeon Dungeon
      * 
      * Constructor for a Portal treasure with Integer ID `id` and the Dungeon.
      * 

@@ -40,7 +40,7 @@ public class GameEngine {
 
 
     /**
-     * @param outputType: String
+     * @param outputType String
      * 
      * Constructor to initialize board.
      */
@@ -123,8 +123,8 @@ public class GameEngine {
     
 
     /**
-     * @param character: Characters
-     * @param creature: Creatures
+     * @param character Character
+     * @param creature Creature
      * 
      * Input a Character `A` and Creature `B`
      * Deducts health if a dice roll is larger than the other. 
@@ -181,7 +181,7 @@ public class GameEngine {
     
 
     /**
-     * @param character: Character
+     * @param character Character
      * 
      * Performs the Character action of searching for treasure.
      * Adds to the Characters treasure count
@@ -283,7 +283,7 @@ public class GameEngine {
 
 
     /**
-     * @param character: Character
+     * @param character Character
      * 
      * This method processes the decision making for one Character:
      * - If a Creature is in the Room, it automatically fights.
@@ -319,7 +319,7 @@ public class GameEngine {
     
 
     /**
-     * @param creature: Creature
+     * @param creature Creature
      * 
      * Processes the decision making for one Creature:
      * - If a Character is in the Room, it automatically fights.

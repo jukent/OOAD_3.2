@@ -12,8 +12,8 @@ public class Blinker extends Creature {
     
     
     /**
-     * @param id: int
-     * @param map: Dungeon
+     * @param id int
+     * @param map Dungeon
      * 
      * Blinkers constructor must be passed an ID integer 'id' and the Dungeon
      * Blinkers are assigned a starting room at construction.

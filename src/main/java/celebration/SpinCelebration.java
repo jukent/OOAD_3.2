@@ -9,7 +9,7 @@ public class SpinCelebration extends Celebration {
 
 
     /**
-     * @param fight: FightBehavior
+     * @param fight FightBehavior
      * 
      * Spin Celebration constructor.
      */
@@ -19,7 +19,7 @@ public class SpinCelebration extends Celebration {
 
 
      /**
-     * @param celebrateRef: Celebration
+     * @param celebrateRef Celebration
      * 
      * Spin Celebration constructor.
      */

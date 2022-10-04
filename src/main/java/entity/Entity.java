@@ -47,7 +47,7 @@ public class Entity {
 
 
     /**
-     * @param room: Room
+     * @param room Room
      * 
      * This method manually sets Entity's location without influence from other Rooms.
      */
@@ -67,7 +67,7 @@ public class Entity {
 
     
     /**
-     * @param new_direction: String
+     * @param new_direction String
      * 
      * This method sets an Entity's "direction"
      * 
@@ -100,7 +100,7 @@ public class Entity {
 
 
     /**
-     * @param n: int
+     * @param n int
      * 
      * This method decreases an Entity's health by the integer 'n'.
      */
@@ -130,7 +130,7 @@ public class Entity {
 
 
     /**
-     * @param fightBehavior: FightBehavior
+     * @param fightBehavior FightBehavior
      * 
      * This method sets an Entity's fight behavior.
      */

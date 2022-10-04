@@ -19,7 +19,7 @@ public class PrinterColumns {
 
 
     /**
-     * @param rowStrings: List<String>
+     * @param rowStrings List<String>
      * @return PrinterColumns
      * 
      * This method adds a List of Strings to the PrinterColumns.

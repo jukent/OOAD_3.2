@@ -28,7 +28,7 @@ public abstract class FightBehavior {
 
 
     /**
-     * @param fightType: String
+     * @param fightType String
      * 
      * Sets the FightBehavior type.
      */

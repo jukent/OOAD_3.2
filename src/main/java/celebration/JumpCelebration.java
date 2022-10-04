@@ -9,7 +9,7 @@ public class JumpCelebration extends Celebration {
 
 
     /**
-     * @param fight: FightBehavior
+     * @param fight FightBehavior
      * 
      * Jump Celebration constructor.
      */
@@ -19,7 +19,7 @@ public class JumpCelebration extends Celebration {
 
 
      /**
-     * @param celebrateRef: Celebration
+     * @param celebrateRef Celebration
      * 
      * Jump Celebration constructor.
      */

@@ -6,8 +6,8 @@ public class Gem extends Treasure {
 
 
     /**
-     * @param id: int
-     * @param dungeon: Dungeon
+     * @param id int
+     * @param dungeon Dungeon
      * 
      * Constructor for a Gem Treasure with Integer ID `id` and the Dungeon.
      */

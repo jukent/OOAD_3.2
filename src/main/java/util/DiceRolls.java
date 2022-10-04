@@ -7,7 +7,7 @@ public interface DiceRolls {
 
     
     /**
-     * @param a: int
+     * @param a int
      * @return int
      * 
      * This method "rolls dice".

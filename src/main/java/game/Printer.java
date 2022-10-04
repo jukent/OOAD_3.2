@@ -19,9 +19,9 @@ public class Printer {
 
     
     /**
-     * @param dungeon: Dungeon
-     * @param output: String
-     * @param tracker: Tracker
+     * @param dungeon Dungeon
+     * @param output String
+     * @param tracker Tracker
      * 
      * Construct the printer.
      */
@@ -72,7 +72,7 @@ public class Printer {
 
 
     /**
-     * @param room: Room
+     * @param room Room
      * @return ArrayList<String>
      * 
      * This method gets the string for displaying occupancy in each Room.
@@ -106,9 +106,9 @@ public class Printer {
 
 
     /**
-     * @param level: int
-     * @param row:: int
-     * @param columns:: Columns
+     * @param level int
+     * @param row int
+     * @param columns Columns
      * 
      * This method adds a row of the Dungeon and its occupancy to the Columns object.
      */
@@ -130,8 +130,8 @@ public class Printer {
 
 
     /**
-     * @param level: int
-     * @param columns:: Columns
+     * @param level int
+     * @param columns Columns
      * 
      * This method adds a level of the Dungeon and its occupancy to the Columns object.
      */
@@ -194,10 +194,10 @@ public class Printer {
 
 
     /**
-     * @param character: String
-     * @param creature: String
-     * @param characterRoll: String
-     * @param creatureRoll: String
+     * @param character String
+     * @param creature String
+     * @param characterRoll String
+     * @param creatureRoll String
      * 
      * Prints the entities and their dice rolls when a Character wins the fight.
      */
@@ -214,10 +214,10 @@ public class Printer {
 
 
     /**
-     * @param character: String
-     * @param creature: String
-     * @param characterRoll: String
-     * @param creatureRoll: String
+     * @param character String
+     * @param creature String
+     * @param characterRoll String
+     * @param creatureRoll String
      * 
      * Prints the entities and their dice rolls when a Creature wins the fight.
      */
@@ -278,8 +278,8 @@ public class Printer {
     }
 
     /**
-     * @param treasure: String
-     * @param score: String
+     * @param treasure String
+     * @param score String
      * 
      * Prints the treasure and dice roll for a successful treasure hunt.
      */
@@ -292,8 +292,8 @@ public class Printer {
 
 
     /**
-     * @param treasure: String
-     * @param score: String
+     * @param treasure String
+     * @param score String
      * 
      * Prints the treasure and dice rolls for a duplicate treasure hunt.
      */
@@ -307,7 +307,7 @@ public class Printer {
 
 
     /**
-     * @param score: String
+     * @param score String
      * 
      * Prints the dice roll for an unsuccessful treasure hunt.
      */

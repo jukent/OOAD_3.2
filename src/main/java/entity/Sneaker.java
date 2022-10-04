@@ -9,8 +9,8 @@ public class Sneaker extends Character {
 
 
     /**
-     * @param id: int
-     * @param map: Dungeon
+     * @param id int
+     * @param map Dungeon
      * 
      * Construct Sneakers with an Integer ID `id` and the Dungeon
      */

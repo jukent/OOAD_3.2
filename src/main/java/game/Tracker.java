@@ -45,10 +45,10 @@ public class Tracker {
     HashMap<String, String> treasureHuntValues = new HashMap<String, String>(); // HashMap of Treasure and Treasure roll from most recent treasure hunt.
 
     /**
-     * @param dungeon: Dungeon
-     * @param characterList: ArrayList<Character>
-     * @param creatureList: ArrayList<Creature>
-     * @param treasureList: ArrayList<Treasure>
+     * @param dungeon Dungeon
+     * @param characterList ArrayList<Character>
+     * @param creatureList ArrayList<Creature>
+     * @param treasureList ArrayList<Treasure>
      * 
      * Constructor for the Tracker.
      */
@@ -74,7 +74,7 @@ public class Tracker {
 
 
     /**
-     * @param roundCounter: int
+     * @param roundCounter int
      * 
      * This sets the Integer Round count value.
      */
@@ -94,7 +94,7 @@ public class Tracker {
 
 
     /**
-     * @param n: int
+     * @param n int
      * 
      * Returns the Integer Treasure count value.
      */
@@ -104,8 +104,8 @@ public class Tracker {
 
 
     /**
-     * @param character: Character
-     * @param room: Room
+     * @param character Character
+     * @param room Room
      * 
      * Publishes the Character exiting a Room to the Room's occupancy.
      */
@@ -117,8 +117,8 @@ public class Tracker {
 
 
     /**
-     * @param character: Character
-     * @param room: Room
+     * @param character Character
+     * @param room Room
      * 
      * Publishes a Character entering a Room to the Room's occupancy.
      */
@@ -130,8 +130,8 @@ public class Tracker {
 
 
     /**
-     * @param creature: Creature
-     * @param room: Room
+     * @param creature Creature
+     * @param room Room
      * 
      * Publishes a Creature leaving a Room to the Room's occupancy.
      * Done separately from Characters because it is conventient for the Room's to store Characters and Creatures separately.
@@ -144,8 +144,8 @@ public class Tracker {
 
 
     /**
-     * @param creature: Creature
-     * @param room: Room
+     * @param creature Creature
+     * @param room Room
      * 
      * Publishes a Creature Entering a Room to the Room's occupancy.
      */
@@ -157,8 +157,8 @@ public class Tracker {
 
 
     /**
-     * @param treasure: Treasure
-     * @param room: Room
+     * @param treasure Treasure
+     * @param room Room
      * 
      * Publishes Treasure being removed from a Room to the Room's occupancy.
      */
@@ -170,8 +170,8 @@ public class Tracker {
 
 
     /**
-     * @param treasure: Treasure
-     * @param room: Room
+     * @param treasure Treasure
+     * @param room Room
      * 
      * Publishes Treasure being hidden in a Room to the Room's occupancy.
      */
@@ -228,7 +228,7 @@ public class Tracker {
 
 
     /**
-     * @param room: Room
+     * @param room Room
      * 
      * Published event that Treasure has been found.
      * 
@@ -273,8 +273,8 @@ public class Tracker {
 
 
     /**
-     * @param character: Character
-     * @param creature: Creature
+     * @param character Character
+     * @param creature Creature
      * 
      * Pubished event that a Character won the fight.
      * 
@@ -295,8 +295,8 @@ public class Tracker {
 
 
     /**
-     * @param character: Character
-     * @param creature: Creature
+     * @param character Character
+     * @param creature Creature
      * 
      * Published event that a Creature won the fight.
      * 
@@ -317,8 +317,8 @@ public class Tracker {
 
 
     /**
-     * @param character: Character
-     * @param celebration: Celebration
+     * @param character Character
+     * @param celebration Celebration
      * 
      * Published even that a Character celebrated.
      * 
@@ -331,7 +331,7 @@ public class Tracker {
 
 
     /**
-     * @param character: Character
+     * @param character Character
      * 
      * Published even that a Character has lost all of its health.
      * 
@@ -347,7 +347,7 @@ public class Tracker {
 
 
     /**
-     * @param creature: Creature
+     * @param creature Creature
      * 
      * Published event that a Creature has lost all of its health.
      * 
@@ -363,9 +363,9 @@ public class Tracker {
 
 
     /**
-     * @param character: Character
-     * @param oldRoom: Room
-     * @param newNoom: Room
+     * @param character Character
+     * @param oldRoom Room
+     * @param newNoom Room
      * 
      * Published even that a Character has moved.
      * 
@@ -381,9 +381,9 @@ public class Tracker {
 
 
     /**
-     * @param creature: Creature
-     * @param oldRoom: Room
-     * @param newRoom: Room
+     * @param creature Creature
+     * @param oldRoom Room
+     * @param newRoom Room
      * 
      * Published even that a Creature has moved.
      * 
@@ -444,7 +444,7 @@ public class Tracker {
 
 
     /**
-     * @param score: Integer
+     * @param score Integer
      * 
      * Publishes the event that Treasure was not found.
      */

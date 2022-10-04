@@ -9,8 +9,8 @@ public class Runner extends Character {
 
 
     /**
-     * @param id: int
-     * @param map: Dungeon
+     * @param id int
+     * @param map Dungeon
      * 
      * Constructs a runner with an Integer `id` and the Dungeon.
      */

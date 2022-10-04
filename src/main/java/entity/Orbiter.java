@@ -15,8 +15,8 @@ public class Orbiter extends Creature {
 
 
     /**
-     * @param id: int
-     * @param map: Dungeon
+     * @param id int
+     * @param map Dungeon
      * 
      * Constructor for Orbiters must be passed an ID integer 'id' and the Dungeon.
      * Orbiters are assigned a starting room at construction.

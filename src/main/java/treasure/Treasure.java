@@ -18,7 +18,7 @@ abstract public class Treasure {
 
 
     /**
-     * @param dungeon: Dungeon
+     * @param dungeon Dungeon
      * 
      * Sets the starting Room where the Treasure is hidden.
      */
@@ -42,7 +42,7 @@ abstract public class Treasure {
 
 
     /**
-     * @param room: Rooom
+     * @param room Rooom
      * 
      * This method sets a Treasure's location.
      */
