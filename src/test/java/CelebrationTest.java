@@ -1,17 +1,13 @@
 
-import java.beans.Transient;
-
 import org.junit.Assert;
 import org.junit.Test;
 
 import dungeon.Dungeon;
 import entity.Character;
 import entity.*;
-import treasure.*;
 import fight.*;
 import Celebration.*;
-import game.Tracker;
-import game.GameEngine;
+
 
 
 public class CelebrationTest {
@@ -23,13 +19,7 @@ public class CelebrationTest {
     public void testWrap(){
         Celebration tJ = new Jump(FightBehavior);
         tJ = new Spin(tJ);
+        Assert.assertEquals("Untrained",tJ.fightBehavior.fightType)
         
     }
-    @Test
-    public void testDance(){
-        Celebration tJ = new Dance(FightBehavior);
-        
-    }
-
-
 }

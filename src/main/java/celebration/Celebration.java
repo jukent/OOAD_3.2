@@ -4,8 +4,8 @@ import fight.FightBehavior;
 
 public abstract class Celebration extends FightBehavior {
 
-    protected Celebration celebrationRef;
-    protected FightBehavior fightRef;
+    public Celebration celebrationRef;
+    public FightBehavior fightRef;
 
 
     // This is our decorator pattern. The celebration decorator decorates the fight behaviors
