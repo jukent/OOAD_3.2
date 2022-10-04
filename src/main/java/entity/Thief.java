@@ -1,8 +1,8 @@
 package entity;
 
 import dungeon.Dungeon;
-import fight.TrainedFighter;
-import treasurehunt.CarefulHunt;
+import fight.TrainedFightBehavior;
+import treasurehunt.CarefulHuntBehavior;
 
 public class Thief extends Character {
     // Example of inheritance
@@ -18,8 +18,8 @@ public class Thief extends Character {
         super.id = id; // Thief ID value
         this.dungeon = map; // Game Dungeon
         this.location = dungeon.getRoom("(0-1-1)"); // Start in Entrance Room
-        this.fightBehavior = new TrainedFighter(); // FightType is Trained
-        this.searchBehavior = new CarefulHunt(); // SearhType is Careful
+        this.fightBehavior = new TrainedFightBehavior(); // FightType is Trained
+        this.searchBehavior = new CarefulHuntBehavior(); // SearhType is Careful
         name = "Thief"; // String name
     }
 }

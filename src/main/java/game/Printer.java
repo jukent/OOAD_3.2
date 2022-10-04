@@ -1,6 +1,7 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 import dungeon.Dungeon;
@@ -12,7 +13,7 @@ public class Printer {
 
     Dungeon dungeon; // Game Dungeon
     Tracker tracker; // Game Tracker
-    String OutputType; // Output options: OneScreen, ShowAll, ShowEnding
+    String outputType; // Output options: OneScreen, ShowAll, ShowEnding, ShowNone
     private Scanner scanner = new java.util.Scanner(System.in); // A Scanner for awaiting user input
 
     
@@ -26,7 +27,7 @@ public class Printer {
     public Printer(Dungeon dungeon, Tracker tracker, String output) {
         this.dungeon = dungeon; // Game Dungeon
         this.tracker = tracker; // Game Tracker
-        this.OutputType = output; // Output type String
+        this.outputType = output; // Output type String
     }
 
 
@@ -34,25 +35,27 @@ public class Printer {
      * Print the Dungeon and its occupancy.
      */
     public void printDungeon() {
-        // Print Game Status
-        printGameStatus();
+        if (outputType != "ShowNone") {
+            // Print Game Status
+            printGameStatus();
 
-        // Level 0 
-        Room startingRoom = dungeon.getRoom("(0-1-1)");
-        ArrayList<String> occupancyArray = getOccupancyStringArray(startingRoom);
-        String occupancyString = occupancyArray.toString().replace("[", "").replace("]", "").replace(",", "");
-        System.out.println(occupancyString);
+            // Level 0 
+            Room startingRoom = dungeon.getRoom("(0-1-1)");
+            ArrayList<String> occupancyArray = getOccupancyStringArray(startingRoom);
+            String occupancyString = occupancyArray.toString().replace("[", "").replace("]", "").replace(",", "");
+            System.out.println(occupancyString);
 
-        // Levels 1, 2, 3, 4
-        PrinterColumns columns = new PrinterColumns();
-        for (int l = 1; l <= 4; ++l) {
-            addLevelArray(l, columns);
+            // Levels 1, 2, 3, 4
+            PrinterColumns columns = new PrinterColumns();
+            for (int l = 1; l <= 4; ++l) {
+                addLevelArray(l, columns);
+            }
+            columns.print();
+
+            // Print Character/Creature Status
+            printCharacterStats();
+            printCreatureStats();
         }
-        columns.print();
-
-        // Print Character/Creature Status
-        printCharacterStats();
-        printCreatureStats();
     }
 
 
@@ -60,7 +63,7 @@ public class Printer {
      * A pause method between turns asking the player to continue.
      */
     public void pause() {
-        if (OutputType == "OneScreen") {
+        if (outputType == "OneScreen") {
             System.out.println("Press Enter To Continue...");
             scanner.nextLine();
         }
@@ -142,7 +145,7 @@ public class Printer {
     private void printGameStatus() {
         System.out.print("Game Status: ");
         System.out.print(" Round: ");
-        System.out.print(tracker.getRoundCounter());
+        System.out.print(tracker.getRoundCount());
         System.out.print(" Characters: ");
         System.out.print(tracker.getCharacterList().size());
         System.out.print(" Creatures: ");
@@ -184,6 +187,150 @@ public class Printer {
         for (String A: creatureSet) {
             TempString = new String(A + "(s) - " + Counts[creatureSet.indexOf(A)] + " Remaining");
             System.out.println(TempString);
+        }
+    }
+
+
+    /**
+     * @param character: String
+     * @param creature: String
+     * @param characterRoll: String
+     * @param creatureRoll: String
+     * 
+     * Prints the entities and their dice rolls when a Character wins the fight.
+     */
+    private void printCharacterWins(String character, String creature, String characterRoll, String creatureRoll) {
+        System.out.print("Fight: ");
+        System.out.print(character + ": ");
+        System.out.print(characterRoll);
+        System.out.print(" " + creature + ": ");
+        System.out.print(creatureRoll);
+        System.out.println(" " + character + " Wins :D ");
+        System.out.print(character + " celebrates!: ");
+        System.out.println();
+    }
+
+
+    /**
+     * @param character: String
+     * @param creature: String
+     * @param characterRoll: String
+     * @param creatureRoll: String
+     * 
+     * Prints the entities and their dice rolls when a Creature wins the fight.
+     */
+    private void printCreatureWins(String character, String creature, String characterRoll, String creatureRoll) {
+        System.out.print("Fight: ");
+        System.out.print(character + ": ");
+        System.out.print(characterRoll);
+        System.out.print(" " + creature + ": ");
+        System.out.print(creatureRoll);
+        System.out.println(" Creature Wins :( ");
+    }
+
+    
+    /**
+     * Prints that the fight was skipped.
+     */
+    private void printFightSkipped() {
+        System.out.println("Fight Skipped");
+
+    }
+
+
+    /**
+     * Prints the fight results.
+     * 
+     * Example of Observer pattern, Printer has subscribed to values from the Tracker 
+     * that are updated whenever a fighting event is published.
+     */
+    public void printFightResults() {
+        if (outputType != "ShowNone") {
+            HashMap<String, String> fightValues = tracker.getFightValues();
+            String result = fightValues.get("result"); // "CharacterWon", "CreatureWon", "FightSkipped"
+            if (result == "FightSkipped") {
+                // If Fight skipped
+                printFightSkipped();
+            } else {
+                // Fight not skipped
+                String character = fightValues.get("character");
+                String characterRoll = fightValues.get("characterRoll");
+                String creature= fightValues.get("creature");
+                String creatureRoll = fightValues.get("creatureRoll");
+
+                if (result == "CharacterWon") {
+                    // If Characer Won
+                    printCharacterWins(character, creature, characterRoll, creatureRoll);
+                } else if (result == "CreatureWon") {
+                    // If Creature Won
+                    printCreatureWins(character, creature, characterRoll, creatureRoll);
+                }
+            }
+        }
+    }
+
+
+    /**
+     * @param treasure: String
+     * @param score: String
+     * 
+     * Prints the treasure and dice roll for a successful treasure hunt.
+     */
+    private void printTreasureHuntSuccess(String treasure, String score) {
+        System.out.print("Treasure Hunt: ");
+        System.out.print(score);
+        System.out.println(" Success! ");
+        System.out.println("Treasure: " + treasure);
+    }
+
+
+    /**
+     * @param treasure: String
+     * @param score: String
+     * 
+     * Prints the treasure and dice rolls for a duplicate treasure hunt.
+     */
+    private void printDuplicateTreasureHunt(String treasure, String score) {
+        System.out.print("Treasure Hunt: ");
+        System.out.print(score);
+        System.out.println(" Success! ");
+        System.out.println("Treasure: " + treasure);
+        System.out.println(treasure + " Already in Inventory :(");
+    }
+
+
+    /**
+     * @param score: String
+     * 
+     * Prints the dice roll for an unsuccessful treasure hunt.
+     */
+    private void printTreasureHuntFail(String score) {
+        System.out.print("Treasure Hunt: ");
+        System.out.print(score);
+        System.out.println(" Fail :(");
+    }
+
+
+    /**
+     * Prints the results of treasure hunting.
+     * 
+     * Example of Observer pattern, Printer has subscribed to values from the Tracker 
+     * that are updated whenever a treasure hunting event is published.
+     */
+    public void printTreasureHuntResults() {
+        if (outputType != "ShowNone") {
+            HashMap<String, String> treasureValues = tracker.getTreasureHuntValues();
+            String result = treasureValues.get("result"); // "TreasureFound", "TreasureNotFound", "DuplicateTreasureFound"
+            if (result == "TreasureFound") {
+                // If Treasure Found
+                printTreasureHuntSuccess(treasureValues.get("treasure"), treasureValues.get("score"));
+            } else if (result == "DuplicateTreasureFound") {
+                // If Treasure Already Found
+                printDuplicateTreasureHunt(treasureValues.get("treasure"), treasureValues.get("score"));
+            } else if (result == "TreasureNotFound") {
+                // If Treasure Not Found
+                printTreasureHuntFail(treasureValues.get("score"));
+            }
         }
     }
 }

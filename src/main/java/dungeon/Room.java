@@ -115,6 +115,8 @@ public class Room {
      * @param characters_in_room: ArrayList<Characters>
      * 
      * This method stores Room occupancy as an ArrayList of Characters in the Room.
+     * 
+     * This is updated by the Tracker as an example of the Observer pattern.
      */
     public void setCharactersInRoom(ArrayList<Character> characters_in_room) {
         this.characters_in_room = characters_in_room;
@@ -135,6 +137,8 @@ public class Room {
      * @param creatures_in_room: ArrayList<Creatures>
      * 
      * This method stores Room occupancy as an ArrayList of Creatures in the Room.
+     * 
+     * This is updated by the Tracker as an example of the Observer pattern.
      */
     public void setCreaturesInRoom(ArrayList<Creature> creatures_in_room) {
         this.creatures_in_room = creatures_in_room;
@@ -151,6 +155,8 @@ public class Room {
 
     /**
      * This method sets the Arraylist of Treasures in the room.
+     * 
+     * This is updated by the Tracker as an example of the Observer pattern.
      */
     public void setTreasuresInRoom(ArrayList<Treasure> treasures) {
         this.treasures_in_room = treasures;

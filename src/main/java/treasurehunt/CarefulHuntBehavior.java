@@ -2,15 +2,16 @@ package treasurehunt;
 
 import util.DiceRolls;
 
-public class CarefulHunt extends TreasureHunt {
+public class CarefulHuntBehavior extends TreasureHuntBehavior {
     
-        //Implementation of the strategy OOP Design pattern. This is a subclass
-    //of the strategy pattern
+    // Implementation of the strategy OOP Design pattern. This is a subclass
+    // of the strategy pattern.
+
 
     /**
      * Constructor for a Careful Treasure Hunt.
      */
-    public CarefulHunt() {
+    public CarefulHuntBehavior() {
         this.searchType = "Careful"; // String Name
         this.neededScore = 7; // Required dice roll of Integer 7
     }

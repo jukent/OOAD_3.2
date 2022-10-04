@@ -2,13 +2,13 @@ package fight;
 
 import util.DiceRolls;
 
-public class CreatureFighter extends FightBehavior {
+public class CreatureFightBehavior extends FightBehavior {
 
 
     /**
      * Creature Fighter constructor.
      */
-    public CreatureFighter() {
+    public CreatureFightBehavior() {
         setFightType("Creature");
     }
     

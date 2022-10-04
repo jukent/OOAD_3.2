@@ -7,12 +7,16 @@ import entity.Creature;
 import entity.Character;
 
 
+// Example of Observer Pattern
 
 // Logger Class to be instantiated at the beginning of each full adventurer/creature turn (not individual) and closes at the end of each turn.
 // Logs results to "Logger-n.txt" where n is the turn of the simulation.
+// Logged values are stored/managed/updated by the Tracker whenever a relevant event is published.
+
 public class Logger {
 
     Tracker tracker; // The Game Tracker
+    String outputType; //
 
 
     /**
@@ -20,8 +24,9 @@ public class Logger {
      * 
      * Constructor for the turn Logger.
      */
-    public Logger(Tracker tracker) {
+    public Logger(Tracker tracker, String outputType) {
         this.tracker = tracker; // The Game Tracker
+        this.outputType = outputType; // Output options: OneScreen, ShowAll, ShowEnding, ShowNone
     }
 
 
@@ -90,24 +95,27 @@ public class Logger {
      * The method logs all required components for each round (Character stats and Creature stats)
      */
     public void logRound() {
-        int roundCounter = tracker.getRoundCounter();
+        if (outputType != "ShowNone") {
+        // Don't produce Logs for multiple game runs with "ShowNone" set
+            int roundCount = tracker.getRoundCount();
 
-        String fileName = new String("Logger-files/Logger-" + roundCounter + ".txt");
+            String fileName = new String("Logger-files/Logger-" + roundCount + ".txt");
 
-        try {
-            FileWriter fileWriter = new FileWriter(fileName);
+            try {
+                FileWriter fileWriter = new FileWriter(fileName);
 
-            String roundString = new String("Tracker: Turn " + roundCounter);
-            fileWriter.write(roundString);
-            fileWriter.write("\n");
+                String roundString = new String("Tracker: Turn " + roundCount);
+                fileWriter.write(roundString);
+                fileWriter.write("\n");
 
-            logCharacterStats(fileWriter);
-            logCreatureStats(fileWriter);
+                logCharacterStats(fileWriter);
+                logCreatureStats(fileWriter);
 
-            fileWriter.close();
-        } catch (IOException e) {
-            System.out.println("An error occurred. Could not write file.");
-            e.printStackTrace();
+                fileWriter.close();
+            } catch (IOException e) {
+                System.out.println("An error occurred. Could not write file.");
+                e.printStackTrace();
+            }
         }
     }
 }

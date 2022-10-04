@@ -2,15 +2,16 @@ package treasurehunt;
 
 import util.DiceRolls;
 
-public class QuickHunt extends TreasureHunt{
+public class QuickHuntBehavior extends TreasureHuntBehavior {
     
-    //Implementation of the strategy OOP Design pattern. This is a subclass
-    //of the strategy pattern
+    // Implementation of the strategy OOP Design pattern. This is a subclass
+    // of the strategy pattern.
+
 
     /**
      * Constructor for a Quick Treasure Hunt.
      */
-    public QuickHunt(){
+    public QuickHuntBehavior() {
         this.searchType = "Quick"; // String name
         this.neededScore = 9; // Required dice roll of 9
     }

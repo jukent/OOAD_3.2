@@ -2,15 +2,16 @@ package fight;
 
 import util.DiceRolls;
 
-public class TrainedFighter extends FightBehavior {
+public class TrainedFightBehavior extends FightBehavior {
 
-    //Implementation of the strategy OOP Design pattern. This is a subclass
-    //of the strategy pattern
+    // Implementation of the strategy OOP Design pattern. This is a subclass
+    // of the strategy pattern.
 
+    
     /**
      * Constructor for a Trained Fighter.
      */
-    public TrainedFighter() {
+    public TrainedFightBehavior() {
         setFightType("Trained");
     }
 

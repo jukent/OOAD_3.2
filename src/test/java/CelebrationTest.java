@@ -9,27 +9,26 @@ import entity.Character;
 import entity.*;
 import treasure.*;
 import fight.*;
-import Celebration.*;
+import celebration.*;
 import game.Tracker;
 import game.GameEngine;
 
 
 public class CelebrationTest {
     Dungeon dungeon = new Dungeon();
-    Character A = new Runner(1,dungeon);
-    FightBehavior A.fightBehavior = fightBehavior;
+    Character A = new Runner(1, dungeon);
+    FightBehavior fightBehavior = A.getFightBehavior();
+
 
     @Test
-    public void testWrap(){
-        Celebration tJ = new Jump(FightBehavior);
-        tJ = new Spin(tJ);
-        
-    }
-    @Test
-    public void testDance(){
-        Celebration tJ = new Dance(FightBehavior);
-        
+    public void testWrap() {
+        Celebration tJ = new JumpCelebration(fightBehavior);
+        tJ = new SpinCelebration(tJ); 
     }
 
 
+    @Test
+    public void testDance() {
+        Celebration tJ = new DanceCelebration(fightBehavior);
+    }
 }

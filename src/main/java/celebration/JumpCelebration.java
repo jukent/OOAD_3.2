@@ -4,26 +4,27 @@ import fight.FightBehavior;
 import util.DiceRolls;
 
 public class JumpCelebration extends Celebration {
+    
+    // Subclass of a decorator pattern
 
 
-
-        //Subclass of a decorator pattern
     /**
      * @param fight: FightBehavior
      * 
-     * Dance Celebration constructor.
+     * Jump Celebration constructor.
      */
     public JumpCelebration(FightBehavior fight) {
-        super(fight)
+        super(fight);
     }
+
 
      /**
      * @param celebrateRef: Celebration
      * 
-     * Dance Celebration constructor.
+     * Jump Celebration constructor.
      */
     public JumpCelebration(Celebration celebrateRef) {
-        super(celebrateRef)
+        super(celebrateRef);
     }
 
 
@@ -43,6 +44,7 @@ public class JumpCelebration extends Celebration {
      * 
      * Executes jumping celebration a random number of times.
      */
+    @Override
     public void celebrate() {
         this.fightRef.celebrate();
         for(int i = 0; i < DiceRolls.rollDice(3) - 1; i++) {

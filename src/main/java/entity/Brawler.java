@@ -1,8 +1,8 @@
 package entity;
 
 import dungeon.Dungeon;
-import fight.ExpertFighter;
-import treasurehunt.CarelessHunt;
+import fight.ExpertFightBehavior;
+import treasurehunt.CarelessHuntBehavior;
 
 public class Brawler extends Character { 
     // Example of inheritance
@@ -19,8 +19,8 @@ public class Brawler extends Character {
         super.id = id; // Brawler ID value
         this.dungeon = map; // Game Dungeon
         this.location = dungeon.getRoom("(0-1-1)"); // Begin in Entrance Room
-        this.fightBehavior = new ExpertFighter(); // FightType is Expert
-        this.searchBehavior = new CarelessHunt(); // SearchType is Careless
+        this.fightBehavior = new ExpertFightBehavior(); // FightType is Expert
+        this.searchBehavior = new CarelessHuntBehavior(); // SearchType is Careless
         name = "Brawler"; // String name
     }
 }
