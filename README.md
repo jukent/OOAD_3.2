@@ -68,7 +68,7 @@ It was tricky to decide what the `Tracker` should be responsible for in the true
 
 ## Changes to UML Diagram
 
-The planned UML pretty accurately represents the end state of the project. We did not anticipate the number of methods that `Tracker` and `Logger` would use, how we would rename some methods, classes, and variables, or how we would move some code around. Due to the Observer pattern, the `Printer` class now has more methods that were previously the responsiblity of the `GameEngine`. We also added a `PrinterColumns` Class to help clean up the printing method.
+The planned UML pretty accurately represents the end state of the project. We did not anticipate the number of methods that `Tracker` and `Logger` would use, how we would rename some methods, classes, and variables, or how we would move some code around. Due to the Observer pattern, the `Printer` class now has more methods that were previously the responsiblity of the `GameEngine`. We also added a `PrinterColumns` Class to help clean up the printing method. Perhaps the biggest difference is the creation of the `Entity` superclass. We did not predict how useful that would be for encapsulating movement patterns during the design/planning phase for this project.
 
 Getters and Setters are left off of the UML diagram for readability.
 
