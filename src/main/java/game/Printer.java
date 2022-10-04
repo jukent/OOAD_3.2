@@ -8,6 +8,7 @@ import dungeon.Dungeon;
 import dungeon.Room;
 import entity.Creature;
 import entity.Character;
+import celebration.Celebration;
 
 public class Printer {
 
@@ -125,6 +126,7 @@ public class Printer {
         }
         columns.addLine(rowArray);
     }
+
 
 
     /**
@@ -269,6 +271,11 @@ public class Printer {
         }
     }
 
+    public void printCelebration(Celebration C1){
+        if (outputType != "ShowNone"){
+            C1.celebrate();
+            System.out.println();}
+    }
 
     /**
      * @param treasure: String
@@ -333,4 +340,13 @@ public class Printer {
             }
         }
     }
+
+    public void printStartingScreen(){
+        if (outputType != "ShowNone") {
+            System.out.println("Starting Game!");
+            System.out.println("Press Enter To Continue...");
+            scanner.nextLine();
+        }  
+    }
+
 }
