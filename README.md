@@ -116,7 +116,7 @@ We used these [instructions for setting up testing](https://code.visualstudio.co
 
 This resource was useful for understanding the Observer pattern: ["Game Programming Patterns" a book by Robert Nystrom](http://gameprogrammingpatterns.com/observer.html).
 
-The `PrinterColumns` class was almost one-to-one borrowed from candied_orange's response to the StackOverflow question ["Is there an easy way to output two columns to the console in Java?"](https://stackoverflow.com/questions/699878/is-there-an-easy-way-to-output-two-columns-to-the-console-in-java).
+The `PrinterColumns` class was almost one-to-one borrowed from candied_orange's response to the Stack Overflow question ["Is there an easy way to output two columns to the console in Java?"](https://stackoverflow.com/questions/699878/is-there-an-easy-way-to-output-two-columns-to-the-console-in-java).
 We added documentation via comments and Javadocs were added to show that we understand the borrowed code.
 
 [GitHub actions instructions for testing with Maven](https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven).
