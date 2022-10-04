@@ -14,7 +14,7 @@ public class DanceCelebration extends Celebration {
      * Dance Celebration constructor.
      */
     public DanceCelebration(FightBehavior fight) {
-        super(fight);
+        this.fightRef = fight;
     }
 
 
@@ -24,7 +24,8 @@ public class DanceCelebration extends Celebration {
      * Dance Celebration constructor.
      */
     public DanceCelebration(Celebration celebrateRef) {
-        super(celebrateRef);
+        this.fightRef = celebrateRef.fightRef;
+        this.celebrationRef = celebrateRef;
     }
 
 
@@ -47,7 +48,7 @@ public class DanceCelebration extends Celebration {
      */
     @Override
     public void celebrate() {
-        this.fightRef.celebrate();
+        if(this.celebrationRef != null){this.celebrationRef.celebrate();}
         for(int i = 0; i < DiceRolls.rollDice(3) - 1; i++) {
             System.out.print("Dance! ");
         }

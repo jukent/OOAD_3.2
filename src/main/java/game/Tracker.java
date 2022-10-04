@@ -326,6 +326,7 @@ public class Tracker {
      */
     public void characterCelebrated(Character character, Celebration celebration) {
         // Requested, but not sure what to do with this information
+        //celebration.celebrate();
     }
 
 
