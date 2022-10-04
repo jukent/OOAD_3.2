@@ -62,6 +62,6 @@ public class DanceCelebration extends Celebration {
         for (int i = 0; i < DiceRolls.rollDice(3) - 1;  i++) {
             results += "Dance! ";
         }
-        return Results;
+        return results;
     }
 }
