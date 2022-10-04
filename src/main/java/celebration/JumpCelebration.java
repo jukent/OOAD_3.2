@@ -61,6 +61,6 @@ public class JumpCelebration extends Celebration {
         for (int i = 0; i < DiceRolls.rollDice(3) - 1; i++) {
             results += "Jump! ";
         }
-        return Results;
+        return results;
     }
 }
