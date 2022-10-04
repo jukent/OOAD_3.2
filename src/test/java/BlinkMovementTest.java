@@ -13,6 +13,8 @@ public class BlinkMovementTest {
 
     private Dungeon dungeon = new Dungeon();
 
+    protected static final int MAXLEVEL = 4;
+
     @Test
     public void testCreatureBlink() {
         Blinker blinker = new Blinker(0, dungeon);
@@ -20,8 +22,7 @@ public class BlinkMovementTest {
         Room oldRoom = blinker.getLocation();
 
         int level = oldRoom.getLevel();
-        final int LEVEL = 4;
-        Assert.assertEquals(LEVEL, level);
+        Assert.assertEquals(MAXLEVEL, level);
 
         Assert.assertEquals("Blink", blinker.getMovementType());
 

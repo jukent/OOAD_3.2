@@ -86,5 +86,5 @@ public class SeekMovementTest {
 
         Assert.assertNotEquals(seeker.getLocation(), oldRoom);
         Assert.assertEquals(characterRoom, newRoom);
-    } 
+    }
 }

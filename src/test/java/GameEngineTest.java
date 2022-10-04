@@ -19,20 +19,21 @@ public class GameEngineTest {
     private ArrayList<Character> characterList = new ArrayList<Character>();
     private ArrayList<Creature> creatureList = new ArrayList<Creature>();
     private ArrayList<Treasure> treasureList = new ArrayList<Treasure>();
-    private Tracker tracker = new Tracker(characterList, creatureList, treasureList);
+    private Tracker tracker =
+        new Tracker(characterList, creatureList, treasureList);
 
-    protected final static int CHARNUMBERS = 4;
-    protected final static int CREATNUMBERS = 12;
-    protected final static int TREASURENUMBERS = 24;
+    protected static final int CHARNUMBER = 4;
+    protected static final int CREATNUMBER = 12;
+    protected static final int TREASURENUMBER = 24;
 
 
     @Test
     public void testPopulateEntities() {
         gameEngine.populateEntities(this.dungeon, this.tracker);
 
-        Assert.assertEquals(CHARNUMBERS, tracker.getCharacterList().size());
-        Assert.assertEquals(CREATNUMBERS, tracker.getCreatureList().size());
-        Assert.assertEquals(TREASURENUMBERS, tracker.getTreasureList().size());
+        Assert.assertEquals(CHARNUMBER, tracker.getCharacterList().size());
+        Assert.assertEquals(CREATNUMBER, tracker.getCreatureList().size());
+        Assert.assertEquals(TREASURENUMBER, tracker.getTreasureList().size());
     }
 
 
@@ -40,10 +41,9 @@ public class GameEngineTest {
     public void testEndConditionAllTreasureFound() {
         Assert.assertTrue(endCondition);
 
-        final int MAXTREASURES = 24;
-        tracker.setTreasureCount(MAXTREASURES);
+        tracker.setTreasureCount(TREASURENUMBER);
 
-        if (tracker.getTreasureCount() == MAXTREASURES) {
+        if (tracker.getTreasureCount() == TREASURENUMBER) {
             endCondition = false;
         } else if (tracker.getCreatureList().size() == 0) {
             endCondition = true;
@@ -61,7 +61,7 @@ public class GameEngineTest {
 
         tracker.getCreatureList().removeAll(tracker.getCreatureList());
 
-        if (tracker.getTreasureCount() == 24) { 
+        if (tracker.getTreasureCount() == 24) {
             endCondition = true;
         } else if (tracker.getCreatureList().size() == 0) {
             endCondition = false;

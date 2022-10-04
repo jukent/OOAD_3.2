@@ -17,7 +17,7 @@ public class TreasureBonusTest {
     private Treasure sword = new Sword(1, dungeon);
     private Treasure trap = new Trap(1, dungeon);
 
-    protected final static int MAXHEALTH = 4;
+    protected static final int MAXHEALTH = 4;
 
 
     @Test
