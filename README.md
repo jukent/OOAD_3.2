@@ -11,7 +11,9 @@ Expanding the Raiders of the Lost Arctangent Game to use specific treasures and 
 
 --------------------------------
 
-This project is a Java text-based adventure game where 4 classes of characters (Brawlers, Sneakers, Runners, and Thieves) encounter 3 classes of Creatures (Blinkers, Orbiters, and Seekers) in a 4-level 3x3 dungeon. The game ends when either: the characters have collectively found all 24 treasures (win)**, all the creatures are defeated (win), or all of the characters are defeated (lose). At this iteration all character decisions and movement patterns are randomized.
+This project is a Java text-based adventure game where 4 classes of characters (Brawlers, Sneakers, Runners, and Thieves) encounter 3 classes of Creatures (Blinkers, Orbiters, and Seekers) in a 4-level 3x3 dungeon. The game ends when either: the characters have collectively found all 24 treasures (win), all the creatures are defeated (win), or all of the characters are defeated (lose). 
+
+At this iteration all character decisions and movement patterns are randomized.
 
 Characters:
 - Brawlers: +2 Strength Buff
@@ -54,13 +56,15 @@ From these results we can see that the new Treasure implementations made finding
 
 ## Identified OO Patterns
 
-**Strategy** pattern was used in encapsalating fighting, treasure hunting, and movement behaviors into their own classes. 
+**Strategy** pattern was used in encapsalating fighting, treasure hunting, and movement behaviors into their own classes.
 
 In order to encapsalte movement behavior and allow Characters to now "Blink", we created an `Entity` superclass. Now the same `move()` method can be called on Characters or Creatures.
 
-**Observer** pattern is demonstrated most clearly through the new `Tracker` and `Logger` Classes. The Tracker is an observer that is notified by various events (creature/character win/loss/movement/celebration/treasure hunt, etc). When these events are published, the `Tracker` stores the new data appropriately. The `Tracker` stores information for the `Logger` and the `Printer`, two subscribers that log or print the Tracker's stored data respectively. 
+**Observer** pattern is demonstrated most clearly through the new `Tracker` and `Logger` Classes. The Tracker is an observer that is notified by various events (creature/character win/loss/movement/celebration/treasure hunt, etc). When these events are published, the `Tracker` stores the new data appropriately. 
 
-The `Tracker` also lets the `Room` objects know that their occupation has changed whenever Entities move, so Rooms are a subscriber. This cleanly and satisfactorily solves the problem of having Rooms store occupancy and Entities storing location that was done a little messier in Project 2.2. This is useful and convenient in particular for the `Seeker`'s movement patterns.
+The `Logger` and the `Printer` are two subscribers that log or print the Tracker's stored data respectively.
+
+The `Tracker` also lets the `Room` objects know that their occupation has changed whenever Entities move, so Rooms are a subscriber. This cleanly solves the problem of having Rooms store occupancy and Entities storing location that was done a ungracefully in Project 2.2. This is convenient for the `Seeker`'s movement patterns.
 
 It was tricky to decide what the `Tracker` should be responsible for in the truest sense of the Observer pattern. For instance, Characters are still responsible for their own attributes, that information doesn't need to be duplicated. We made sure all of the assignment-specified events were published to the Tracker, and beyond that tried to think about what is useful or what problems Observer could solve.
 
@@ -69,7 +73,11 @@ It was tricky to decide what the `Tracker` should be responsible for in the true
 
 ## Changes to UML Diagram
 
-The planned UML pretty accurately represents the end state of the project. We did not anticipate the number of methods that `Tracker` and `Logger` would use, how we would rename some methods, classes, and variables, or how we would move some code around. Due to the Observer pattern, the `Printer` class now has more methods that were previously the responsiblity of the `GameEngine`. We also added a `PrinterColumns` Class to help clean up the printing method. Perhaps the biggest difference is the creation of the `Entity` superclass. We did not predict how useful that would be for encapsulating movement patterns during the design/planning phase for this project. 
+We did not anticipate the number of methods that `Tracker` and `Logger` would use, how we would rename some methods, classes, and variables, or how we would move some code around. 
+
+Due to the Observer pattern, the `Printer` class now has more methods that were previously the responsiblity of the `GameEngine`. We also added a `PrinterColumns` Class to help clean up the printing method. 
+
+The biggest difference is the creation of the `Entity` superclass. We did not predict how useful that would be for encapsulating movement patterns during the design/planning phase for this project.
 
 For comparison here is the [original UML](https://github.com/jukent/OOAD_3.2/blob/main/ClassDiagram_3.1.png) and the [updated UML](https://github.com/jukent/OOAD_3.2/blob/main/ClassDiagram_3.2UPDATED.png)
 
@@ -89,7 +97,7 @@ Some methods that were previously hidden had to be exposed as "public" for the t
 
 We have 22 tests, spanning movement, treasure hunting, celebration, fighting, treasures, and the game engine. Ideally we'd strive for more code coverage, but we tested the most suspect areas of the code and are satisfied for this assignment.
 
-Testing is now done automatically on every new push to the GitHub repository with GitHub actions Continuous Integration. The steps for this are in [`.github/workflows/junit_test.yml`](https://github.com/jukent/OOAD_3.2/blob/main/.github/workflows/junit_tests.yaml) and can be viewed in the "Actions" tab. [Here are recent test results](https://github.com/jukent/OOAD_3.2/actions/runs/3182673557/jobs/5188932278). 
+Testing is now done automatically on every new push to the GitHub repository with GitHub actions Continuous Integration. The steps for this are in [`.github/workflows/junit_test.yml`](https://github.com/jukent/OOAD_3.2/blob/main/.github/workflows/junit_tests.yaml) and can be viewed in the "Actions" tab. [Here are recent test results](https://github.com/jukent/OOAD_3.2/actions/runs/3182673557/jobs/5188932278).
 
 ## Citations
 
@@ -99,7 +107,8 @@ We used these [instructions for setting up testing](https://code.visualstudio.co
 
 This resource was useful for understanding the Observer pattern: ["Game Programming Patterns" a book by Robert Nystrom](http://gameprogrammingpatterns.com/observer.html).
 
-The `PrinterColumns` class was almost one-to-one borrowed from candied_orange's response to the StackOverflow question ["Is there an easy way to output two columns to the console in Java?"](https://stackoverflow.com/questions/699878/is-there-an-easy-way-to-output-two-columns-to-the-console-in-java). We added documentation via comments and Javadocs were added to show that we understand the borrowed code.
+The `PrinterColumns` class was almost one-to-one borrowed from candied_orange's response to the StackOverflow question ["Is there an easy way to output two columns to the console in Java?"](https://stackoverflow.com/questions/699878/is-there-an-easy-way-to-output-two-columns-to-the-console-in-java). 
+We added documentation via comments and Javadocs were added to show that we understand the borrowed code.
 
 [GitHub actions instructions for testing with Maven](https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven).
 
