@@ -3,7 +3,7 @@ package treasurehunt;
 import util.DiceRolls;
 
 public class QuickHuntBehavior extends TreasureHuntBehavior {
-    
+
     // Implementation of the strategy OOP Design pattern. This is a subclass
     // of the strategy pattern.
 
@@ -19,7 +19,7 @@ public class QuickHuntBehavior extends TreasureHuntBehavior {
 
     /* (non-Javadoc)
      * @see treasurehunt.TreasureHunt#searchTreasure()
-     * 
+     *
      * Overwrites the abstract treasure hunting with a Quick Hunt.
      */
     @Override

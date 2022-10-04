@@ -19,7 +19,6 @@ public class CelebrationTest {
     public void testWrap(){
         Celebration tJ = new JumpCelebration(fightBehavior);
         tJ = new SpinCelebration(tJ);
-        Assert.assertEquals("Untrained",tJ.fightRef.fightType);
-
+        Assert.assertEquals("Untrained",tJ.getFightRef().fightType);
     }
 }

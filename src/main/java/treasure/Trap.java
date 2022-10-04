@@ -8,7 +8,7 @@ public class Trap extends Treasure {
     /**
      * @param id int
      * @param dungeon Dungeon
-     * 
+     *
      * Constructor for a Trap treasure with Integer ID `id` and the Dungeon.
      */
     public Trap(int id, Dungeon dungeon) {

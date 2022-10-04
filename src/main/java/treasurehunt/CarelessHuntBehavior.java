@@ -16,10 +16,10 @@ public class CarelessHuntBehavior extends TreasureHuntBehavior {
         this.neededScore = 10; // Required Dice Roll of 10
     }
 
-    
+
     /* (non-Javadoc)
      * @see treasurehunt.TreasureHunt#searchTreasure()
-     * 
+     *
      * Overwrites the abstract treasure hunting with a Careless Hunt.
      */
     @Override

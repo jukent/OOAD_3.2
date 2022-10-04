@@ -11,13 +11,13 @@ public class CreatureFightBehavior extends FightBehavior {
     public CreatureFightBehavior() {
         setFightType("Creature");
     }
-    
-        
+
+
     /* (non-Javadoc)
      * @see FightingBehavior.FightBehavior#fight()
-     * 
+     *
      * @return int
-     * 
+     *
      * Returns the dice roll for a Creature Fighter (no strength buff).
      */
     public int fight() {

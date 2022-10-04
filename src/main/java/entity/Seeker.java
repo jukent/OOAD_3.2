@@ -15,11 +15,11 @@ public class Seeker extends Creature {
     /**
      * @param id int
      * @param map Dungeon
-     * 
+     *
      * Construct a Seeker with an Integer ID `id` and the Dungeon.
      */
-    public Seeker(int A, Dungeon map) {
-        super.id = A; // Seeker ID value
+    public Seeker(int id, Dungeon map) {
+        setID(id); // Seeker ID value
         this.dungeon = map; // Game Dungeon
         this.movementBehavior = new SeekMovement(); // MovementType is Seek
         name = "Seeker"; // String name
@@ -34,6 +34,7 @@ public class Seeker extends Creature {
      * 
      * Randomly generate starting room for Seekers from any room in Dungeon, except "(0-1-1)"
      */
+    @Override
     protected void setStartingRoom() {
         // Get new map of possible Rooms
         Hashtable<String, Room> possibleRoomMap = new Hashtable<String, Room>();

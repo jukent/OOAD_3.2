@@ -29,7 +29,7 @@ public abstract class FightBehavior {
 
     /**
      * @param fightType String
-     * 
+     *
      * Sets the FightBehavior type.
      */
     public void setFightType(String fightType) {

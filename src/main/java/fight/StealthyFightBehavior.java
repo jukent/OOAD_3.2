@@ -14,13 +14,13 @@ public class StealthyFightBehavior extends FightBehavior {
     public StealthyFightBehavior() {
         setFightType("Stealth");
     }
-    
+
 
     /* (non-Javadoc)
      * @see FightBehavior.FightBehavior#fight()
-     * 
+     *
      * @return int
-     * 
+     *
      * Returns the dice roll for a Stealthy Fighter (strength buff of 1).
      * Stealthy fighters havea  50% chance of avoiding a fight, indicated by a return value of -1.
      */

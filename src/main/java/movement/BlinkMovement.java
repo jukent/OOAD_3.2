@@ -24,7 +24,7 @@ public class BlinkMovement extends MovementBehavior {
     
     /* (non-Javadoc)
      * @see movement.MovementBehavior#move(entity.Entity, dungeon.Dungeon)
-     * 
+     *
      * Replace abstract movement with Blinker movement
      */
     @Override
@@ -38,7 +38,8 @@ public class BlinkMovement extends MovementBehavior {
         possibleRoomMap.remove("0-1-1"); // Remove entrace room
         possibleRoomMap.remove(currentRoom.getName()); // Remove current room
 
-        // Randomly select one of the rooms - learned from Stack Overflow question (https://stackoverflow.com/questions/38248381/pick-a-random-element-from-a-hashtable)
+        // Randomly select one of the rooms - learned from Stack Overflow question 
+        // https://stackoverflow.com/questions/38248381/pick-a-random-element-from-a-hashtable)
         // Convert values to an ArrayList of Room so that Rooms can grabbed via index
         ArrayList<Room> possibleRooms = new ArrayList<Room>(possibleRoomMap.values());
 
@@ -50,6 +51,6 @@ public class BlinkMovement extends MovementBehavior {
         Room newRoom = possibleRooms.get(i);
             
         // Move there
-        entity.setLocation(newRoom);  
+        entity.setLocation(newRoom);
     }
 }

@@ -20,7 +20,7 @@ public class GameEngine {
     // passed to the characters, we can assure that each character
     // has a reference to the same map. This eliminates any issues that may come
     // from specific map generations. We pass its identity to all characters
-    // and creatures. Otherwise, we would have an many dungeons of the same 
+    // and creatures. Otherwise, we would have an many dungeons of the same
     // type, but not the same identity
 
     // ArrayLists that contains all Characters, Creatures, and Treasures
@@ -41,7 +41,7 @@ public class GameEngine {
 
     /**
      * @param outputType String
-     * 
+     *
      * Constructor to initialize board.
      */
     public GameEngine(String outputType) {
@@ -60,10 +60,10 @@ public class GameEngine {
             roundCount++;
             tracker.setRoundCount(roundCount); // publish round counter to Tracker
             processTurn();
-        }        
+        }
         scanner.close();
     }
-    
+
 
     /**
      * Populate CharacterList and CreatureList with Characters and Creatures
@@ -120,15 +120,15 @@ public class GameEngine {
         tracker.setTreasureStats(treasureList); // publish initial Treasure stats to Tracker
         // Again, example of Observer pattern.
     }
-    
+
 
     /**
      * @param character Character
      * @param creature Creature
-     * 
+     *
      * Input a Character `A` and Creature `B`
-     * Deducts health if a dice roll is larger than the other. 
-     * 
+     * Deducts health if a dice roll is larger than the other.
+     *
      * If a character rolls a -1, fight is skipped.
      */
     private void simulateFight(Character character, Creature creature) {
@@ -174,15 +174,15 @@ public class GameEngine {
             // If characterRoll = -1, fight was skipped
             tracker.fightSkipped(); // Publish fight skipped to Tracker
             printer.printFightResults();
+            // Printer is informed of results to print via the Tracker
+            // example of Observer pattern
         }
-        
-        // Printer is informed of results to print via the Tracker, example of Observer pattern
     }
-    
+
 
     /**
      * @param character Character
-     * 
+     *
      * Performs the Character action of searching for treasure.
      * Adds to the Characters treasure count
      */
@@ -228,8 +228,8 @@ public class GameEngine {
         printer.printTreasureHuntResults(); // Example of Observer Pattern
         // Printer knows results to print from Tracker
     }
-    
-    
+
+
     /**
      * Processes the turns for each Character and for each Creature.
      */
@@ -258,7 +258,8 @@ public class GameEngine {
         }
 
         // Process Creatures
-        for (int i = 0; i < creatureList.size(); i++) { // Changing to this type of loop to avoid comodification
+        for (int i = 0; i < creatureList.size(); i++) {
+            // Changing to this type of loop to avoid comodification
             Creature creature = creatureList.get(i);
             if (endCondition) {
                 // Stops processing Creatures if end condition is met
@@ -284,7 +285,7 @@ public class GameEngine {
 
     /**
      * @param character Character
-     * 
+     *
      * This method processes the decision making for one Character:
      * - If a Creature is in the Room, it automatically fights.
      * - If no other Creature is in the Room, the Character randomly moves.
@@ -316,11 +317,11 @@ public class GameEngine {
             }
         }
     }
-    
+
 
     /**
      * @param creature Creature
-     * 
+     *
      * Processes the decision making for one Creature:
      * - If a Character is in the Room, it automatically fights.
      * - If no other Character is in the Room, move.
@@ -341,7 +342,7 @@ public class GameEngine {
             creature.move();
             Room newRoom = creature.getLocation();
             tracker.creatureMoved(creature, oldRoom, newRoom); // Publish Creature moved to Tracker
-            
+
             // If characters in new room, fight
             ArrayList<Character> charactersInNewRoom = newRoom.getCharactersInRoom();
             for (int i = 0; i < charactersInNewRoom.size(); i++) {
@@ -350,8 +351,8 @@ public class GameEngine {
             }
         }
     }
-    
-    
+
+
     /**
      * Checks various end game conditions and modifies EndCondition accordingly.
      */
@@ -361,7 +362,7 @@ public class GameEngine {
         int characterCount = tracker.getCharacterList().size();
 
         // Change End Condition depending on the outcome
-        if (treasureCount == 24) { 
+        if (treasureCount == 24) {
             // 24 Treasures Found
             endCondition = false;
             System.out.println();

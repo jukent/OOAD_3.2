@@ -13,7 +13,7 @@ public class SeekMovement extends MovementBehavior{
     // Implementation of the strategy OOP Design pattern. This is a subclass
     // of the strategy pattern.
 
-    
+
     /**
      * Constructor for Seeker Movement.
      */
@@ -25,7 +25,7 @@ public class SeekMovement extends MovementBehavior{
 
     /* (non-Javadoc)
      * @see movement.MovementBehavior#move(entity.Entity, dungeon.Dungeon)
-     * 
+     *
      * Seekers move by staying still and waiting for a Character to be in a nearby Room
      * Then they move to the room with the Character.
      */
@@ -61,7 +61,7 @@ public class SeekMovement extends MovementBehavior{
             // If multiple intersections, choose one randomly
             Random random = new Random();
             int i = random.nextInt(populatedExits.size());
-        
+
             Room newRoom = populatedExits.get(i);
             entity.setLocation(newRoom);
         } 

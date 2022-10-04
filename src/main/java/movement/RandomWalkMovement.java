@@ -8,11 +8,11 @@ import dungeon.Room;
 import entity.Entity;
 
 public class RandomWalkMovement extends MovementBehavior{
-    
+
     // Implementation of the strategy OOP Design pattern. This is a subclass
     // of the strategy pattern.
 
-    
+
     /**
      * Constructor for Random Walking Movement.
      */
@@ -23,9 +23,9 @@ public class RandomWalkMovement extends MovementBehavior{
 
     /* (non-Javadoc)
      * @see movement.MovementBehavior#move(entity.Entity, dungeon.Dungeon)
-     * 
+     *
      * The template method controlls Entity random movement.
-     * 
+     *
      */
     @Override
     public void move(Entity entity, Dungeon dungeon) {
@@ -40,7 +40,7 @@ public class RandomWalkMovement extends MovementBehavior{
         // Find the room associated with the random index
         String newRoomName = exits.get(i);
         Room newRoom = dungeon.getRoom(newRoomName);
-    
+
         // Move there
         entity.setLocation(newRoom);
     }

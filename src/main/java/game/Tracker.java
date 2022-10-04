@@ -49,7 +49,7 @@ public class Tracker {
      * @param characterList ArrayList<Character>
      * @param creatureList ArrayList<Creature>
      * @param treasureList ArrayList<Treasure>
-     * 
+     *
      * Constructor for the Tracker.
      */
     public Tracker(Dungeon dungeon, ArrayList<Character> characterList, ArrayList<Creature> creatureList, ArrayList<Treasure> treasureList) {
@@ -65,7 +65,7 @@ public class Tracker {
 
     /**
      * @return int
-     * 
+     *
      * This returns the Integer Round count value.
      */
     public int getRoundCount() {
@@ -75,7 +75,7 @@ public class Tracker {
 
     /**
      * @param roundCounter int
-     * 
+     *
      * This sets the Integer Round count value.
      */
     public void setRoundCount(int roundCount) {
@@ -85,7 +85,7 @@ public class Tracker {
 
     /**
      * @return int
-     * 
+     *
      * Returns the Integer Treasure count value.
      */
     public int getTreasureCount() {
@@ -95,7 +95,7 @@ public class Tracker {
 
     /**
      * @param n int
-     * 
+     *
      * Returns the Integer Treasure count value.
      */
     public void setTreasureCount(int n) {
@@ -106,7 +106,7 @@ public class Tracker {
     /**
      * @param character Character
      * @param room Room
-     * 
+     *
      * Publishes the Character exiting a Room to the Room's occupancy.
      */
     public void publishCharacterExitsRoom(Character character, Room room){
@@ -119,7 +119,7 @@ public class Tracker {
     /**
      * @param character Character
      * @param room Room
-     * 
+     *
      * Publishes a Character entering a Room to the Room's occupancy.
      */
     public void publishCharacterEntersRoom(Character character, Room room){
@@ -132,7 +132,7 @@ public class Tracker {
     /**
      * @param creature Creature
      * @param room Room
-     * 
+     *
      * Publishes a Creature leaving a Room to the Room's occupancy.
      * Done separately from Characters because it is conventient for the Room's to store Characters and Creatures separately.
      */
@@ -146,7 +146,7 @@ public class Tracker {
     /**
      * @param creature Creature
      * @param room Room
-     * 
+     *
      * Publishes a Creature Entering a Room to the Room's occupancy.
      */
     public void publishCreatureEntersRoom(Creature creature, Room room){
@@ -159,7 +159,7 @@ public class Tracker {
     /**
      * @param treasure Treasure
      * @param room Room
-     * 
+     *
      * Publishes Treasure being removed from a Room to the Room's occupancy.
      */
     public void publishTreasureExitsRoom(Treasure treasure, Room room){
@@ -172,7 +172,7 @@ public class Tracker {
     /**
      * @param treasure Treasure
      * @param room Room
-     * 
+     *
      * Publishes Treasure being hidden in a Room to the Room's occupancy.
      */
     public void publishTreasureInRoom(Treasure treasure, Room room){
@@ -184,7 +184,7 @@ public class Tracker {
 
     /**
      * @param characterList ArrayList<Character> 
-     * 
+     *
      * Sets the initial Character stats for the Tracker and publishes starting Room occupancy.
      */
     public void setCharacterStats(ArrayList<Character> characterList) {
@@ -199,7 +199,7 @@ public class Tracker {
 
     /**
      * @param creatureList ArrayList<Creature> 
-     * 
+     *
      * Sets the initial Creature stats for the Tracker and publishes starting Room occupancy.
      */
     public void setCreatureStats(ArrayList<Creature> creatureList) {
@@ -214,7 +214,7 @@ public class Tracker {
 
     /**
      * @param treasureList ArrayList<Treasure> 
-     * 
+     *
      * Sets the initial Treasure stats for the Tracker and publishes starting Room occupancy.
      */
     public void setTreasureStats(ArrayList<Treasure> treasureList) {
@@ -229,9 +229,9 @@ public class Tracker {
 
     /**
      * @param room Room
-     * 
+     *
      * Published event that Treasure has been found.
-     * 
+     *
      * Tracker updates the Treasure count and the Room occupancy.
      */
     public void treasureFound(Treasure treasure, Integer score) {
@@ -248,13 +248,12 @@ public class Tracker {
         treasureHuntValues.put("result", treasureHuntResult);
         treasureHuntValues.put("treasure", treasure.getType());
         treasureHuntValues.put("score", score.toString());
-
     }
 
 
     /**
      * @return ArrayList<Character>
-     * 
+     *
      * Returns the active Character stats.
      */
     public ArrayList<Character> getCharacterList() {
@@ -264,7 +263,7 @@ public class Tracker {
 
     /**
      * @return ArrayList<Creature>
-     * 
+     *
      * Returns the active Creature stats.
      */
     public ArrayList<Creature> getCreatureList() {
@@ -275,9 +274,9 @@ public class Tracker {
     /**
      * @param character Character
      * @param creature Creature
-     * 
+     *
      * Pubished event that a Character won the fight.
-     * 
+     *
      * Tracker reduces Creature's health points by 1.
      */
     public void characterWon(Character character, Creature creature, int characterRoll, int creatureRoll) {
@@ -297,9 +296,9 @@ public class Tracker {
     /**
      * @param character Character
      * @param creature Creature
-     * 
+     *
      * Published event that a Creature won the fight.
-     * 
+     *
      * Tracker reduces Character's health points by 1.
      */
     public void creatureWon(Character character, Creature creature, int characterRoll, int creatureRoll) {
@@ -319,9 +318,9 @@ public class Tracker {
     /**
      * @param character Character
      * @param celebration Celebration
-     * 
+     *
      * Published even that a Character celebrated.
-     * 
+     *
      * Tracker does nothing with this as of yet, but it was requested by the assignment.
      */
     public void characterCelebrated(Character character, Celebration celebration) {
@@ -332,9 +331,9 @@ public class Tracker {
 
     /**
      * @param character Character
-     * 
+     *
      * Published even that a Character has lost all of its health.
-     * 
+     *
      * Tracker removes the Character from the active Character list and lets Room subscriper know of new occupancy.
      */
     public void removeCharacter(Character character) {
@@ -348,9 +347,9 @@ public class Tracker {
 
     /**
      * @param creature Creature
-     * 
+     *
      * Published event that a Creature has lost all of its health.
-     * 
+     *
      * Tracker removes the Creature from the active Creature list and lets Room subscriber know of new occupancy.
      */
     public void removeCreature(Creature creature) {
@@ -366,9 +365,9 @@ public class Tracker {
      * @param character Character
      * @param oldRoom Room
      * @param newNoom Room
-     * 
+     *
      * Published even that a Character has moved.
-     * 
+     *
      * Tracker lets Room subscribers know of new occupancy.
      */
     public void characterMoved(Character character, Room oldRoom, Room newRoom) {
@@ -384,9 +383,9 @@ public class Tracker {
      * @param creature Creature
      * @param oldRoom Room
      * @param newRoom Room
-     * 
+     *
      * Published even that a Creature has moved.
-     * 
+     *
      * Tracker lets Room subscribers know of new occupancy.
      */
     public void creatureMoved(Creature creature, Room oldRoom, Room newRoom) {
@@ -400,7 +399,7 @@ public class Tracker {
     
     /**
      * @return ArrayList<Treasure> 
-     * 
+     *
      * Exposes the Tracker's Treasure List.
      */
     public ArrayList<Treasure> getTreasureList() {
@@ -420,7 +419,7 @@ public class Tracker {
 
     /**
      * @return HashMap<String, String>
-     * 
+     *
      * Exposes the HashMap of Fight Values (who fought, what were their dice rolls, what was the result).
      */
     public HashMap<String, String> getFightValues() {
@@ -431,7 +430,7 @@ public class Tracker {
     /**
      * @param treasure: Treasure
      * @param score: Integer
-     * 
+     *
      * Publishes the event that the Treasure was already found.
      */
     public void duplicateTreasureFound(Treasure treasure, Integer score) {
@@ -445,7 +444,7 @@ public class Tracker {
 
     /**
      * @param score Integer
-     * 
+     *
      * Publishes the event that Treasure was not found.
      */
     public void treasureNotFound(Integer score) {
@@ -458,8 +457,9 @@ public class Tracker {
 
     /**
      * @return HashMap<String, String>
-     * 
-     * Exposes the HashMap of Treasure Hunting Values (what was found, what was the dice roll, what was the result).
+     *
+     * Exposes the HashMap of Treasure Hunting Values
+     * (what was found, what was the dice roll, what was the result).
      */
     public HashMap<String, String> getTreasureHuntValues() {
         return this.treasureHuntValues;

@@ -74,7 +74,7 @@ public class Printer {
     /**
      * @param room Room
      * @return ArrayList<String>
-     * 
+     *
      * This method gets the string for displaying occupancy in each Room.
      */
     private ArrayList<String> getOccupancyStringArray(Room room) {
@@ -96,11 +96,11 @@ public class Printer {
 
         // Full Room Occupancy String Array
         ArrayList<String> occupancyArray = new ArrayList<String>();
-        occupancyArray.add(room.getName()); 
-        occupancyArray.add(" : "); 
-        occupancyArray.add(characterString); 
-        occupancyArray.add(" : "); 
-        occupancyArray.add(creatureString); 
+        occupancyArray.add(room.getName());
+        occupancyArray.add(" : ");
+        occupancyArray.add(characterString);
+        occupancyArray.add(" : ");
+        occupancyArray.add(creatureString);
         return occupancyArray;
     }
 
@@ -109,7 +109,7 @@ public class Printer {
      * @param level int
      * @param row int
      * @param columns Columns
-     * 
+     *
      * This method adds a row of the Dungeon and its occupancy to the Columns object.
      */
     private void addRowArray (Integer level, Integer row, PrinterColumns columns) {
@@ -122,7 +122,7 @@ public class Printer {
         for (Room r: rowRooms) {
             for (String s: getOccupancyStringArray(r)) {
                 rowArray.add(s);
-            }           
+            }
         }
         columns.addLine(rowArray);
     }
@@ -132,7 +132,7 @@ public class Printer {
     /**
      * @param level int
      * @param columns Columns
-     * 
+     *
      * This method adds a level of the Dungeon and its occupancy to the Columns object.
      */
     private void addLevelArray (Integer level, PrinterColumns columns) {
@@ -156,7 +156,7 @@ public class Printer {
         System.out.println(tracker.getTreasureCount());
     }
 
-        /**
+    /**
      * This method prints Character stats: name, treausres, hp.
      */
     private void printCharacterStats(){
@@ -171,6 +171,7 @@ public class Printer {
             System.out.println(characterStats);
         }
     }
+
 
     /**
      * This method prints Creature stats: name and number remaining.
@@ -198,7 +199,7 @@ public class Printer {
      * @param creature String
      * @param characterRoll String
      * @param creatureRoll String
-     * 
+     *
      * Prints the entities and their dice rolls when a Character wins the fight.
      */
     private void printCharacterWins(String character, String creature, String characterRoll, String creatureRoll) {
@@ -218,7 +219,7 @@ public class Printer {
      * @param creature String
      * @param characterRoll String
      * @param creatureRoll String
-     * 
+     *
      * Prints the entities and their dice rolls when a Creature wins the fight.
      */
     private void printCreatureWins(String character, String creature, String characterRoll, String creatureRoll) {
@@ -236,7 +237,6 @@ public class Printer {
      */
     private void printFightSkipped() {
         System.out.println("Fight Skipped");
-
     }
 
 
@@ -271,6 +271,12 @@ public class Printer {
         }
     }
 
+
+    /**
+     * @param C1 Celebration
+     *
+     * Print the VCelebration.
+     */
     public void printCelebration(Celebration C1){
         if (outputType != "ShowNone"){
             C1.celebrate();
@@ -280,7 +286,7 @@ public class Printer {
     /**
      * @param treasure String
      * @param score String
-     * 
+     *
      * Prints the treasure and dice roll for a successful treasure hunt.
      */
     private void printTreasureHuntSuccess(String treasure, String score) {
@@ -294,7 +300,7 @@ public class Printer {
     /**
      * @param treasure String
      * @param score String
-     * 
+     *
      * Prints the treasure and dice rolls for a duplicate treasure hunt.
      */
     private void printDuplicateTreasureHunt(String treasure, String score) {
@@ -308,7 +314,7 @@ public class Printer {
 
     /**
      * @param score String
-     * 
+     *
      * Prints the dice roll for an unsuccessful treasure hunt.
      */
     private void printTreasureHuntFail(String score) {
@@ -320,14 +326,15 @@ public class Printer {
 
     /**
      * Prints the results of treasure hunting.
-     * 
+     *
      * Example of Observer pattern, Printer has subscribed to values from the Tracker 
      * that are updated whenever a treasure hunting event is published.
      */
     public void printTreasureHuntResults() {
         if (outputType != "ShowNone") {
             HashMap<String, String> treasureValues = tracker.getTreasureHuntValues();
-            String result = treasureValues.get("result"); // "TreasureFound", "TreasureNotFound", "DuplicateTreasureFound"
+            String result = treasureValues.get("result");
+            // "TreasureFound", "TreasureNotFound", "DuplicateTreasureFound"
             if (result == "TreasureFound") {
                 // If Treasure Found
                 printTreasureHuntSuccess(treasureValues.get("treasure"), treasureValues.get("score"));

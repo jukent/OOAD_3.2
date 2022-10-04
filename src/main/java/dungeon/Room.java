@@ -8,7 +8,9 @@ import treasure.Treasure;
 
 public class Room {
 
-    private int level, row, column; // The level, row, and column coordinates for this room - Integers
+    private int level; // The level coordinate for this room - Integer
+    private int row; // The row coordinate for this room - Integer
+    private int column; // The column coordinates for this room - Integer
     private String name; // The name  of this room, i.e. "(2-0-0)" - String
     private ArrayList<String> exits; // ArrayList of neighboring room names i.e. ["(2-1-0)","(2-0-1)"] 
     
@@ -18,10 +20,10 @@ public class Room {
 
 
     /**
-     * @param Level Integer
-     * @param Row Integer
-     * @param Column Integer
-     * 
+     * @param level Integer
+     * @param row Integer
+     * @param column Integer
+     *
      * Constructs the room object based on its level, row, and column coordinates.
      * Rooms have level, row, and column coordinates, 
      * as well as a name generated from these coordinates,
@@ -52,7 +54,7 @@ public class Room {
 
     /**
      * @return name: String
-     * 
+     *
      * Let other classes grab a room's name.
      */
     public String getName() {
@@ -62,7 +64,7 @@ public class Room {
 
     /**
      * @return exits: ArrayList<String> (cardinal directions, neighboring room names)
-     * 
+     *
      * Let other classess access a room's neighboring rooms (and in what direction if we need that).
      */
     public ArrayList<String> getExits() {
@@ -72,7 +74,7 @@ public class Room {
 
     /**
      * @return level: Integer
-     * 
+     *
      * Let other classess easily access a room's level.
      * Needed for creatures whose movement may be limited to one level and for tests.
      */
@@ -83,7 +85,7 @@ public class Room {
     
     /**
      * @return row: Integer
-     * 
+     *
      * Let other classess easily access a room's row.
      */
     public Integer getRow() {
@@ -93,7 +95,7 @@ public class Room {
 
     /**
      * @return column: Integer
-     * 
+     *
      * Let other classess easily access a room's column.
      */
     public Integer getColumn() {
@@ -103,7 +105,7 @@ public class Room {
 
     /**
      * @return ArrayList<Characters>
-     * 
+     *
      * This method returns an ArrayList of the Characters in the Room.
      */
     public ArrayList<Character> getCharactersInRoom() {
@@ -113,9 +115,9 @@ public class Room {
 
     /**
      * @param charactersInRoom ArrayList<Characters>
-     * 
+     *
      * This method stores Room occupancy as an ArrayList of Characters in the Room.
-     * 
+     *
      * This is updated by the Tracker as an example of the Observer pattern.
      */
     public void setCharactersInRoom(ArrayList<Character> charactersInRoom) {
@@ -125,7 +127,7 @@ public class Room {
 
     /**
      * @return ArrayList<Creatures>
-     * 
+     *
      * This method returns an ArrayList of the Creatures in the Room.
      */
     public ArrayList<Creature> getCreaturesInRoom() {
@@ -135,9 +137,9 @@ public class Room {
 
     /**
      * @param creaturesInRoom ArrayList<Creatures>
-     * 
+     *
      * This method stores Room occupancy as an ArrayList of Creatures in the Room.
-     * 
+     *
      * This is updated by the Tracker as an example of the Observer pattern.
      */
     public void setCreaturesInRoom(ArrayList<Creature> creaturesInRoom) {
@@ -155,9 +157,9 @@ public class Room {
 
     /**
      * @param treasuresInRoom ArrayList<Treasure>
-     * 
+     *
      * This method sets the Arraylist of Treasures in the room.
-     * 
+     *
      * This is updated by the Tracker as an example of the Observer pattern.
      */
     public void setTreasuresInRoom(ArrayList<Treasure> treasures) {
@@ -167,10 +169,10 @@ public class Room {
     
     /**
      * @return ArrayList<String> (neighboring room name)
-     * 
+     *
      * This method finds the valid standard exits for each rooom based on its 
      * level, row, and column coordinates.
-     * 
+     *
      * Since, we already know all valid rooom names,
      * we can generate exit connections when each rooom is generated
      * without needing to wait for an object containing all of the rooms to exist.

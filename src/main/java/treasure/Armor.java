@@ -3,12 +3,12 @@ package treasure;
 import dungeon.Dungeon;
 
 public class Armor extends Treasure {
-    
+
 
     /**
      * @param id int
      * @param dungeon Dungeon
-     * 
+     *
      * Constructor for an Armor treasure with Integer ID `id` and the Dungeon.
      */
     public Armor(int id, Dungeon dungeon) {

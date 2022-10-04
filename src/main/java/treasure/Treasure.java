@@ -102,7 +102,7 @@ abstract public class Treasure {
 
     /**
      * @return String
-     * 
+     *
      * This method returns the String for the Treasure type.
      */
     public String getType() {

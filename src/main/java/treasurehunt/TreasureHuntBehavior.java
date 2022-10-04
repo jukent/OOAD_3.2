@@ -1,7 +1,7 @@
 package treasurehunt;
 
 public abstract class TreasureHuntBehavior {
-    
+
     // Implementation of the strategy OOP Design pattern. Subclasses extend
     // this behavior.
 
@@ -19,7 +19,7 @@ public abstract class TreasureHuntBehavior {
 
     /**
      * @return int
-     * 
+     *
      * Returns the needed dice roll for a Treasure Search behavior.
      */
     public int getNeededScore() {
@@ -29,7 +29,7 @@ public abstract class TreasureHuntBehavior {
 
     /**
      * @return String
-     * 
+     *
      * Returns the String Treasure Hunt type for a Hunt behavior.
      */
     public String getType() {

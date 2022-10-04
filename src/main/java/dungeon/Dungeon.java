@@ -3,7 +3,7 @@ package dungeon;
 import java.util.Hashtable;
 
 public class Dungeon {
-    
+
     private Hashtable<String, Room> map; // The map of this dungeon - Hashtable of room names mapped to Rooms
     // Also example of abstraction - Some methods are made private to prevent users
     // from accessing information that is unnecassary. This class contains
@@ -13,22 +13,22 @@ public class Dungeon {
     
     /**
      * Constructs the Dungeon object which contains a map of all rooms
-     * 
-     * Possibility to set num_levels to an input parameter 
+     *
+     * Possibility to set NUM_LEVELS to an input parameter 
      * so that this can be more easily extended for different Dungeon sizes.
      * Currently hardcoded to 4 for simplicity.
      */
     public Dungeon() {
         // constructor
-        int num_levels = 4; // The number of levels deep of the dungeon
 
-        this.map = generateMap(num_levels);
+        final int NUM_LEVELS = 3; // The number of levels deep of the dungeon
+        this.map = generateMap(NUM_LEVELS);
     }
 
         
     /**
      * @return map: Hashtable<String, Room> (room name, Room)
-     * 
+     *
      * Expose the map to other Classes
      */
     public Hashtable<String, Room> getMap() {
@@ -37,30 +37,30 @@ public class Dungeon {
 
 
     /**
-     * @param room_name String
+     * @param roomName String
      * @return room: Room
-     * 
+     *
      * Let other classes get a Room object based on its name.
      */
-    public Room getRoom(String room_name) {
-        Room room = this.map.get(room_name);
+    public Room getRoom(String roomName) {
+        Room room = this.map.get(roomName);
         return room;
     }
 
 
     /**
-     * @param num_levels Integer 
+     * @param numLevels Integer 
      * @return map: Hashtable<String, Room> (room names, room object)
-     * 
-     * Generates the Rooms for the dungeon for any number of levels ('num_levels'),
+     *
+     * Generates the Rooms for the dungeon for any number of levels ('NUM_LEVELS'),
      * with 3 rooms per level after the first level (which has only one room).
-     * 
+     *
      * The Rooms are stored in a Hashtable map with room names as keys pointing to Room objects as values.
      */
-    private Hashtable<String, Room> generateMap(int num_levels) {
+    private Hashtable<String, Room> generateMap(int NUM_LEVELS) {
         this.map = new Hashtable<String, Room>();
 
-        for (int l = 0; l <= num_levels; ++l) {     
+        for (int l = 0; l <= NUM_LEVELS; ++l) {     
             if (l == 0) {
                 // On level 0, there is only one room
                 Room room = new Room(l, 1, 1);

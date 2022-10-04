@@ -8,7 +8,7 @@ import java.util.List;
 // This makes it easier to see the relative relationship of Rooms despite their occupancy
 // which affects their String length.
 
-// This Class is almost 1-1 borrowed from candied_orange's response to StackOverflow question 
+// This Class is almost 1-1 borrowed from candied_orange's response to StackOverflow question
 // "Is there an easy way to output two columns to the console in Java?"
 //https://stackoverflow.com/questions/699878/is-there-an-easy-way-to-output-two-columns-to-the-console-in-java
 public class PrinterColumns {
@@ -21,7 +21,7 @@ public class PrinterColumns {
     /**
      * @param rowStrings List<String>
      * @return PrinterColumns
-     * 
+     *
      * This method adds a List of Strings to the PrinterColumns.
      */
     public PrinterColumns addLine(List<String> rowStrings) {
@@ -67,7 +67,7 @@ public class PrinterColumns {
         String result = "";
         for (List<String> line: lines) {
             for (int i = 0; i < numColumns; i++) {
-                result += pad(line.get(i), maxLengths.get(i) + 1);                
+                result += pad(line.get(i), maxLengths.get(i) + 1);
             }
             result += System.lineSeparator();
         }
@@ -79,12 +79,13 @@ public class PrinterColumns {
      * @param word
      * @param newLength
      * @return String
-     * 
-     * This method changes a String length by padding it with white space to match the desired Column width.
+     *
+     * This method changes a String length by padding it with
+     * white space to match the desired Column width.
      */
     private String pad(String word, int newLength) {
         while (word.length() < newLength) {
-            word += " ";            
+            word += " ";
         }       
         return word;
     }

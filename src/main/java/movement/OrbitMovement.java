@@ -20,7 +20,7 @@ public class OrbitMovement extends MovementBehavior {
 
     /* (non-Javadoc)
      * @see movement.MovementBehavior#move(entity.Entity, dungeon.Dungeon)
-     * 
+     *
      * Replace abstract Entity movement with Orbiter movement.
      * Moves (clockwise or counterclockwise).
      */

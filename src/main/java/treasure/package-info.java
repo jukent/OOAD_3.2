@@ -1,6 +1,6 @@
 /**
  * This package is home to Treasure Classes for ROTLA.
- * 
+ *
  * Treasures include:
  *  - Armor: -1 strength buff to creatures
  *  - Gem: +1 strength buff to creatures

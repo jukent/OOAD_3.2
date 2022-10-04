@@ -5,11 +5,11 @@ public interface DiceRolls {
     //Cohesion example - Object is only responsible
     //for various types of dice rolls. Accessable from anywhere
 
-    
+
     /**
      * @param a int
      * @return int
-     * 
+     *
      * This method "rolls dice".
      */
     static int rollDice(int a) {

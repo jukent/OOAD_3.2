@@ -7,7 +7,7 @@ public class TrainedFightBehavior extends FightBehavior {
     // Implementation of the strategy OOP Design pattern. This is a subclass
     // of the strategy pattern.
 
-    
+
     /**
      * Constructor for a Trained Fighter.
      */
@@ -17,9 +17,9 @@ public class TrainedFightBehavior extends FightBehavior {
 
     /* (non-Javadoc)
      * @see FightBehavior.FightBehavior#fight()
-     * 
+     *
      * @return int
-     * 
+     *
      * Returns the dice roll for a Trained Fighter (strength buff of 1).
      */
     public int fight() {

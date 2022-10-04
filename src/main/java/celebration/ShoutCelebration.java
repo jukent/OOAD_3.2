@@ -10,45 +10,45 @@ public class ShoutCelebration extends Celebration {
 
     /**
      * @param fight FightBehavior
-     * 
+     *
      * Shout Celebration constructor.
      */
     public ShoutCelebration(FightBehavior fight) {
-        this.fightRef = fight;
+        setFightRef(fight);
     }
 
 
      /**
      * @param celebrateRef Celebration
-     * 
+     *
      * Shout Celebration constructor.
      */
     public ShoutCelebration(Celebration celebrateRef) {
-        this.fightRef = celebrateRef.fightRef;
-        this.celebrationRef = celebrateRef;
+        setFightRef(celebrateRef.getFightRef());
+        setCelebrationRef(celebrateRef);
     }
 
 
     /* (non-Javadoc)
      * @see celebration.Celebration#fight()
      * @return int
-     * 
+     *
      * Returns the "fight" dice-roll integer.
      */
     public int fight() {
-        return this.fightRef.fight();
+        return this.getFightRef().fight();
     }
 
 
     /* (non-Javadoc)
      * @see celebration.Celebration#celebrate()
-     * 
+     *
      * Executes shouting celebration a random number of times.
      */
     @Override
     public void celebrate() {
-        if (this.celebrationRef != null) {
-            this.celebrationRef.celebrate();
+        if (this.getCelebrationRef() != null) {
+            this.getCelebrationRef().celebrate();
         }
         for (int i = 0; i < DiceRolls.rollDice(ROLL_NUMBER) - 1; i++) {
             System.out.print("Shout! ");
