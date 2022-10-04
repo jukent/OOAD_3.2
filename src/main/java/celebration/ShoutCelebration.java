@@ -54,7 +54,7 @@ public class ShoutCelebration extends Celebration {
     }
 
     public String trackCelebrate() {
-        String Results = "";
+        String results = "";
         if(this.celebrationRef != null){Results += this.celebrationRef.trackCelebrate();}
         for(int i = 0; i < DiceRolls.rollDice(3) - 1; i++) {
             Results += "Shout! ";
