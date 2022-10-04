@@ -59,7 +59,7 @@ public class SpinCelebration extends Celebration {
             results += this.celebrationRef.trackCelebrate();
         }
         for(int i = 0; i < DiceRolls.rollDice(3) - 1; i++) {
-            Results += "Spin! ";
+            results += "Spin! ";
         }
         return results;
     }
