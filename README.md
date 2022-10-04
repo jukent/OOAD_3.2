@@ -81,13 +81,13 @@ The instructions were unspecified on if there should be a decision tree for Char
 
 ## JUnit Testing
 
-Testing was origionally done with Maven for Java via the ["Test Runner for Java" extension](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-test) within Visual Studio Code. This required we set up a `vscode/settings.json` file pointing to our `main/` and `test/` directories and a `pom.xml` file specifying that we use JUnit version 4.13.2 and that our tests are in `test/`.
+Testing was origionally done with Maven for Java via the ["Test Runner for Java" extension](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-test) within Visual Studio Code. This required we set up a [`vscode/settings.json`](https://github.com/jukent/OOAD_3.2/blob/main/.vscode/settings.json) file pointing to our `main/` and `test/` directories and a [`pom.xml`](https://github.com/jukent/OOAD_3.2/blob/main/pom.xml) file specifying that we use JUnit version 4.13.2 and that our tests are in the [`/src/test/java` folder](https://github.com/jukent/OOAD_3.2/tree/main/src/test/java).
 
 Tests were useful for testing edge cases (such as Seeker movement and Character with Portal movement) because they allowed us to set up the scenarios and assert the correct outcome, as opposed to running the simulation repeatedly watching for the Seeker to move.
 
 Some methods that were previously hidden had to be exposed as "public" for the testing framework to be able to access them. This is permissable, but ideally we'd want a Testing framework that does not interfere with how the codebase was originally designed.
 
-We have 22 tests, spanning movement, treasure hunting, celebration, fighting, treasures, and the game engine; all visible in the [`/src/test/java` folder](https://github.com/jukent/OOAD_3.2/tree/main/src/test/java). Ideally we'd strive for more code coverage, but we tested the most suspect areas of the code and are satisfied for this assignment.
+We have 22 tests, spanning movement, treasure hunting, celebration, fighting, treasures, and the game engine. Ideally we'd strive for more code coverage, but we tested the most suspect areas of the code and are satisfied for this assignment.
 
 Testing is now done automatically on every new push to the GitHub repository with GitHub actions Continuous Integration. The steps for this are in [`.github/workflows/junit_test.yml`](https://github.com/jukent/OOAD_3.2/blob/main/.github/workflows/junit_tests.yaml) and can be viewed in the "Actions" tab. [Here are recent test results](https://github.com/jukent/OOAD_3.2/actions/runs/3182673557/jobs/5188932278). 
 
