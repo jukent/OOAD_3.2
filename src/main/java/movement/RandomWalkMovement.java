@@ -7,7 +7,7 @@ import dungeon.Dungeon;
 import dungeon.Room;
 import entity.Entity;
 
-public class RandomWalkMovement extends MovementBehavior{
+public class RandomWalkMovement extends MovementBehavior {
 
     // Implementation of the strategy OOP Design pattern. This is a subclass
     // of the strategy pattern.

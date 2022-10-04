@@ -9,35 +9,33 @@ import entity.*;
 
 public class FightBehaviorTest {
     Dungeon dungeon = new Dungeon();
-    Character A = new Runner(1, dungeon);
-    Character B = new Brawler(1,dungeon);
-    Character C = new Sneaker(1, dungeon);
-    Character D = new Thief(1,dungeon);
-
+    Character runner = new Runner(1, dungeon);
+    Character brawler = new Brawler(1,dungeon);
+    Character sneaker = new Sneaker(1, dungeon);
+    Character thief = new Thief(1,dungeon);
 
 
     @Test
-    public void testRunnerFightType(){
-        Assert.assertEquals("Untrained",A.getFightType());
+    public void testRunnerFightType() {
+        Assert.assertEquals("Untrained", runner.getFightType());
 
     }
+
 
     @Test
-    public void testBrawlerFightType(){
-        Assert.assertEquals("Expert",B.getFightType());
-
+    public void testBrawlerFightType() {
+        Assert.assertEquals("Expert", brawler.getFightType());
     }
+
 
     @Test
-    public void testSneakerFightType(){
-        Assert.assertEquals("Stealth",C.getFightType());
-
+    public void testSneakerFightType() {
+        Assert.assertEquals("Stealth", sneaker.getFightType());
     }
+
 
     @Test
-    public void testThiefFightType(){
-        Assert.assertEquals("Trained",D.getFightType());
-
+    public void testThiefFightType() {
+        Assert.assertEquals("Trained", thief.getFightType());
     }
-
 }

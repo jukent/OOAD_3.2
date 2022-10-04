@@ -22,13 +22,16 @@ public class StealthyFightBehavior extends FightBehavior {
      * @return int
      *
      * Returns the dice roll for a Stealthy Fighter (strength buff of 1).
-     * Stealthy fighters havea  50% chance of avoiding a fight, indicated by a return value of -1.
+     * Stealthy fighters have a  50% chance of avoiding a fight,
+     * indicated by a return value of -1.
      */
     public int fight() {
-        if (DiceRolls.rollDice(2) == 1) {
+        final int COINFLIP = 2;
+        if (DiceRolls.rollDice(COINFLIP) == 1) {
             return -1;
         } else {
-            return DiceRolls.rollDice(6) + DiceRolls.rollDice(6) + 1;
+            final int DICESIDES = 6;
+            return DiceRolls.rollDice(DICESIDES) + DiceRolls.rollDice(DICESIDES) + 1;
         }
     }
 }

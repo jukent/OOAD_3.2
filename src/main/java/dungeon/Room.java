@@ -8,15 +8,15 @@ import treasure.Treasure;
 
 public class Room {
 
-    private int level; // The level coordinate for this room - Integer
-    private int row; // The row coordinate for this room - Integer
-    private int column; // The column coordinates for this room - Integer
+    final private int level; // The level coordinate for this room - Integer
+    final private int row; // The row coordinate for this room - Integer
+    final private int column; // The column coordinates for this room - Integer
     private String name; // The name  of this room, i.e. "(2-0-0)" - String
     private ArrayList<String> exits; // ArrayList of neighboring room names i.e. ["(2-1-0)","(2-0-1)"] 
     
-    private ArrayList<Character> charactersInRoom; // ArrayList of Character occupancy
-    private ArrayList<Creature> creaturesInRoom; // ArrayList of Creature occupancy
-    private ArrayList<Treasure> treasuresInRoom; // ArrayList of Treasure occupancy
+    private ArrayList<Character> charactersInRoom; // ArrayList of Character
+    private ArrayList<Creature> creaturesInRoom; // ArrayList of Creature
+    private ArrayList<Treasure> treasuresInRoom; // ArrayList of Treasure
 
 
     /**
@@ -25,22 +25,22 @@ public class Room {
      * @param column Integer
      *
      * Constructs the room object based on its level, row, and column coordinates.
-     * Rooms have level, row, and column coordinates, 
+     * Rooms have level, row, and column coordinates,
      * as well as a name generated from these coordinates,
      * and a mapping of valid standard exit room names.
      */
     public Room(int level, int row, int column) {
         // An example of identity
-        // A lot of effort is made throughout the code to make sure identical Room objects
-        // Can be access from either the Dungeon object or from subsets
-        // (seen in the new Hashtables in Creature movement)
+        // A lot of effort is made throughout the code to make sure identical
+        // Room objects can be access from either the Dungeon object
+        // or from subsets (seen in the new Hashtables in Creature movement)
 
 
         // constructor
         this.level = level;
         this.row = row;
         this.column = column;
-        
+
         this.name = new String("(" + level + "-" + row + "-" + column + ")");
 
         ArrayList<String> exits = findExits();
@@ -79,13 +79,14 @@ public class Room {
      * @return level: Integer
      *
      * Let other classess easily access a room's level.
-     * Needed for creatures whose movement may be limited to one level and for tests.
+     * Needed for creatures whose movement may be limited
+     * to one level and for tests.
      */
     public Integer getLevel() {
         return level;
     }
 
-    
+
     /**
      * @return row: Integer
      *
@@ -119,7 +120,8 @@ public class Room {
     /**
      * @param charactersInRoom ArrayList<Characters>
      *
-     * This method stores Room occupancy as an ArrayList of Characters in the Room.
+     * This method stores Room occupancy as an ArrayList
+     * of Characters in the Room.
      *
      * This is updated by the Tracker as an example of the Observer pattern.
      */
@@ -141,7 +143,8 @@ public class Room {
     /**
      * @param creaturesInRoom ArrayList<Creatures>
      *
-     * This method stores Room occupancy as an ArrayList of Creatures in the Room.
+     * This method stores Room occupancy as an ArrayList
+     * of Creatures in the Room.
      *
      * This is updated by the Tracker as an example of the Observer pattern.
      */
@@ -151,6 +154,8 @@ public class Room {
 
 
     /**
+     * @return ArrayList<Treasure>
+     *
      * This method exposes the ArrayList of Treasures in the room.
      */
     public ArrayList<Treasure> getTreasuresInRoom() {
@@ -165,24 +170,27 @@ public class Room {
      *
      * This is updated by the Tracker as an example of the Observer pattern.
      */
-    public void setTreasuresInRoom(ArrayList<Treasure> treasures) {
-        this.treasuresInRoom = treasures;
-    }    
-    
-    
+    public void setTreasuresInRoom(ArrayList<Treasure> treasuresInRoom) {
+        this.treasuresInRoom = treasuresInRoom;
+    }
+
+
     /**
      * @return ArrayList<String> (neighboring room name)
      *
-     * This method finds the valid standard exits for each rooom based on its 
+     * This method finds the valid standard exits for each rooom based on its
      * level, row, and column coordinates.
      *
-     * Since, we already know all valid rooom names,
-     * we can generate exit connections when each rooom is generated
-     * without needing to wait for an object containing all of the rooms to exist.
+     * Since, we already know all valid rooom names, we can generate
+     * exit connections when each rooom is generated without needing
+     * to wait for an object containing all of the rooms to exist.
      */
     private ArrayList<String> findExits() {
-        ArrayList<String> exits = new ArrayList<String>();
+        // Avoiding magic numbers
+        final int MINLEVEL = 1; // Dungeon highest level (not starting room)
+        final int MAXLEVEL = 4; // Dungeon max levels
 
+        ArrayList<String> exits = new ArrayList<String>();
         if (this.level == 0) {
             // If in starting room (0-1-1), only stairs down
             String neighboringRoom = new String("(1-1-1)");
@@ -192,41 +200,49 @@ public class Room {
             if (this.row != 0) {
                 // If not in north-most row of level, door to north
                 Integer newRow = this.row - 1;
-                String neighboringRoom = new String("(" + this.level + "-" + newRow + "-" + this.column + ")");
+                String neighboringRoom
+                    = new String("(" + this.level + "-" + newRow + "-" + this.column + ")");
                 exits.add(neighboringRoom);
             }
             if (this.row != 2) {
                 // If not in south-most row of level, door to south
                 Integer newRow = this.row + 1;
-                String neighboringRoom = new String("(" + this.level + "-" + newRow + "-" + this.column + ")");
+                String neighboringRoom
+                    = new String("(" + this.level + "-" + newRow + "-" + this.column + ")");
                 exits.add(neighboringRoom);
             }
             if (this.column != 0) {
                 // If not in west-most row of level, door to west
                 Integer newColumn = this.column - 1;
-                String neighboringRoom = new String("(" + this.level + "-" + this.row + "-" + newColumn + ")");
+                String neighboringRoom
+                    = new String("(" + this.level + "-" + this.row + "-" + newColumn + ")");
                 exits.add(neighboringRoom);
             }
             if (this.column != 2) {
                 // If not in east-most row of level, door to east
                 Integer newColumn = this.column + 1;
-                String neighboringRoom = new String("(" + this.level + "-" + this.row + "-" + newColumn + ")");
+                String neighboringRoom
+                    = new String("(" + this.level + "-" + this.row + "-" + newColumn + ")");
                 exits.add(neighboringRoom);
             }
             if (this.column == 1 && this.row == 1) {
-                // If in center room of level, there is a staircase up and or down
-                if (this.level != 1) {
+                // If in center room of level, 
+                // there is a staircase up and or down
+                if (this.level != MINLEVEL) {
                     // Cannot exit back to starting room from level 1
                     // If not on level 1, stairs up
-                    Integer newLevel= this.level - 1;
-                    String neighboringRoom = new String("(" + newLevel + "-" + this.row + "-" + this.column + ")");
+                    Integer newLevel = this.level - 1;
+                    String neighboringRoom
+                        = new String("(" + newLevel + "-" + this.row + "-" + this.column + ")");
                     exits.add(neighboringRoom);
                 }
-                if (this.level != 4) { 
+                if (this.level != MAXLEVEL) {
                     // If not on bottom level, stairs down
-                    // Currently bottom level is hard coded to be 4, hoping to change this
+                    // Currently bottom level is hard coded to be 4, 
+                    // hoping to change this
                     Integer newLevel = this.level + 1;
-                    String neighboringRoom = new String("(" + newLevel + "-" + this.row + "-" + this.column + ")");
+                    String neighboringRoom
+                        = new String("(" + newLevel + "-" + this.row + "-" + this.column + ")");
                     exits.add(neighboringRoom);
                 }
             }

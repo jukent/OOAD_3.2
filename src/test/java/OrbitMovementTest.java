@@ -8,7 +8,7 @@ import entity.Orbiter;
 public class OrbitMovementTest {
 
     private Dungeon dungeon = new Dungeon();
-    
+
 
     @Test
     public void testOrbitClockwise() {

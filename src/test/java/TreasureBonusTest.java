@@ -10,32 +10,33 @@ import treasure.*;
 
 public class TreasureBonusTest {
     private Dungeon dungeon = new Dungeon();
-    private Character A = new Runner(1, dungeon);
-    private Treasure B = new Potion(1,dungeon);
-    private Treasure C = new Armor(1,dungeon);
-    private Treasure D = new Gem(1,dungeon);
-    private Treasure E = new Sword(1,dungeon);
-    private Treasure F = new Trap(1,dungeon);
+    private Character runner = new Runner(1, dungeon);
+    private Treasure potion = new Potion(1,dungeon);
+    private Treasure armor = new Armor(1,dungeon);
+    private Treasure gem = new Gem(1,dungeon);
+    private Treasure sword = new Sword(1,dungeon);
+    private Treasure trap = new Trap(1,dungeon);
 
 
     @Test
-    public void testBonuses(){
-        Assert.assertEquals(1,B.getHPBoost());
-        Assert.assertEquals(-1,C.getAdversaryFightBonus());
-        Assert.assertEquals(1,D.getAdversaryFightBonus());
-        Assert.assertEquals(1,E.getOwnerFightBonus());
-    }
-
-    @Test
-    public void testHPAddition(){
-        A.addHealth(B.getHPBoost());
-        Assert.assertEquals(4,A.getHealth());
+    public void testBonuses() {
+        Assert.assertEquals(1, potion.getHPBoost());
+        Assert.assertEquals(-1, armor.getAdversaryFightBonus());
+        Assert.assertEquals(1, gem.getAdversaryFightBonus());
+        Assert.assertEquals(1, sword.getOwnerFightBonus());
     }
 
 
     @Test
-    public void testTrap(){
-        A.loseHealth(F.getTakeDamage());
-        Assert.assertEquals(2,A.getHealth());
+    public void testHPAddition() {
+        runner.addHealth(potion.getHPBoost());
+        Assert.assertEquals(4, runner.getHealth());
+    }
+
+
+    @Test
+    public void testTrap() {
+        runner.loseHealth(trap.getTakeDamage());
+        Assert.assertEquals(2, runner.getHealth());
     }
 }

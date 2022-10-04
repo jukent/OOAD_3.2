@@ -13,7 +13,8 @@ public class Armor extends Treasure {
      */
     public Armor(int id, Dungeon dungeon) {
         hide(dungeon); // Game Dungeon
-        setAdversaryFightBonus(-1); // Armor provides defense by giving Creature's a stength buff of -1
+        setAdversaryFightBonus(-1); // Armor provides defense
+        // by giving Creature's a stength buff of -1
         setTreasureType("Armor"); // String name
     }
 }

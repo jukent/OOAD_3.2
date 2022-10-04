@@ -5,12 +5,14 @@ import java.util.List;
 
 // PrinterColumns is a helper class for Printer
 // It is used to print the columns of the dungeon in clean columns
-// This makes it easier to see the relative relationship of Rooms despite their occupancy
-// which affects their String length.
+// This makes it easier to see the relative relationship of Rooms
+// despite their occupancy which affectED their String length.
 
-// This Class is almost 1-1 borrowed from candied_orange's response to StackOverflow question
+// This Class is almost 1-1 borrowed from candied_orange's
+// response to Stack Overflow question
 // "Is there an easy way to output two columns to the console in Java?"
-//https://stackoverflow.com/questions/699878/is-there-an-easy-way-to-output-two-columns-to-the-console-in-java
+// https://stackoverflow.com/questions/
+//  699878/is-there-an-easy-way-to-output-two-columns-to-the-console-in-java
 public class PrinterColumns {
 
     private List<List<String>> lines = new ArrayList<>();
@@ -28,7 +30,7 @@ public class PrinterColumns {
 
         if (numColumns == -1) {
             numColumns = rowStrings.size();
-            for(int column = 0; column < numColumns; column++) {
+            for (int column = 0; column < numColumns; column++) {
                 maxLengths.add(0);
             }
         }
@@ -38,8 +40,9 @@ public class PrinterColumns {
         }
 
         for (int column = 0; column < numColumns; column++) {
-            int length = Math.max(maxLengths.get(column), rowStrings.get(column).length());
-            maxLengths.set( column, length);
+            int length
+                = Math.max(maxLengths.get(column), rowStrings.get(column).length());
+            maxLengths.set(column, length);
         }
 
         lines.add(rowStrings);
@@ -58,9 +61,9 @@ public class PrinterColumns {
 
     /* (non-Javadoc)
      * @see java.lang.Object#toString()
-     * 
+     *
      * @return String
-     * 
+     *
      * This method turns things into padded Strings.
      */
     public String toString() {
@@ -86,7 +89,7 @@ public class PrinterColumns {
     private String pad(String word, int newLength) {
         while (word.length() < newLength) {
             word += " ";
-        }       
+        }
         return word;
     }
 }

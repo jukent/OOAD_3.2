@@ -31,8 +31,9 @@ public class Seeker extends Creature {
 
     /* (non-Javadoc)
      * @see entity.creature.Creature#setStartingRoom()
-     * 
-     * Randomly generate starting room for Seekers from any room in Dungeon, except "(0-1-1)"
+     *
+     * Randomly generate starting room for Seekers
+     * from any room in Dungeon, except "(0-1-1)"
      */
     @Override
     protected Room pickStartingRoom() {
@@ -41,9 +42,13 @@ public class Seeker extends Creature {
         possibleRoomMap.putAll(getDungeon().getMap()); // Learned method from Geeks for Geeks: "How to Copy Map Content to Another Hashtable in Java?(https://www.geeksforgeeks.org/how-to-copy-map-content-to-another-hashtable-in-java/)
         possibleRoomMap.remove("(0-1-1)"); // Remove entrace room
                 
-        // Randomly select one of the Rooms - learned from Stack Overflow question (https://stackoverflow.com/questions/38248381/pick-a-random-element-from-a-hashtable)
-        ArrayList<Room> startingRooms = new ArrayList<Room>(possibleRoomMap.values());
-        
+        // Randomly select one of the Rooms -
+        // learned from Stack Overflow question:
+        // https://stackoverflow.com/questions/
+        //  38248381/pick-a-random-element-from-a-hashtable
+        ArrayList<Room> startingRooms
+            = new ArrayList<Room>(possibleRoomMap.values());
+
         Random random = new Random();
         int i = random.nextInt(startingRooms.size());
 

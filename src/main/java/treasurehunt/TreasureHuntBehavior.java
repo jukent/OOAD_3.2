@@ -11,8 +11,9 @@ public abstract class TreasureHuntBehavior {
 
     /**
      * @return int
-     * 
-     * This abstract method searches for treasure by rolling dice and returns the "dice roll" integer.
+     *
+     * This abstract method searches for treasure by rolling dice
+     * and returns the "dice roll" integer.
      */
     public abstract int searchTreasure();
 
@@ -32,7 +33,7 @@ public abstract class TreasureHuntBehavior {
      *
      * Sets the needed dice roll for a Treasure Search behavior.
      */
-    public void setNeededScore(int n) {
+    public final void setNeededScore(int n) {
         this.neededScore = n;
     }
 
@@ -52,7 +53,7 @@ public abstract class TreasureHuntBehavior {
      *
      * Sets the String Treasure Hunt type for a Hunt behavior.
      */
-    public void setSearchType(String type) {
+    public final void setSearchType(String type) {
         this.searchType = type;
     }
 

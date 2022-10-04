@@ -20,7 +20,7 @@ public class Brawler extends Character {
         setDungeon(map); // Game Dungeon
         setLocation(getDungeon().getRoom("(0-1-1)")); // Begin in Entrance Room
         setFightBehavior(new ExpertFightBehavior()); // FightType is Expert
-        setSearchBehavior(new CarelessHuntBehavior()); 
+        setSearchBehavior(new CarelessHuntBehavior());
         // SearchType is Careless
         setName("Brawler"); // String name
     }

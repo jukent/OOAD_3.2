@@ -50,7 +50,7 @@ public class JumpCelebration extends Celebration {
         if (this.getCelebrationRef() != null) {
             this.getCelebrationRef().celebrate();
         }
-        for (int i = 0; i < DiceRolls.rollDice(ROLL_NUMBER) - 1; i++) {
+        for (int i = 0; i < DiceRolls.rollDice(ROLLNUMBER) - 1; i++) {
             System.out.print("Jump! ");
         }
     }

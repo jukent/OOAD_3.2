@@ -1,6 +1,6 @@
 package game;
 
-public class Main{
+public class Main {
 
 
     /**
@@ -10,7 +10,7 @@ public class Main{
      */
     public static void main(String[] args) {
         run1Game();
-        //runNGame(30);
+        //runNGames(30);
     }
 
 
@@ -18,8 +18,9 @@ public class Main{
      * This method runs one game, verbose.
      */
     public static void run1Game() {
-        GameEngine Game1 = new GameEngine("ShowAll");// OneScreen,ShowAll,ShowNone
-        Game1.runGame();
+        GameEngine game1 =
+            new GameEngine("ShowAll"); // OneScreen,ShowAll,ShowNone
+        game1.runGame();
     }
 
 
@@ -28,12 +29,12 @@ public class Main{
      *
      * This method runs 'N' games.
      */
-    public static void runNGame(int N) {
-        for(int i = 0; i < N; i++) {
-            int num = i+1;
+    public static void runNGames(int n) {
+        for (int i = 0; i < n; i++) {
+            int num = i + 1;
             System.out.println("Game Number: " + num);
-            GameEngine Game1 = new GameEngine("ShowNone");
-            Game1.runGame();
+            GameEngine gameN = new GameEngine("ShowNone");
+            gameN.runGame();
         }
     }
 }

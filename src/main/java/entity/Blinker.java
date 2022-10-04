@@ -24,7 +24,8 @@ public class Blinker extends Creature {
         setDungeon(map); // Game Dungeon
         setMovementBehavior(new BlinkMovement()); // MovementType is Blink
         setName("Blinker");
-        setLocation(pickStartingRoom()); //Blinkers start anywhere on the 4th level
+        setLocation(pickStartingRoom());
+        //Blinkers start anywhere on the 4th level
     }
 
 
@@ -39,7 +40,8 @@ public class Blinker extends Creature {
         // Generating a fresh list in a for-looped
         // simpler than removing every room not on the 4th level
         // as done in the `move()` method
-        // ArrayList values point to identical Room objects as in the main dungeon map
+        // ArrayList values point to identical Room objects
+        // as in the main dungeon map
         ArrayList<Room> startingRooms = new ArrayList<Room>();
 
         for (int r = 0; r < 2; r++) { // row
@@ -49,8 +51,10 @@ public class Blinker extends Creature {
             }
         }
 
-        // Randomly select one of the rooms - learned from Stack Overflow question 
-        // (https://stackoverflow.com/questions/38248381/pick-a-random-element-from-a-hashtable)
+        // Randomly select one of the rooms -
+        // learned from Stack Overflow question
+        // https://stackoverflow.com/questions/
+        //    38248381/pick-a-random-element-from-a-hashtable
         Random random = new Random();
         int i = random.nextInt(startingRooms.size());
 

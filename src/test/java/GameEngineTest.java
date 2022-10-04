@@ -19,7 +19,7 @@ public class GameEngineTest {
     private ArrayList<Character> characterList = new ArrayList<Character>();
     private ArrayList<Creature> creatureList = new ArrayList<Creature>();
     private ArrayList<Treasure> treasureList = new ArrayList<Treasure>();
-    private Tracker tracker = new Tracker(dungeon, characterList, creatureList, treasureList);
+    private Tracker tracker = new Tracker(characterList, creatureList, treasureList);
 
 
     @Test
@@ -35,13 +35,15 @@ public class GameEngineTest {
     @Test
     public void testEndConditionAllTreasureFound() {
         Assert.assertTrue(endCondition);
-        tracker.setTreasureCount(24);
 
-        if (tracker.getTreasureCount() == 24) { 
+        final int MAXTREASURES = 24;
+        tracker.setTreasureCount(MAXTREASURES);
+
+        if (tracker.getTreasureCount() == MAXTREASURES) {
             endCondition = false;
-        } else if (tracker.getCreatureList().size() == 0) { 
+        } else if (tracker.getCreatureList().size() == 0) {
             endCondition = true;
-        } else if (tracker.getCharacterList().size() == 0) { 
+        } else if (tracker.getCharacterList().size() == 0) {
             endCondition = true;
         }
         Assert.assertFalse(endCondition);
@@ -57,9 +59,9 @@ public class GameEngineTest {
 
         if (tracker.getTreasureCount() == 24) { 
             endCondition = true;
-        } else if (tracker.getCreatureList().size() == 0) { 
+        } else if (tracker.getCreatureList().size() == 0) {
             endCondition = false;
-        } else if (tracker.getCharacterList().size() == 0) { 
+        } else if (tracker.getCharacterList().size() == 0) {
             endCondition = true;
         }
         Assert.assertFalse(endCondition);
@@ -73,11 +75,11 @@ public class GameEngineTest {
 
         tracker.getCharacterList().removeAll(tracker.getCharacterList());
 
-        if (tracker.getTreasureCount() == 24) { 
+        if (tracker.getTreasureCount() == 24) {
             endCondition = true;
-        } else if (tracker.getCreatureList().size() == 0) { 
+        } else if (tracker.getCreatureList().size() == 0) {
             endCondition = true;
-        } else if (tracker.getCharacterList().size() == 0) { 
+        } else if (tracker.getCharacterList().size() == 0) {
             endCondition = false;
         }
         Assert.assertFalse(endCondition);

@@ -7,10 +7,10 @@ import fight.FightBehavior;
  */
 public abstract class Celebration extends FightBehavior {
 
-    private Celebration celebrationRef;
-    private FightBehavior fightRef;
-
-    protected static final int ROLL_NUMBER = 3;
+    private Celebration celebrationRef; // Celebration reference
+    private FightBehavior fightRef; // Fight reference
+    
+    protected static final int ROLLNUMBER = 3; // Roll number (not magic number)
 
     // This is our decorator pattern.
     // The celebration decorator decorates the fight behaviors
@@ -24,7 +24,7 @@ public abstract class Celebration extends FightBehavior {
      *
      * Abstract method returning a "fight" dice-roll integer.
      */
-    public abstract int fight();
+    public abstract int fight(); // Abstract fight roll
 
 
     /* (non-Javadoc)
@@ -32,7 +32,7 @@ public abstract class Celebration extends FightBehavior {
      *
      * Abstract celebration method.
      */
-    public abstract void celebrate();
+    public abstract void celebrate(); // Abstract Celebration
 
 
     /**
@@ -50,7 +50,7 @@ public abstract class Celebration extends FightBehavior {
      *
      * Sets the Celebration reference.
      */
-    public void setCelebrationRef(Celebration celebrationRef) {
+    final void setCelebrationRef(Celebration celebrationRef) {
         this.celebrationRef = celebrationRef;
     }
 
@@ -71,7 +71,7 @@ public abstract class Celebration extends FightBehavior {
      *
      * Sets the decorated Fight Behavior.
      */
-    public void setFightRef(FightBehavior fightRef) {
+    final void setFightRef(FightBehavior fightRef) {
         this.fightRef = fightRef;
     }
 }

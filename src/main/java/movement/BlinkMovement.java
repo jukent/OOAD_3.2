@@ -18,7 +18,7 @@ public class BlinkMovement extends MovementBehavior {
      * Constructor for Blinker Movement.
      */
     public BlinkMovement() {
-        this.setMovementType("Blink");
+        setMovementType("Blink");
     }
 
     
@@ -31,25 +31,33 @@ public class BlinkMovement extends MovementBehavior {
     public void move(Entity entity, Dungeon dungeon) {
         Room currentRoom = entity.getLocation();
 
-        // Get a new hashtable to store possible rooms called 'possible_room_map'
+        // Get a new hashtable to store possible rooms called
         // Hashtable values point to a subset of the Room objects in the main dungeon map
         Hashtable<String, Room> possibleRoomMap = new Hashtable<String, Room>();
-        possibleRoomMap.putAll(dungeon.getMap()); // Learned method from Geeks for Geeks: "How to Copy Map Content to Another Hashtable in Java?(https://www.geeksforgeeks.org/how-to-copy-map-content-to-another-hashtable-in-java/)
+        possibleRoomMap.putAll(dungeon.getMap()); // Learned method from Geeks for Geeks:
+        //  "How to Copy Map Content to Another Hashtable in Java?
+        // https://www.geeksforgeeks.org/
+        //  how-to-copy-map-content-to-another-hashtable-in-java/
         possibleRoomMap.remove("0-1-1"); // Remove entrace room
         possibleRoomMap.remove(currentRoom.getName()); // Remove current room
 
-        // Randomly select one of the rooms - learned from Stack Overflow question 
-        // https://stackoverflow.com/questions/38248381/pick-a-random-element-from-a-hashtable)
-        // Convert values to an ArrayList of Room so that Rooms can grabbed via index
-        ArrayList<Room> possibleRooms = new ArrayList<Room>(possibleRoomMap.values());
+        // Randomly select one of the rooms -
+        // learned from Stack Overflow question:
+        // https://stackoverflow.com/questions/
+        //  38248381/pick-a-random-element-from-a-hashtable)
+        // Convert values to an ArrayList of Room
+        // so that Rooms can grabbed via index
+        ArrayList<Room> possibleRooms
+            = new ArrayList<Room>(possibleRoomMap.values());
 
-        // Get random index from 0 (inclusive) to the length of possible rooms (exclusive)
+        // Get random index from 0 (inclusive) to
+        // the length of possible rooms (exclusive)
         Random random = new Random();
         int i = random.nextInt(possibleRooms.size());
 
         // Grab a Room from the random index
         Room newRoom = possibleRooms.get(i);
-            
+
         // Move there
         entity.setLocation(newRoom);
     }

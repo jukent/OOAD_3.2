@@ -44,14 +44,15 @@ public class DanceCelebration extends Celebration {
     /* (non-Javadoc)
      * @see celebration.Celebration#celebrate()
      *
-     * This implementation executes dancing celebration a random number of times.
+     * This implementation executes dancing celebration
+     * a random number of times.
      */
     @Override
     public void celebrate() {
         if (this.getCelebrationRef() != null) {
             this.getCelebrationRef().celebrate();
         }
-        for (int i = 0; i < DiceRolls.rollDice(ROLL_NUMBER) - 1; i++) {
+        for (int i = 0; i < DiceRolls.rollDice(ROLLNUMBER) - 1; i++) {
             System.out.print("Dance! ");
         }
     }

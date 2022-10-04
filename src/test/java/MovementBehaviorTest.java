@@ -14,7 +14,7 @@ public class MovementBehaviorTest {
 
     private Dungeon dungeon = new Dungeon();
 
-    
+
     @Test
     public void testStayWithCharacter() {
 
@@ -35,7 +35,8 @@ public class MovementBehaviorTest {
         Assert.assertEquals(seeker.getLocation(), oldRoom);
         Assert.assertEquals(oldRoom, characterRoom);
 
-        Tracker tracker = new Tracker(dungeon, characterList, creatureList, null);
+        Tracker tracker
+            = new Tracker(characterList, creatureList, null);
         tracker.setCharacterStats(characterList);
         tracker.setCreatureStats(creatureList);
 

@@ -4,7 +4,7 @@ import dungeon.Dungeon;
 import fight.StealthyFightBehavior;
 import treasurehunt.QuickHuntBehavior;
 
-public class Sneaker extends Character { 
+public class Sneaker extends Character {
     // Example of inheritance
 
 

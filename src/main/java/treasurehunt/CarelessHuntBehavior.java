@@ -13,7 +13,8 @@ public class CarelessHuntBehavior extends TreasureHuntBehavior {
      */
     public CarelessHuntBehavior() {
         setSearchType("Careless"); // String name
-        setNeededScore(10); // Required Dice Roll of 10
+        final int NEEDEDSCORE = 10;
+        setNeededScore(NEEDEDSCORE); // Required Dice Roll of 10
     }
 
 
@@ -24,6 +25,7 @@ public class CarelessHuntBehavior extends TreasureHuntBehavior {
      */
     @Override
     public int searchTreasure() {
-        return DiceRolls.rollDice(6) + DiceRolls.rollDice(6);
+        final int DICESIDES = 6;
+        return DiceRolls.rollDice(DICESIDES) + DiceRolls.rollDice(DICESIDES);
     } 
 }

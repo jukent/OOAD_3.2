@@ -20,7 +20,8 @@ public class BlinkMovementTest {
         Room oldRoom = blinker.getLocation();
 
         int level = oldRoom.getLevel();
-        Assert.assertEquals(4, level);
+        final int LEVEL = 4;
+        Assert.assertEquals(LEVEL, level);
 
         Assert.assertEquals("Blink", blinker.getMovementType());
 
@@ -46,7 +47,8 @@ public class BlinkMovementTest {
         ArrayList<String> inventoryArray = new ArrayList<String>();
         inventoryArray.add(portal.getTreasureType());
         Assert.assertEquals(character.getInventoryTypes(), inventoryArray);
-        Assert.assertTrue(character.getInventoryTypes().contains(portal.getTreasureType()));
+        Assert.assertTrue(character.getInventoryTypes().
+            contains(portal.getTreasureType()));
         Assert.assertTrue(character.getInventoryTypes().contains("Portal"));
 
         character.checkPortalInInventory();

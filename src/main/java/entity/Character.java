@@ -8,12 +8,11 @@ import treasurehunt.TreasureHuntBehavior;
 
 public abstract class Character extends Entity {
 
-    private TreasureHuntBehavior searchBehavior; 
-    // Treasure Hunting behavior
-    private ArrayList<Treasure> inventory = new ArrayList<Treasure>(); 
-    // ArrayList of Treasure inventory
-    private ArrayList<String> inventoryTypes = new ArrayList<String>(); 
-    // ArrayList of Treasure inventory types (Strings)
+    private TreasureHuntBehavior searchBehavior; // Treasure Hunting behavior
+    private ArrayList<Treasure> inventory
+        = new ArrayList<Treasure>(); // ArrayList of Treasure inventory
+    private ArrayList<String> inventoryTypes
+        = new ArrayList<String>(); // ArrayList of Treasure inventory types (Strings)
 
 
     /**
@@ -21,9 +20,9 @@ public abstract class Character extends Entity {
      * If so, sets their MovementBehavior to BlinkMovement (to use the Portal)
      * if not, Characters continue RandomWalk MovementBehavior.
      *
-     * A more intelligent system could be used later to randomly let Characters 
+     * A more intelligent system could be used later to randomly let Characters
      * chose whether to Blink or not,
-     * but this was not specified and is simpler to code - 
+     * but this was not specified and is simpler to code -
      * so we are assuming that Characters love to use their portal gun.
      */
     public void checkPortalInInventory() {
@@ -51,13 +50,13 @@ public abstract class Character extends Entity {
      *
      * This method adds health to a Character's health points.
      */
-    public void addHealth(int n){
+    public void addHealth(int n) {
         setHP(getHP() + n);
     }
 
-    
+
     /**
-     * @return ArrayList<Treasure> 
+     * @return ArrayList<Treasure>
      *
      * This method exposes a Character's Treasure inventory.
      */
@@ -93,7 +92,7 @@ public abstract class Character extends Entity {
 
 
     /**
-     * @param inventoryTypes ArrayList<String> 
+     * @param inventoryTypes ArrayList<String>
      *
      * This method sets the Character's Treasure inventory types.
      */
@@ -126,10 +125,10 @@ public abstract class Character extends Entity {
 
     /**
      * @param searchBehavior TreasureHuntBehavior
-     * 
+     *
      * Sets the Character's Treasure Hunt behavior.
      */
-    public void setSearchBehavior(TreasureHuntBehavior searchBehavior) {
+    public final void setSearchBehavior(TreasureHuntBehavior searchBehavior) {
         this.searchBehavior = searchBehavior;
     }
 }

@@ -13,7 +13,8 @@ public class CarefulHuntBehavior extends TreasureHuntBehavior {
      */
     public CarefulHuntBehavior() {
         setSearchType("Careful"); // String Name
-        setNeededScore(7); // Required dice roll of Integer 7
+        final int NEEDEDSCORE = 7;
+        setNeededScore(NEEDEDSCORE); // Required dice roll of Integer 7
     }
 
 
@@ -24,6 +25,7 @@ public class CarefulHuntBehavior extends TreasureHuntBehavior {
      */
     @Override
     public int searchTreasure() {
-        return DiceRolls.rollDice(6) + DiceRolls.rollDice(6);
+        final int DICESIDES = 6;
+        return DiceRolls.rollDice(DICESIDES) + DiceRolls.rollDice(DICESIDES);
     }
 }

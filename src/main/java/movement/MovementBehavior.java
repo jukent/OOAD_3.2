@@ -13,13 +13,14 @@ public abstract class MovementBehavior {
     /**
      * Movement Constructor.
      */
-    public MovementBehavior() {}
+    public MovementBehavior() { }
 
 
     /**
      * @return String
      *
-     * Returns the MovementBehavior type (e.g. "Blink", "Orbit", "RandomWalk", "Seek").
+     * Returns the MovementBehavior type
+     * (e.g. "Blink", "Orbit", "RandomWalk", "Seek").
      */
     public String getMovementType() {
         return this.movementType;
@@ -31,7 +32,7 @@ public abstract class MovementBehavior {
      *
      * Sets the MovementBehavior type.
      */
-    public void setMovementType(String movementType) {
+    public final void setMovementType(String movementType) {
         this.movementType = movementType;
     }
 

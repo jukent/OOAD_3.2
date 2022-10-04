@@ -19,24 +19,25 @@ public class SeekMovementTest {
     public void testAwaitCharacter() {
 
         ArrayList<Creature> creatureList = new ArrayList<Creature>();
-        Seeker test_seeker = new Seeker(1, dungeon);
-        creatureList.add(test_seeker);
+        Seeker seeker = new Seeker(1, dungeon);
+        creatureList.add(seeker);
 
-        Room old_room = dungeon.getRoom("(1-0-0)");
-        test_seeker.setLocation(old_room);
+        Room oldRoom = dungeon.getRoom("(1-0-0)");
+        seeker.setLocation(oldRoom);
 
-        Assert.assertEquals(test_seeker.getLocation(), old_room);
+        Assert.assertEquals(seeker.getLocation(), oldRoom);
 
-        Tracker tracker = new Tracker(dungeon, null, creatureList, null);
+        Tracker tracker
+            = new Tracker(null, creatureList, null);
         tracker.setCreatureStats(creatureList);
 
-        Assert.assertEquals("Seek", test_seeker.getMovementType());
+        Assert.assertEquals("Seek", seeker.getMovementType());
 
-        test_seeker.move();
-        Room new_room = test_seeker.getLocation();
-        tracker.creatureMoved(test_seeker, old_room, new_room);
+        seeker.move();
+        Room newRoom = seeker.getLocation();
+        tracker.creatureMoved(seeker, oldRoom, newRoom);
 
-        Assert.assertEquals(old_room, new_room);
+        Assert.assertEquals(oldRoom, newRoom);
     }
 
 
@@ -44,44 +45,46 @@ public class SeekMovementTest {
     public void testMove2Character() {
 
         ArrayList<Character> characterList = new ArrayList<Character>();
-        Brawler test_character = new Brawler(0, dungeon);
-        characterList.add(test_character);
+        Brawler character = new Brawler(0, dungeon);
+        characterList.add(character);
 
-        Room character_room = dungeon.getRoom("(1-0-0)");
-        test_character.setLocation(character_room);
+        Room characterRoom = dungeon.getRoom("(1-0-0)");
+        character.setLocation(characterRoom);
 
-        Assert.assertEquals(test_character.getLocation(), character_room);
+        Assert.assertEquals(character.getLocation(), characterRoom);
         
         ArrayList<Creature> creatureList = new ArrayList<Creature>();
-        Seeker test_seeker = new Seeker(1, dungeon);
-        creatureList.add(test_seeker);
+        Seeker seeker = new Seeker(1, dungeon);
+        creatureList.add(seeker);
 
-        Room old_room = dungeon.getRoom("(1-1-0)");
-        test_seeker.setLocation(old_room);
+        Room oldRoom = dungeon.getRoom("(1-1-0)");
+        seeker.setLocation(oldRoom);
 
-        Assert.assertEquals(test_seeker.getLocation(), old_room);
+        Assert.assertEquals(seeker.getLocation(), oldRoom);
 
-        Assert.assertNotEquals(old_room, character_room);
+        Assert.assertNotEquals(oldRoom, characterRoom);
 
         // check there is exit to character_room
-        ArrayList<String> exits = old_room.getExits();
-        Assert.assertTrue(exits.contains(character_room.getName()));
+        ArrayList<String> exits = oldRoom.getExits();
+        Assert.assertTrue(exits.contains(characterRoom.getName()));
 
-        Tracker tracker = new Tracker(dungeon, characterList, creatureList, null);
+        Tracker tracker
+            = new Tracker(characterList, creatureList, null);
         tracker.setCharacterStats(characterList);
         tracker.setCreatureStats(creatureList);
 
         // check that we can get characters in room
-        ArrayList<Character> characters_in_room = character_room.getCharactersInRoom();
-        Assert.assertEquals(characters_in_room, characterList);
+        ArrayList<Character> charactersInRoom
+            = characterRoom.getCharactersInRoom();
+        Assert.assertEquals(charactersInRoom, characterList);
 
-        Assert.assertEquals("Seek", test_seeker.getMovementType());
+        Assert.assertEquals("Seek", seeker.getMovementType());
 
-        test_seeker.move();
-        Room new_room = test_seeker.getLocation();
-        tracker.creatureMoved(test_seeker, old_room, new_room);
+        seeker.move();
+        Room new_room = seeker.getLocation();
+        tracker.creatureMoved(seeker, oldRoom, new_room);
 
-        Assert.assertNotEquals(test_seeker.getLocation(), old_room);
-        Assert.assertEquals(character_room, new_room);
+        Assert.assertNotEquals(seeker.getLocation(), oldRoom);
+        Assert.assertEquals(characterRoom, new_room);
     } 
 }

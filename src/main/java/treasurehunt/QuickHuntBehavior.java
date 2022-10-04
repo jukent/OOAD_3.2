@@ -13,7 +13,8 @@ public class QuickHuntBehavior extends TreasureHuntBehavior {
      */
     public QuickHuntBehavior() {
         setSearchType("Quick"); // String name
-        setNeededScore(9); // Required dice roll of 9
+        final int NEEDEDSCORE = 9;
+        setNeededScore(NEEDEDSCORE); // Required dice roll of 9
     }
 
 
@@ -24,10 +25,12 @@ public class QuickHuntBehavior extends TreasureHuntBehavior {
      */
     @Override
     public int searchTreasure() {
-        if (DiceRolls.rollDice(3) == 1) {
+        final int THREESIDES = 3;
+        if (DiceRolls.rollDice(THREESIDES) == 1) {
             return -1;
         } else {
-            return DiceRolls.rollDice(6) + DiceRolls.rollDice(6);
+            final int DICESIDES = 6;
+            return DiceRolls.rollDice(DICESIDES) + DiceRolls.rollDice(DICESIDES);
         }
     }
 }

@@ -7,23 +7,23 @@ public class Dungeon {
     private Hashtable<String, Room> map; // The map of this dungeon - Hashtable of room names mapped to Rooms
     // Also example of abstraction - Some methods are made private to prevent users
     // from accessing information that is unnecassary. This class contains
-    // only the needed information to access it from the outside. 
+    // only the needed information to access it from the outside.
     // Any additional information is hidden in private methods.
 
 
     /**
      * Constructs the Dungeon object which contains a map of all rooms
      *
-     * Possibility to set NUM_LEVELS to an input parameter 
+     * Possibility to set NUM_LEVELS to an input parameter
      * so that this can be more easily extended for different Dungeon sizes.
      * Currently hardcoded to 4 for simplicity.
      */
     public Dungeon() {
-        final int NUM_LEVELS = 4; // The number of levels deep of the dungeon
-        setMap(generateMap(NUM_LEVELS));
+        final int NUMLEVELS = 4; // The number of levels deep of the dungeon
+        setMap(generateMap(NUMLEVELS));
     }
 
-        
+
     /**
      * @return map: Hashtable<String, Room> (room name, Room)
      *
@@ -57,18 +57,20 @@ public class Dungeon {
 
 
     /**
-     * @param numLevels Integer 
+     * @param  NUMLEVELS Integer
      * @return map: Hashtable<String, Room> (room names, room object)
      *
-     * Generates the Rooms for the dungeon for any number of levels ('NUM_LEVELS'),
-     * with 3 rooms per level after the first level (which has only one room).
+     * Generates the Rooms for the dungeon for any number of levels
+     * ('NUMLEVELS'), with 3 rooms per level after the first level
+     * (which has only one room).
      *
-     * The Rooms are stored in a Hashtable map with room names as keys pointing to Room objects as values.
+     * The Rooms are stored in a Hashtable map with room names as keys
+     * pointing to Room objects as values.
      */
-    private Hashtable<String, Room> generateMap(int NUM_LEVELS) {
+    private Hashtable<String, Room> generateMap(int NUMLEVELS) {
         Hashtable<String, Room> map = new Hashtable<String, Room>();
 
-        for (int l = 0; l <= NUM_LEVELS; l++) {     
+        for (int l = 0; l <= NUMLEVELS; l++) {
             if (l == 0) {
                 // On level 0, there is only one room
                 Room room = new Room(l, 1, 1);
@@ -77,8 +79,8 @@ public class Dungeon {
                 // On all other levels, there are 3x3 rooms
                 for (int r = 0; r <= 2; r++) { // row
                     for (int c = 0; c <= 2; c++) { // column
-                        Room room = new Room(l, r, c);       
-                        map.put(room.getName(), room);      
+                        Room room = new Room(l, r, c);
+                        map.put(room.getName(), room);
                     }
                 }
             }

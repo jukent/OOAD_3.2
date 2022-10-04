@@ -8,27 +8,37 @@ import dungeon.Dungeon;
 import dungeon.Room;
 
 abstract public class Treasure {
-    
+
     private Room location; // The Treasure's hiding room.
-    private int ownerFightBonus = 0; // Integer amount of added strength buff this Treasure gives a Character
-    private int adversaryFightBonus = 0; // Integer amount of added strength buff this Treasure gives a Creature
-    private int hpBoost = 0; // Integer amount of added health points this Treasure gives a Character
-    private int takeDamage = 0; // Integer amount of damage this Treasure does to a Character
+    private int ownerFightBonus = 0; // Integer amount 
+    // of added strength buff this Treasure gives a Character
+    private int adversaryFightBonus = 0; // Integer amount of 
+    // added strength buff this Treasure gives a Creature
+    private int hpBoost = 0; // Integer amount of 
+    // added health points this Treasure gives a Character
+    private int takeDamage = 0; // Integer amount of 
+    // damage this Treasure does to a Character
     private String treasureType; // String type of Treasure
 
 
     /**
      * @param dungeon Dungeon
-     * 
+     *
      * Sets the starting Room where the Treasure is hidden.
      */
     protected void hide(Dungeon dungeon) {
         // Get new map of possible Rooms
         Hashtable<String, Room> possibleRoomMap = new Hashtable<String, Room>();
-        possibleRoomMap.putAll(dungeon.getMap()); // Learned method from Geeks for Geeks: "How to Copy Map Content to Another Hashtable in Java?(https://www.geeksforgeeks.org/how-to-copy-map-content-to-another-hashtable-in-java/)
+        possibleRoomMap.putAll(dungeon.getMap()); // Learned method from Geeks for Geeks: 
+        // "How to Copy Map Content to Another Hashtable in Java?
+        // https://www.geeksforgeeks.org/
+        //  how-to-copy-map-content-to-another-hashtable-in-java/
         possibleRoomMap.remove("(0-1-1)"); // Remove entrace room
                 
-        // Randomly select one of the Rooms - learned from Stack Overflow question (https://stackoverflow.com/questions/38248381/pick-a-random-element-from-a-hashtable)
+        // Randomly select one of the Rooms -
+        // learned from Stack Overflow question:
+        // https://stackoverflow.com/questions/
+        //  38248381/pick-a-random-element-from-a-hashtable
         ArrayList<Room> rooms = new ArrayList<Room>(possibleRoomMap.values());
         
         Random random = new Random();
@@ -43,26 +53,27 @@ abstract public class Treasure {
 
     /**
      * @param room Rooom
-     * 
+     *
      * This method sets a Treasure's location.
      */
-    public void setLocation(Room room) {
+    public final void setLocation(Room room) {
         this.location = room;
     }
 
+
     /**
      * @return Room
-     * 
+     *
      * This method returns a Treasure's location.
      */
     public Room getLocation() {
         return this.location;
     }
 
-    
+
     /**
      * @return int
-     * 
+     *
      * This method returns a Treasure's ownerFightBonus.
      */
     public int getOwnerFightBonus() {
@@ -72,17 +83,17 @@ abstract public class Treasure {
 
     /**
      * @param n int
-     * 
+     *
      * This method sets a Treasure's ownerFightBonus.
      */
-    public void setOwnerFightBonus(int n) {
+    public final void setOwnerFightBonus(int n) {
         this.ownerFightBonus = n;
     }
 
 
     /**
      * @return int
-     * 
+     *
      * This method returns a Treasure's adversaryFightBonus.
      */
     public int getAdversaryFightBonus() {
@@ -92,17 +103,17 @@ abstract public class Treasure {
 
     /**
      * @param n int
-     * 
+     *
      * This method sets a Treasure's adversaryFightBonus.
      */
-    public void setAdversaryFightBonus(int n) {
+    public final void setAdversaryFightBonus(int n) {
         this.adversaryFightBonus = n;
     }
 
 
     /**
      * @return int
-     * 
+     *
      * This method returns the hp Boost for the Treasure.
      */
     public int getHPBoost() {
@@ -112,17 +123,17 @@ abstract public class Treasure {
 
     /**
      * @param n int
-     * 
+     *
      * This method setss the hp Boost for the Treasure.
      */
-    public void setHPBoost(int n) {
+    public final void setHPBoost(int n) {
         this.hpBoost = n;
     }
 
 
     /**
      * @return int
-     * 
+     *
      * This method returns how much damage the Treasure inflicts.
      */
     public int getTakeDamage() {
@@ -132,10 +143,10 @@ abstract public class Treasure {
 
     /**
      * @param n int
-     * 
+     *
      * This method sets how much damage the Treasure inflicts.
      */
-    public void setTakeDamage(int n) {
+    public final void setTakeDamage(int n) {
         this.takeDamage = n;
     }
 
@@ -155,7 +166,7 @@ abstract public class Treasure {
      *
      * This method sets the String for the Treasure type.
      */
-    public void setTreasureType(String type) {
+    public final void setTreasureType(String type) {
         this.treasureType = type;
     }
 }

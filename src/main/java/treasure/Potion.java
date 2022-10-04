@@ -13,7 +13,7 @@ public class Potion extends Treasure {
      */
     public Potion(int id, Dungeon dungeon) {
         hide(dungeon); // Game Dungeon
-        setHPBoost(1); // Potions restore 1 health point 
+        setHPBoost(1); // Potions restore 1 health point
         setTreasureType("Potion"); // String name
     }
 }

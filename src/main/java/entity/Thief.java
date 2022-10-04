@@ -11,7 +11,7 @@ public class Thief extends Character {
     /**
      * @param id int
      * @param map Dungeon
-     * 
+     *
      * Construct Thieves with an Integer ID `id` and the Dungeon
      */
     public Thief(int id, Dungeon map) {

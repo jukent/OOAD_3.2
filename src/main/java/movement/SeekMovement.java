@@ -8,7 +8,7 @@ import dungeon.Room;
 import entity.Entity;
 import entity.Character;
 
-public class SeekMovement extends MovementBehavior{
+public class SeekMovement extends MovementBehavior {
 
     // Implementation of the strategy OOP Design pattern. This is a subclass
     // of the strategy pattern.
@@ -26,8 +26,8 @@ public class SeekMovement extends MovementBehavior{
     /* (non-Javadoc)
      * @see movement.MovementBehavior#move(entity.Entity, dungeon.Dungeon)
      *
-     * Seekers move by staying still and waiting for a Character to be in a nearby Room
-     * Then they move to the room with the Character.
+     * Seekers move by staying still and waiting for a Character to be in
+     * a nearby Room, then they move to the room with the Character.
      */
     @Override
     public void move(Entity entity, Dungeon dungeon) {
@@ -35,14 +35,15 @@ public class SeekMovement extends MovementBehavior{
 
         // List of nearby rooms
         ArrayList<String> exits = currentRoom.getExits();
-        
+
         // Populate an ArrayList of populated nearby rooms (with characters)
         ArrayList<Room> populatedExits = new ArrayList<>();
         for (String x: exits) {
-            // Convert Exit Room-Name Strings to Rooms 
+            // Convert Exit Room-Name Strings to Rooms
             Room exitRoom = dungeon.getRoom(x);
             // Check if a Character is in the Exit Room
-            ArrayList<Character> charactersInRoom = exitRoom.getCharactersInRoom();
+            ArrayList<Character> charactersInRoom
+                = exitRoom.getCharactersInRoom();
             if (charactersInRoom.size() > 0) {
                 // If character in room add it to possible exit_rooms
                 populatedExits.add(exitRoom);
@@ -50,7 +51,7 @@ public class SeekMovement extends MovementBehavior{
         }
 
         // Move based on interesections
-        if (populatedExits.size() == 0 ) {
+        if (populatedExits.size() == 0) {
             // If no intersection, don't move
             entity.setLocation(entity.getLocation());
         } else if (populatedExits.size() == 1) {
@@ -64,6 +65,6 @@ public class SeekMovement extends MovementBehavior{
 
             Room newRoom = populatedExits.get(i);
             entity.setLocation(newRoom);
-        } 
+        }
     }
 }

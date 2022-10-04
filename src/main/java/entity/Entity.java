@@ -18,18 +18,22 @@ public class Entity {
     private Dungeon dungeon; // Game Dungeon
     private Room location; // Room location
 
-    private String name = new String("Entity"); // Simple Entity name String
-    private String direction = new String("clockwise"); // Dummy String direction value
+    private String name
+        = new String("Entity"); // Simple Entity name String
+    private String direction
+        = new String("clockwise"); // Dummy String direction value
     private int hp = 3; // Health Points Integer
     private int moveCount = 1; // Integer movement count
 
-    private FightBehavior fightBehavior = new CreatureFightBehavior(); // FightBehavior
-    private MovementBehavior movementBehavior = new RandomWalkMovement(); // MovementBehavior
+    private FightBehavior fightBehavior
+        = new CreatureFightBehavior(); // FightBehavior
+    private MovementBehavior movementBehavior
+        = new RandomWalkMovement(); // MovementBehavior
 
 
     /**
      * @return int
-     * 
+     *
      * This abstract method calls an Entity's fight behavior
      * and returns their "fight roll" as an integer.
      */
@@ -49,8 +53,8 @@ public class Entity {
 
     /**
      * @param room Room
-     * 
-     * This method manually sets Entity's location without influence from other Rooms.
+     *
+     * This method manually sets Entity's location.
      */
     public void setLocation(Room room) {
         this.location = room;
@@ -59,7 +63,7 @@ public class Entity {
 
     /**
      * @return Room
-     * 
+     *
      * This method returns an Entity's location.
      */
     public Room getLocation() {
@@ -72,10 +76,10 @@ public class Entity {
      *
      * This method sets an Entity's "direction"
      *
-     * This is only used for Orbiter's, but since we wanted to encapsalate MovementBehavior
-     * to work for Creatures or Entity's (so that Characters could blink),
-     * all Entity's needed to have any parameters that could be called up by any of the
-     * 'move()' methods.
+     * This is only used for Orbiter's, but since we wanted to encapsalate
+     * MovementBehavior to work for Creatures or Entity's
+     * (so that Characters could blink), all Entity's needed to have any
+     * parameters that could be called up by any of the 'move()' methods.
      */
     public void setDirection(String direction) {
         this.direction = direction;
@@ -84,7 +88,7 @@ public class Entity {
 
     /**
      * @return String
-     * 
+     *
      * Make's an entity's movement direction accessible.
      */
     public String getDirection() {
@@ -94,7 +98,7 @@ public class Entity {
 
     /**
      * @return int
-     * 
+     *
      * This method returns an Entity's health.
      */
     public int getHealth() {
@@ -104,7 +108,7 @@ public class Entity {
 
     /**
      * @param n int
-     * 
+     *
      * This method decreases an Entity's health by the integer 'n'.
      */
     public void loseHealth(int n) {
@@ -114,7 +118,7 @@ public class Entity {
 
     /**
      * @return String
-     * 
+     *
      * This method returns an Entity's name.
      */
     public String getName() {
@@ -124,7 +128,7 @@ public class Entity {
 
     /**
      * @return String
-     * 
+     *
      * This method returns an Entity's type of FightBehavior
      * (i.e. "Creature", "Expert", "Stealthy", "Trained", "Untrained").
      */
@@ -135,17 +139,17 @@ public class Entity {
 
     /**
      * @param fightBehavior FightBehavior
-     * 
+     *
      * This method sets an Entity's fight behavior.
      */
-    public void setFightBehavior(FightBehavior fightBehavior) {
+    public final void setFightBehavior(FightBehavior fightBehavior) {
         this.fightBehavior = fightBehavior;
     }
 
 
     /**
      * @return FightBehavior
-     * 
+     *
      * Returns an Entity's FightBehavior.
      */
     public FightBehavior getFightBehavior() {
@@ -155,7 +159,7 @@ public class Entity {
 
     /**
      * @return String
-     * 
+     *
      * This method returns an Entity's MovementType
      * (i.e., "Orbit", "RandomWalk", "Seek", "Blink").
      */
@@ -209,7 +213,7 @@ public class Entity {
      *
      * Sets an Entity's ID.
      */
-    public void setID(int id) {
+    public final void setID(int id) {
         this.id = id;
     }
 
@@ -229,7 +233,7 @@ public class Entity {
      *
      * Sets an Entity's move count.
      */
-    public void setMoveCount(int moveCount) {
+    public final void setMoveCount(int moveCount) {
         this.moveCount = moveCount;
     }
 
@@ -239,7 +243,7 @@ public class Entity {
      *
      * Returns the Entity dungeon.
      */
-    public Dungeon getDungeon(){
+    public Dungeon getDungeon() {
         return this.dungeon;
     }
 
@@ -249,7 +253,7 @@ public class Entity {
      *
      * Sets the Entity dungeon.
      */
-    public void setDungeon(Dungeon dungeon){
+    public final void setDungeon(Dungeon dungeon) {
         this.dungeon = dungeon;
     }
 
@@ -259,7 +263,7 @@ public class Entity {
      *
      * Sets an Entity's name.
      */
-    public void setName(String name) {
+    public final void setName(String name) {
         this.name = name;
     }
 }

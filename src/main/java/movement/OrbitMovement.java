@@ -5,7 +5,7 @@ import dungeon.Room;
 import entity.Entity;
 
 public class OrbitMovement extends MovementBehavior {
-    
+
     // Implementation of the strategy OOP Design pattern. This is a subclass
     // of the strategy pattern.
 
@@ -14,7 +14,7 @@ public class OrbitMovement extends MovementBehavior {
      * Constructor for Orbiter Movement.
      */
     public OrbitMovement() {
-        this.setMovementType("Orbit");
+        setMovementType("Orbit");
     }
 
 

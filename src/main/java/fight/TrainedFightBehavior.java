@@ -23,6 +23,7 @@ public class TrainedFightBehavior extends FightBehavior {
      * Returns the dice roll for a Trained Fighter (strength buff of 1).
      */
     public int fight() {
-        return DiceRolls.rollDice(6) + DiceRolls.rollDice(6) + 1;
+        final int DICESIDES = 6;
+        return DiceRolls.rollDice(DICESIDES) + DiceRolls.rollDice(DICESIDES) + 1;
     }
 }

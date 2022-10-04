@@ -12,7 +12,8 @@ public class Portal extends Treasure {
      * Constructor for a Portal treasure with Integer ID `id` and the Dungeon.
      *
      * Portals allow (read: make) Characters Blink instead of Random Walk.
-     * Portal is activated by checking for its type in a Character's Treasure inventory before movement.
+     * Portal is activated by checking for its type in a Character's Treasure
+     * inventory before movement.
      */
     public Portal(int id, Dungeon dungeon) {
         hide(dungeon);  // Game Dungeon

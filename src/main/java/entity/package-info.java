@@ -1,5 +1,5 @@
 /**
- * This package is home to Entity classes. 
+ * This package is home to Entity classes.
  *
  * Entities are either Characters or Creatures.
  *
@@ -11,7 +11,9 @@
  *
  * There are 3 Creature Classes:
  * - Blinker:  move by "blinking" to any random room
- * - Orbiter: move by  "orbiting" outer rooms. Can move clockwise or counterclockwise
- * - Seeker: awaits a character in a nearby room, then "seek out" a battle by moving towards the character
+ * - Orbiter: move by  "orbiting" outer rooms.
+ *      Can move clockwise or counterclockwise
+ * - Seeker: awaits a character in a nearby room,
+ *      then "seek out" a battle by moving towards the character
  */
 package entity;
