@@ -54,7 +54,7 @@ public class JumpCelebration extends Celebration {
     }
 
     public String trackCelebrate() {
-        String Results = "";
+        String results = "";
         if (this.celebrationRef != null) {
             results += this.celebrationRef.trackCelebrate();
         }
