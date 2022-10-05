@@ -101,7 +101,7 @@ Tests were useful for testing edge cases (such as Seeker movement and Character 
 Some methods that were previously hidden had to be exposed as "public" for the testing framework to be able to access them.
 This is permissable, but ideally we'd want a Testing framework that does not interfere with how the codebase was originally designed.
 
-We have 22 tests, spanning movement, treasure hunting, celebration, fighting, treasures, and the game engine.
+We have 26 tests, spanning movement, treasure hunting, celebration, fighting, treasures, and the game engine.
 Ideally we'd strive for more code coverage, but we tested the most suspect areas of the code and are satisfied for this assignment.
 
 Testing is now done automatically on every new push to the GitHub repository with GitHub actions Continuous Integration.

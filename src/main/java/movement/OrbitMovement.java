@@ -5,7 +5,7 @@ import dungeon.Room;
 import entity.Entity;
 
 public class OrbitMovement extends MovementBehavior {
-    
+
     // Implementation of the strategy OOP Design pattern. This is a subclass
     // of the strategy pattern.
 
@@ -14,18 +14,18 @@ public class OrbitMovement extends MovementBehavior {
      * Constructor for Orbiter Movement.
      */
     public OrbitMovement() {
-        this.setMovementType("Orbit");
+        setMovementType("Orbit");
     }
 
 
     /* (non-Javadoc)
      * @see movement.MovementBehavior#move(entity.Entity, dungeon.Dungeon)
-     * 
+     *
      * Replace abstract Entity movement with Orbiter movement.
      * Moves (clockwise or counterclockwise).
      */
     @Override
-    public void move(Entity entity, Dungeon dungeon) {
+    public void move(final Entity entity, final Dungeon dungeon) {
         Room currentRoom = entity.getLocation();
         String direction = entity.getDirection();
 

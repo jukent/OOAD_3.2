@@ -12,36 +12,42 @@ import game.GameEngine;
 
 public class GameEngineTest {
 
-    GameEngine gameEngine = new GameEngine("ShowNone");
-    Boolean endCondition = true;
+    private GameEngine gameEngine = new GameEngine("ShowNone");
+    private Boolean endCondition = true;
 
-    Dungeon dungeon = new Dungeon();
-    ArrayList<Character> characterList = new ArrayList<Character>();
-    ArrayList<Creature> creatureList = new ArrayList<Creature>();
-    ArrayList<Treasure> treasureList = new ArrayList<Treasure>();
-    Tracker tracker = new Tracker(dungeon, characterList, creatureList, treasureList);
+    private Dungeon dungeon = new Dungeon();
+    private ArrayList<Character> characterList = new ArrayList<Character>();
+    private ArrayList<Creature> creatureList = new ArrayList<Creature>();
+    private ArrayList<Treasure> treasureList = new ArrayList<Treasure>();
+    private Tracker tracker =
+        new Tracker(characterList, creatureList, treasureList);
+
+    protected static final int CHARNUMBER = 4;
+    protected static final int CREATNUMBER = 12;
+    protected static final int TREASURENUMBER = 24;
 
 
     @Test
     public void testPopulateEntities() {
-        gameEngine.populateEntities(dungeon, tracker);
+        gameEngine.populateEntities(this.dungeon, this.tracker);
 
-        Assert.assertEquals(4, tracker.getCharacterList().size());
-        Assert.assertEquals(12, tracker.getCreatureList().size());
-        Assert.assertEquals(24, tracker.getTreasureList().size());
+        Assert.assertEquals(CHARNUMBER, tracker.getCharacterList().size());
+        Assert.assertEquals(CREATNUMBER, tracker.getCreatureList().size());
+        Assert.assertEquals(TREASURENUMBER, tracker.getTreasureList().size());
     }
 
 
     @Test
     public void testEndConditionAllTreasureFound() {
         Assert.assertTrue(endCondition);
-        tracker.setTreasureCount(24);
 
-        if (tracker.getTreasureCount() == 24) { 
+        tracker.setTreasureCount(TREASURENUMBER);
+
+        if (tracker.getTreasureCount() == TREASURENUMBER) {
             endCondition = false;
-        } else if (tracker.getCreatureList().size() == 0) { 
+        } else if (tracker.getCreatureList().size() == 0) {
             endCondition = true;
-        } else if (tracker.getCharacterList().size() == 0) { 
+        } else if (tracker.getCharacterList().size() == 0) {
             endCondition = true;
         }
         Assert.assertFalse(endCondition);
@@ -55,11 +61,11 @@ public class GameEngineTest {
 
         tracker.getCreatureList().removeAll(tracker.getCreatureList());
 
-        if (tracker.getTreasureCount() == 24) { 
+        if (tracker.getTreasureCount() == 24) {
             endCondition = true;
-        } else if (tracker.getCreatureList().size() == 0) { 
+        } else if (tracker.getCreatureList().size() == 0) {
             endCondition = false;
-        } else if (tracker.getCharacterList().size() == 0) { 
+        } else if (tracker.getCharacterList().size() == 0) {
             endCondition = true;
         }
         Assert.assertFalse(endCondition);
@@ -73,11 +79,11 @@ public class GameEngineTest {
 
         tracker.getCharacterList().removeAll(tracker.getCharacterList());
 
-        if (tracker.getTreasureCount() == 24) { 
+        if (tracker.getTreasureCount() == 24) {
             endCondition = true;
-        } else if (tracker.getCreatureList().size() == 0) { 
+        } else if (tracker.getCreatureList().size() == 0) {
             endCondition = true;
-        } else if (tracker.getCharacterList().size() == 0) { 
+        } else if (tracker.getCharacterList().size() == 0) {
             endCondition = false;
         }
         Assert.assertFalse(endCondition);
