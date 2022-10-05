@@ -244,25 +244,14 @@ public class Printer {
                 if (result == "CharacterWon") {
                     // If Characer Won
                     System.out.println(" " + character + " Wins :D ");
+
                     System.out.print(character + " celebrates!: ");
+                    tracker.getCelebration().celebrate();
                 } else if (result == "CreatureWon") {
                     // If Creature Won
                     System.out.println(" Creature Wins :( ");
                 }
             }
-        }
-    }
-
-
-    /**
-     * @param c1 Celebration
-     *
-     * Print the VCelebration.
-     */
-    public void printCelebration(final Celebration c1) {
-        if (outputType != "ShowNone") {
-            c1.celebrate();
-            System.out.println();
         }
     }
 

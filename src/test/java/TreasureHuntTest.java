@@ -45,7 +45,7 @@ public class TreasureHuntTest {
         Treasure currentItem = treasureInRoom.get(0);
 
         character.addInventory(currentItem);
-        tracker.treasureFound(currentItem, 12);
+        tracker.treasureFound(character, currentItem, 12);
 
         Assert.assertEquals(1, character.getInventory().size());
     }
@@ -86,7 +86,7 @@ public class TreasureHuntTest {
             contains(treasure2.getTreasureType())) {
                 if (treasure2.getTreasureType() == "Trap") {
                     character.addInventory(treasure2);
-                    tracker.treasureFound(treasure2, 12);
+                    tracker.treasureFound(character, treasure2, 12);
                 }
         }
         Assert.assertEquals(2, character.getInventory().size());

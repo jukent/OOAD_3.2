@@ -172,7 +172,8 @@ public class GameEngine {
                     // If Character Wins
                     // Publish Character won and celebration to Tracker
                     tracker.entityWon(character, creature,
-                        characterRoll, creatureRoll, "CharacterWon", celebration);
+                        characterRoll, creatureRoll, "CharacterWon");
+                    tracker.characterCelebrated(character, celebration);
                     // Remove dead Creature, publish to Trackers
                     tracker.removeCreature(creature);
                     printer.printFightResults();
@@ -183,7 +184,7 @@ public class GameEngine {
                     // If Creature Wins
                     // Publish Creature won to Tracker
                     tracker.entityWon(character, creature,
-                        characterRoll, creatureRoll, "CreatureWon", null);
+                        characterRoll, creatureRoll, "CreatureWon");
                     if (character.getHealth() <= 0) {
                         // Remove dead Character, publish to Tracker
                         tracker.removeCharacter(character);
@@ -229,14 +230,14 @@ public class GameEngine {
                         character.addInventory(currentItem);
                         character.loseHealth(currentItem.getTakeDamage());
                         // Publish Treasure found to Tracker
-                        tracker.treasureFound(currentItem, score);
+                        tracker.treasureFound(character, currentItem, score);
                         if (character.getHealth() <= 0) {
                             // Remove dead Character, publish to Tracker
                             tracker.removeCharacter(character);
                         }
                     } else {
                         // Publish to Tracker that duplicate item was found
-                        tracker.duplicateTreasureFound(currentItem, score);
+                        tracker.duplicateTreasureFound(character, currentItem, score);
                     }
                 } else {
                     // This is a new type of Treasure
@@ -244,15 +245,15 @@ public class GameEngine {
                     character.loseHealth(currentItem.getTakeDamage());
                     character.addHealth(currentItem.getHPBoost());
                     // Publish Treasure found to Tracker
-                    tracker.treasureFound(currentItem, score);
+                    tracker.treasureFound(character, currentItem, score);
                 }
             } else {
                 // If Treasure not found
-                tracker.treasureNotFound(score);
+                tracker.treasureNotFound(character, score);
             }
         } else {
             // If no Treasure in room
-            tracker.treasureNotFound(score);
+            tracker.treasureNotFound(character, score);
         }
         printer.printTreasureHuntResults(); // Example of Observer Pattern
         // Printer knows results to print from Tracker

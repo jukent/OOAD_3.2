@@ -52,12 +52,14 @@ public class Tracker {
         = new HashMap<String, String>(); // Ordered HashMap
         // mapping Character and Creature from most recent fight
         // to their integer roll values.
+        private Celebration celebration;
 
     private String treasureHuntResult; // Result of the last trasure hunt:
     // "TreasureFound", "TreasureNotFound", or "DuplicateTreasureFound"
     private HashMap<String, String> treasureHuntValues
         = new HashMap<String, String>(); // HashMap of Treasure and Treasure
         //  roll from most recent treasure hunt.
+
 
     /**
      * @param characterList ArrayList<Character>
@@ -257,27 +259,32 @@ public class Tracker {
 
 
     /**
+     * @param character Character
      * @param treasure Treasure
      * @param score Integer
      *
-     * Published event that Treasure has been found.
+     * Published event that Treasure has been found by a Character.
      *
      * Tracker updates the Treasure count and the Room occupancy.
      */
-    public void treasureFound(final Treasure treasure, final Integer score) {
-        setTreasureCount(getTreasureCount() + 1); // Increase counter by one
-        this.treasureList.remove(treasure); // remove from treasure list
+    public void treasureFound(
+        final Character character,
+        final Treasure treasure,
+        final Integer score) {
+            setTreasureCount(getTreasureCount() + 1); // Increase counter by one
+            this.treasureList.remove(treasure); // remove from treasure list
 
-        // publish to room that treasure no longer there
-        Room room  = treasure.getLocation();
-        publishTreasureExitsRoom(treasure, room);
+            // publish to room that treasure no longer there
+            Room room  = treasure.getLocation();
+            publishTreasureExitsRoom(treasure, room);
 
-        // Expose results for Printer
-        treasureHuntResult = "TreasureFound";
-        treasureHuntValues.clear();
-        treasureHuntValues.put("result", treasureHuntResult);
-        treasureHuntValues.put("treasure", treasure.getTreasureType());
-        treasureHuntValues.put("score", score.toString());
+            // Expose results for Printer
+            treasureHuntResult = "TreasureFound";
+            treasureHuntValues.clear();
+            treasureHuntValues.put("character", character.getName());
+            treasureHuntValues.put("result", treasureHuntResult);
+            treasureHuntValues.put("treasure", treasure.getTreasureType());
+            treasureHuntValues.put("score", score.toString());
     }
 
 
@@ -307,7 +314,6 @@ public class Tracker {
      * @param characterRoll int
      * @param creatureRoll int
      * @param fightResult String
-     * @param celebration String
      *
      * Pubished event that an Entity won the fight.
      *
@@ -318,8 +324,7 @@ public class Tracker {
         final Creature creature,
         final int characterRoll,
         final int creatureRoll,
-        final String fightResult,
-        final Celebration celebration) {
+        final String fightResult) {
             // Expose results for printer subscriber to use
             fightValues.clear();
             fightValues.put("result", fightResult);
@@ -327,10 +332,9 @@ public class Tracker {
             fightValues.put("characterRoll", String.valueOf(characterRoll));
             fightValues.put("creature", creature.getName());
             fightValues.put("creatureRoll", String.valueOf(creatureRoll));
-            if (result.isEqual("CharacterWon")) {
+            if (fightResult.equals("CharacterWon")) {
                 creature.loseHealth(1);
-                fightValues.put("celebration", celebration.getCelebrationRef.toString());
-            } else if (result.isEqual("CreatureWon")) {
+            } else if (fightResult.equals("CreatureWon")) {
                 character.loseHealth(1);
             }
     }
@@ -341,13 +345,20 @@ public class Tracker {
      * @param celebration Celebration
      *
      * Published even that a Character celebrated.
-     *
-     * Tracker does nothing with this as of yet,
-     * but it was requested by the assignment.
      */
     public void characterCelebrated(final Character character,
         final Celebration celebration) {
-            fightValues.put("celebration", celebration.getCelebrationRef.toString());
+            this.celebration = celebration;
+    }
+
+
+    /**
+     * @return Celebration
+     *
+     * Returns the tracked Celebration.
+     */
+    public Celebration getCelebration() {
+        return this.celebration;
     }
 
 
@@ -455,15 +466,19 @@ public class Tracker {
 
 
     /**
+     * @param character Character
      * @param treasure Treasure
      * @param score Integer
      *
      * Publishes the event that the Treasure was already found.
      */
-    public void duplicateTreasureFound(final Treasure treasure,
+    public void duplicateTreasureFound(
+        final Character character,
+        final Treasure treasure,
         final Integer score) {
             treasureHuntResult = "DuplicateTreasureFound";
             treasureHuntValues.clear();
+            treasureHuntValues.put("character", character.getName());
             treasureHuntValues.put("result", treasureHuntResult);
             treasureHuntValues.put("treasure", treasure.getTreasureType());
             treasureHuntValues.put("score", score.toString());
@@ -475,11 +490,14 @@ public class Tracker {
      *
      * Publishes the event that Treasure was not found.
      */
-    public void treasureNotFound(final Integer score) {
-        treasureHuntResult = "TreasureNotFound";
-        treasureHuntValues.clear();
-        treasureHuntValues.put("result", treasureHuntResult);
-        treasureHuntValues.put("score", score.toString());
+    public void treasureNotFound(
+        final Character character,
+        final Integer score) {
+            treasureHuntResult = "TreasureNotFound";
+            treasureHuntValues.clear();
+            treasureHuntValues.put("character", character.getName());
+            treasureHuntValues.put("result", treasureHuntResult);
+            treasureHuntValues.put("score", score.toString());
     }
 
 
