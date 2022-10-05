@@ -1,17 +1,19 @@
 Tracker: Turn 4
 
 Adventurers	Room	Damage	Treasure
-Sneaker		(1-1-0)	0		
-Thief		(1-2-1)	-1		Armor, Potion
-Brawler		(2-0-2)	0		
+Runner		(2-2-2)	0		Sword
+Sneaker		(4-1-1)	0		
+Thief		(1-1-0)	0		Potion, Armor
+Brawler		(2-1-1)	1		Gem, Armor
 
-Total Active Creatures: 7
+Total Active Creatures: 8
 
 Creatures	Room
-Orbiter		(4-0-2)
-Blinker		(1-2-0)
-Blinker		(3-0-0)
-Seeker		(4-0-2)
-Blinker		(3-0-1)
-Orbiter		(2-2-1)
-Blinker		(2-1-1)
+Orbiter		(3-1-0)
+Seeker		(4-0-1)
+Orbiter		(3-1-2)
+Blinker		(1-0-2)
+Orbiter		(4-0-1)
+Blinker		(3-0-2)
+Orbiter		(1-2-1)
+Blinker		(1-1-1)

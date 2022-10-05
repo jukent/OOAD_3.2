@@ -54,4 +54,15 @@ public class ShoutCelebration extends Celebration {
             System.out.print("Shout! ");
         }
     }
+
+    public String trackCelebrate() {
+        String results = "";
+        if (this.celebrationRef != null) {
+            results += this.celebrationRef.trackCelebrate();
+        }
+        for (int i = 0; i < DiceRolls.rollDice(3) - 1; i++) {
+            results += "Shout! ";
+        }
+        return results;
+    }
 }

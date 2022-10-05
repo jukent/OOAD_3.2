@@ -170,16 +170,12 @@ public class GameEngine {
                 // If fight not skipped
                 if (characterRoll > creatureRoll) {
                     // If Character Wins
-                    // Publish Character won to Tracker
+                    // Publish Character won and celebration to Tracker
                     tracker.entityWon(character, creature,
-                        characterRoll, creatureRoll, "CharacterWon");
+                        characterRoll, creatureRoll, "CharacterWon", celebration);
                     // Remove dead Creature, publish to Trackers
                     tracker.removeCreature(creature);
-                    // Publish Character celebrated to Tracker
-                    tracker.characterCelebrated(character, celebration);
                     printer.printFightResults();
-                    printer.printCelebration(celebration);
-
                     // Example of Observer pattern
                     // Tracker let's interested parties/subsribers
                     // (Printer, Logger, Room)'s know about these events.
@@ -187,12 +183,12 @@ public class GameEngine {
                     // If Creature Wins
                     // Publish Creature won to Tracker
                     tracker.entityWon(character, creature,
-                        characterRoll, creatureRoll, "CreatureWon");
+                        characterRoll, creatureRoll, "CreatureWon", null);
                     if (character.getHealth() <= 0) {
-                        printer.printFightResults();
                         // Remove dead Character, publish to Tracker
                         tracker.removeCharacter(character);
                     }
+                    printer.printFightResults();
                 }
             } else {
                 // If characterRoll = -1, fight was skipped

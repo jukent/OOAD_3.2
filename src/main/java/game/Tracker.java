@@ -307,6 +307,7 @@ public class Tracker {
      * @param characterRoll int
      * @param creatureRoll int
      * @param fightResult String
+     * @param celebration String
      *
      * Pubished event that an Entity won the fight.
      *
@@ -317,9 +318,8 @@ public class Tracker {
         final Creature creature,
         final int characterRoll,
         final int creatureRoll,
-        final String fightResult) {
-            creature.loseHealth(1);
-
+        final String fightResult,
+        final Celebration celebration) {
             // Expose results for printer subscriber to use
             fightValues.clear();
             fightValues.put("result", fightResult);
@@ -327,6 +327,12 @@ public class Tracker {
             fightValues.put("characterRoll", String.valueOf(characterRoll));
             fightValues.put("creature", creature.getName());
             fightValues.put("creatureRoll", String.valueOf(creatureRoll));
+            if (result.isEqual("CharacterWon")) {
+                creature.loseHealth(1);
+                fightValues.put("celebration", celebration.getCelebrationRef.toString());
+            } else if (result.isEqual("CreatureWon")) {
+                character.loseHealth(1);
+            }
     }
 
 
@@ -341,7 +347,7 @@ public class Tracker {
      */
     public void characterCelebrated(final Character character,
         final Celebration celebration) {
-            fightValues.put("celebration", celebration.toString());
+            fightValues.put("celebration", celebration.getCelebrationRef.toString());
     }
 
 
