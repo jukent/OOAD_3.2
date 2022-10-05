@@ -327,10 +327,10 @@ public class Tracker {
             fightValues.put("characterRoll", String.valueOf(characterRoll));
             fightValues.put("creature", creature.getName());
             fightValues.put("creatureRoll", String.valueOf(creatureRoll));
-            if (result.isEqual("CharacterWon) {
+            if (result.isEqual("CharacterWon") {
                 creature.loseHealth(1);
                 fightValues.put("celebration", celebrationRef.toString);
-            } else if (result.isEqual("CreatureWon) {
+            } else if (result.isEqual("CreatureWon") {
                 character.loseHealth(1);
             }
     }
