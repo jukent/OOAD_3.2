@@ -237,7 +237,8 @@ public class GameEngine {
                         }
                     } else {
                         // Publish to Tracker that duplicate item was found
-                        tracker.duplicateTreasureFound(character, currentItem, score);
+                        tracker.duplicateTreasureFound(character, currentItem,
+                            score);
                     }
                 } else {
                     // This is a new type of Treasure
