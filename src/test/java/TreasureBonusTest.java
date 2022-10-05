@@ -5,41 +5,40 @@ import org.junit.Test;
 import dungeon.Dungeon;
 import entity.Character;
 import entity.*;
-import fight.*;
 import treasure.*;
 
 
 public class TreasureBonusTest {
-    Dungeon dungeon = new Dungeon();
-    Character A = new Runner(1, dungeon);
-    FightBehavior fightBehavior = A.getFightBehavior();
-    Treasure B = new Potion(1,dungeon);
-    Treasure C = new Armor(1,dungeon);
-    Treasure D = new Gem(1,dungeon);
-    Treasure E = new Sword(1,dungeon);
-    Treasure F = new Trap(1,dungeon);
+    private Dungeon dungeon = new Dungeon();
+    private Character runner = new Runner(1, dungeon);
+    private Treasure potion = new Potion(1, dungeon);
+    private Treasure armor = new Armor(1, dungeon);
+    private Treasure gem = new Gem(1, dungeon);
+    private Treasure sword = new Sword(1, dungeon);
+    private Treasure trap = new Trap(1, dungeon);
+
+    protected static final int MAXHEALTH = 4;
 
 
     @Test
-    public void testBonuses(){
-        Assert.assertEquals(1,B.getHPBoost());
-        Assert.assertEquals(-1,C.getAdversaryFightBonus());
-        Assert.assertEquals(1,D.getAdversaryFightBonus());
-        Assert.assertEquals(1,E.getFightBonus());
-
+    public void testBonuses() {
+        Assert.assertEquals(1, potion.getHPBoost());
+        Assert.assertEquals(-1, armor.getAdversaryFightBonus());
+        Assert.assertEquals(1, gem.getAdversaryFightBonus());
+        Assert.assertEquals(1, sword.getOwnerFightBonus());
     }
 
-    @Test
-    public void testHPAddition(){
-        A.addHealth(B.getHPBoost());
-        Assert.assertEquals(4,A.getHealth());
 
+    @Test
+    public void testHPAddition() {
+        runner.addHealth(potion.getHPBoost());
+        Assert.assertEquals(MAXHEALTH, runner.getHealth());
     }
 
-    @Test
-    public void testTrap(){
-        A.loseHealth(F.getTakeDamage());
-        Assert.assertEquals(2,A.getHealth());
 
+    @Test
+    public void testTrap() {
+        runner.loseHealth(trap.getTakeDamage());
+        Assert.assertEquals(2, runner.getHealth());
     }
 }

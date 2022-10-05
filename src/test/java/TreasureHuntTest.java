@@ -13,12 +13,13 @@ import java.util.ArrayList;
 import org.junit.Assert;
 
 public class TreasureHuntTest {
-    
-    Dungeon dungeon = new Dungeon();
-    ArrayList<Character> characterList = new ArrayList<Character>();
-    ArrayList<Creature> creatureList = new ArrayList<Creature>();
-    ArrayList<Treasure> treasureList = new ArrayList<Treasure>();
-    Tracker tracker = new Tracker(dungeon, characterList, creatureList, treasureList);
+
+    private Dungeon dungeon = new Dungeon();
+    private ArrayList<Character> characterList = new ArrayList<Character>();
+    private ArrayList<Creature> creatureList = new ArrayList<Creature>();
+    private ArrayList<Treasure> treasureList = new ArrayList<Treasure>();
+    private Tracker tracker
+        = new Tracker(characterList, creatureList, treasureList);
 
 
     @Test
@@ -38,10 +39,11 @@ public class TreasureHuntTest {
         int score = character.searchTreasure();
         Assert.assertTrue(score > neededScore);
 
-        ArrayList<Treasure> treasureInRoom = character.getLocation().getTreasuresInRoom();
+        ArrayList<Treasure> treasureInRoom
+            = character.getLocation().getTreasuresInRoom();
         Assert.assertEquals(1, treasureInRoom.size());
-        Treasure currentItem = treasureInRoom.get(0); 
-        
+        Treasure currentItem = treasureInRoom.get(0);
+
         character.addInventory(currentItem);
         tracker.treasureFound(currentItem, 12);
 
@@ -62,7 +64,8 @@ public class TreasureHuntTest {
         treasure2.setLocation(room);
         treasureList.add(treasure2);
 
-        Assert.assertTrue(character.getInventoryTypes().contains(treasure2.getType()));
+        Assert.assertTrue(character.getInventoryTypes().
+            contains(treasure2.getTreasureType()));
     }
 
 
@@ -79,11 +82,12 @@ public class TreasureHuntTest {
         treasure2.setLocation(room);
         treasureList.add(treasure2);
 
-        if (character.getInventoryTypes().contains(treasure2.getType())) {
-            if (treasure2.getType() == "Trap") {
-                character.addInventory(treasure2);
-                tracker.treasureFound(treasure2, 12);
-            }
+        if (character.getInventoryTypes().
+            contains(treasure2.getTreasureType())) {
+                if (treasure2.getTreasureType() == "Trap") {
+                    character.addInventory(treasure2);
+                    tracker.treasureFound(treasure2, 12);
+                }
         }
         Assert.assertEquals(2, character.getInventory().size());
         Assert.assertEquals("Trap, Trap", character.getInventoryString());
@@ -93,19 +97,23 @@ public class TreasureHuntTest {
     @Test
     public void carelessTreasureHuntTest() {
         Brawler brawler = new Brawler(0, dungeon);
-        Assert.assertEquals("Careless", brawler.getSearchBehavior().getType());
+        Assert.assertEquals("Careless",
+            brawler.getSearchBehavior().getSearchType());
     }
 
 
     @Test
     public void carefulTreasureHuntTest() {
         Thief thief = new Thief(0, dungeon);
-        Assert.assertEquals("Careful", thief.getSearchBehavior().getType());
+        Assert.assertEquals("Careful",
+            thief.getSearchBehavior().getSearchType());
     }
+
 
     @Test
     public void quickTreasureHuntTest() {
         Runner runner = new Runner(0, dungeon);
-        Assert.assertEquals("Quick", runner.getSearchBehavior().getType());
+        Assert.assertEquals("Quick",
+            runner.getSearchBehavior().getSearchType());
     }
 }

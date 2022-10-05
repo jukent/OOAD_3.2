@@ -8,27 +8,33 @@ public class StealthyFightBehavior extends FightBehavior {
     // of the strategy pattern.
 
 
+    protected static final int COINFLIP = 2;
+    protected static final int DICESIDES = 6;
+
+
     /**
      * Constructor for a Stealthy Fighter.
      */
     public StealthyFightBehavior() {
         setFightType("Stealth");
     }
-    
+
 
     /* (non-Javadoc)
      * @see FightBehavior.FightBehavior#fight()
-     * 
+     *
      * @return int
-     * 
+     *
      * Returns the dice roll for a Stealthy Fighter (strength buff of 1).
-     * Stealthy fighters havea  50% chance of avoiding a fight, indicated by a return value of -1.
+     * Stealthy fighters have a  50% chance of avoiding a fight,
+     * indicated by a return value of -1.
      */
     public int fight() {
-        if (DiceRolls.rollDice(2) == 1) {
+        if (DiceRolls.rollDice(COINFLIP) == 1) {
             return -1;
         } else {
-            return DiceRolls.rollDice(6) + DiceRolls.rollDice(6) + 1;
+            return DiceRolls.rollDice(DICESIDES)
+                + DiceRolls.rollDice(DICESIDES) + 1;
         }
     }
 }

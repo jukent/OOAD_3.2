@@ -4,51 +4,53 @@ import fight.FightBehavior;
 import util.DiceRolls;
 
 public class JumpCelebration extends Celebration {
-    
+
     // Subclass of a decorator pattern
 
 
     /**
-     * @param fight: FightBehavior
-     * 
+     * @param fight FightBehavior
+     *
      * Jump Celebration constructor.
      */
-    public JumpCelebration(FightBehavior fight) {
-        this.fightRef = fight;
+    public JumpCelebration(final FightBehavior fight) {
+        setFightRef(fight);
     }
 
 
      /**
-     * @param celebrateRef: Celebration
-     * 
+     * @param celebrateRef Celebration
+     *
      * Jump Celebration constructor.
      */
-    public JumpCelebration(Celebration celebrateRef) {
-        this.fightRef = celebrateRef.fightRef;
-        this.celebrationRef = celebrateRef;
+    public JumpCelebration(final Celebration celebrateRef) {
+        setFightRef(celebrateRef.getFightRef());
+        setCelebrationRef(celebrateRef);
     }
 
 
     /* (non-Javadoc)
      * @see celebration.Celebration#fight()
      * @return int
-     * 
+     *
      * Returns the "fight" dice-roll integer.
      */
     public int fight() {
-        return this.fightRef.fight();
+        return this.getFightRef().fight();
     }
 
 
     /* (non-Javadoc)
      * @see celebration.Celebration#celebrate()
-     * 
+     *
      * Executes jumping celebration a random number of times.
      */
     @Override
     public void celebrate() {
-        if(this.celebrationRef != null){this.celebrationRef.celebrate();}
-        for(int i = 0; i < DiceRolls.rollDice(3) - 1; i++) {
+        if (this.getCelebrationRef() != null) {
+            this.getCelebrationRef().celebrate();
+        }
+        for (int i = 0; i < DiceRolls.rollDice(ROLLNUMBER) - 1; i++) {
             System.out.print("Jump! ");
         }
     }

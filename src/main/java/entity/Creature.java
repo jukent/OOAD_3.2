@@ -1,14 +1,15 @@
 package entity;
 
-public abstract class Creature extends Entity {
+import dungeon.Room;
 
-    protected int hp = 1; // Health Point integer is 1, one-hit-kills
-    protected int moveCount = 1; // Integer movement count
+public abstract class Creature extends Entity {
 
 
     /**
-     * The abstract method sets a Creature's starting room
+     * @return Room
+     *
+     * The abstract method determines a Creature's starting room
      * to be overwritten with more specific Creature behavior.
      */
-    protected abstract void setStartingRoom();
+    abstract Room pickStartingRoom();
 }

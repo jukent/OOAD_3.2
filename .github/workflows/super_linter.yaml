@@ -18,14 +18,13 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
         with:
-          # Full git history is needed to get a proper
-          # list of changed files within `super-linter`
           fetch-depth: 0
           
       - name: Lint Code Base
-        uses: github/super-linter@v4
+        uses: github/super-linter/slim@v4
         env:
           VALIDATE_ALL_CODEBASE: false
-          # Change to 'master' if your main branch differs
+          VALIDATE_JSCPD: false
+          LOG_LEVEL: DEBUG
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
