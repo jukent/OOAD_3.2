@@ -1,9 +1,0 @@
-Tracker: Turn 106
-
-Adventurers	Room	Damage	Treasure
-Sneaker		(3-1-1)	2		Portal, Sword, Trap, Gem, Potion, Armor
-
-Total Active Creatures: 1
-
-Creatures	Room
-Seeker		(3-0-2)

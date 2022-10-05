@@ -266,50 +266,6 @@ public class Printer {
         }
     }
 
-    /**
-     * @param treasure String
-     * @param score String
-     *
-     * Prints the treasure and dice roll for a successful treasure hunt.
-     */
-    private void printTreasureHuntSuccess(final String treasure,
-        final String score) {
-            System.out.print("Treasure Hunt: ");
-            System.out.print(score);
-            System.out.println(" Success! ");
-            System.out.println("Treasure: " + treasure);
-    }
-
-
-    /**
-     * @param treasure String
-     * @param score String
-     *
-     * Prints the treasure and dice rolls for a duplicate treasure hunt.
-     */
-    private void printDuplicateTreasureHunt(final String treasure,
-        final String score) {
-            if (outputType != "ShowNone") {
-                System.out.print("Treasure Hunt: ");
-                System.out.print(score);
-                System.out.println(" Success! ");
-                System.out.println("Treasure: " + treasure);
-                System.out.println(treasure + " Already in Inventory :(");
-            }
-    }
-
-
-    /**
-     * @param score String
-     *
-     * Prints the dice roll for an unsuccessful treasure hunt.
-     */
-    private void printTreasureHuntFail(final String score) {
-        System.out.print("Treasure Hunt: ");
-        System.out.print(score);
-        System.out.println(" Fail :(");
-    }
-
 
     /**
      * Prints the results of treasure hunting.
@@ -322,19 +278,28 @@ public class Printer {
         if (outputType != "ShowNone") {
             HashMap<String, String> treasureValues
                 = tracker.getTreasureHuntValues();
+            String character = treasureValues.get("character");
             String result = treasureValues.get("result");
             // "TreasureFound", "TreasureNotFound", "DuplicateTreasureFound"
+            String score = treasureValues.get("score");
+
+            System.out.print(character);
+            System.out.print("Treasure Hunt: ");
+            System.out.print(score);
             if (result == "TreasureFound") {
                 // If Treasure Found
-                printTreasureHuntSuccess(treasureValues.get("treasure"),
-                    treasureValues.get("score"));
+                String treasure = treasureValues.get("treasure");
+                System.out.println(" Success! ");
+                System.out.println("Treasure: " + treasure);
             } else if (result == "DuplicateTreasureFound") {
                 // If Treasure Already Found
-                printDuplicateTreasureHunt(treasureValues.get("treasure"),
-                    treasureValues.get("score"));
+                String treasure = treasureValues.get("treasure");
+                System.out.println(" Success! ");
+                System.out.println("Treasure: " + treasure);
+                System.out.println(treasure + " Already in Inventory :(");
             } else if (result == "TreasureNotFound") {
                 // If Treasure Not Found
-                printTreasureHuntFail(treasureValues.get("score"));
+                System.out.println(" Fail :(");
             }
         }
     }

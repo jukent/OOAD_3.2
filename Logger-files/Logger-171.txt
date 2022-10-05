@@ -1,9 +1,0 @@
-Tracker: Turn 171
-
-Adventurers	Room	Damage	Treasure
-Brawler		(1-0-1)	2		Trap, Sword, Armor, Trap, Gem
-
-Total Active Creatures: 1
-
-Creatures	Room
-Orbiter		(4-2-0)

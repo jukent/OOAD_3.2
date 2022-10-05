@@ -1,8 +1,0 @@
-Tracker: Turn 119
-
-Adventurers	Room	Damage	Treasure
-Sneaker		(3-0-2)	2		Portal, Sword, Trap, Gem, Potion, Armor
-
-Total Active Creatures: 0
-
-Creatures	Room

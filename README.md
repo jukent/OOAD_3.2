@@ -95,6 +95,7 @@ The instructions were unspecified on if there should be a decision tree for Char
 
 Testing was origionally done with Maven for Java via the ["Test Runner for Java" extension](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-test) within Visual Studio Code.
 This required we set up a [`vscode/settings.json`](https://github.com/jukent/OOAD_3.2/blob/main/.vscode/settings.json) file pointing to our `main/` and `test/` directories and a [`pom.xml`](https://github.com/jukent/OOAD_3.2/blob/main/pom.xml) file specifying that we use JUnit version 4.13.2 and that our tests are in the [`/src/test/java` folder](https://github.com/jukent/OOAD_3.2/tree/main/src/test/java).
+Results from these tests are shown passing in the Visual Studio Code interface in [test suite screenshot](maven_tests_passing.png).
 
 Tests were useful for testing edge cases (such as Seeker movement and Character with Portal movement) because they allowed us to set up the scenarios and assert the correct outcome, as opposed to running the simulation repeatedly watching for the Seeker to move.
 

@@ -1,9 +1,0 @@
-Tracker: Turn 61
-
-Adventurers	Room	Damage	Treasure
-Sneaker		(3-2-2)	3		Portal, Sword, Trap
-
-Total Active Creatures: 1
-
-Creatures	Room
-Seeker		(3-0-2)
