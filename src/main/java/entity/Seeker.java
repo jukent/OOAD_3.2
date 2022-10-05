@@ -39,7 +39,8 @@ public class Seeker extends Creature {
     protected Room pickStartingRoom() {
         // Get new map of possible Rooms
         Hashtable<String, Room> possibleRoomMap = new Hashtable<String, Room>();
-        possibleRoomMap.putAll(getDungeon().getMap()); // Learned method from Geeks for Geeks:
+        possibleRoomMap.putAll(getDungeon().getMap());
+        // Learned method from Geeks for Geeks:
         // "How to Copy Map Content to Another Hashtable in Java?
         // https://www.geeksforgeeks.org/
         //  how-to-copy-map-content-to-another-hashtable-in-java/

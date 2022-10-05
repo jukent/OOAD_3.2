@@ -8,8 +8,8 @@ public class StealthyFightBehavior extends FightBehavior {
     // of the strategy pattern.
 
 
-    protected final static int COINFLIP = 2;
-    protected final static int DICESIDES = 6;
+    protected static final int COINFLIP = 2;
+    protected static final int DICESIDES = 6;
 
 
     /**

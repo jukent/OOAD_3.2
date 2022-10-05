@@ -7,9 +7,9 @@ public class QuickHuntBehavior extends TreasureHuntBehavior {
     // Implementation of the strategy OOP Design pattern. This is a subclass
     // of the strategy pattern.
 
-    protected final static int NEEDEDSCORE = 9;
-    protected final static int THREESIDES = 3;
-    protected final static int DICESIDES = 6;
+    protected static final int NEEDEDSCORE = 9;
+    protected static final int THREESIDES = 3;
+    protected static final int DICESIDES = 6;
 
 
     /**
@@ -31,7 +31,8 @@ public class QuickHuntBehavior extends TreasureHuntBehavior {
         if (DiceRolls.rollDice(THREESIDES) == 1) {
             return -1;
         } else {
-            return DiceRolls.rollDice(DICESIDES) + DiceRolls.rollDice(DICESIDES);
+            return DiceRolls.rollDice(DICESIDES)
+            + DiceRolls.rollDice(DICESIDES);
         }
     }
 }

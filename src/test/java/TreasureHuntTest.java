@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import org.junit.Assert;
 
 public class TreasureHuntTest {
-    
+
     private Dungeon dungeon = new Dungeon();
     private ArrayList<Character> characterList = new ArrayList<Character>();
     private ArrayList<Creature> creatureList = new ArrayList<Creature>();
@@ -39,10 +39,11 @@ public class TreasureHuntTest {
         int score = character.searchTreasure();
         Assert.assertTrue(score > neededScore);
 
-        ArrayList<Treasure> treasureInRoom = character.getLocation().getTreasuresInRoom();
+        ArrayList<Treasure> treasureInRoom
+            = character.getLocation().getTreasuresInRoom();
         Assert.assertEquals(1, treasureInRoom.size());
         Treasure currentItem = treasureInRoom.get(0);
-        
+    
         character.addInventory(currentItem);
         tracker.treasureFound(currentItem, 12);
 
@@ -96,20 +97,23 @@ public class TreasureHuntTest {
     @Test
     public void carelessTreasureHuntTest() {
         Brawler brawler = new Brawler(0, dungeon);
-        Assert.assertEquals("Careless", brawler.getSearchBehavior().getSearchType());
+        Assert.assertEquals("Careless",
+            brawler.getSearchBehavior().getSearchType());
     }
 
 
     @Test
     public void carefulTreasureHuntTest() {
         Thief thief = new Thief(0, dungeon);
-        Assert.assertEquals("Careful", thief.getSearchBehavior().getSearchType());
+        Assert.assertEquals("Careful",
+            thief.getSearchBehavior().getSearchType());
     }
 
 
     @Test
     public void quickTreasureHuntTest() {
         Runner runner = new Runner(0, dungeon);
-        Assert.assertEquals("Quick", runner.getSearchBehavior().getSearchType());
+        Assert.assertEquals("Quick",
+            runner.getSearchBehavior().getSearchType());
     }
 }

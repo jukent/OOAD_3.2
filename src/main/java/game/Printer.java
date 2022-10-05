@@ -27,10 +27,11 @@ public class Printer {
      *
      * Construct the printer.
      */
-    public Printer(final Dungeon dungeon, final Tracker tracker, final String output) {
-        this.dungeon = dungeon; // Game Dungeon
-        this.tracker = tracker; // Game Tracker
-        this.outputType = output; // Output type String
+    public Printer(final Dungeon dungeon, final Tracker tracker,
+        final String output) {
+            this.dungeon = dungeon; // Game Dungeon
+            this.tracker = tracker; // Game Tracker
+            this.outputType = output; // Output type String
     }
 
 
@@ -86,7 +87,7 @@ public class Printer {
      *
      * This method gets the string for displaying occupancy in each Room.
      */
-    private ArrayList<String> getOccupancyStringArray(Room room) {
+    private ArrayList<String> getOccupancyStringArray(final Room room) {
         // Characters in Room
         ArrayList<Character> charactersInRoom = room.getCharactersInRoom();
         String characterString = new String();
@@ -121,8 +122,8 @@ public class Printer {
      *
      * This method adds a row of the Dungeon and its occupancy to the Columns object.
      */
-    private void addRowArray(Integer level, Integer row,
-        PrinterColumns columns) {
+    private void addRowArray(final Integer level, final Integer row,
+        final PrinterColumns columns) {
             ArrayList<Room> rowRooms = new ArrayList<Room>();
             rowRooms.add(dungeon.getRoom("(" + level + "-" + row + "-0)"));
             rowRooms.add(dungeon.getRoom("(" + level + "-" + row + "-1)"));
@@ -146,10 +147,11 @@ public class Printer {
      * This method adds a level of the Dungeon and its occupancy
      * to the Columns object.
      */
-    private void addLevelArray(Integer level, PrinterColumns columns) {
-        for (int r = 0; r <= 2; ++r) {
-            addRowArray(level, r, columns);
-        }
+    private void addLevelArray(final Integer level,
+            final PrinterColumns columns) {
+            for (int r = 0; r <= 2; ++r) {
+                addRowArray(level, r, columns);
+            }
     }
 
     /**
@@ -194,15 +196,16 @@ public class Printer {
         creatureSet.add("Orbiter");
         creatureSet.add("Seeker");
         creatureSet.add("Blinker");
-        String TempString;
+        String tempString;
         int[] counts = {0, 0, 0};
         for (Creature c: tracker.getCreatureList()) {
             counts[creatureSet.indexOf(c.getName())] += 1;
         }
         System.out.println();
-        for (String A: creatureSet) {
-            TempString = new String(A + "(s) - " + counts[creatureSet.indexOf(A)] + " Remaining");
-            System.out.println(TempString);
+        for (String creature: creatureSet) {
+            tempString = new String(creature + "(s) - " +
+                counts[creatureSet.indexOf(creature)] + " Remaining");
+            System.out.println(tempString);
         }
     }
 
@@ -215,8 +218,9 @@ public class Printer {
      *
      * Prints the entities and their dice rolls when a Character wins the fight.
      */
-    private void printCharacterWins(final String character, final String creature,
-        String characterRoll, String creatureRoll) {
+    private void printCharacterWins(final String character,
+        final String creature,final String characterRoll,
+        final String creatureRoll) {
             System.out.print("Fight: ");
             System.out.print(character + ": ");
             System.out.print(characterRoll);
@@ -236,8 +240,9 @@ public class Printer {
      *
      * Prints the entities and their dice rolls when a Creature wins the fight.
      */
-    private void printCreatureWins(final String character, final String creature,
-        String characterRoll, String creatureRoll) {
+    private void printCreatureWins(final String character,
+        final String creature, final String characterRoll,
+        final String creatureRoll) {
             System.out.print("Fight: ");
             System.out.print(character + ": ");
             System.out.print(characterRoll);
@@ -258,7 +263,8 @@ public class Printer {
     /**
      * Prints the fight results.
      *
-     * Example of Observer pattern, Printer has subscribed to values from the Tracker
+     * Example of Observer pattern
+     * Printer has subscribed to values from the Tracker
      * that are updated whenever a fighting event is published.
      */
     public void printFightResults() {
@@ -291,14 +297,15 @@ public class Printer {
 
 
     /**
-     * @param C1 Celebration
+     * @param c1 Celebration
      *
      * Print the VCelebration.
      */
     public void printCelebration(final Celebration c1) {
-        if (outputType != "ShowNone"){
+        if (outputType != "ShowNone") {
             c1.celebrate();
-            System.out.println();}
+            System.out.println();
+        }
     }
 
     /**
@@ -307,11 +314,12 @@ public class Printer {
      *
      * Prints the treasure and dice roll for a successful treasure hunt.
      */
-    private void printTreasureHuntSuccess(final String treasure, final String score) {
-        System.out.print("Treasure Hunt: ");
-        System.out.print(score);
-        System.out.println(" Success! ");
-        System.out.println("Treasure: " + treasure);
+    private void printTreasureHuntSuccess(final String treasure,
+        final String score) {
+            System.out.print("Treasure Hunt: ");
+            System.out.print(score);
+            System.out.println(" Success! ");
+            System.out.println("Treasure: " + treasure);
     }
 
 
@@ -321,14 +329,15 @@ public class Printer {
      *
      * Prints the treasure and dice rolls for a duplicate treasure hunt.
      */
-    private void printDuplicateTreasureHunt(final String treasure, final String score) {
-        if (outputType != "ShowNone") {
-            System.out.print("Treasure Hunt: ");
-            System.out.print(score);
-            System.out.println(" Success! ");
-            System.out.println("Treasure: " + treasure);
-            System.out.println(treasure + " Already in Inventory :(");
-        }
+    private void printDuplicateTreasureHunt(final String treasure, 
+        final String score) {
+            if (outputType != "ShowNone") {
+                System.out.print("Treasure Hunt: ");
+                System.out.print(score);
+                System.out.println(" Success! ");
+                System.out.println("Treasure: " + treasure);
+                System.out.println(treasure + " Already in Inventory :(");
+            }
     }
 
 
@@ -348,12 +357,13 @@ public class Printer {
      * Prints the results of treasure hunting.
      *
      * Example of Observer pattern,
-     * Printer has subscribed to values from the Tracker 
+     * Printer has subscribed to values from the Tracker
      * that are updated whenever a treasure hunting event is published.
      */
     public void printTreasureHuntResults() {
         if (outputType != "ShowNone") {
-            HashMap<String, String> treasureValues = tracker.getTreasureHuntValues();
+            HashMap<String, String> treasureValues
+                = tracker.getTreasureHuntValues();
             String result = treasureValues.get("result");
             // "TreasureFound", "TreasureNotFound", "DuplicateTreasureFound"
             if (result == "TreasureFound") {
@@ -380,12 +390,12 @@ public class Printer {
             System.out.println("Starting Game!");
             System.out.println("Press Enter To Continue...");
             scanner.nextLine();
-        }  
+        }
     }
 
 
     /**
-     * Clears the screen
+     * Clears the screen.
      */
     private void clearScreen() {
         System.out.print("\033[H\033[2J");

@@ -24,30 +24,36 @@ import treasure.Treasure;
 // the Logger,
 // and the Printer.
 
-// At first we tried to implement the Observer pattern with an Observer interface,
+// At first we tried to implement the Observer pattern with 
+// an Observer interface,
 // but are using references in method calls
 // Decision informed from "Game Programming Patterns"
 // a book by Robert Nystrom http://gameprogrammingpatterns.com/observer.html
-// "A more modern approach is for an “observer” to be only a reference to a method or function. 
+// "A more modern approach is for an “observer” to be only a reference to a 
+// method or function. 
 // In languages with first-class functions, and especially ones with closures,
 // this is a much more common way to do observers.""
 
 public class Tracker {
 
-    private ArrayList<Character> characterList; // An ArrayList of all active Characters
-    private ArrayList<Creature> creatureList; // An ArrayList of all active Creatures
-    private ArrayList<Treasure> treasureList; // An ArrayList of all hidden Treasures
+    private ArrayList<Character> characterList; // An ArrayList of
+    // active Characters
+    private ArrayList<Creature> creatureList; // An ArrayList of
+    // active Creatures
+    private ArrayList<Treasure> treasureList; // An ArrayList of
+    // hidden Treasures
 
     private int roundCount; // Integer Round value
     private int treasureCount; // Integer found Treasure count
 
-    private String fightResult; // Result of the last fight: 
+    private String fightResult; // Result of the last fight:
     // "CharacterWon", "CreatureWon", or "FightSkipped"
     private HashMap<String, String> fightValues
-        = new HashMap<String, String>(); // Ordered HashMap 
-        // mapping Character and Creature from most recent fight to their integer roll values.
+        = new HashMap<String, String>(); // Ordered HashMap
+        // mapping Character and Creature from most recent fight
+        // to their integer roll values.
 
-    private String treasureHuntResult; // Result of the last trasure hunt: 
+    private String treasureHuntResult; // Result of the last trasure hunt:
     // "TreasureFound", "TreasureNotFound", or "DuplicateTreasureFound"
     private HashMap<String, String> treasureHuntValues
         = new HashMap<String, String>(); // HashMap of Treasure and Treasure
@@ -62,9 +68,12 @@ public class Tracker {
      */
     public Tracker(final ArrayList<Character> characterList, final ArrayList<Creature> creatureList,
         final ArrayList<Treasure> treasureList) {
-            this.characterList = characterList; // An ArrayList of all active Characters
-            this.creatureList = creatureList; // An ArrayList of all active Creatures
-            this.treasureList = treasureList; // An ArrayList of all hidden Treasures
+            this.characterList = characterList; // An ArrayList of all
+            // active Characters
+            this.creatureList = creatureList; // An ArrayList of all
+            // active Creatures
+            this.treasureList = treasureList; // An ArrayList of all
+            // hidden Treasures
 
             this.roundCount = 0; // Integer Round count value
             this.treasureCount = 0; // Integer found Treasure count
@@ -82,7 +91,7 @@ public class Tracker {
 
 
     /**
-     * @param roundCounter int
+     * @param roundCount int
      *
      * This sets the Integer Round count value.
      */
@@ -117,10 +126,11 @@ public class Tracker {
      *
      * Publishes the Character exiting a Room to the Room's occupancy.
      */
-    public void publishCharacterExitsRoom(final Character character, final Room room) {
-        ArrayList<Character> charactersInRoom = room.getCharactersInRoom();
-        charactersInRoom.remove(character);
-        room.setCharactersInRoom(charactersInRoom);
+    public void publishCharacterExitsRoom(final Character character,
+        final Room room) {
+            ArrayList<Character> charactersInRoom = room.getCharactersInRoom();
+            charactersInRoom.remove(character);
+            room.setCharactersInRoom(charactersInRoom);
     }
 
 
@@ -130,10 +140,11 @@ public class Tracker {
      *
      * Publishes a Character entering a Room to the Room's occupancy.
      */
-    public void publishCharacterEntersRoom(final Character character, final Room room) {
-        ArrayList<Character> charactersInRoom = room.getCharactersInRoom();
-        charactersInRoom.add(character);
-        room.setCharactersInRoom(charactersInRoom);
+    public void publishCharacterEntersRoom(final Character character,
+        final Room room) {
+            ArrayList<Character> charactersInRoom = room.getCharactersInRoom();
+            charactersInRoom.add(character);
+            room.setCharactersInRoom(charactersInRoom);
     }
 
 
@@ -145,11 +156,12 @@ public class Tracker {
      * Done separately from Characters because it is conventient
      * for the Room's to store Characters and Creatures separately.
      */
-    public void publishCreatureExitsRoom(final Creature creature, final Room room) {
-        ArrayList<Creature> creaturesInRoom = room.getCreaturesInRoom();
-        creaturesInRoom.remove(creature);
-        room.setCreaturesInRoom(creaturesInRoom);
-    }
+    public void publishCreatureExitsRoom(final Creature creature,
+        final Room room) {
+            ArrayList<Creature> creaturesInRoom = room.getCreaturesInRoom();
+            creaturesInRoom.remove(creature);
+            room.setCreaturesInRoom(creaturesInRoom);
+        }
 
 
     /**
@@ -158,10 +170,11 @@ public class Tracker {
      *
      * Publishes a Creature Entering a Room to the Room's occupancy.
      */
-    public void publishCreatureEntersRoom(final Creature creature, final Room room) {
-        ArrayList<Creature> creaturesInRoom = room.getCreaturesInRoom();
-        creaturesInRoom.add(creature);
-        room.setCreaturesInRoom(creaturesInRoom);
+    public void publishCreatureEntersRoom(final Creature creature,
+        final Room room) {
+            ArrayList<Creature> creaturesInRoom = room.getCreaturesInRoom();
+            creaturesInRoom.add(creature);
+            room.setCreaturesInRoom(creaturesInRoom);
     }
 
 
@@ -171,10 +184,11 @@ public class Tracker {
      *
      * Publishes Treasure being removed from a Room to the Room's occupancy.
      */
-    public void publishTreasureExitsRoom(final Treasure treasure, final Room room) {
-        ArrayList<Treasure> treasuresInRoom = room.getTreasuresInRoom();
-        treasuresInRoom.remove(treasure);
-        room.setTreasuresInRoom(treasuresInRoom);
+    public void publishTreasureExitsRoom(final Treasure treasure,
+        final Room room) {
+            ArrayList<Treasure> treasuresInRoom = room.getTreasuresInRoom();
+            treasuresInRoom.remove(treasure);
+            room.setTreasuresInRoom(treasuresInRoom);
     }
 
 
@@ -184,15 +198,16 @@ public class Tracker {
      *
      * Publishes Treasure being hidden in a Room to the Room's occupancy.
      */
-    public void publishTreasureInRoom(final Treasure treasure, final Room room) {
-        ArrayList<Treasure> treasuresInRoom = room.getTreasuresInRoom();
-        treasuresInRoom.add(treasure);
-        room.setTreasuresInRoom(treasuresInRoom);
+    public void publishTreasureInRoom(final Treasure treasure,
+        final Room room) {
+            ArrayList<Treasure> treasuresInRoom = room.getTreasuresInRoom();
+            treasuresInRoom.add(treasure);
+            room.setTreasuresInRoom(treasuresInRoom);
     }
 
 
     /**
-     * @param characterList ArrayList<Character> 
+     * @param characterList ArrayList<Character>
      *
      * Sets the initial Character stats for the Tracker
      * and publishes starting Room occupancy.
@@ -208,7 +223,7 @@ public class Tracker {
 
 
     /**
-     * @param creatureList ArrayList<Creature> 
+     * @param creatureList ArrayList<Creature>
      *
      * Sets the initial Creature stats for the Tracker
      * and publishes starting Room occupancy.
@@ -224,7 +239,7 @@ public class Tracker {
 
 
     /**
-     * @param treasureList ArrayList<Treasure> 
+     * @param treasureList ArrayList<Treasure>
      *
      * Sets the initial Treasure stats for the Tracker
      * and publishes starting Room occupancy.
@@ -240,7 +255,8 @@ public class Tracker {
 
 
     /**
-     * @param room Room
+     * @param treasure Treasure
+     * @param score Integer
      *
      * Published event that Treasure has been found.
      *
@@ -249,7 +265,7 @@ public class Tracker {
     public void treasureFound(final Treasure treasure, final Integer score) {
         setTreasureCount(getTreasureCount() + 1); // Increase counter by one
         this.treasureList.remove(treasure); // remove from treasure list
-        
+
         // publish to room that treasure no longer there
         Room room  = treasure.getLocation();
         publishTreasureExitsRoom(treasure, room);
@@ -294,7 +310,7 @@ public class Tracker {
      * Tracker reduces Creature's health points by 1.
      */
     public void characterWon(final Character character, final Creature creature,
-        int characterRoll, int creatureRoll) {
+        final int characterRoll, final int creatureRoll) {
             creature.loseHealth(1);
 
             // Expose results for printer subscriber to use
@@ -319,7 +335,7 @@ public class Tracker {
      * Tracker reduces Character's health points by 1.
      */
     public void creatureWon(final Character character, final Creature creature,
-        int characterRoll, int creatureRoll) {
+        final int characterRoll, final int creatureRoll) {
             character.loseHealth(1);
 
             // Expose results for printer subscriber to use
@@ -385,7 +401,7 @@ public class Tracker {
     /**
      * @param character Character
      * @param oldRoom Room
-     * @param newNoom Room
+     * @param newRoom Room
      *
      * Published even that a Character has moved.
      *
@@ -419,9 +435,9 @@ public class Tracker {
             publishCreatureEntersRoom(creature, newRoom);
     }
 
-    
+
     /**
-     * @return ArrayList<Treasure> 
+     * @return ArrayList<Treasure>
      *
      * Exposes the Tracker's Treasure List.
      */
@@ -457,12 +473,13 @@ public class Tracker {
      *
      * Publishes the event that the Treasure was already found.
      */
-    public void duplicateTreasureFound(final Treasure treasure, final Integer score) {
-        treasureHuntResult = "DuplicateTreasureFound";
-        treasureHuntValues.clear();
-        treasureHuntValues.put("result", treasureHuntResult);
-        treasureHuntValues.put("treasure", treasure.getTreasureType());
-        treasureHuntValues.put("score", score.toString());
+    public void duplicateTreasureFound(final Treasure treasure,
+        final Integer score) {
+            treasureHuntResult = "DuplicateTreasureFound";
+            treasureHuntValues.clear();
+            treasureHuntValues.put("result", treasureHuntResult);
+            treasureHuntValues.put("treasure", treasure.getTreasureType());
+            treasureHuntValues.put("score", score.toString());
     }
 
 

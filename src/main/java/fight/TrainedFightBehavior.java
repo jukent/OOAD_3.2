@@ -8,7 +8,7 @@ public class TrainedFightBehavior extends FightBehavior {
     // of the strategy pattern.
 
 
-    protected final static int DICESIDES = 6;
+    protected static final int DICESIDES = 6;
 
 
     /**

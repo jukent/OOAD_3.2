@@ -23,7 +23,7 @@ public class Entity {
         = new String("Entity"); // Simple Entity name String
     private String direction
         = new String("clockwise"); // Dummy String direction value
-    private final static int HP = 3; // Health Points Integer
+    private static final  int HP = 3; // Health Points Integer
     private int hp = HP;
     private int moveCount = 1; // Integer movement count
 
@@ -72,7 +72,7 @@ public class Entity {
         return this.location;
     }
 
-    
+
     /**
      * @param direction String
      *
@@ -171,8 +171,8 @@ public class Entity {
 
 
     /**
-     * @param movement_behavior
-     * 
+     * @param movementBehavior
+     *
      * This method sets an Entity's MovementBehavior.
      */
     public void setMovementBehavior(final MovementBehavior movementBehavior) {
@@ -195,7 +195,7 @@ public class Entity {
      *
      * Sets an Entity's health points.
      */
-    public void setHP(int hp) {
+    public void setHP(final int hp) {
         this.hp = hp;
     }
 

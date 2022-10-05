@@ -29,7 +29,7 @@ public class Main {
      *
      * This method runs 'n' games.
      */
-    public static void runNGames(int n) {
+    public static void runNGames(final int n) {
         for (int i = 0; i < n; i++) {
             int num = i + 1;
             System.out.println("Game Number: " + num);

@@ -4,7 +4,7 @@ import java.util.Hashtable;
 
 public class Dungeon {
 
-    protected static final int NUMLEVELS = 4; // The number of levels deep of the dungeon
+    protected static final int NUMLEVELS = 4; // The number of levels
     private Hashtable<String, Room> map; // The map of this dungeon -
     // Hashtable of room names mapped to Rooms
     // Also example of abstraction -
@@ -41,7 +41,7 @@ public class Dungeon {
      *
      * Sets the Dungeon map
      */
-    public void setMap(Hashtable<String, Room> map) {
+    public void setMap(final Hashtable<String, Room> map) {
         this.map = map;
     }
 
@@ -52,27 +52,27 @@ public class Dungeon {
      *
      * Let other classes get a Room object based on its name.
      */
-    public Room getRoom(String roomName) {
+    public Room getRoom(final String roomName) {
         Room room = getMap().get(roomName);
         return room;
     }
 
 
     /**
-     * @param  NUMLEVELS Integer
+     * @param  numLevels Integer
      * @return map: Hashtable<String, Room> (room names, room object)
      *
      * Generates the Rooms for the dungeon for any number of levels
-     * ('NUMLEVELS'), with 3 rooms per level after the first level
+     * ('numLevels'), with 3 rooms per level after the first level
      * (which has only one room).
      *
      * The Rooms are stored in a Hashtable map with room names as keys
      * pointing to Room objects as values.
      */
-    private Hashtable<String, Room> generateMap(int NUMLEVELS) {
+    private Hashtable<String, Room> generateMap(final int numLevels) {
         Hashtable<String, Room> map = new Hashtable<String, Room>();
 
-        for (int l = 0; l <= NUMLEVELS; l++) {
+        for (int l = 0; l <= numLevels; l++) {
             if (l == 0) {
                 // On level 0, there is only one room
                 Room room = new Room(l, 1, 1);

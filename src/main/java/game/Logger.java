@@ -21,7 +21,7 @@ public class Logger {
     private Tracker tracker; // The Game Tracker
     private String outputType; // String output options
 
-    protected final static int MAXHEALTH = 3;
+    protected static final int MAXHEALTH = 3;
 
 
     /**
@@ -44,7 +44,7 @@ public class Logger {
      *
      * This method logs Character stats: name, location, damage, and treausres.
      */
-    private void logCharacterStats(FileWriter fileWriter) {
+    private void logCharacterStats(final FileWriter fileWriter) {
         String tableHeader = new String("Adventurers\tRoom\tDamage\tTreasure");
         try {
             fileWriter.write("\n");
@@ -59,13 +59,14 @@ public class Logger {
                 String treasure = c.getInventoryString();
 
                 String characterStats =
-                    new String(name + "\t\t" + location + "\t" + damage + "\t\t" + treasure);
+                    new String(name + "\t\t" + location + "\t"
+                    + damage + "\t\t" + treasure);
                 fileWriter.write(characterStats);
                 fileWriter.write("\n");
             }
         } catch (IOException e) {
             System.out.
-                println("An error occurred. Could not write Character stats to file.");
+                println("An error occurred. Could not write Character stats.");
             e.printStackTrace();
         }
     }
@@ -76,7 +77,7 @@ public class Logger {
      *
      * This method logs Creature stats: name and location.
      */
-    private void logCreatureStats(FileWriter fileWriter) {
+    private void logCreatureStats(final FileWriter fileWriter) {
         try {
             fileWriter.write("\n");
             int totalCreatures = tracker.getCreatureList().size();
@@ -97,7 +98,7 @@ public class Logger {
             }
         } catch (IOException e) {
             System.out.
-                println("An error occurred. Could not write Creature stats to file.");
+                println("An error occurred. Could not write Creature stats.");
             e.printStackTrace();
         }
     }

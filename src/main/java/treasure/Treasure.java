@@ -7,7 +7,7 @@ import java.util.Random;
 import dungeon.Dungeon;
 import dungeon.Room;
 
-abstract public class Treasure {
+public abstract class Treasure {
 
     private Room location; // The Treasure's hiding room.
     private int ownerFightBonus = 0; // Integer amount of
@@ -30,7 +30,7 @@ abstract public class Treasure {
         // Get new map of possible Rooms
         Hashtable<String, Room> possibleRoomMap = new Hashtable<String, Room>();
         possibleRoomMap.putAll(dungeon.getMap());
-        // Learned method from Geeks for Geeks: 
+        // Learned method from Geeks for Geeks:
         // "How to Copy Map Content to Another Hashtable in Java?
         // https://www.geeksforgeeks.org/
         //  how-to-copy-map-content-to-another-hashtable-in-java/
@@ -41,7 +41,7 @@ abstract public class Treasure {
         // https://stackoverflow.com/questions/
         //  38248381/pick-a-random-element-from-a-hashtable
         ArrayList<Room> rooms = new ArrayList<Room>(possibleRoomMap.values());
-        
+
         Random random = new Random();
         int i = random.nextInt(rooms.size());
 

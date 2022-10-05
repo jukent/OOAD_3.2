@@ -41,7 +41,8 @@ public class PrinterColumns {
 
         for (int column = 0; column < numColumns; column++) {
             int length
-                = Math.max(maxLengths.get(column), rowStrings.get(column).length());
+                = Math.max(maxLengths.get(column),
+                rowStrings.get(column).length());
             maxLengths.set(column, length);
         }
 
@@ -86,7 +87,7 @@ public class PrinterColumns {
      * This method changes a String length by padding it with
      * white space to match the desired Column width.
      */
-    private String pad(String word, int newLength) {
+    private String pad(String word, final int newLength) {
         while (word.length() < newLength) {
             word += " ";
         }

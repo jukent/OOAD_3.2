@@ -29,7 +29,8 @@ public class GameEngine {
     private ArrayList<Treasure> treasureList = new ArrayList<Treasure>();
 
     private final Tracker tracker
-        = new Tracker(characterList, creatureList, treasureList); // Game Tracker
+        = new Tracker(characterList, creatureList, treasureList); 
+    // Game Tracker
     // Using the Tracker is an example of the Observer pattern.
     // Events are published to the Tracker (pointed out in comments)
     // And then the Tracker let's any interested parties know about the events.
@@ -41,7 +42,8 @@ public class GameEngine {
     private final Scanner scanner
         = new java.util.Scanner(System.in); // Scanner for user input
 
-    protected final static int NUMEACH = 4;
+    protected static final int NUMEACH = 4;
+    protected static final int MAXTREASURES = 24;
 
 
     /**
@@ -97,7 +99,8 @@ public class GameEngine {
         id++;
         // publish initial Character stats to Tracker
         tracker.setCharacterStats(characterList);
-        // Example of Observer pattern, Tracker in turn tells Rooms (subscriber) of new occupancy.
+        // Example of Observer pattern
+        // Tracker in turn tells Rooms (subscriber) of new occupancy.
 
         // Creatures
         // Also an example of polymorphism
@@ -138,63 +141,66 @@ public class GameEngine {
      * @param character Character
      * @param creature Creature
      *
-     * Input a Character and Creature 
+     * Input a Character and Creature
      * Deducts health if a dice roll is larger than the other.
      *
      * If a character rolls a -1, fight is skipped.
      */
-    private void simulateFight(final Character character, final Creature creature) {
+    private void simulateFight(final Character character, 
+        final Creature creature) {
 
-        // Decorator pattern. Wraps fightbehavior into celebration decorator
-        // Fight method is called from the celebration decorator
-        FightBehavior fightBehavior = character.getFightBehavior();
-        Celebration celebration = new SpinCelebration(fightBehavior);
-        celebration = new DanceCelebration(celebration);
-        celebration = new JumpCelebration(celebration);
-        celebration = new ShoutCelebration(celebration);
+            // Decorator pattern. Wraps fightbehavior into celebration decorator
+            // Fight method is called from the celebration decorator
+            FightBehavior fightBehavior = character.getFightBehavior();
+            Celebration celebration = new SpinCelebration(fightBehavior);
+            celebration = new DanceCelebration(celebration);
+            celebration = new JumpCelebration(celebration);
+            celebration = new ShoutCelebration(celebration);
 
-        // Called from celebration decorator
-        int characterRoll = celebration.fight();
-        int creatureRoll = creature.fight();
+            // Called from celebration decorator
+            int characterRoll = celebration.fight();
+            int creatureRoll = creature.fight();
 
-        for (Treasure t: character.getInventory()) {
-            characterRoll += t.getOwnerFightBonus();
-            creatureRoll += t.getAdversaryFightBonus();
-        }
-
-        if (characterRoll > 0) {
-            // If fight not skipped
-            if (characterRoll > creatureRoll) {
-                // If Character Wins
-                // Publish Character won to Tracker
-                tracker.characterWon(character, creature, characterRoll, creatureRoll);
-                // Remove dead Creature, publish to Trackers
-                tracker.removeCreature(creature);
-                // Publish Character celebrated to Tracker
-                tracker.characterCelebrated(character, celebration);
-                printer.printFightResults();
-                printer.printCelebration(celebration);
-
-                // Example of Observer pattern
-                // Tracker let's interested parties/subsribers
-                // (Printer, Logger, Room)'s know about these events.
-            } else if (characterRoll < creatureRoll) {
-                // If Creature Wins
-                // Publish Creature won to Tracker
-                tracker.creatureWon(character, creature, characterRoll, creatureRoll);
-                if (character.getHealth() <= 0) {
-                    printer.printFightResults();
-                    // Remove dead Character, publish to Tracker
-                    tracker.removeCharacter(character);
-                }
+            for (Treasure t: character.getInventory()) {
+                characterRoll += t.getOwnerFightBonus();
+                creatureRoll += t.getAdversaryFightBonus();
             }
-        } else {
-            // If characterRoll = -1, fight was skipped
-            tracker.fightSkipped(); // Publish fight skipped to Tracker
-            printer.printFightResults();
-            // Printer is informed of results to print via the Tracker
-            // example of Observer pattern
-        }
+
+            if (characterRoll > 0) {
+                // If fight not skipped
+                if (characterRoll > creatureRoll) {
+                    // If Character Wins
+                    // Publish Character won to Tracker
+                    tracker.characterWon(character, creature,
+                        characterRoll, creatureRoll);
+                    // Remove dead Creature, publish to Trackers
+                    tracker.removeCreature(creature);
+                    // Publish Character celebrated to Tracker
+                    tracker.characterCelebrated(character, celebration);
+                    printer.printFightResults();
+                    printer.printCelebration(celebration);
+
+                    // Example of Observer pattern
+                    // Tracker let's interested parties/subsribers
+                    // (Printer, Logger, Room)'s know about these events.
+                } else if (characterRoll < creatureRoll) {
+                    // If Creature Wins
+                    // Publish Creature won to Tracker
+                    tracker.creatureWon(character, creature,
+                        characterRoll, creatureRoll);
+                    if (character.getHealth() <= 0) {
+                        printer.printFightResults();
+                        // Remove dead Character, publish to Tracker
+                        tracker.removeCharacter(character);
+                    }
+                }
+            } else {
+                // If characterRoll = -1, fight was skipped
+                tracker.fightSkipped(); // Publish fight skipped to Tracker
+                printer.printFightResults();
+                // Printer is informed of results to print via the Tracker
+                // example of Observer pattern
+            }
     }
 
 
@@ -216,7 +222,8 @@ public class GameEngine {
                 // If Treasure found
                 Treasure currentItem = treasureInRoom.get(0);
                 // only find first Treasure (if multiple)
-                // If Character has Treasure of first type already but not of second,
+                // If Character has Treasure of first type already
+                // but not of second,
                 // Character still doesn't get the second Treasure.
                 if (character.getInventoryTypes().
                     contains(currentItem.getTreasureType())) {
@@ -356,7 +363,7 @@ public class GameEngine {
             Room newRoom = creature.getLocation();
             // Publish Creature moved to Tracker
             tracker.creatureMoved(creature, oldRoom, newRoom);
-            
+
 
             // If characters in new room, fight
             ArrayList<Character> charactersInNewRoom
@@ -378,7 +385,6 @@ public class GameEngine {
         int characterCount = tracker.getCharacterList().size();
 
         // Change End Condition depending on the outcome
-        final int MAXTREASURES = 24;
         if (treasureCount == MAXTREASURES) {
             // 24 Treasures Found
             endCondition = false;

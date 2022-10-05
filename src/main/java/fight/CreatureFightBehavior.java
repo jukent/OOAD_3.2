@@ -4,7 +4,7 @@ import util.DiceRolls;
 
 public class CreatureFightBehavior extends FightBehavior {
 
-    protected final static int DICESIDES = 6;
+    protected static final int DICESIDES = 6;
 
 
     /**
