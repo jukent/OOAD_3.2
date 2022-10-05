@@ -16,8 +16,11 @@ public class Printer {
     private final Tracker tracker; // Game Tracker
     private final String outputType; // Output options:
     // OneScreen, ShowAll, ShowEnding, ShowNone
+
     private final Scanner scanner
         = new java.util.Scanner(System.in); // A Scanner for awaiting user input
+
+    private static final int MAXHEALTH = 3;
 
 
     /**
@@ -120,7 +123,8 @@ public class Printer {
      * @param row int
      * @param columns Columns
      *
-     * This method adds a row of the Dungeon and its occupancy to the Columns object.
+     * This method adds a row of the Dungeon and
+     * its occupancy to the Columns object.
      */
     private void addRowArray(final Integer level, final Integer row,
         final PrinterColumns columns) {
@@ -175,7 +179,6 @@ public class Printer {
     private void printCharacterStats() {
         String tableHeader = new String("Adventurers\tDamage\tTreasure");
         System.out.println(tableHeader);
-        final int MAXHEALTH = 3;
         for (Character c: tracker.getCharacterList()) {
             String name = c.getName();
             String treasureString = c.getInventoryString();
@@ -203,8 +206,8 @@ public class Printer {
         }
         System.out.println();
         for (String creature: creatureSet) {
-            tempString = new String(creature + "(s) - " +
-                counts[creatureSet.indexOf(creature)] + " Remaining");
+            tempString = new String(creature + "(s) - "
+                + counts[creatureSet.indexOf(creature)] + " Remaining");
             System.out.println(tempString);
         }
     }
@@ -219,7 +222,7 @@ public class Printer {
      * Prints the entities and their dice rolls when a Character wins the fight.
      */
     private void printCharacterWins(final String character,
-        final String creature,final String characterRoll,
+        final String creature, final String characterRoll,
         final String creatureRoll) {
             System.out.print("Fight: ");
             System.out.print(character + ": ");
@@ -329,7 +332,7 @@ public class Printer {
      *
      * Prints the treasure and dice rolls for a duplicate treasure hunt.
      */
-    private void printDuplicateTreasureHunt(final String treasure, 
+    private void printDuplicateTreasureHunt(final String treasure,
         final String score) {
             if (outputType != "ShowNone") {
                 System.out.print("Treasure Hunt: ");

@@ -24,13 +24,13 @@ import treasure.Treasure;
 // the Logger,
 // and the Printer.
 
-// At first we tried to implement the Observer pattern with 
+// At first we tried to implement the Observer pattern with
 // an Observer interface,
 // but are using references in method calls
 // Decision informed from "Game Programming Patterns"
 // a book by Robert Nystrom http://gameprogrammingpatterns.com/observer.html
-// "A more modern approach is for an “observer” to be only a reference to a 
-// method or function. 
+// "A more modern approach is for an “observer” to be only a reference to a
+// method or function.
 // In languages with first-class functions, and especially ones with closures,
 // this is a much more common way to do observers.""
 
@@ -66,7 +66,9 @@ public class Tracker {
      *
      * Constructor for the Tracker.
      */
-    public Tracker(final ArrayList<Character> characterList, final ArrayList<Creature> creatureList,
+    public Tracker(
+        final ArrayList<Character> characterList,
+        final ArrayList<Creature> creatureList,
         final ArrayList<Treasure> treasureList) {
             this.characterList = characterList; // An ArrayList of all
             // active Characters

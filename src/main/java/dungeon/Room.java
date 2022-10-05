@@ -21,7 +21,8 @@ public class Room {
 
 
     // Avoiding magic numbers
-    protected static final int MINLEVEL = 1; // Dungeon highest level (not starting room)
+    protected static final int MINLEVEL = 1; // Dungeon highest level 
+    // (not starting room)
     protected static final int MAXLEVEL = 4; // Dungeon max levels
 
 
@@ -132,8 +133,9 @@ public class Room {
      *
      * This is updated by the Tracker as an example of the Observer pattern.
      */
-    public void setCharactersInRoom(final ArrayList<Character> charactersInRoom) {
-        this.charactersInRoom = charactersInRoom;
+    public void setCharactersInRoom(
+        final ArrayList<Character> charactersInRoom) {
+            this.charactersInRoom = charactersInRoom;
     }
 
 
@@ -239,7 +241,8 @@ public class Room {
                     // If not on level 1, stairs up
                     Integer newLevel = this.level - 1;
                     String neighboringRoom
-                        = new String("(" + newLevel + "-" + this.row + "-" + this.column + ")");
+                        = new String("(" + newLevel + "-"
+                        + this.row + "-" + this.column + ")");
                     exits.add(neighboringRoom);
                 }
                 if (this.level != MAXLEVEL) {

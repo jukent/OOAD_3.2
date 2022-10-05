@@ -87,10 +87,11 @@ public class PrinterColumns {
      * This method changes a String length by padding it with
      * white space to match the desired Column width.
      */
-    private String pad(String word, final int newLength) {
-        while (word.length() < newLength) {
-            word += " ";
+    private String pad(final String word, final int newLength) {
+        String paddedWord = word;
+        while (paddedWord.length() < newLength) {
+            paddedWord += " ";
         }
-        return word;
+        return paddedWord;
     }
 }

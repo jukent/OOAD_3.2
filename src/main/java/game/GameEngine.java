@@ -29,7 +29,7 @@ public class GameEngine {
     private ArrayList<Treasure> treasureList = new ArrayList<Treasure>();
 
     private final Tracker tracker
-        = new Tracker(characterList, creatureList, treasureList); 
+        = new Tracker(characterList, creatureList, treasureList);
     // Game Tracker
     // Using the Tracker is an example of the Observer pattern.
     // Events are published to the Tracker (pointed out in comments)
@@ -146,7 +146,7 @@ public class GameEngine {
      *
      * If a character rolls a -1, fight is skipped.
      */
-    private void simulateFight(final Character character, 
+    private void simulateFight(final Character character,
         final Creature creature) {
 
             // Decorator pattern. Wraps fightbehavior into celebration decorator
