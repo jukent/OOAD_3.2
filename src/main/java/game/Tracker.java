@@ -486,6 +486,7 @@ public class Tracker {
 
 
     /**
+     * @param character Character
      * @param score Integer
      *
      * Publishes the event that Treasure was not found.

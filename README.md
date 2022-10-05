@@ -107,7 +107,9 @@ Ideally we'd strive for more code coverage, but we tested the most suspect areas
 
 Testing is now done automatically on every new push to the GitHub repository with GitHub actions Continuous Integration.
 The steps for this are in [`.github/workflows/junit_test.yml`](https://github.com/jukent/OOAD_3.2/blob/main/.github/workflows/junit_tests.yaml) and can be viewed in the "Actions" tab.
-[Here are recent test results](https://github.com/jukent/OOAD_3.2/actions/runs/3182673557/jobs/5188932278).
+[Here are recent test results](https://github.com/jukent/OOAD_3.2/actions/runs/3187557507/jobs/5199243529).
+
+Similiarly, we use a GitHub Actions linter to enforce consistent style guide and standard rules. Here is an example [Linter test results](https://github.com/jukent/OOAD_3.2/actions/runs/3187557506/jobs/5199243526).
 
 ## Citations
 

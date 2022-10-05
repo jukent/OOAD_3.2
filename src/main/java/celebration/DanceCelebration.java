@@ -57,7 +57,7 @@ public class DanceCelebration extends Celebration {
         }
     }
 
-    public String trackCelebrate(){
+    public String trackCelebrate() {
         String results = "";
         if (getCelebrationRef() != null) {
             results += getCelebrationRef().trackCelebrate();

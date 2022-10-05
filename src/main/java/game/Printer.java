@@ -8,7 +8,6 @@ import dungeon.Dungeon;
 import dungeon.Room;
 import entity.Creature;
 import entity.Character;
-import celebration.Celebration;
 
 public class Printer {
 
