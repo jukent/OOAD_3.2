@@ -171,8 +171,8 @@ public class GameEngine {
                 if (characterRoll > creatureRoll) {
                     // If Character Wins
                     // Publish Character won to Tracker
-                    tracker.characterWon(character, creature,
-                        characterRoll, creatureRoll);
+                    tracker.entityWon(character, creature,
+                        characterRoll, creatureRoll, "CharacterWon");
                     // Remove dead Creature, publish to Trackers
                     tracker.removeCreature(creature);
                     // Publish Character celebrated to Tracker
@@ -186,8 +186,8 @@ public class GameEngine {
                 } else if (characterRoll < creatureRoll) {
                     // If Creature Wins
                     // Publish Creature won to Tracker
-                    tracker.creatureWon(character, creature,
-                        characterRoll, creatureRoll);
+                    tracker.entityWon(character, creature,
+                        characterRoll, creatureRoll, "CreatureWon");
                     if (character.getHealth() <= 0) {
                         printer.printFightResults();
                         // Remove dead Character, publish to Tracker

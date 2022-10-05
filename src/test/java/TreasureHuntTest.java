@@ -43,7 +43,7 @@ public class TreasureHuntTest {
             = character.getLocation().getTreasuresInRoom();
         Assert.assertEquals(1, treasureInRoom.size());
         Treasure currentItem = treasureInRoom.get(0);
-    
+
         character.addInventory(currentItem);
         tracker.treasureFound(currentItem, 12);
 

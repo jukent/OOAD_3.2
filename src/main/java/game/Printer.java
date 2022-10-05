@@ -214,56 +214,6 @@ public class Printer {
 
 
     /**
-     * @param character String
-     * @param creature String
-     * @param characterRoll String
-     * @param creatureRoll String
-     *
-     * Prints the entities and their dice rolls when a Character wins the fight.
-     */
-    private void printCharacterWins(final String character,
-        final String creature, final String characterRoll,
-        final String creatureRoll) {
-            System.out.print("Fight: ");
-            System.out.print(character + ": ");
-            System.out.print(characterRoll);
-            System.out.print(" " + creature + ": ");
-            System.out.print(creatureRoll);
-            System.out.println(" " + character + " Wins :D ");
-            System.out.print(character + " celebrates!: ");
-            System.out.println();
-    }
-
-
-    /**
-     * @param character String
-     * @param creature String
-     * @param characterRoll String
-     * @param creatureRoll String
-     *
-     * Prints the entities and their dice rolls when a Creature wins the fight.
-     */
-    private void printCreatureWins(final String character,
-        final String creature, final String characterRoll,
-        final String creatureRoll) {
-            System.out.print("Fight: ");
-            System.out.print(character + ": ");
-            System.out.print(characterRoll);
-            System.out.print(" " + creature + ": ");
-            System.out.print(creatureRoll);
-            System.out.println(" Creature Wins :( ");
-    }
-
-
-    /**
-     * Prints that the fight was skipped.
-     */
-    private void printFightSkipped() {
-        System.out.println("Fight Skipped");
-    }
-
-
-    /**
      * Prints the fight results.
      *
      * Example of Observer pattern
@@ -277,7 +227,7 @@ public class Printer {
             // options: "CharacterWon", "CreatureWon", "FightSkipped"
             if (result == "FightSkipped") {
                 // If Fight skipped
-                printFightSkipped();
+                System.out.println("Fight Skipped");
             } else {
                 // Fight not skipped
                 String character = fightValues.get("character");
@@ -285,14 +235,19 @@ public class Printer {
                 String creature = fightValues.get("creature");
                 String creatureRoll = fightValues.get("creatureRoll");
 
+                System.out.print("Fight: ");
+                System.out.print(character + ": ");
+                System.out.print(characterRoll);
+                System.out.print(" " + creature + ": ");
+                System.out.print(creatureRoll);
+
                 if (result == "CharacterWon") {
                     // If Characer Won
-                    printCharacterWins(character, creature,
-                        characterRoll, creatureRoll);
+                    System.out.println(" " + character + " Wins :D ");
+                    System.out.print(character + " celebrates!: ");
                 } else if (result == "CreatureWon") {
                     // If Creature Won
-                    printCreatureWins(character, creature,
-                        characterRoll, creatureRoll);
+                    System.out.println(" Creature Wins :( ");
                 }
             }
         }

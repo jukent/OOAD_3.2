@@ -1,13 +1,4 @@
 ---
-##########################
-##########################
-## Dart Linter rules    ##
-##########################
-##########################
-
-# Pedantic Rules
-# https://github.com/dart-lang/pedantic
-
 linter:
   rules:
     - always_declare_return_types

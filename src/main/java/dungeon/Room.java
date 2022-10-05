@@ -21,7 +21,7 @@ public class Room {
 
 
     // Avoiding magic numbers
-    protected static final int MINLEVEL = 1; // Dungeon highest level 
+    protected static final int MINLEVEL = 1; // Dungeon highest level
     // (not starting room)
     protected static final int MAXLEVEL = 4; // Dungeon max levels
 
@@ -230,7 +230,8 @@ public class Room {
                 // If not in east-most row of level, door to east
                 Integer newColumn = this.column + 1;
                 String neighboringRoom
-                    = new String("(" + this.level + "-" + this.row + "-" + newColumn + ")");
+                    = new String("(" + this.level + "-"
+                    + this.row + "-" + newColumn + ")");
                 exits.add(neighboringRoom);
             }
             if (this.column == 1 && this.row == 1) {

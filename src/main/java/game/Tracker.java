@@ -306,42 +306,17 @@ public class Tracker {
      * @param creature Creature
      * @param characterRoll int
      * @param creatureRoll int
+     * @param fightResult String
      *
-     * Pubished event that a Character won the fight.
+     * Pubished event that an Entity won the fight.
      *
      * Tracker reduces Creature's health points by 1.
      */
-    public void characterWon(final Character character, final Creature creature,
-        final int characterRoll, final int creatureRoll) {
+    public void entityWon(final Character character, final Creature creature,
+        final int characterRoll, final int creatureRoll, String fightResult) {
             creature.loseHealth(1);
 
             // Expose results for printer subscriber to use
-            fightResult = "CharacterWon";
-            fightValues.clear();
-            fightValues.put("result", fightResult);
-            fightValues.put("character", character.getName());
-            fightValues.put("characterRoll", String.valueOf(characterRoll));
-            fightValues.put("creature", creature.getName());
-            fightValues.put("creatureRoll", String.valueOf(creatureRoll));
-    }
-
-
-    /**
-     * @param character Character
-     * @param creature Creature
-     * @param characterRoll int
-     * @param creatureRoll int
-     *
-     * Published event that a Creature won the fight.
-     *
-     * Tracker reduces Character's health points by 1.
-     */
-    public void creatureWon(final Character character, final Creature creature,
-        final int characterRoll, final int creatureRoll) {
-            character.loseHealth(1);
-
-            // Expose results for printer subscriber to use
-            fightResult = "CreatureWon";
             fightValues.clear();
             fightValues.put("result", fightResult);
             fightValues.put("character", character.getName());
