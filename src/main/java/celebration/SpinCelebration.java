@@ -57,10 +57,10 @@ public class SpinCelebration extends Celebration {
 
     public String trackCelebrate() {
         String results = "";
-        if (this.celebrationRef != null) {
-            results += this.celebrationRef.trackCelebrate();
+        if (getCelebrationRef() != null) {
+            results += getCelebrationRef().trackCelebrate();
         }
-        for(int i = 0; i < DiceRolls.rollDice(3) - 1; i++) {
+        for (int i = 0; i < DiceRolls.rollDice(3) - 1; i++) {
             results += "Spin! ";
         }
         return results;

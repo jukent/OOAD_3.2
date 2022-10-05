@@ -1,13 +1,12 @@
 Tracker: Turn 46
 
 Adventurers	Room	Damage	Treasure
-Runner		(2-2-2)	1		Sword, Trap, Armor
-Sneaker		(2-1-1)	0		
-Thief		(1-2-1)	0		Potion, Armor
-Brawler		(1-2-1)	0		Gem, Armor, Potion
+Runner		(3-2-0)	0		Armor, Gem, Portal, Sword, Potion
+Sneaker		(1-0-1)	1		Trap
+Thief		(1-2-1)	0		
+Brawler		(2-1-1)	2		Gem, Armor
 
-Total Active Creatures: 2
+Total Active Creatures: 1
 
 Creatures	Room
-Seeker		(4-0-1)
-Orbiter		(4-1-0)
+Seeker		(4-0-0)

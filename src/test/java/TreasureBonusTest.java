@@ -31,7 +31,7 @@ public class TreasureBonusTest {
 
     @Test
     public void testHPAddition() {
-        runner.addHealth(potion.getTakeDamage());
+        runner.addHealth(potion.getHPBoost());
         Assert.assertEquals(MAXHEALTH, runner.getHealth());
     }
 

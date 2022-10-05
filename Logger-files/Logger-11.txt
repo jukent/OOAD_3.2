@@ -1,13 +1,18 @@
 Tracker: Turn 11
 
 Adventurers	Room	Damage	Treasure
-Runner		(2-0-0)	0		Sword
-Sneaker		(1-1-1)	0		
-Thief		(1-2-0)	0		Potion, Armor
-Brawler		(1-1-1)	1		Gem, Armor
+Runner		(1-1-0)	0		
+Sneaker		(1-0-0)	0		
+Thief		(1-2-0)	0		
+Brawler		(3-0-0)	1		
 
-Total Active Creatures: 2
+Total Active Creatures: 7
 
 Creatures	Room
-Seeker		(4-0-1)
-Orbiter		(4-0-2)
+Seeker		(4-0-0)
+Orbiter		(3-2-0)
+Seeker		(3-0-2)
+Orbiter		(2-1-0)
+Orbiter		(2-0-2)
+Blinker		(2-2-2)
+Orbiter		(2-2-0)
