@@ -1,0 +1,13 @@
+Tracker: Turn 21
+
+Adventurers	Room	Damage	Treasure
+Runner		(3-1-0)	0		Armor
+Sneaker		(1-1-1)	1		Trap
+Thief		(1-1-1)	0		
+Brawler		(2-0-1)	2		
+
+Total Active Creatures: 2
+
+Creatures	Room
+Seeker		(4-0-0)
+Blinker		(0-1-1)

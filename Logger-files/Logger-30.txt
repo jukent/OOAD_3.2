@@ -1,0 +1,13 @@
+Tracker: Turn 30
+
+Adventurers	Room	Damage	Treasure
+Runner		(4-2-2)	1		Armor
+Sneaker		(1-1-0)	1		Trap
+Thief		(1-1-2)	0		
+Brawler		(2-1-1)	2		Gem
+
+Total Active Creatures: 2
+
+Creatures	Room
+Seeker		(4-0-0)
+Blinker		(1-2-2)

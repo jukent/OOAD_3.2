@@ -247,6 +247,7 @@ public class Printer {
 
                     System.out.print(character + " celebrates!: ");
                     tracker.getCelebration().celebrate();
+                    System.out.println("");
                 } else if (result == "CreatureWon") {
                     // If Creature Won
                     System.out.println(" Creature Wins :( ");
@@ -273,7 +274,7 @@ public class Printer {
             String score = treasureValues.get("score");
 
             System.out.print(character);
-            System.out.print("Treasure Hunt: ");
+            System.out.print(" Treasure Hunt: ");
             System.out.print(score);
             if (result == "TreasureFound") {
                 // If Treasure Found

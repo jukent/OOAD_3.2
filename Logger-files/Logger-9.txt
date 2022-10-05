@@ -1,0 +1,18 @@
+Tracker: Turn 9
+
+Adventurers	Room	Damage	Treasure
+Runner		(1-1-2)	0		
+Sneaker		(1-0-0)	0		
+Thief		(1-2-2)	0		
+Brawler		(3-1-1)	0		
+
+Total Active Creatures: 7
+
+Creatures	Room
+Seeker		(4-0-0)
+Orbiter		(3-0-0)
+Seeker		(3-0-2)
+Orbiter		(2-2-1)
+Orbiter		(2-0-0)
+Blinker		(1-0-0)
+Orbiter		(2-0-0)
