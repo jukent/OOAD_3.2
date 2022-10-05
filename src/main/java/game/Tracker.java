@@ -312,8 +312,12 @@ public class Tracker {
      *
      * Tracker reduces Creature's health points by 1.
      */
-    public void entityWon(final Character character, final Creature creature,
-        final int characterRoll, final int creatureRoll, String fightResult) {
+    public void entityWon(
+        final Character character,
+        final Creature creature,
+        final int characterRoll,
+        final int creatureRoll,
+        final String fightResult) {
             creature.loseHealth(1);
 
             // Expose results for printer subscriber to use
